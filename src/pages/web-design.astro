@@ -1,0 +1,43 @@
+---
+import About from '../components/home/About.astro';
+import Cta from '../components/web-design/Cta.astro';
+import Integrations from '../components/web-design/Integrations.astro';
+import Hero from '../components/web-design/Hero.astro';
+import VelocityIntro from '../components/web-design/Intro-Velocity.astro';
+import Process from '../components/web-design/Process.astro';
+import VelocityInfo from '../components/web-design/Info-Velocity.astro';
+import VelocitySlide from '../components/web-design/SliderSml-Velocity.astro';
+import MoonSlide from '../components/web-design/SliderSml-Moonshot.astro';
+import MoonIntro from '../components/web-design/Intro-Moonshot.astro';
+import MoonInfo from '../components/web-design/Info-Moonshot.astro';
+
+
+
+import Clients from '../components/web-design/Grid-Clients.astro';
+import Components from '../components/web-design/Components.astro';
+import Testimonials from '../components/web-design/Testimonials.astro';
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  description="Website Design · Gold Coast Website Design by Aidxn Design"
+>
+  <Hero />
+  <About />
+
+  <VelocityIntro />
+  <VelocitySlide />
+  <VelocityInfo />
+
+  <Process />
+
+  <MoonIntro />
+  <MoonSlide />
+  <MoonInfo />
+
+  <Clients />
+  
+  <Testimonials />
+  <Cta />
+
+</Layout>

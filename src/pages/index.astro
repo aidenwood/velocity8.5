@@ -1,0 +1,49 @@
+---
+import About from '../components/home/About.astro';
+import Cta from '../components/home/Cta.astro';
+import Integrations from '../components/home/Integrations.astro';
+import Hero from '../components/home/Hero.astro';
+import VelocityIntro from '../components/home/Intro-Velocity.astro';
+import Process from '../components/home/Process.astro';
+import VelocityInfo from '../components/home/Info-Velocity.astro';
+import VelocitySlide from '../components/home/SliderSml-Velocity.astro';
+import MoonSlide from '../components/home/SliderSml-Moonshot.astro';
+import MoonIntro from '../components/home/Intro-Moonshot.astro';
+import MoonInfo from '../components/home/Info-Moonshot.astro';
+
+
+
+import Clients from '../components/home/Grid-Clients.astro';
+import VelocityFAQ from '../components/home/Faq-Velocity.astro';
+import Testimonials from '../components/home/Testimonials.astro';
+import Layout from '../layouts/Layout.astro';
+import SectionEnd from '../components/home/Section-End.astro';
+
+---
+
+<Layout
+  description="Home · Gold Coast Website Design by Aidxn Design"
+>
+  <Hero />
+  <Process />
+  <SectionEnd />
+
+  <VelocityIntro />
+  <VelocitySlide />
+  <VelocityFAQ />
+  <VelocityInfo />
+  <SectionEnd />
+
+  <Clients />
+  <SectionEnd />
+
+  <MoonIntro />
+  <MoonSlide />
+  <MoonInfo />
+  <Testimonials />  
+  <SectionEnd />
+
+  <About />
+  <Cta />
+
+</Layout>

@@ -1,0 +1,55 @@
+
+<!-- SVG CSS and Animate for Aidxn Moving Logo -->
+<!-- Velocity8 Large Slider Settings -->
+<style>
+  svg{width:100%;height:100%;perspective:50px}circle{stroke:#26003A;stroke-width:8px;fill:none}.equator{stroke:#a600ff;transform:rotateZ(-20deg) rotateX(125deg)}.meridian{animation:2s linear infinite turn;transform:rotateZ(-20deg) rotateX(35deg) rotateY(var(--start))}@keyframes turn{100%{transform:rotateZ(-20deg) rotateX(35deg) rotateY(var(--end))}}
+</style>
+
+<section class="py-8 md:py-20">
+  <div class="mx-auto px-4 sm:px-6 w-full lg:max-w-7xl lg:px-8">
+    <div class="flex flex-col gap-16">
+      <div class="flex flex-col md:flex-row-reverse items-center gap-8 sm:gap-10">
+        <div class="w-4/5 md:w-1/3 items-start">
+          
+          <div id="animationWrapper" translate="no" transition:name="meridian">
+            <svg viewBox="-500 -500 1000 1000" class="w-full">
+              <circle r="450"></circle>
+              <circle class="equator" r="450"></circle>
+              <circle class="meridian" r="450" style="--start:165deg; --end:180deg"></circle>
+              <circle class="meridian" r="450" style="--start:150deg; --end:165deg"></circle>
+              <circle class="meridian" r="450" style="--start:135deg; --end:150deg"></circle>
+              <circle class="meridian" r="450" style="--start:120deg; --end:135deg"></circle>
+              <circle class="meridian" r="450" style="--start:105deg; --end:120deg"></circle>
+              <circle class="meridian" r="450" style="--start:90deg; --end:105deg"></circle>
+              <circle class="meridian" r="450" style="--start:75deg; --end:90deg"></circle>
+              <circle class="meridian" r="450" style="--start:60deg; --end:75deg"></circle>
+              <circle class="meridian" r="450" style="--start:45deg; --end:60deg"></circle>
+              <circle class="meridian" r="450" style="--start:30deg; --end:45deg"></circle>
+              <circle class="meridian" r="450" style="--start:15deg; --end:30deg"></circle>
+              <circle class="meridian" r="450" style="--start:0deg; --end:15deg"></circle>
+            </svg>
+          </div>
+          
+        </div>
+        <div class="w-full md:w-2/3 gap-4">
+          <h1 class="text-4xl font-medium tracking-tight sm:text-5xl lg:text-6xl max-w-2xl">
+            Award Winning Digital Marketing on the Gold Coast
+          </h1>
+          <p class="text-primary-950/70 dark:text-primary-200/70 text-lg sm:text-xl max-w-2xl my-4">
+            Offering the Moonshot Plan, a pause anytime marketing management plan that guarentees results. 
+            Never get run in circles again with a single point of contact for your account.
+          </p>
+          
+          <a
+            href="/pricing"
+            class="mr-4 bg-primary-600 dark:bg-primary-400 hover:bg-primary-700 dark:hover:bg-primary-300 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-400 dark:text-primary-950 inline-flex items-center justify-center rounded-full border border-transparent px-5 py-3 text-base font-medium text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+          >
+            Pricing
+          </a>
+        </div>
+      </div>
+    </div>  
+  </div>
+</section>
+
+

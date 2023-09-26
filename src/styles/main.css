@@ -1,0 +1,13 @@
+@layer base {
+    @font-face {
+      font-family: 'Brulia';
+      font-display: block; /* This property will help us not flash unstyled text for a couple hundred milliseconds, and then it would act like font-display: swap */
+      src: url('../fonts/brulia-display.ttf') format('truetype');
+      src: url('../fonts/brulia-display.otf') format('otf');
+      src: url('../fonts/brulia-display.woff2') format('woff2');
+    }
+
+  }
+  
+  
+  h1, h2, h3 { font-family: 'Brulia' !important; }

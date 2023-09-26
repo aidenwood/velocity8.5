@@ -1,0 +1,69 @@
+---
+const stats = [
+  {
+    name: 'Expert',
+    value: '1',
+  },
+  {
+    name: 'Years',
+    value: '10',
+  },
+  {
+    name: 'Projects',
+    value: '122',
+  },
+  {
+    name: 'Awards',
+    value: "'9'",
+  },
+];
+---
+
+<section class="py-16 sm:py-20">
+  <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+    <div class="grid gap-16 lg:grid-cols-2 lg:gap-24">
+      <img
+        class="mx-auto h-auto w-full max-w-xl rounded-3xl bg-primary-200"
+        width="576"
+        height="864"
+        src="/assets/headshot.webp"
+        alt="Aiden Wood from Aidxn Design - One of the Gold Coast's most awarded web designers and digital marketing experts."
+      />
+      <div class="flex flex-col gap-10">
+        <!-- Mission description -->
+        <div class="space-y-8 sm:space-y-12">
+          <h2 class="text-3xl font-medium tracking-tight sm:text-4xl">Web design, but reliable.</h2>
+          <div class="space-y-6">
+            <p class="text-primary-950/70 dark:text-primary-200/70 text-base sm:text-lg">
+              The web design industry has evolved more than most people might realise. 
+              When I was in my graduation year, just over a decade ago, my IT teacher 
+              was telling me there wouldn't be enough work in just web design.
+            </p>
+            <p class="text-primary-950/70 dark:text-primary-200/70 text-base sm:text-lg">
+              Then halfway through the 10's Google and Facebook made Digital Marketing a 
+              full blown industry with the amount of pure competition and ad spend going 
+              across the table for even small businesses.
+            </p>
+            <p class="text-primary-950/70 dark:text-primary-200/70 text-base sm:text-lg">
+              I have been specialising in performance web design for over 6 years now, and 
+              have seen the best and worst of the entire industry. Wanting to provide something 
+              better to clients than what I see at agencies, I'm moving back to the freelancer model.
+            </p>
+          </div>
+        </div>
+
+        <!-- Stats -->
+        <dl class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+          {
+            stats.map((stat) => (
+              <div class="border-primary-900/10 dark:border-primary-300/10 rounded-3xl border p-6">
+                <dt class="text-base">{stat.name}</dt>
+                <dd class="text-3xl font-medium tracking-tight">{stat.value}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>

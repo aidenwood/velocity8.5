@@ -1,0 +1,67 @@
+---
+const services = [
+  {
+    step: '01',
+    img: '/assets/trig.svg',
+    alt: 'Gold Coast Graphic Design',
+    name: 'Design',
+    description:
+      'All Velocity packages include mock up revisions, done over video call with screen share for best results.',
+  },
+  {
+    step: '02',
+    name: 'Develop',
+    img: '/assets/sqr.svg',
+    alt: 'Gold Coast Web Design and Web Development',
+    description:
+      'With a 21 day turn-around you can be sure your not missing out on anymore sales due to a poor website.',
+  },
+  {
+    step: '03',
+    name: 'Market',
+    img: '/assets/poly.svg',
+    alt: 'Gold Coast Digital Marketing and Strategy Development',
+    description:
+      'Websites that truly generate business, with 3 months of SEO included to get the most out of your new website.',
+  },
+  {
+    step: '04',
+    name: 'Moonshot',
+    img: '/assets/hex.svg',
+    alt: 'Gold Coast Digital Marketing and Brand Management',
+    description:
+      'Expert management always in your corner, pause anytime. Combining web design, brand design and marketing in one.',
+  },
+];
+---
+
+<section class="py-16 sm:py-20">
+  <div class="mx-auto px-4 sm:px-6 w-full lg:max-w-7xl lg:px-8">
+    <div class="flex flex-col gap-12 sm:gap-16">
+      <h2 class="text-3xl font-medium tracking-tight sm:text-4xl">Our build process</h2>
+      <div class="grid gap-8 grid-cols-1 sm:grid-cols-2">
+        {
+          services.map((service) => (
+            <div class="bg-primary-500/10 dark:bg-primary-400/10 flex flex-col gap-12 rounded-3xl px-6 py-8">
+              
+              <div class="flex flex-col gap-4">
+                <img
+                  class="h-auto w-8 md:w-16 rounded-3xl"
+                  width="640"
+                  height="640"
+                  src={service.img}
+                  alt={service.alt}
+                />
+                <p class="text-sm">{service.step}</p>
+                <h3 class="text-xl font-medium">{service.name}</h3>
+                <p class="text-primary-950/70 dark:text-primary-200/70 text-sm md:text-md">
+                  {service.description}
+                </p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

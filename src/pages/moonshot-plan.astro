@@ -1,0 +1,43 @@
+---
+import About from '../components/home/About.astro';
+import Cta from '../components/moonshot/Cta.astro';
+import Integrations from '../components/moonshot/Integrations.astro';
+import Hero from '../components/moonshot/Hero.astro';
+import VelocityIntro from '../components/moonshot/Intro-Velocity.astro';
+import Process from '../components/moonshot/Process.astro';
+import VelocityInfo from '../components/moonshot/Info-Velocity.astro';
+import VelocitySlide from '../components/moonshot/SliderSml-Velocity.astro';
+import MoonSlide from '../components/moonshot/SliderSml-Moonshot.astro';
+import MoonIntro from '../components/moonshot/Intro-Moonshot.astro';
+import MoonInfo from '../components/moonshot/Info-Moonshot.astro';
+
+
+
+import Clients from '../components/moonshot/Grid-Clients.astro';
+import Components from '../components/moonshot/Components.astro';
+import Testimonials from '../components/moonshot/Testimonials.astro';
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  description="Moonshot Plan · Gold Coast Digital Marketing Management by Aidxn Design"
+>
+  <Hero />
+  <About />
+
+  <VelocityIntro />
+  <VelocitySlide />
+  <VelocityInfo />
+
+  <Process />
+
+  <MoonIntro />
+  <MoonSlide />
+  <MoonInfo />
+
+  <Clients />
+  
+  <Testimonials />
+  <Cta />
+
+</Layout>

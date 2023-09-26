@@ -1,0 +1,64 @@
+
+<!-- Velocity8 Slider Settings -->
+<style>
+
+.carousel-cell {
+  margin-right: 15px;
+  width: calc(50% - 7.5px);
+}
+@media only screen and (max-width: 1199px) {
+  .carousel-cell {
+    width: 65%;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .carousel-cell {
+    width: 85%;
+  }
+}
+.flickity-viewport {
+  transition: 0.2s;
+}
+
+</style>
+
+<section class="py-8">
+  <div class="mx-auto px-4 sm:px-6 w-full lg:max-w-7xl lg:px-8">
+    
+      <div class="carousel" data-flickity='{ "contain": true, "freeScroll": true, "pageDots": false, "prevNextButtons": false, "lazyLoad": true, "imagesLoaded": true, "autoPlay": 1800 }'>
+        <div 
+          class="carousel-cell size-vertical rounded-3xl bg-cover h-full" 
+          style="background-image: url(/works/hero-tsd.webp); background-position: center;">
+        </div>
+
+        <div 
+          class="carousel-cell size-vertical rounded-3xl bg-cover h-full" 
+          style="background-image: url(/works/velocity-tsd.webp); background-position: center;">
+        </div>
+
+        <div 
+          class="carousel-cell size-vertical rounded-3xl bg-cover h-full" 
+          style="background-image: url(/works/hero-estem.webp); background-position: center;">
+        </div>
+        
+        <div class="carousel-cell">
+          <img
+            class="h-full w-full rounded-3xl"
+            width="1280"
+            height="640"
+            src="/works/hero-snacks.webp"
+            alt="Gold Coast web design with Aidxn Design - best results guarenteed"
+          />
+        </div>
+        
+      </div>
+      
+  </div>
+</section>
+
+<!-- CSS -->
+<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+<!-- JavaScript -->
+<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+
+
