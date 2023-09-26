@@ -2,48 +2,52 @@
 const features = [
   {
     id: 'expertise-1',
-    name: 'Secure Payments with Stripe',
-    description:
-      'Generate more sales, more easily with Velocity and Stripe. Working together out of the box so you can be selling online from day one.',
-  },
-  {
-    id: 'expertise-2',
-    name: 'One-Click Checkout',
-    description:
-      'Shown to improve conversion rates across the board, we have Google Pay and Apple Pay integrated with your site straight away.',
-  },
-  {
-    id: 'expertise-3',
-    name: 'Conversion Tracking',
+    name: 'Ad Conversion Tracking',
     description:
       'Already deeply built-in to Velocity, Google GTag Ad Conversion Tracking and Meta Pixel Conversion Tracking.',
   },
   {
+    id: 'expertise-2',
+    name: 'CRM & Instant Notifications',
+    description:
+      'User contact information is instantly send and stored in the CRM, then instantly send to your email address for improving conversion rate with faster response times.',
+  },
+  {
+    id: 'expertise-3',
+    name: 'Stripe Secure Payment',
+    description:
+      'Generate more sales, more easily with Velocity and Stripe. Working together out of the box so you can be selling online from day one.',
+  },
+  {
     id: 'expertise-4',
+    name: 'ApplePay and GooglePay',
+    description:
+      'One-click checkout is shown to improve conversion rates across the board, we have Google Pay and Apple Pay integrated with your site straight away.',
+  },
+  {
+    id: 'expertise-5',
+    name: 'MDX-Powered Blog',
+    description:
+      'Write beautiful, informative blog posts with our MDX powered blogging system integrated into Velocity. One of the most flexible blogging languages for storing data, highly compatible with other blog formats for migrating old posts.',
+  },
+  {
+    id: 'expertise-6',
     name: 'Dual Global CDN',
     description:
       'We employ the power of both Netlify CDN and Bunny CDN to create one of the most responsive network payloads possible. Delivering your website to devices from the closest possible location, everytime.',
   },
-  {
-    id: 'expertise-5',
-    name: 'SEO Performance Monitoring',
-    description:
-      'Understand how your customers are finding you and which keywords are working best. Initial keyword planner research included during design process and connection to Google Search Console for SEO Performance Monitoring.',
-  },
-  {
-    id: 'expertise-6',
-    name: 'User Analytics',
-    description:
-      'Track exactly how users are using your website with Google Analytics newest analytic technology, completely integrated and setup for you.',
-  },
-
 ];
 ---
 
 <section class="py-16 sm:py-20">
   <div class="mx-auto px-4 sm:px-6 w-full lg:max-w-7xl lg:px-8">
     <div class="grid gap-12 lg:grid-cols-3 lg:gap-8">
-      <h2 id="integrations" class="text-3xl font-medium tracking-tight sm:text-4xl">Integrations</h2>
+      <div>
+        <h3 id="components" class="font-medium tracking-tight text-2xl sm:text-3xl mb-4">30+ Integrations</h3>
+        <p class="text-primary-950/70 dark:text-primary-200/70 text-base sm:text-lg">
+          Connect with business platforms to automate processes.
+        </p>
+      </div>
       <div class="lg:col-span-2">
         <dl
           class="-mt-3"
@@ -70,7 +74,7 @@ const features = [
                     x-bind:aria-expanded="isOpen.toString()"
                   >
                     <div class="group-focus-visible:outline-primary-950 dark:group-focus-visible:outline-primary-200 flex items-center justify-between rounded-3xl group-focus-visible:outline group-focus-visible:outline-2 group-focus-visible:outline-offset-2">
-                      <span class="font-medium">{feature.name}</span>
+                      <span class="text-base md:text-lg font-medium">{feature.name}</span>
                       <span class="ml-6 flex h-7 items-center">
                         <svg
                           class="text-primary-600 dark:text-primary-400 h-6 w-6 rotate-0 transform transition duration-200 ease-in-out"

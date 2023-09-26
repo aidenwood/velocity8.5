@@ -2,33 +2,33 @@
 const features = [
   {
     id: 'expertise-1',
-    name: 'Modern UI/UX',
+    name: 'Responsive UI/UX',
     description:
-      'Velocity from the ground up is a form of guardrail for keeping your website neat, tidy and user-friendly. With a range of included page layouts and component areas pre-designed, then customised to your brand.',
+      'Velocity from the ground up is a form of guardrail for keeping your website neat, tidy and user-friendly. With a range of included page layouts and component areas pre-designed, then customised to your brand. All Velocity components are developed to be responsive to a minimum of 4 screen sizes, compared to usual development of 2-3.',
   },
   {
     id: 'expertise-2',
-    name: 'Deeply Responsive',
+    name: 'Shopfront, Product Pages & Cards',
     description:
-      'All Velocity components are developed to be responsive to a minimum of 4 screen sizes, compared to usual development of 2-3.',
+      '',
   },
   {
     id: 'expertise-3',
-    name: 'SEO-Friendly',
+    name: 'Fluid Image Sliders',
     description:
-      'Velocity is one of the most high-ranking SEO themes available. Using web-performance and web-standard compliance to get your business seen more.',
+      'Multiple slider designs with a lightning fast framework are deeply integrated through-out Velocity. One of the biggest hurdles of web design, already conqured thanks to Velocity.',
   },
   {
     id: 'expertise-4',
-    name: 'Serverless Technology',
-    description:
-      'Built on Web3 Serverless technology, meaning your site requires no hosting servers. Reducing on-going costs of your website massively.',
-  },
-  {
-    id: 'expertise-5',
     name: 'Secure Forms & CRM',
     description:
       'Integrated connection with Netlify CRM for customer information management. Secure form handling out of the box at no extra cost.',
+  },
+  {
+    id: 'expertise-3',
+    name: 'Deeply SEO-Friendly',
+    description:
+      'Velocity is one of the most high-ranking SEO themes available. Using web-performance and web-standard compliance to get your business seen more.',
   },
   {
     id: 'expertise-6',
@@ -42,7 +42,12 @@ const features = [
 <section class="py-16 sm:py-20">
   <div class="mx-auto px-4 sm:px-6 w-full lg:max-w-7xl lg:px-8">
     <div class="grid gap-12 lg:grid-cols-3 lg:gap-8">
-      <h2 id="components" class="text-3xl font-medium tracking-tight sm:text-4xl">Components</h2>
+      <div>
+        <h2 id="components" class="text-3xl font-medium tracking-tight sm:text-4xl mb-4">80+ Components</h2>
+        <p class="text-primary-950/70 dark:text-primary-200/70 text-base sm:text-lg">
+          Pre-designed components to help all development move faster.
+        </p>
+      </div>
       <div class="lg:col-span-2">
         <dl
           class="-mt-3"
@@ -69,7 +74,7 @@ const features = [
                     x-bind:aria-expanded="isOpen.toString()"
                   >
                     <div class="group-focus-visible:outline-primary-950 dark:group-focus-visible:outline-primary-200 flex items-center justify-between rounded-3xl group-focus-visible:outline group-focus-visible:outline-2 group-focus-visible:outline-offset-2">
-                      <span class="font-medium">{feature.name}</span>
+                      <span class="text-base md:text-lg font-medium">{feature.name}</span>
                       <span class="ml-6 flex h-7 items-center">
                         <svg
                           class="text-primary-600 dark:text-primary-400 h-6 w-6 rotate-0 transform transition duration-200 ease-in-out"
