@@ -2,8 +2,8 @@
 const links = [
   {
     ref: '01',
-    name: 'Home',
-    href: '/',
+    name: 'About',
+    href: '/about',
   },
   {
     ref: '02',
@@ -22,6 +22,16 @@ const links = [
   },
 ];
 ---
+<style>
+  .arrow {
+    border: solid #000;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+</style>
 
 <header
   x-data="{ open: false }"
@@ -29,7 +39,7 @@ const links = [
   :class="{ 'bg-primary-300/90 dark:bg-primary-700/90': open, 'bg-primary-50/50 dark:bg-primary-800/50': !(open) }"
 >
   <div
-    class="mx-auto w-full lg:max-w-7xl flex items-center justify-between px-4 sm:px-6 lg:px-8 py-2 md:py-4 lg:py-6"
+    class="mx-auto w-full lg:max-w-7xl flex items-center justify-between px-4 sm:px-6 lg:px-8 py-2 md:py-4"
   >
     <!-- Brand logo -->
     <div class="flex">
@@ -39,17 +49,95 @@ const links = [
       >
         <span class="sr-only">Velocity</span>
         <img
-          class="h-8 w-auto"
-          width="65"
-          height="40"
+          class="h-12 w-auto"
           :src="$store.theme.isDark ? '/assets/logo-inverted.svg' : '/assets/logo.svg'"
           alt="Velocity Theme by Aidxn Design"
         />
       </a>
     </div>
 
+    
+
     <!-- Actions -->
     <div class="-mr-2 flex items-center space-x-2 sm:space-x-3">
+
+
+
+      <!-- Small Menu Start -->
+      <div id="smallmenu">
+        <div x-data="{ show: false, menu: false, menu2: false, menu3: false }">
+             <button class="hidden text-base text-black bg-primary-300/20 px-4 py-2 border-0 rounded-md outline-none hover:bg-primary-300"
+                 x-on:click="show = ! show">Services</button>
+             <div class="relative">
+                 <div class="bg-primary-200 rounded-md p-3 min-w-[220px] top-2 w-full absolute z-10" x-show="show"
+                     x-cloak
+                     @click.away="show = false" x-transition:enter="transition ease-out duration-100"
+                     x-transition:enter-start="transform opacity-0 scale-95">
+                     <ul
+                         class="[&>li]:text-black [&>li]:text-base [&>li]:cursor-pointer [&>li]:px-2 [&>li]:py-1 [&>li]:rounded-md [&>li]:transition-all hover:[&>li]:bg-gray-600 active:[&>li]:bg-gray-700 active:[&>li]:scale-[0.99]">
+                         <li>About</li>
+                         <li>All Services</li>
+                         <li class="flex items-center justify-between" 
+                             x-on:click="menu = ! menu" 
+                             @click.away="menu = false"
+                             >
+                             Web Design
+                             <i class="arrow"></i>
+                         </li>
+                         <div class="bg-primary-200 rounded-md max-w-[260px] w-full p-3 absolute left-[228px] top-0 h-min -bottom-4 [&>li]:text-black [&>li]:text-base [&>li]:cursor-pointer [&>li]:px-2 [&>li]:py-1 [&>li]:rounded-md [&>li]:transition-all hover:[&>li]:bg-gray-600 active:[&>li]:bg-gray-700 active:[&>li]:scale-[0.99]"
+                             x-show="menu" x-transition:enter="transition ease-out duration-100"
+                             x-transition:enter-start="transform opacity-0 scale-95">
+                             <li>Custom Web Design</li>
+                             <li>Shopify Web Design</li>
+                             <li>Wordpress Web Design</li>
+                         </div>
+                         <li class="flex items-center justify-between" 
+                             x-on:click="menu2 = ! menu2" 
+                             @click.away="menu2 = false"
+                             >
+                             Brand Design
+                             <i class="arrow"></i>
+                         </li>
+                         <div class="bg-primary-200 rounded-md max-w-[260px] w-full p-3 absolute -right-[228px] top-0 h-min -bottom-4 [&>li]:text-black [&>li]:text-base [&>li]:cursor-pointer [&>li]:px-2 [&>li]:py-1 [&>li]:rounded-md [&>li]:transition-all hover:[&>li]:bg-gray-600 active:[&>li]:bg-gray-700 active:[&>li]:scale-[0.99]"
+                             x-show="menu2" x-transition:enter="transition ease-out duration-100"
+                             x-transition:enter-start="transform opacity-0 scale-95">
+                             <li>Brand Direction</li>
+                             <li>Brand Strategy</li>
+                             <li>Competitor Research</li>
+                             <li>Keyword Research</li>
+                             <li>Print Design</li>
+                             <li>UX Design</li>
+                             <li>User Research</li>
+                         </div>
+                         <li class="flex items-center justify-between" 
+                             x-on:click="menu3 = ! menu3" 
+                             @click.away="menu3 = false"
+                             >
+                             Marketing
+                             <i class="arrow"></i>
+                         </li>
+                         <div class="bg-primary-200 rounded-md max-w-[260px] w-full p-3 absolute -right-[228px] top-0 h-min -bottom-4 [&>li]:text-black [&>li]:text-base [&>li]:cursor-pointer [&>li]:px-2 [&>li]:py-1 [&>li]:rounded-md [&>li]:transition-all hover:[&>li]:bg-gray-600 active:[&>li]:bg-gray-700 active:[&>li]:scale-[0.99]"
+                             x-show="menu3" x-transition:enter="transition ease-out duration-100"
+                             x-transition:enter-start="transform opacity-0 scale-95">
+                             <li>SEO Marketing</li>
+                             <li>Organic Strategy</li>
+                             <li>Ad Management</li>
+                             <li>Interactive Ads</li>
+                             <li>Video Production</li>
+                         </div>
+                         
+                         
+                         <div class="w-full border border-gray-700 my-2"></div>
+                         <li>Log In</li>
+                     </ul>
+                 </div>
+             </div>
+        </div>
+    </div>
+   <!-- Small Menu Start -->
+
+
+
       <!-- Toggle theme mode -->
       <button
         type="button"
@@ -85,6 +173,9 @@ const links = [
           ></path>
         </svg>
       </button>
+
+
+
 
       <!-- Toggle menu -->
       <button
