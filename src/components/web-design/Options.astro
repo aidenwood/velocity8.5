@@ -1,0 +1,59 @@
+---
+const services = [
+  {
+    step: '01',
+    name: 'Velocity',
+    description:
+      'Velocity is our custom website solution, making it easier and cheaper for businesses to have a high-performance website. Infinitely extendable.',
+  },
+  {
+    step: '02',
+    name: 'Shopify',
+    description:
+      'The most trusted solution for large scale B2B business websites for their sale processing speed and out of the box e-commerce integrations.',
+    link: '/shopify',
+    linktxt: 'Shopify Design',
+  },
+  {
+    step: '03',
+    name: 'Wordpress',
+    description:
+      'One of the earlier website platforms, Wordpress once paved the way for the web. Today it can be costly to keep performance upto standards.',
+  },
+  {
+    step: '04',
+    name: 'Custom',
+    description:
+      'Use any web3 framework that your business has already integrated into your stack, from React to Node JS. For projects with scope over 3 months.',
+  },
+];
+---
+
+<section class="py-16 sm:py-20">
+  <div class="mx-auto px-4 sm:px-6 w-full lg:px-8 xl:px-16">
+    <div class="flex flex-col gap-4">
+      <h4 class="uppercase text-center text-lg font-medium tracking-tight sm:text-4xl">BYO web technologies</h4>
+      <div class="grid gap-8 lg:grid-cols-4">
+        {
+          services.map((service) => (
+            <div class="bg-primary-500/10 dark:bg-primary-400/10 flex flex-col gap-12 rounded-3xl px-6 py-8">
+              <p class="text-sm">{service.step}</p>
+              <div class="flex flex-col gap-4">
+                <h3 class="text-xl font-medium">{service.name}</h3>
+                <p class="text-primary-950/70 dark:text-primary-200/70 text-base sm:text-lg">
+                  {service.description}
+                </p>
+                <a
+                  href={service.link}
+                  class="mt-6 mr-4 bg-primary-600 dark:bg-primary-400 hover:bg-primary-700 dark:hover:bg-primary-300 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-400 dark:text-primary-950 inline-flex items-center justify-center rounded-full border border-transparent px-5 py-3 text-base font-medium text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+                >
+                  {service.linktxt}
+                </a>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,45 +1,42 @@
 ---
-const services = [
+const team = [
   {
-    step: '01',
-    name: 'Design',
-    description:
-      'All Velocity packages include mock up revisions, done over video call with screen share for best results.',
+    name: 'Aiden Wood',
+    image: '/assets/team-1.webp',
+    job: 'Project Lead',
   },
   {
-    step: '02',
-    name: 'Develop',
-    description:
-      'With a 21 day turn-around you can be sure your not missing out on anymore sales due to a poor website.',
+    name: 'Callum Teague',
+    image: '/assets/team-2.webp',
+    job: 'Designer',
   },
   {
-    step: '03',
-    name: 'Maintain',
-    description:
-      'Own your website and code entirely with lifetime licensing, no hosting costs, or monthly subscriptions.',
+    name: 'Bianca Rose',
+    image: '/assets/team-3.webp',
+    job: 'Marketing',
   },
 ];
 ---
 
 <section class="py-16 sm:py-20">
-  <div class="mx-auto px-4 sm:px-6 w-full lg:max-w-7xl lg:px-8">
-    <div class="flex flex-col gap-12 sm:gap-16">
-      <h2 class="text-3xl font-medium tracking-tight sm:text-4xl">Our build process</h2>
-      <div class="grid gap-8 lg:grid-cols-3">
+  <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+    <div class="sm:space-8 space-y-12">
+      <h2 class="text-3xl font-medium tracking-tight sm:text-4xl">Meet our team</h2>
+      <ul role="list" class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {
-          services.map((service) => (
-            <div class="bg-primary-500/10 dark:bg-primary-400/10 flex flex-col gap-12 rounded-3xl px-6 py-8">
-              <p class="text-sm">{service.step}</p>
-              <div class="flex flex-col gap-4">
-                <h3 class="text-xl font-medium">{service.name}</h3>
-                <p class="text-primary-950/70 dark:text-primary-200/70 text-base sm:text-lg">
-                  {service.description}
-                </p>
+          team.map((item) => (
+            <li class="border-primary-900/10 dark:border-primary-300/10 rounded-3xl border px-6 py-8">
+              <div class="space-y-6">
+                <img class="mx-auto h-auto w-16 rounded-full" src={item.image} alt={item.name} />
+                <div class="text-center">
+                  <h3 class="text-lg font-medium">{item.name}</h3>
+                  <p class="text-primary-950/70 dark:text-primary-200/70 text-base">{item.job}</p>
+                </div>
               </div>
-            </div>
+            </li>
           ))
         }
-      </div>
+      </ul>
     </div>
   </div>
 </section>
