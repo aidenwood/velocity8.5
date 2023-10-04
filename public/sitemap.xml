@@ -1,4 +1,3 @@
-
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset
       xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
@@ -10,37 +9,52 @@
 
 <url>
   <loc>https://aidxn.com/</loc>
-  <lastmod>2023-10-02T23:46:43+00:00</lastmod>
+  <lastmod>2023-10-04T02:42:09+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
-  <loc>https://aidxn.com/velocity/</loc>
-  <lastmod>2023-10-02T23:46:43+00:00</lastmod>
+  <loc>https://aidxn.com/about/</loc>
+  <lastmod>2023-10-04T02:42:09+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://aidxn.com/web-design/</loc>
+  <lastmod>2023-10-04T02:42:09+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://aidxn.com/pricing/</loc>
-  <lastmod>2023-10-02T23:46:43+00:00</lastmod>
+  <lastmod>2023-10-04T02:42:09+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://aidxn.com/contact/</loc>
-  <lastmod>2023-10-02T23:46:43+00:00</lastmod>
+  <lastmod>2023-10-04T02:42:09+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://aidxn.com/web-design/velocity/</loc>
+  <lastmod>2023-10-04T02:42:09+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://aidxn.com/web-design/shopify/</loc>
+  <lastmod>2023-10-04T02:42:09+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://aidxn.com/web-design/wordpress/</loc>
+  <lastmod>2023-10-04T02:42:09+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://aidxn.com/moonshot-plan/</loc>
-  <lastmod>2023-10-02T23:46:43+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://aidxn.com/about/</loc>
-  <lastmod>2023-10-02T23:46:43+00:00</lastmod>
+  <lastmod>2023-10-04T02:42:09+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://aidxn.com/privacy/</loc>
-  <lastmod>2023-10-02T23:46:43+00:00</lastmod>
+  <lastmod>2023-10-04T02:42:09+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 
