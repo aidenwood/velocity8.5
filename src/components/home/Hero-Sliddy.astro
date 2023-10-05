@@ -5,17 +5,18 @@
 
   .carousel-cell {
     margin-right: 32px;
-    width: calc(45% - 16px);
+    width: calc(33% - 16px);
+    max-height: 50vh;
   }
   @media only screen and (max-width: 1440px) {
     .carousel-cell {
-      width: calc(60% - 8px);
+      width: calc(60% - 16px);
       margin-right: 16px;
     }
   }
   @media only screen and (max-width: 768px) {
     .carousel-cell {
-      width: calc(90% - 8px);
+      width: calc(90% - 16px);
     }
   }
   @media only screen and (max-width: 468px) {
@@ -29,7 +30,14 @@
   }
 </style>
 
-<section class="pt-8 pb-8 md:pb-16 lg:pb-20">
+
+<!-- CSS -->
+<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+<!-- JavaScript -->
+<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+
+
+<section class="pt-8 md:pt-16 pb-8 md:pb-16 lg:pb-20">
   <div class="mx-auto px-4 sm:px-6 w-full lg:px-8">
 
 
@@ -37,8 +45,8 @@
       <div class="carousel" data-flickity='{ "contain": true, "freeScroll": true, "pageDots": false, "prevNextButtons": false, "imagesLoaded": true, "autoPlay": 1800, "pauseAutoPlayOnHover": false }'>
         
         <div 
-          class="carousel-cell size-vertical rounded-3xl bg-cover h-full" 
-          style="background-image: url(/works/billboard-design.webp); background-position: center;">
+          class="carousel-cell rounded-3xl bg-cover h-full" 
+          style="background-image: url(/works/hero-estem.webp); background-position: center;">
         </div>
 
         <div 
@@ -47,13 +55,48 @@
         </div>
 
         <div 
+          class="carousel-cell rounded-3xl bg-cover h-full" 
+          style="background-image: url(/works/cube-3d.webp); background-position: center;">
+        </div>
+
+        <div 
           class="carousel-cell size-vertical rounded-3xl bg-cover h-full" 
           style="background-image: url(/works/gwd-interactive-ads.webp); background-position: center;">
         </div>
 
         <div 
+          class="carousel-cell rounded-3xl bg-cover h-full" 
+          style="background-image: url(/works/cpc-results.webp); background-position: center;">
+        </div>
+
+        <div 
+          class="carousel-cell rounded-3xl bg-cover h-full" 
+          style="background-image: url(/works/tbc-render.webp); background-position: center;">
+        </div>
+
+        <div 
+          class="carousel-cell rounded-3xl bg-cover h-full" 
+          style="background-image: url(/works/hero-snacks.webp); background-position: center;">
+        </div>
+
+        <div 
+          class="carousel-cell size-vertical rounded-3xl bg-cover h-full" 
+          style="background-image: url(/works/billboard-design.webp); background-position: center;">
+        </div>
+
+        <div 
+          class="carousel-cell rounded-3xl bg-cover h-full" 
+          style="background-image: url(/works/br-bill-render.webp); background-position: center;">
+        </div>
+
+        <div
           class="carousel-cell size-vertical rounded-3xl bg-cover h-full" 
           style="background-image: url(/works/app-design.webp); background-position: center;">
+        </div>
+        
+        <div 
+          class="carousel-cell size-vertical rounded-3xl bg-cover h-full" 
+          style="background-image: url(/works/br-fb.webp); background-position: center;">
         </div>
         
         <div class="carousel-cell"> <!-- Final Cell Needs this format with H-full -->
@@ -70,8 +113,3 @@
     </div>  
   </div>
 </section>
-
-<!-- CSS -->
-<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
-<!-- JavaScript -->
-<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>

@@ -5,7 +5,7 @@ const services = [
     name: 'Velocity',
     description:
       'Velocity is our custom website solution, making it easier and cheaper for businesses to have a high-performance website. Infinitely extendable.',
-    link: '/velocity',
+    link: '/web-design/velocity',
     linktxt: 'Velocity Web Design',
   },
   {
@@ -13,7 +13,7 @@ const services = [
     name: 'Shopify',
     description:
       'The most trusted solution for large scale B2B business websites for their sale processing speed and out of the box e-commerce integrations.',
-    link: '/shopify',
+    link: '/web-design/shopify',
     linktxt: 'Shopify Web Design',
   },
   {
@@ -21,7 +21,7 @@ const services = [
     name: 'Wordpress',
     description:
       'One of the earlier website platforms, Wordpress once paved the way for the web. Today it can be costly to keep performance upto standards.',
-    link: '/wordpress',
+    link: '/web-design/wordpress',
     linktxt: 'Wordpress Web Design',
   },
   {
@@ -36,10 +36,10 @@ const services = [
 ---
 
 <section class="py-16 sm:py-20">
-  <div class="mx-auto px-4 sm:px-6 w-full lg:px-8 xl:px-16">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 w-full">
     <div class="flex flex-col gap-4">
       <h4 class="text-center text-base lg:text-lg uppercase font-thin tracking-widest">BYO web technologies</h4>
-      <div class="grid gap-8 lg:grid-cols-4">
+      <div class="grid gap-8 md:grid-cols-2">
         {
           services.map((service) => (
             <div class="bg-primary-500/10 dark:bg-primary-400/10 flex flex-col gap-12 rounded-3xl px-6 py-8">

@@ -1,14 +1,14 @@
 ---
 import About from '../components/home/About.astro';
-import Cta from '../components/home/Cta.astro';
+import Cta from '../components/home/Cta-Contact.astro';
 import Integrations from '../components/home/Integrations.astro';
 import Hero from '../components/home/Hero.astro';
 import HeroSliddy from '../components/home/Hero-Sliddy.astro';
 import VelocityIntro from '../components/home/Intro-Velocity.astro';
 import Process from '../components/home/Process.astro';
-import VelocityInfo from '../components/home/Info-WebDesign.astro';
-import VelocitySlide from '../components/home/SliderSml-Velocity.astro';
-import MoonSlide from '../components/home/SliderSml-Moonshot.astro';
+import WebInfo from '../components/home/Info-WebDesign.astro';
+import VelocitySlide from '../components/home/Grid-Velocity.astro';
+import MoonSlide from '../components/home/Grid-Moonshot.astro';
 import MoonIntro from '../components/home/Intro-Moonshot.astro';
 import MoonInfo from '../components/home/Info-Moonshot.astro';
 
@@ -27,13 +27,13 @@ import SectionEnd from '../components/home/Section-End.astro';
   <Hero />
   <HeroSliddy />
   <Process />
-
-  <VelocityInfo />
-  <VelocityIntro />
-  <VelocitySlide />
+  <WebInfo />
   <SectionEnd />
 
+  <VelocityIntro />
+  <VelocitySlide />
   <Clients />
+  <Integrations />
   <SectionEnd />
 
   <MoonIntro />
