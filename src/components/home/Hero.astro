@@ -3,29 +3,9 @@
 <!-- Velocity8 Large Slider Settings -->
 <style>
   svg{width:100%;height:100%;perspective:50px}circle{stroke:#26003A;stroke-width:8px;fill:none}.equator{stroke:#a600ff;transform:rotateZ(-20deg) rotateX(125deg)}.meridian{animation:2s linear infinite turn;transform:rotateZ(-20deg) rotateX(35deg) rotateY(var(--start))}@keyframes turn{100%{transform:rotateZ(-20deg) rotateX(35deg) rotateY(var(--end))}}
-
-  .carousel-cell {
-    margin-right: 48px;
-    width: calc(50% - 24px);
-  }
-  @media only screen and (max-width: 1024px) {
-    .carousel-cell {
-      width: calc(50% - 16px);
-      margin-right: 32px;
-    }
-  }
-  @media only screen and (max-width: 768px) {
-    .carousel-cell {
-      width: 85%;
-    }
-  }
-  
-  .flickity-viewport {
-    transition: 0.2s;
-  }
 </style>
 
-<section class="py-8 md:py-16 lg:py-20">
+<section class="pt-8 md:pt-16 lg:pt-20">
   <div class="mx-auto px-4 sm:px-6 w-full lg:max-w-7xl lg:px-8">
     <div class="flex flex-col gap-16">
       <div class="flex flex-col md:flex-row-reverse items-center gap-8 sm:gap-10">
@@ -74,46 +54,7 @@
           </a>
         </div>
       </div>
-
-
-      <div class="carousel" data-flickity='{ "contain": true, "freeScroll": true, "pageDots": false, "prevNextButtons": false, "lazyLoad": true, "imagesLoaded": true, "autoPlay": 1800 }'>
-        
-        <div 
-          class="carousel-cell size-vertical rounded-3xl bg-cover h-full" 
-          style="background-image: url(/works/billboard-design.webp); background-position: center;">
-        </div>
-
-        <div 
-          class="carousel-cell rounded-3xl bg-cover h-full" 
-          style="background-image: url(/works/br-mac-render-med.webp); background-position: center;">
-        </div>
-
-        <div 
-          class="carousel-cell size-vertical rounded-3xl bg-cover h-full" 
-          style="background-image: url(/works/gwd-interactive-ads.webp); background-position: center;">
-        </div>
-
-        <div 
-          class="carousel-cell size-vertical rounded-3xl bg-cover h-full" 
-          style="background-image: url(/works/app-design.webp); background-position: center;">
-        </div>
-        
-        <div class="carousel-cell">
-          <img
-            class="rounded-3xl"
-            width="1280"
-            height="640"
-            src="/works/web-design.webp"
-            alt="Gold Coast web design with Aidxn Design - best results guarenteed"
-          />
-        </div>
-
-      </div>
     </div>  
   </div>
 </section>
 
-<!-- CSS -->
-<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
-<!-- JavaScript -->
-<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
