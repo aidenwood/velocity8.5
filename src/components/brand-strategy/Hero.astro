@@ -1,0 +1,190 @@
+
+<!-- SVG CSS and Animate for Aidxn Moving Logo -->
+<style>
+  svg{width:100%;height:100%; max-height: 75vh; perspective:50px}circle{stroke:#52007e;stroke-width:8px;fill:none}.equator{stroke:#a600ff;transform:rotateZ(-20deg) rotateX(125deg)}.meridian{animation:2s linear infinite turn;transform:rotateZ(-20deg) rotateX(35deg) rotateY(var(--start))}@keyframes turn{100%{transform:rotateZ(-20deg) rotateX(35deg) rotateY(var(--end))}}
+</style>
+
+<section class="my-4 md:my-6 lg:my-8">
+  <div class="mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 w-full">
+    <div class="gap-16">
+      <div class="flex flex-col md:flex-row-reverse justify-start items-center gap-8 sm:gap-10">
+        <div class="w-1/2">
+          
+          <div id="animationWrapper" translate="no" transition:name="meridian">
+            <svg viewBox="-500 -500 1000 1000" class="w-full">
+              <circle r="450"></circle>
+              <circle class="equator" r="450"></circle>
+              <circle class="meridian" r="450" style="--start:165deg; --end:180deg"></circle>
+              <circle class="meridian" r="450" style="--start:150deg; --end:165deg"></circle>
+              <circle class="meridian" r="450" style="--start:135deg; --end:150deg"></circle>
+              <circle class="meridian" r="450" style="--start:120deg; --end:135deg"></circle>
+              <circle class="meridian" r="450" style="--start:105deg; --end:120deg"></circle>
+              <circle class="meridian" r="450" style="--start:90deg; --end:105deg"></circle>
+              <circle class="meridian" r="450" style="--start:75deg; --end:90deg"></circle>
+              <circle class="meridian" r="450" style="--start:60deg; --end:75deg"></circle>
+              <circle class="meridian" r="450" style="--start:45deg; --end:60deg"></circle>
+              <circle class="meridian" r="450" style="--start:30deg; --end:45deg"></circle>
+              <circle class="meridian" r="450" style="--start:15deg; --end:30deg"></circle>
+              <circle class="meridian" r="450" style="--start:0deg; --end:15deg"></circle>
+            </svg>
+          </div>
+          
+        </div>
+        <div class="w-full md:w-1/2 pt-8 md:pt-24 gap-4">
+          <h1 class="text-xs uppercase font-thin tracking-widest pb-4">
+            Gold Coast Graphic Design and Brand Strategy
+          </h1>
+          <h2 class="font-medium tracking-tight text-3xl md:text-4xl lg:text-5xl xl:text-6xl">
+            Brand design that relates to your target market.
+          </h2>
+          <p class=" text-base md:text-lg max-w-4xl my-4">
+            I have worked with Wordpress, Shopify and custom coded websites for over 10 years. Specialising in UX / UI Design and organic marketing strategies such as SEO and user-focused brand design. 
+            Let me take your business to the next level with expert website design and conversion optimisations.
+          </p>
+
+          <div class="my-12 md:my-16 px-8 py-12 w-fit border rounded-3xl">
+            <h4 class="font-medium tracking-tight text-xl lg:text-2xl max-w-6xl my-4">
+              Obligation-free optimisations, to kick-off our relationship.
+            </h4>
+            <p class=" text-base md:text-lg max-w-2xl my-4 mb-12">
+              Let me show you that our changes mean business with some free changes, personalised to where your business is currently at.
+            </p>
+
+            <form netlify
+              action="https://api.web3forms.com/submit"
+              method="POST"
+              id="cta-form"
+              class="needs-validation"
+              novalidate>
+              <input type="hidden" name="access_key" value="1e0ffadd-2f05-471b-bbc2-36fa32793837" />
+              <!-- Create your free access key from https://web3forms.com/ -->
+              <!-- key for email - aidenthomasgodbywood@gmail.com -->
+              <input type="checkbox" class="hidden" style="display:none" name="botcheck" />
+              <div class="flex flex-row gap-4">
+
+                <div class="">
+                  <label for="brand" class="sr-only">Brand</label><input
+                    id="brand"
+                    type="text"
+                    placeholder="Brand / Website"
+                    name="brand"
+                    required
+                    class="w-full bg-primary-100 px-4 py-3 border-2 placeholder:text-gray-900 rounded-md outline-none focus:ring-4 border-gray-300 focus:border-primary-600 ring-gray-100"
+                  />
+                  <div class="empty-feedback text-red-400 text-sm mt-1">
+                    Please provide your brand name or website.
+                  </div>
+                  <div class="invalid-feedback text-red-400 text-sm mt-1">
+                    Please provide your brand name or website.
+                  </div>
+                </div>
+
+                <div class="">
+                  <label for="phone" class="sr-only">Phone Number</label><input
+                    id="phone"
+                    type="text"
+                    placeholder="Phone number"
+                    name="phone"
+                    required
+                    class="w-full bg-primary-100 px-4 py-3 border-2 placeholder:text-gray-900 rounded-md outline-none focus:ring-4 border-gray-300 focus:border-primary-600 ring-gray-100"
+                  />
+                  <div class="empty-feedback text-red-400 text-sm mt-1">
+                    Please provide your phone number.
+                  </div>
+                  <div class="invalid-feedback text-red-400 text-sm mt-1">
+                    Please provide a valid phone number.
+                  </div>
+                </div>
+                
+                <button
+                class="bg-primary-600 dark:bg-primary-400 hover:bg-primary-700 dark:hover:bg-primary-300 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-400 dark:text-primary-950 inline-flex items-center justify-center rounded-full border border-transparent px-5 py-3 text-base font-medium text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+                type="submit"
+              >
+                Submit
+              </button>
+              </div>
+
+             
+
+              <div id="result" class="mt-3 text-center"></div>
+
+            </form>
+          </div>
+          
+        </div>
+      </div>
+
+    </div>  
+  </div>
+</section>
+
+
+<style>
+  .invalid-feedback,
+  .empty-feedback {
+    display: none;
+  }
+
+  .was-validated :placeholder-shown:invalid ~ .empty-feedback {
+    display: block;
+  }
+
+  .was-validated :not(:placeholder-shown):invalid ~ .invalid-feedback {
+    display: block;
+  }
+
+  .is-invalid,
+  .was-validated :invalid {
+    border-color: #dc3545;
+  }
+</style>
+
+<script is:inline>
+  const form = document.getElementById("form");
+  const result = document.getElementById("result");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    form.classList.add("was-validated");
+    if (!form.checkValidity()) {
+      form.querySelectorAll(":invalid")[0].focus();
+      return;
+    }
+    const formData = new FormData(form);
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
+
+    result.innerHTML = "Sending...";
+
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: json,
+    })
+      .then(async (response) => {
+        let json = await response.json();
+        if (response.status == 200) {
+          result.classList.add("text-green-500");
+          result.innerHTML = json.message;
+        } else {
+          console.log(response);
+          result.classList.add("text-red-500");
+          result.innerHTML = json.message;
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        result.innerHTML = "Something went wrong!";
+      })
+      .then(function () {
+        form.reset();
+        form.classList.remove("was-validated");
+        setTimeout(() => {
+          result.style.display = "none";
+        }, 5000);
+      });
+  });
+</script>

@@ -1,0 +1,90 @@
+---
+import Cta from '../../components/home/Cta-Contact.astro';
+import SlotHero from '../../components/home/Slot-Hero.astro';
+import SectionHeadImg from "../../components/home/slot-img.astro";
+import SectionHeadSecImg from "../../components/home/slot-img-rev.astro";
+import Process from '../../components/home/Process.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Wordpress Websites developed and maintained on the Gold Coast, Australia."
+  title="Wordpress Development · Web Design by Aidxn Design"
+>
+
+    <SlotHero>
+      <Fragment slot="smltitle">
+        Gold Coast Logo Designer
+      </Fragment>
+      <Fragment slot="title">
+        Logo design that helps convert your target market.
+      </Fragment>
+      <Fragment slot="desc">
+        Trust over 6 years experience of professional design. All while offering a fresh take on web design and digital marketing in general.
+      </Fragment>
+      <Fragment slot="cover">
+        <img
+                  src="/works/br-mac-render-med.webp"
+                  class="w-full rounded duration-200 hover:shadow-sm"
+                />
+      </Fragment>
+    </SlotHero>
+
+          <SectionHeadImg>
+            <Fragment slot="smltitle">
+              Digital and Print Graphic Design
+            </Fragment>
+            <Fragment slot="title">
+              Logo design for all formats.
+            </Fragment>
+            <Fragment slot="desc">
+              Looking for top-notch Gold Coast Wordpress design services to boost your online business? Look no further than Aidxn Design! With over six years of experience in optimizing conversion rates for Wordpress stores and funnels, we're your go-to experts for creating stunning and user-friendly e-commerce websites. Our primary focus is on UX design, ensuring that your customers have a seamless and enjoyable shopping experience from start to finish.
+            </Fragment>
+            <Fragment slot="cover">
+              <img
+                        src="/works/br-mac-render-med.webp"
+                        class="w-full rounded duration-200 hover:shadow-sm"
+                      />
+            </Fragment>
+          </SectionHeadImg>
+
+          <SectionHeadSecImg>
+            <Fragment slot="smltitle">
+              Improving conversion rate through design
+            </Fragment>
+            <Fragment slot="title">
+              An expert in improving funnel conversion rate.
+            </Fragment>
+            <Fragment slot="desc">
+              At Aidxn Design, we understand the unique needs of businesses in the Gold Coast area. Our team of experienced professionals will work closely with you to create a customized Wordpress store that not only looks fantastic but also drives results. Whether you're looking to revamp your existing online store or start from scratch, our Gold Coast Wordpress design services are tailored to meet your specific goals and objectives. We use proven strategies and cutting-edge design techniques to help you stand out in the competitive e-commerce landscape.
+            </Fragment>
+            <Fragment slot="cover">
+              <img
+                        src="/works/hero-estem.webp"
+                        class="w-full rounded duration-200 hover:shadow-sm"
+                      />
+            </Fragment>
+          </SectionHeadSecImg>
+
+          <SectionHeadImg>
+            <Fragment slot="smltitle">
+              In-person web design revisions
+            </Fragment>
+            <Fragment slot="title">
+              Wordpress optimisation, made reliable.
+            </Fragment>
+            <Fragment slot="desc">
+              Don't settle for an average online store when you can have a high-converting, visually appealing Wordpress website designed by Aidxn Design. Contact us today to take your Gold Coast e-commerce business to the next level with our expertise in UX design and conversion rate optimization. Your success is our priority, and we're here to help you achieve it!
+            </Fragment>
+            <Fragment slot="cover">
+              <img
+                        src="/works/br-mac-render-med.webp"
+                        class="w-full rounded duration-200 hover:shadow-sm"
+                      />
+            </Fragment>
+          </SectionHeadImg>
+  
+  <Process />
+  <Cta />
+
+</Layout>
