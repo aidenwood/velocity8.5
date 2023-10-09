@@ -1,15 +1,9 @@
 ---
 import Cta from '../../components/home/Cta-Contact.astro';
-import Integrations from '../../components/shopify/Integrations.astro';
-import Hero from '../../components/shopify/Hero.astro';
-import Intro from '../../components/shopify/Intro-Shopify.astro';
+import SlotHero from '../../components/home/Slot-Hero.astro';
 import SectionHeadImg from "../../components/home/slot-img.astro";
 import SectionHeadSecImg from "../../components/home/slot-img-rev.astro";
-import IntroSec from '../../components/shopify/Intro-Shopify-Sec.astro';
 import Process from '../../components/home/Process.astro';
-import Clients from '../../components/shopify/Grid-Clients.astro';
-import Features from '../../components/shopify/Features.astro';
-import Testimonials from '../../components/shopify/Testimonials.astro';
 import Layout from '../../layouts/Layout.astro';
 ---
 
@@ -17,42 +11,80 @@ import Layout from '../../layouts/Layout.astro';
   description="Shopify Websites developed and maintained on the Gold Coast, Australia."
   title="Shopify Development · Web Design by Aidxn Design"
 >
-  <Hero />
 
-  <SectionHeadSecImg>
-    <Fragment slot="title">
-      Shopify Web Design.
-    </Fragment>
-    <Fragment slot="desc">
-      Gain the experience from years of curating and managing global brand launches, to instant online success. 
-      Reliable digital marketing management on the Gold Coast with Aidxn Design. Our marketing managers are like 
-      mission control for your business, quickly identifying the areas of improvement over and over inside your brand. 
-      An outside set of eyes is always a necessesity in effective marketing design. Plus we will come to your GC business 
-      once a month in-person, for faster marketing strategy approval and content creation, when part of the <a href="/moonshot-plan">Moonshot Plan</a>.
-    </Fragment>
-    <Fragment slot="cover">
-      <Picture
-                src={PagecoverSecondary}
-                sizes="(max-width: 2000px) 2000px, 1000px"
-                widths={[1000, 1500, 2000]}
-                aspectRatio="3:2"
-                background="#fff"
-                fit="contain"
-                position="center"
-                class="w-full rounded duration-200 hover:shadow-sm"
-              />
-    </Fragment>
-  </SectionHeadSecImg>
-  
-  <Clients />
-  
-  <Intro />
-  <Features />
-  <IntroSec />
+    <SlotHero>
+      <Fragment slot="smltitle">
+        Gold Coast Shopify Expert
+      </Fragment>
+      <Fragment slot="title">
+        Shopify Web Design.
+      </Fragment>
+      <Fragment slot="desc">
+        Trust over 6 years experience improving conversion rates in a range of industries. All while offering a fresh take on web design and digital marketing in general.
+      </Fragment>
+      <Fragment slot="cover">
+        <img
+                  src="/works/br-mac-render-med.webp"
+                  class="w-full rounded duration-200 hover:shadow-sm"
+                />
+      </Fragment>
+    </SlotHero>
 
+          <SectionHeadImg>
+            <Fragment slot="smltitle">
+              E-commerce conversion rate optimisation
+            </Fragment>
+            <Fragment slot="title">
+              Sell more online everyday.
+            </Fragment>
+            <Fragment slot="desc">
+              Looking for top-notch Gold Coast Shopify design services to boost your online business? Look no further than Aidxn Design! With over six years of experience in optimizing conversion rates for Shopify stores and funnels, we're your go-to experts for creating stunning and user-friendly e-commerce websites. Our primary focus is on UX design, ensuring that your customers have a seamless and enjoyable shopping experience from start to finish.
+            </Fragment>
+            <Fragment slot="cover">
+              <img
+                        src="/works/br-mac-render-med.webp"
+                        class="w-full rounded duration-200 hover:shadow-sm"
+                      />
+            </Fragment>
+          </SectionHeadImg>
+
+          <SectionHeadSecImg>
+            <Fragment slot="smltitle">
+              Improving conversion rate through design
+            </Fragment>
+            <Fragment slot="title">
+              An expert in improving funnel conversion rate.
+            </Fragment>
+            <Fragment slot="desc">
+              At Aidxn Design, we understand the unique needs of businesses in the Gold Coast area. Our team of experienced professionals will work closely with you to create a customized Shopify store that not only looks fantastic but also drives results. Whether you're looking to revamp your existing online store or start from scratch, our Gold Coast Shopify design services are tailored to meet your specific goals and objectives. We use proven strategies and cutting-edge design techniques to help you stand out in the competitive e-commerce landscape.
+            </Fragment>
+            <Fragment slot="cover">
+              <img
+                        src="/works/hero-estem.webp"
+                        class="w-full rounded duration-200 hover:shadow-sm"
+                      />
+            </Fragment>
+          </SectionHeadSecImg>
+
+          <SectionHeadImg>
+            <Fragment slot="smltitle">
+              In-person web design revisions
+            </Fragment>
+            <Fragment slot="title">
+              Shopify optimisation, made reliable.
+            </Fragment>
+            <Fragment slot="desc">
+              Don't settle for an average online store when you can have a high-converting, visually appealing Shopify website designed by Aidxn Design. Contact us today to take your Gold Coast e-commerce business to the next level with our expertise in UX design and conversion rate optimization. Your success is our priority, and we're here to help you achieve it!
+            </Fragment>
+            <Fragment slot="cover">
+              <img
+                        src="/works/br-mac-render-med.webp"
+                        class="w-full rounded duration-200 hover:shadow-sm"
+                      />
+            </Fragment>
+          </SectionHeadImg>
+  
   <Process />
-  <Testimonials />
   <Cta />
-  
 
 </Layout>

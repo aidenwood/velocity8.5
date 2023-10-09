@@ -2,57 +2,13 @@
 <!-- SVG CSS and Animate for Aidxn Moving Logo -->
 <style>
   svg{width:100%;height:100%;perspective:50px}circle{stroke:#52007e;stroke-width:8px;fill:none}.equator{stroke:#a600ff;transform:rotateZ(-20deg) rotateX(125deg)}.meridian{animation:2s linear infinite turn;transform:rotateZ(-20deg) rotateX(35deg) rotateY(var(--start))}@keyframes turn{100%{transform:rotateZ(-20deg) rotateX(35deg) rotateY(var(--end))}}
-  .carousel-cell {
-  max-width: 66%;
-  height: 520px;
-  margin-right: 15px;
-}
-
-.carousel-cell img {
-  display: block;
-  max-width: 100%;
-  max-height: 100%;
-}
-* { box-sizing: border-box; }
-
-/* brighten selected image */
-.carousel-cell.is-selected img {
-  opacity: 1;
-}
-
-@media screen and ( max-width: 768px ) {
-  .carousel-cell {
-    height: 420px;
-  }
-}
-
-@media screen and ( max-width: 960px ) {
-  .carousel-cell {
-    max-width: 90%;
-  }
-}
-  /* position dots up a bit */
-  .flickity-page-dots {
-    bottom: -22px !important;
-  }
-  /* dots are lines */
-  .flickity-page-dots .dot {
-    height: 4px !important;
-    width: 40px !important;
-    margin: 0 !important;
-    border-radius: 0 !important;
-  }
-
-  .flickity-viewport {
-    transition: 0.2s;
-  }
 </style>
 
 <section class="py-16 lg:py-20">
-  <div class="mx-auto px-4 sm:px-6 w-full lg:max-w-7xl lg:px-8">
-    <div class="flex flex-col items-center gap-16">
-      <div class="flex flex-col items-center gap-8 sm:gap-10">
-        <div class="w-1/3">
+  <div class="mx-auto px-4 sm:px-6 w-full max-w-7xl lg:px-8">
+    <div class="w-full gap-16">
+      <div class="flex flex-col items-start gap-8 sm:gap-12">
+        <div class="w-32">
           
           <div id="animationWrapper" translate="no" transition:name="meridian">
             <svg viewBox="-500 -500 1000 1000" class="w-full">
@@ -74,19 +30,21 @@
           </div>
           
         </div>
-        <div class="w-full text-center gap-4">
-          <h1 class="font-medium tracking-tight text-3xl md:text-4xl lg:text-5xl xl:text-6xl">
-            Shopify Website Design
+        <div class="w-full max-w-5xl gap-4">
+          <h1 class="font-thin pb-4 text-xs tracking-widest uppercase">
+            <slot name="smltitle">Aidxn Design</slot>
           </h1>
-          <p class="text-primary-950/70 dark:text-primary-200/70 text-base md:text-lg max-w-2xl my-4">
-            Working with Shopify for over 6 years, we can take your business to the next level through website optimisation, 
-            design and SEO improvements.
+          <h2 class="font-medium lg:text-5xl md:tracking-tight text-3xl tracking-tighter xl:text-6xl xs:text-4xl">
+            <slot name="title">Title</slot>
+          </h2>
+          <p class="text-sm lg:text-lg max-w-5xl mt-4 text-slate-700">
+            <slot name="desc">Some description goes here</slot>
           </p>
           <a
-            href="/pricing"
+            href="/contact"
             class="mt-6 mr-4 bg-primary-600 dark:bg-primary-400 hover:bg-primary-700 dark:hover:bg-primary-300 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-400 dark:text-primary-950 inline-flex items-center justify-center rounded-full border border-transparent px-5 py-3 text-base font-medium text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
           >
-            Pricing
+            Contact
           </a>
         
         </div>
@@ -95,8 +53,3 @@
     </div>  
   </div>
 </section>
-
-<!-- CSS -->
-<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
-<!-- JavaScript -->
-<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>

@@ -1,39 +1,85 @@
 ---
-import About from '../../components/velocity/About.astro';
 import Cta from '../../components/home/Cta-Contact.astro';
-import Integrations from '../../components/velocity/Integrations.astro';
-import Hero from '../../components/velocity/Hero.astro';
-import HeroGrid from '../../components/velocity/Hero-Grid.astro';
-import Intro from '../../components/velocity/Intro-Velocity.astro';
-import IntroSec from '../../components/velocity/Intro-Velocity-Sec.astro';
+import SlotHero from '../../components/home/Slot-Hero.astro';
+import SectionHeadImg from "../../components/home/slot-img.astro";
+import SectionHeadSecImg from "../../components/home/slot-img-rev.astro";
 import Process from '../../components/home/Process.astro';
-import Clients from '../../components/velocity/Grid-Clients.astro';
-import Components from '../../components/velocity/Components.astro';
-import Testimonials from '../../components/velocity/Testimonials.astro';
-import SectionEnd from '../../components/home/Section-End.astro';
-
 import Layout from '../../layouts/Layout.astro';
 ---
 
 <Layout
-  description="Interactive ad design and development with UX Design specialists on the Gold Coast, Australia."
-  title="Interactive Ads · Digital Marketing by Aidxn Design"
+  description="Wordpress Websites developed and maintained on the Gold Coast, Australia."
+  title="Wordpress Development · Web Design by Aidxn Design"
 >
-  <Hero />
-  <HeroGrid />
-  <SectionEnd />
-  
 
-  <Intro />
-  <Integrations />  
-  <IntroSec />
-  <Clients />
+    <SlotHero>
+      <Fragment slot="smltitle">
+        Interactive Google Display Ad Design
+      </Fragment>
+      <Fragment slot="title">
+        Interactive Ad Design.
+      </Fragment>
+      <Fragment slot="desc">
+        Trust over 6 years experience improving conversion rates in a range of industries. All while offering a fresh take on web design and digital marketing in general.
+      </Fragment>
+      
+    </SlotHero>
+
+          <SectionHeadImg>
+            <Fragment slot="smltitle">
+              Display network advertising
+            </Fragment>
+            <Fragment slot="title">
+              Promote your brand all across the internet.
+            </Fragment>
+            <Fragment slot="desc">
+              Looking for top-notch Gold Coast Wordpress design services to boost your online business? Look no further than Aidxn Design! With over six years of experience in optimizing conversion rates for Wordpress stores and funnels, we're your go-to experts for creating stunning and user-friendly e-commerce websites. Our primary focus is on UX design, ensuring that your customers have a seamless and enjoyable shopping experience from start to finish.
+            </Fragment>
+            <Fragment slot="cover">
+              <img
+                        src="/works/gwd-interactive-ads.webp"
+                        class="w-full rounded duration-200 hover:shadow-sm"
+                      />
+            </Fragment>
+          </SectionHeadImg>
+
+          <SectionHeadSecImg>
+            <Fragment slot="smltitle">
+              Advertise on common websites
+            </Fragment>
+            <Fragment slot="title">
+              One of the least bothering forms of advertising.
+            </Fragment>
+            <Fragment slot="desc">
+              At Aidxn Design, we understand the unique needs of businesses in the Gold Coast area. Our team of experienced professionals will work closely with you to create a customized Wordpress store that not only looks fantastic but also drives results. Whether you're looking to revamp your existing online store or start from scratch, our Gold Coast Wordpress design services are tailored to meet your specific goals and objectives. We use proven strategies and cutting-edge design techniques to help you stand out in the competitive e-commerce landscape.
+            </Fragment>
+            <Fragment slot="cover">
+              <img
+                        src="/works/br-re.webp"
+                        class="w-full rounded duration-200 hover:shadow-sm"
+                      />
+            </Fragment>
+          </SectionHeadSecImg>
+
+          <SectionHeadImg>
+            <Fragment slot="smltitle">
+              Reach more customers than you ever have
+            </Fragment>
+            <Fragment slot="title">
+              Huge reach potential.
+            </Fragment>
+            <Fragment slot="desc">
+              Don't settle for an average online store when you can have a high-converting, visually appealing Wordpress website designed by Aidxn Design. Contact us today to take your Gold Coast e-commerce business to the next level with our expertise in UX design and conversion rate optimization. Your success is our priority, and we're here to help you achieve it!
+            </Fragment>
+            <Fragment slot="cover">
+              <img
+                        src="/works/br-gwd.webp"
+                        class="w-full rounded duration-200 hover:shadow-sm"
+                      />
+            </Fragment>
+          </SectionHeadImg>
+  
   <Process />
-  <Components />
-
-
-  <Testimonials />
   <Cta />
-  
 
 </Layout>
