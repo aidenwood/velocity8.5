@@ -3,6 +3,8 @@ import Cta from '../../components/home/Cta-Contact.astro';
 import Integrations from '../../components/shopify/Integrations.astro';
 import Hero from '../../components/shopify/Hero.astro';
 import Intro from '../../components/shopify/Intro-Shopify.astro';
+import SectionHeadImg from "../../components/home/slot-img.astro";
+import SectionHeadSecImg from "../../components/home/slot-img-rev.astro";
 import IntroSec from '../../components/shopify/Intro-Shopify-Sec.astro';
 import Process from '../../components/home/Process.astro';
 import Clients from '../../components/shopify/Grid-Clients.astro';
@@ -16,6 +18,32 @@ import Layout from '../../layouts/Layout.astro';
   title="Shopify Development · Web Design by Aidxn Design"
 >
   <Hero />
+
+  <SectionHeadSecImg>
+    <Fragment slot="title">
+      Shopify Web Design.
+    </Fragment>
+    <Fragment slot="desc">
+      Gain the experience from years of curating and managing global brand launches, to instant online success. 
+      Reliable digital marketing management on the Gold Coast with Aidxn Design. Our marketing managers are like 
+      mission control for your business, quickly identifying the areas of improvement over and over inside your brand. 
+      An outside set of eyes is always a necessesity in effective marketing design. Plus we will come to your GC business 
+      once a month in-person, for faster marketing strategy approval and content creation, when part of the <a href="/moonshot-plan">Moonshot Plan</a>.
+    </Fragment>
+    <Fragment slot="cover">
+      <Picture
+                src={PagecoverSecondary}
+                sizes="(max-width: 2000px) 2000px, 1000px"
+                widths={[1000, 1500, 2000]}
+                aspectRatio="3:2"
+                background="#fff"
+                fit="contain"
+                position="center"
+                class="w-full rounded duration-200 hover:shadow-sm"
+              />
+    </Fragment>
+  </SectionHeadSecImg>
+  
   <Clients />
   
   <Intro />
