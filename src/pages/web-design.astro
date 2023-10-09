@@ -5,6 +5,9 @@ import Hero from '../components/web-design/Hero.astro';
 import IntroSec from '../components/web-design/Intro-Webdesign-Sec.astro';
 import OptionsSec from '../components/web-design/Options-Secondary.astro';
 import Grid from '../components/web-design/Grid-Webdesign.astro';
+import GridSec from '../components/web-design/Grid-Webdesign-Sec.astro';
+import Clients from '../components/web-design/Grid-Clients.astro';
+
 import Faq from '../components/web-design/Faq.astro';
 import Spacer from '../components/home/Section-End.astro';
 
@@ -15,19 +18,21 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout
   description="Web Design for Velocity, Shopify and Wordpress. Developed and maintained on the Gold Coast, Australia."
-  title="Lead Generation Web Design · Gold Coast Web Design by Aidxn Design"
+  title="Gold Coast Web Design · Aidxn Design"
 >
   <Hero />
   <Options />
-
-  <Grid />
+  <Clients />
+  
+  <GridSec />
   <IntroSec />
+  <Faq />
+  <Grid />
+  
+  
+  
   <OptionsSec />
 
-  
-  <Faq />
-
-  <Testimonials />
   <Cta />
   
 

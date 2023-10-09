@@ -1,0 +1,111 @@
+---
+const features = [
+  {
+    id: 'expertise-1',
+    name: 'What digital marketing services does Aidxn Design offer?',
+    description:
+      "Aidxn Design offers a comprehensive suite of digital marketing services designed to help businesses succeed online. Our services include search engine optimization (SEO), pay-per-click (PPC) advertising, social media marketing, content marketing, email marketing, and more. We create customized digital marketing strategies tailored to your specific goals and target audience.",
+  },
+  {
+    id: 'expertise-2',
+    name: 'How can digital marketing benefit my business?',
+    description:
+      "Digital marketing can significantly benefit your business by increasing online visibility, driving targeted traffic to your website, improving brand awareness, and ultimately boosting sales and conversions. It allows you to connect with your audience where they spend a significant amount of their time – online.",
+  },
+  {
+    id: 'expertise-3',
+    name: 'Do you work with businesses of all sizes?',
+    description:
+      "Aidxn Design works with businesses of all sizes, from small startups to large enterprises. Our digital marketing strategies are scalable and adaptable to meet the unique needs and budgets of each client.",
+  },
+  {
+    id: 'expertise-4',
+    name: 'How long does it take to see results from digital marketing efforts?',
+    description:
+      "The timeline for seeing results from digital marketing can vary based on factors such as the competitiveness of your industry, the specific tactics used, and the current state of your online presence. Generally, you can expect to see initial results within a few months, with more significant gains over time as your digital marketing efforts mature. We always offer a completely transparent approach to marketing and think deeply about your businesses calendar year when offering any marketing suggestions.",
+  },
+  {
+    id: 'expertise-5',
+    name: 'Is social media marketing important for my business?',
+    description:
+      "Social media marketing is a crucial component of a robust digital marketing strategy. It allows you to engage with your audience, build brand loyalty, and reach potential customers where they spend a significant amount of their online time. Social media platforms provide opportunities for brand promotion, customer feedback, and community building.",
+  },
+  {
+    id: 'expertise-6',
+    name: 'How do you measure the success of digital marketing campaigns?',
+    description:
+      "Aidxn Design uses a range of key performance indicators (KPIs) to measure the success of digital marketing campaigns. These KPIs include website traffic, conversion rates, click-through rates (CTR), return on investment (ROI), and more. We provide regular reports and insights to help you track progress and make data-driven decisions.",
+  },
+  {
+    id: 'expertise-7',
+    name: "Can you help improve our website's search engine rankings?",
+    description:
+      "Yes, Aidxn Design specializes in search engine optimization (SEO) to improve your website's search engine rankings. Our SEO strategies include optimizing on-page elements, creating high-quality content, building authoritative backlinks, and staying up-to-date with search engine algorithm changes to help your website rank higher on Google and other search engines.",
+  },
+];
+---
+
+<section class="py-16 sm:py-20">
+  <div class="mx-auto px-4 sm:px-6 w-full lg:max-w-7xl lg:px-8">
+    <div class="grid gap-12 lg:grid-cols-3 lg:gap-8">
+      <div>
+        <h3 id="components" class="text-3xl font-medium tracking-tight sm:text-4xl mb-4">Digital Marketing FAQ's</h3>
+        <p class="text-primary-950/70 dark:text-primary-200/70 text-base sm:text-lg">
+          A refreshing, reliable take on web design and digital marketing. No more chasing answers.
+        </p>
+      </div>
+      <div class="lg:col-span-2">
+        <dl
+          class="-mt-3"
+          x-data="{ selected: null, toggle(value) { this.selected = this.selected === value ? null : value } }"
+        >
+          {
+            features.map((feature, index) => (
+              <div
+                class="rounded-3xl px-4 transition"
+                x-data={`{ id: ${index}, get isOpen() { return this.id === this.selected }, get isNextOpen() { return (this.id + 1) === this.selected } }`}
+                x-bind:class="{ 'bg-primary-500/10 dark:bg-primary-400/10': isOpen }"
+              >
+                <dt
+                  class="border-b text-lg transition"
+                  x-cloak
+                  x-bind:class="{ 'border-transparent': isOpen || isNextOpen, 'border-primary-900/10 dark:border-primary-300/10': !(isOpen || isNextOpen) }"
+                >
+                  <button
+                    type="button"
+                    class="group block w-full py-6 text-left transition focus-visible:outline-none"
+                    aria-controls={feature.id}
+                    x-on:click="toggle(id)"
+                    aria-expanded="false"
+                    x-bind:aria-expanded="isOpen.toString()"
+                  >
+                    <div class="group-focus-visible:outline-primary-950 dark:group-focus-visible:outline-primary-200 flex items-center justify-between rounded-3xl group-focus-visible:outline group-focus-visible:outline-2 group-focus-visible:outline-offset-2">
+                      <span class="text-base md:text-lg font-medium">{feature.name}</span>
+                      <span class="ml-6 flex h-7 items-center">
+                        <svg
+                          class="text-primary-600 dark:text-primary-400 h-6 w-6 rotate-0 transform transition duration-200 ease-in-out"
+                          x-bind:class="{ '-rotate-180': isOpen, 'rotate-0': !isOpen }"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                          aria-hidden="true"
+                        >
+                          <path d="M11.9997 13.1714L16.9495 8.22168L18.3637 9.63589L11.9997 15.9999L5.63574 9.63589L7.04996 8.22168L11.9997 13.1714Z" />
+                        </svg>
+                      </span>
+                    </div>
+                  </button>
+                </dt>
+                <dd class="pb-6 pr-6" id={feature.id} x-show="isOpen" x-cloak x-collapse>
+                  <p class="text-primary-950/70 dark:text-primary-200/70 text-base">
+                    {feature.description}
+                  </p>
+                </dd>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
