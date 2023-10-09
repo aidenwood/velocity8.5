@@ -1,0 +1,111 @@
+---
+const features = [
+  {
+    id: 'expertise-1',
+    name: 'What sets Aidxn Design apart from other web design agencies?',
+    description:
+      "Aidxn Design stands out through a combination of creativity, technical expertise, and a commitment to client satisfaction. Our team of experienced designers and developers takes a client-centric approach to create unique, tailor-made websites that not only look stunning but also perform exceptionally well. We pride ourselves on effective communication, meeting deadlines, and exceeding client expectations.",
+  },
+  {
+    id: 'expertise-2',
+    name: 'What types of websites does Aidxn Design specialize in?',
+    description:
+      "Aidxn Design specializes in a wide range of website types, including but not limited to business websites, e-commerce stores, portfolios, blogs, and custom web applications. Whether you're a small business looking for an online presence or a large enterprise requiring complex web solutions, we have the expertise to deliver the right solution for your needs.",
+  },
+  {
+    id: 'expertise-3',
+    name: 'How long does it typically take to complete a web design project?',
+    description:
+      "The timeline for a web design project can vary depending on its complexity, features, and your specific requirements. Typically, a small to medium-sized website can be completed in 21 days. However, larger and more complex projects take 45 days. We work closely with you to define project milestones and provide realistic timelines to ensure transparency and on-time delivery.",
+  },
+  {
+    id: 'expertise-4',
+    name: 'Do you offer responsive web design for mobile devices?',
+    description:
+      "Aidxn Design places a strong emphasis on responsive web design. We ensure that every website we create is optimized for seamless viewing and interaction on all devices, including smartphones, tablets, and desktops. This mobile-friendly approach is essential for reaching a broader audience and improving user experience.",
+  },
+  {
+    id: 'expertise-5',
+    name: 'Can I have input on the design and features of my website?',
+    description:
+      "Yes, your input is invaluable. We believe in a collaborative design process. Aidxn Design works closely with clients to understand their vision, goals, and preferences. We encourage your feedback throughout the project, ensuring that the final design and functionality align with your expectations.",
+  },
+  {
+    id: 'expertise-6',
+    name: 'Will my website be optimized for search engines (SEO)?',
+    description:
+      "Yes, to the highest standard. Aidxn Design places a strong emphasis on search engine optimization (SEO). We ensure that your website is built with SEO best practices in mind, including optimizing site structure, content, and meta tags. This helps improve your website's visibility on search engines, driving organic traffic and potential customers to your site.",
+  },
+  {
+    id: 'expertise-7',
+    name: 'What maintenance services do you offer after the website is live?',
+    description:
+      "Aidxn Design provides ongoing support and maintenance services to keep your website running smoothly, many of the time making simple and fast changes completely free of charge. Our services include regular updates, security enhancements, troubleshooting, and assistance with content updates. We're here to help you maintain a secure and up-to-date web presence long after your site goes live.",
+  },
+];
+---
+
+<section class="py-16 sm:py-20">
+  <div class="mx-auto px-4 sm:px-6 w-full lg:max-w-7xl lg:px-8">
+    <div class="grid gap-12 lg:grid-cols-3 lg:gap-8">
+      <div>
+        <h3 id="components" class="text-3xl font-medium tracking-tight sm:text-4xl mb-4">Web Design FAQ's</h3>
+        <p class="text-primary-950/70 dark:text-primary-200/70 text-base sm:text-lg">
+          A refreshing, reliable take on web design and digital marketing. No more chasing answers.
+        </p>
+      </div>
+      <div class="lg:col-span-2">
+        <dl
+          class="-mt-3"
+          x-data="{ selected: null, toggle(value) { this.selected = this.selected === value ? null : value } }"
+        >
+          {
+            features.map((feature, index) => (
+              <div
+                class="rounded-3xl px-4 transition"
+                x-data={`{ id: ${index}, get isOpen() { return this.id === this.selected }, get isNextOpen() { return (this.id + 1) === this.selected } }`}
+                x-bind:class="{ 'bg-primary-500/10 dark:bg-primary-400/10': isOpen }"
+              >
+                <dt
+                  class="border-b text-lg transition"
+                  x-cloak
+                  x-bind:class="{ 'border-transparent': isOpen || isNextOpen, 'border-primary-900/10 dark:border-primary-300/10': !(isOpen || isNextOpen) }"
+                >
+                  <button
+                    type="button"
+                    class="group block w-full py-6 text-left transition focus-visible:outline-none"
+                    aria-controls={feature.id}
+                    x-on:click="toggle(id)"
+                    aria-expanded="false"
+                    x-bind:aria-expanded="isOpen.toString()"
+                  >
+                    <div class="group-focus-visible:outline-primary-950 dark:group-focus-visible:outline-primary-200 flex items-center justify-between rounded-3xl group-focus-visible:outline group-focus-visible:outline-2 group-focus-visible:outline-offset-2">
+                      <span class="text-base md:text-lg font-medium">{feature.name}</span>
+                      <span class="ml-6 flex h-7 items-center">
+                        <svg
+                          class="text-primary-600 dark:text-primary-400 h-6 w-6 rotate-0 transform transition duration-200 ease-in-out"
+                          x-bind:class="{ '-rotate-180': isOpen, 'rotate-0': !isOpen }"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                          aria-hidden="true"
+                        >
+                          <path d="M11.9997 13.1714L16.9495 8.22168L18.3637 9.63589L11.9997 15.9999L5.63574 9.63589L7.04996 8.22168L11.9997 13.1714Z" />
+                        </svg>
+                      </span>
+                    </div>
+                  </button>
+                </dt>
+                <dd class="pb-6 pr-6" id={feature.id} x-show="isOpen" x-cloak x-collapse>
+                  <p class="text-primary-950/70 dark:text-primary-200/70 text-base">
+                    {feature.description}
+                  </p>
+                </dd>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
