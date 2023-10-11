@@ -1,0 +1,53 @@
+---
+import Cta from '../../components/home/Cta-Contact.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Wordpress Websites developed and maintained on the Gold Coast, Australia."
+  title="Velocity Version 7.4 Dev Notes · Blog · Web Design by Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Velocity Version Development Notes
+      </Fragment>
+      <Fragment slot="title">
+        Velocity v7.4
+      </Fragment>
+
+      <Fragment slot="cover">
+        <img
+          src="/works/br-mac-render-med.webp"
+          class="w-full rounded duration-200 hover:shadow-sm"
+        />
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Introduction
+      </Fragment>
+      <Fragment slot="content">
+        Welcome to the developer notes for Velocity7 version 7.4! In this release, we’ve introduced several exciting features, improvements, and bug fixes that will enhance your web development experience with Velocity. Let’s dive in and explore the highlights of version 7.4.
+        New Features
+        1. Custom Theme Builder
+        We’re thrilled to introduce the Custom Theme Builder, a powerful tool that allows you to create unique themes with ease. With the Custom Theme Builder, you have full control over the visual appearance of your Velocity-powered websites. Customize colors, typography, layout, and more, and create stunning designs that align with your brand.
+        2. Advanced Animation Library
+        Version 7.4 brings an enhanced Animation Library, offering a wide range of pre-built animations that you can easily incorporate into your web projects. From subtle transitions to eye-catching effects, the Advanced Animation Library empowers you to bring your websites to life and captivate your audience with engaging animations.
+        Improvements
+        1. Performance Optimization
+        In version 7.4, we’ve focused on optimizing the performance of Velocity. Through various code optimizations and caching enhancements, we’ve significantly improved the overall speed and efficiency of the framework. Enjoy faster load times and smoother interactions, providing your users with an exceptional browsing experience.
+        2. Enhanced Responsive Design
+        We understand the importance of responsive design in today’s mobile-driven world. That’s why we’ve further enhanced Velocity’s responsive capabilities in version 7.4. With improved responsive design features, your websites will seamlessly adapt to different screen sizes and devices, ensuring a consistent and visually appealing experience across platforms.
+        Bug Fixes
+        In addition to the new features and improvements, version 7.4 also addresses several bug fixes reported by our community. We’ve resolved issues related to rendering inconsistencies, compatibility with certain plugins, and cross-browser compatibility. These bug fixes contribute to a more stable and reliable development environment with Velocity.
+        Conclusion
+        Velocity7 version 7.4 introduces exciting new features, improvements, and bug fixes that enhance your web development experience. The Custom Theme Builder empowers you to create unique themes, while the Advanced Animation Library brings life to your websites. Performance optimizations and enhanced responsive design ensure faster and more seamless user experiences. And, of course, bug fixes provide a more stable development environment. Upgrade to Velocity7 version 7.4 and take advantage of these enhancements in your web projects.
+        Stay tuned for future releases and updates. Happy coding with Velocity!
+        For more details, check out the Velocity7 version 7.4 Release Notes.
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>
