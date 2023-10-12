@@ -1,5 +1,6 @@
 ---
 import About from '../components/home/About.astro';
+import CtaContact from '../components/home/Cta-Contact.astro';
 import Cta from '../components/home/Cta-Contact.astro';
 import Integrations from '../components/home/Integrations.astro';
 import Hero from '../components/home/Hero.astro';
@@ -30,20 +31,22 @@ import SectionEnd from '../components/home/Section-End.astro';
   
   <WebInfo />
   <Process />
+  <Clients />
   <SectionEnd />
+
+  <CtaContact />
 
   <VelocityIntro />
   <VelocitySlide />
-  <Clients />
   <SectionEnd />
 
   <MoonIntro />
   <MoonSlide />
   <MoonInfo />
-  <Testimonials />  
   <SectionEnd />
 
   <About />
+  <Testimonials />  
   <Cta />
 
 </Layout>
