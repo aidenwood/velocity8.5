@@ -7,8 +7,8 @@ const links = [
   },
   {
     ref: '02',
-    name: 'Velocity',
-    href: '/web-design/velocity',
+    name: 'Businesses',
+    href: '/all-businesses',
   },
   {
     ref: '03',
@@ -19,11 +19,6 @@ const links = [
     ref: '04',
     name: 'Contact',
     href: '/contact',
-  },
-  {
-    ref: '05',
-    name: 'Book a Call',
-    href: 'https://g2ok5807scs.typeform.com/to/tCmzlDza',
   },
 ];
 ---
@@ -52,10 +47,10 @@ const links = [
         href="/"
         class="focus-visible:outline-primary-950 dark:group-focus-visible:outline-primary-200 rounded-md focus-visible:outline focus-visible:outline-2"
       >
-        <span class="sr-only">Velocity</span>
+        <span class="sr-only">Bill Rae</span>
         <img
           class="h-14 w-auto"
-          :src="$store.theme.isDark ? '/assets/aidxn-logo-23-v2-light.svg' : '/assets/aidxn-logo-23-v2.svg'"
+          :src="$store.theme.isDark ? '/assets/logo-inverted.svg' : '/assets/logo.svg'"
           alt="Velocity Theme by Aidxn Design"
         />
       </a>
@@ -68,85 +63,7 @@ const links = [
 
 
 
-      <!-- Small Menu Start -->
-      <div id="smallmenu" class="hidden xl:block">
-        <div x-data="{ show: false, menu: false, menu2: false, menu3: false }">
-             <button class="text-base font-medium text-black bg-primary-300/20 px-6 py-3 border-0 rounded-3xl outline-none hover:bg-primary-300"
-                 x-on:click="show = ! show">All Services</button>
-             <div class="relative font-medium">
-                 <div class="bg-primary-200 rounded-xl p-3 min-w-[220px] top-2 w-full absolute z-10" x-show="show"
-                     x-cloak
-                     @click.away="show = false" x-transition:enter="transition ease-out duration-100"
-                     x-transition:enter-start="transform opacity-0 scale-95">
-                     <ul
-                         class="[&>li]:text-black [&>li]:text-base [&>li]:cursor-pointer [&>li]:px-2 [&>li]:py-1 [&>li]:rounded-md [&>li]:transition-all hover:[&>li]:bg-gray-600 active:[&>li]:bg-gray-700 active:[&>li]:scale-[0.99]">
-                         <li class="flex items-center justify-between" 
-                             x-on:click="menu = ! menu" 
-                             @click.away="menu = false"
-                             >
-                             Web Design
-                             <i class="arrow"></i>
-                         </li>
-                         <div class="bg-primary-200 rounded-xl max-w-[260px] w-full p-3 absolute left-[228px] top-0 h-min -bottom-4 [&>li]:text-black [&>li]:text-base [&>li]:cursor-pointer [&>li]:px-2 [&>li]:py-1 [&>li]:rounded-md [&>li]:transition-all hover:[&>li]:bg-gray-600 active:[&>li]:bg-gray-700 active:[&>li]:scale-[0.99]"
-                             x-show="menu" x-transition:enter="transition ease-out duration-100"
-                             x-transition:enter-start="transform opacity-0 scale-95">
-                             <li><a href="/contact">Custom Web Design</a></li>
-                             <li><a href="/web-design/shopify">Shopify Web Design</a></li>
-                             <li><a href="/web-design/wordpress">Wordpress Web Design</a></li>
-                             <li><a href="/web-design/velocity">Velocity Web Design</a></li>
-                         </div>
-                         <li class="flex items-center justify-between" 
-                             x-on:click="menu2 = ! menu2" 
-                             @click.away="menu2 = false"
-                             >
-                             Brand Design
-                             <i class="arrow"></i>
-                         </li>
-                         <div class="bg-primary-200 rounded-xl max-w-[260px] w-full p-3 absolute -right-[228px] top-0 h-min -bottom-4 [&>li]:text-black [&>li]:text-base [&>li]:cursor-pointer [&>li]:px-2 [&>li]:py-1 [&>li]:rounded-md [&>li]:transition-all hover:[&>li]:bg-gray-600 active:[&>li]:bg-gray-700 active:[&>li]:scale-[0.99]"
-                             x-show="menu2" x-transition:enter="transition ease-out duration-100"
-                             x-transition:enter-start="transform opacity-0 scale-95">
-                             <li><a href="/graphic-design/brand-identity">Brand Identity</a></li>
-                             <li><a href="/graphic-design/brand-strategy">Brand Strategy</a></li>
-                             <li><a href="/graphic-design/brand-design-packs">Brand Design Packs</a></li>
-                             <li><a href="/graphic-design/video-ad-design">Video Ad Design</a></li>
-                             <li><a href="/graphic-design/ad-campaign-design">Ad Campaign Design</a></li>
-                             <li><a href="/graphic-design/product-design">Product Design</a></li>
-                             <li><a href="/graphic-design/packaging-design">Packaging Design</a></li>
-                             <li><a href="/graphic-design/interactive-design">Interactive Ad Design</a></li>
-                         </div>
-                         <li class="flex items-center justify-between" 
-                             x-on:click="menu3 = ! menu3" 
-                             @click.away="menu3 = false"
-                             >
-                             Digital Marketing
-                             <i class="arrow"></i>
-                         </li>
-                         <div class="bg-primary-200 rounded-xl max-w-[260px] w-full p-3 absolute -right-[228px] top-0 h-min -bottom-4 [&>li]:text-black [&>li]:text-base [&>li]:cursor-pointer [&>li]:px-2 [&>li]:py-1 [&>li]:rounded-md [&>li]:transition-all hover:[&>li]:bg-gray-600 active:[&>li]:bg-gray-700 active:[&>li]:scale-[0.99]"
-                             x-show="menu3" x-transition:enter="transition ease-out duration-100"
-                             x-transition:enter-start="transform opacity-0 scale-95">
-                             <li><a href="/digital-marketing/competitor-research">Competitor Research</a></li>
-                             <li><a href="/digital-marketing/keyword-research">Keyword Research</a></li>
-                             <li><a href="/digital-marketing/google-search-management">Google Ads</a></li>
-                             <li><a href="/digital-marketing/seo">SEO Optimisation</a></li>
-                             <li><a href="/digital-marketing/local-seo">Local SEO Optimisation</a></li>
-                             <li><a href="/digital-marketing/facebook-ad-management">Facebook / IG Ads</a></li>
-                             <li><a href="/digital-marketing/interactive-ads">Interactive Ads</a></li>
-                             <li><a href="/digital-marketing/moonshot-plan">Moonshot Plan</a></li>
-                         </div>
-                         
-                         
-                         <div class="w-full border border-gray-700 my-2"></div>
-                         
-                         
-                         <li>About</li>
-                         <li>All Services</li>
-                     </ul>
-        
-                 </div>
-             </div>
-        </div>
-    </div>
-   <!-- Small Menu Start -->
+    
 
 
 
