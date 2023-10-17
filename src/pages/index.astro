@@ -1,51 +1,52 @@
 ---
-import Hero from '../components/home/Hero.astro';
-import Brands from '../components/home/Brands.astro';
-
-import HeroGriddy from '../components/home/Hero-Griddy.astro';
-import RayIntro from '../components/home/Intro-RayCorp.astro';
-import RayGrid from '../components/home/Grid-RayCorp.astro';
-import RayInfoSec from '../components/home/Intro-Sec-RayCorp.astro';
-
-import BombersGrid from '../components/home/Grid-Bombers.astro';
-import BombersIntro from '../components/home/Intro-Bombers.astro';
-
-import BeefIntro from '../components/home/Intro-Beef.astro';
-import BeefGrid from '../components/home/Grid-Beef.astro';
-import BeefInfoSec from '../components/home/Intro-Sec-Beef.astro';
-
 import About from '../components/home/About.astro';
+import CtaContact from '../components/home/Cta-Contact.astro';
 import Cta from '../components/home/Cta.astro';
+import Integrations from '../components/home/Integrations.astro';
+import Hero from '../components/home/Hero.astro';
+import HeroSliddy from '../components/home/Hero-Griddy.astro';
+import VelocityIntro from '../components/home/Intro-Velocity.astro';
+import Process from '../components/home/Process.astro';
+import WebInfo from '../components/home/Info-WebDesign.astro';
+import VelocitySlide from '../components/home/Grid-Velocity.astro';
+import MoonSlide from '../components/home/Grid-Moonshot.astro';
+import MoonIntro from '../components/home/Intro-Moonshot.astro';
+import MoonInfo from '../components/home/Info-Moonshot.astro';
+
+
 
 import Clients from '../components/home/Grid-Clients.astro';
+import Testimonials from '../components/home/Testimonials.astro';
 import Layout from '../layouts/Layout.astro';
 import SectionEnd from '../components/home/Section-End.astro';
 
 ---
 
 <Layout
-  description="Current news and information on Bill Rae enterprise development. Australian owned and run businesses delivering the highest quality products and services. Information on Bill Rae all in one place."
-  title="Home · Bill Rae Enterprises"
+  description="Lead Generation and UX focused Gold Coast Website Design and Digital Marketing specialising in reducing ad spend while maintaining results. Trust over 10 years experience and have your website managed directly by Aiden Wood from Aidxn Design."
+  title="Home · Aidxn Design"
 >
   <Hero />
-  <Brands />
-  <HeroGriddy />
+  <HeroSliddy />
   
+  <WebInfo />
+  <Process />
+  <Clients />
+  <SectionEnd />
 
-  <RayIntro />
-  <RayGrid />
-  <RayInfoSec />
-  
+  <CtaContact />
 
-  <BombersIntro />
-  <BombersGrid />
-  
-  <BeefIntro />
-  <BeefGrid />
-  <BeefInfoSec />
+  <VelocityIntro />
+  <VelocitySlide />
+  <SectionEnd />
+
+  <MoonIntro />
+  <MoonSlide />
+  <MoonInfo />
+  <SectionEnd />
 
   <About />
-  <Clients />
+  <Testimonials />  
   <Cta />
 
 </Layout>

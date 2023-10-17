@@ -1,33 +1,59 @@
+
+<!-- SVG CSS and Animate for Aidxn Moving Logo -->
+<!-- Velocity8 Large Slider Settings -->
 <style>
-  #hero { font-size: 6.5rem; }
+  svg{width:100%;height:100%;perspective:50px}circle{stroke:#26003A;stroke-width:8px;fill:none}.equator{stroke:#a600ff;transform:rotateZ(-20deg) rotateX(125deg)}.meridian{animation:2s linear infinite turn;transform:rotateZ(-20deg) rotateX(35deg) rotateY(var(--start))}@keyframes turn{100%{transform:rotateZ(-20deg) rotateX(35deg) rotateY(var(--end))}}
 </style>
+
 <section class="py-16 lg:py-24">
   <div class="mx-auto px-4 sm:px-6 w-full lg:max-w-7xl lg:px-8">
     <div class="flex flex-col gap-16">
-      <div class="gap-8 sm:gap-10">
-        
-        <div class="w-full gap-4">
-          <h1 class="text-xs uppercase font-thin tracking-wide pb-4">
-            Australian Business Owner & Entrepreneur
+      <div class="flex flex-col md:flex-row-reverse items-center gap-8 sm:gap-10">
+        <div class="w-5/6 md:w-1/3 items-start">
+          
+          <div id="animationWrapper" translate="no" transition:name="meridian">
+            <svg viewBox="-500 -500 1000 1000" class="w-full">
+              <circle r="450"></circle>
+              <circle class="equator" r="450"></circle>
+              <circle class="meridian" r="450" style="--start:165deg; --end:180deg"></circle>
+              <circle class="meridian" r="450" style="--start:150deg; --end:165deg"></circle>
+              <circle class="meridian" r="450" style="--start:135deg; --end:150deg"></circle>
+              <circle class="meridian" r="450" style="--start:120deg; --end:135deg"></circle>
+              <circle class="meridian" r="450" style="--start:105deg; --end:120deg"></circle>
+              <circle class="meridian" r="450" style="--start:90deg; --end:105deg"></circle>
+              <circle class="meridian" r="450" style="--start:75deg; --end:90deg"></circle>
+              <circle class="meridian" r="450" style="--start:60deg; --end:75deg"></circle>
+              <circle class="meridian" r="450" style="--start:45deg; --end:60deg"></circle>
+              <circle class="meridian" r="450" style="--start:30deg; --end:45deg"></circle>
+              <circle class="meridian" r="450" style="--start:15deg; --end:30deg"></circle>
+              <circle class="meridian" r="450" style="--start:0deg; --end:15deg"></circle>
+            </svg>
+          </div>
+          
+        </div>
+        <div class="w-full md:w-2/3 gap-4">
+          <h1 class="text-xs uppercase font-thin tracking-widest pb-4">
+            Gold Coast Website Design and Digital Marketing
           </h1>
-          <h2 id="hero" class="font-medium tracking-tighter md:tracking-tight">
-            Bill Rae
+          <h2 class="font-medium tracking-tighter md:tracking-tight text-2xl xs:text-3xl md:text-4xl lg:text-5xl xl:text-6xl">
+            Web Design, Branding, and Digital Marketing. All-in-one.
           </h2>
-          <p class="text-primary-950/70 dark:text-primary-200/70 text-base md:text-lg max-w-4xl my-4">
-            Creating Australian businesses that uphold the highest standards in service, delivering the best quality products. Owner of Pure Blue Beef. Previous owner of the Brisbane Bombers, RayCorp International and Certified Free Range Beef Australia. Truly Australian made.
+          <p class="text-primary-950/70 dark:text-primary-200/70 text-base md:text-lg max-w-3xl my-4">
+            An in-person approach to web design and digital marketing with 10+ years experience.
+            All-inclusive service that goes the extra mile to help you generate more business online.
           </p>
           
           <a
-            href="/all-businesses"
+            href="/web-design"
             class="mt-6 mr-4 bg-primary-600 dark:bg-primary-400 hover:bg-primary-700 dark:hover:bg-primary-300 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-400 dark:text-primary-950 inline-flex items-center justify-center rounded-full border border-transparent px-5 py-3 text-base font-medium text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
           >
-            All Businesses
+            Web Design
           </a>
           <a
-            href="/contact"
+            href="/web-design/velocity"
             class="mt-6 mr-4 bg-primary-600 dark:bg-primary-400 hover:bg-primary-700 dark:hover:bg-primary-300 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-400 dark:text-primary-950 inline-flex items-center justify-center rounded-full border border-transparent px-5 py-3 text-base font-medium text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
           >
-            Contact
+            Velocity 8
           </a>
         </div>
       </div>
