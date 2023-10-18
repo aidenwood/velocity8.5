@@ -1,0 +1,79 @@
+---
+const stats = [
+  {
+    name: 'Case Study: Multi-modal marketing design in real estate',
+    desc: 'We deployed a multi-modal marketing strategy across the whole of the Gold Coast for a client in the Real Estate industry.',
+    value: 'Marketing Management',
+    link: 'https://blog.aidxn.com/posts/multi-modal-marketing',
+  },
+  {
+    name: 'E-Commerce design for improving conversion rate',
+    desc: 'Some of our favourite, most effective web design tricks to boost conversion rates on any e-commerce store.',
+    value: 'Web Design',
+    link: 'https://blog.aidxn.com/posts/ecommerce-design-tricks',
+  },
+  {
+    name: 'Case Study: Wordpress pageload from 5.2s to 1.2s',
+    desc: 'Our strategies for reducing Wordpress page load time with impressive results for a client.',
+    value: 'Web Design',
+    link: 'https://blog.aidxn.com/posts/website-pageload-optimisation/',
+  },
+  {
+    name: 'Case Study: $50k in sales with $0 in ad spend',
+    desc: 'Marketing management for a client in the events industry, generating over $50k in sales without a dime on advertising.',
+    value: 'Marketing Management',
+    link: 'https://blog.aidxn.com/posts/viral-marketing-strategies',
+  },
+];
+---
+
+
+<section class="py-16 sm:py-20">
+  <div class="mx-auto w-full px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+    <div class="flex flex-col">
+      <div class="flex flex-col justify-center">
+        
+        <div class="flex flex-col gap-10">
+          <!-- Mission description -->
+          <div class="space-y-8 sm:space-y-12">
+            <div class="space-y-6">
+              <h3 class="text-2xl sm:text-3xl font-medium tracking-tight leading-8">Serious results.</h3>
+              <p class="text-primary-950/70 dark:text-primary-200/70 max-w-5xl text-base sm:text-lg pb-6">
+                Specialising in web performance for over 6 years for the value it provides to SEO competitiveness as well as reducing advertising costs. 
+                Better understand how website pageload affects conversion rate and how we create such wildly successful results through brand and marketing design.
+              </p>
+              
+            </div>
+          </div>
+
+      </div>
+    </div>
+    <div class="w-full flex flex-col justify-center gap-y-8">
+
+      <dl class="grid gap-6 xl:grid-cols-2 my-8 lg:my-12">
+        {
+          stats.map((stat) => (
+          <a href={stat.link}>  
+            <div class="border-primary-900/10 dark:border-primary-300/10 hover:bg-primary-900/10 hover:dark:bg-primary-300/10 duration-200 rounded-3xl border px-6 py-8 h-full flex flex-col justify-center">
+              <dt class="text-xs uppercase font-thin tracking-widest">{stat.value}</dt>
+              <dd class="text-xl md:text-2xl xl:text-xl font-medium leading-relaxed tracking-tight py-6">{stat.name}</dd>
+              <p class="text-primary-950/70 dark:text-primary-200/70 text-base leading-6">
+                    {stat.desc}
+                  </p>
+            </div>
+          </a>
+          ))
+        }
+      </dl>
+      
+    </div>
+    <div class="xl:mx-auto">
+      <a
+          href="https://blog.aidxn.com/"
+          class=" mr-4 bg-primary-600 dark:bg-primary-400 hover:bg-primary-700 dark:hover:bg-primary-300 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-400 dark:text-primary-950 inline-flex items-center justify-center rounded-full border border-transparent px-5 py-3 text-base font-medium text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+        >
+          All Blog Posts
+      </a>
+    </div>
+  </div>
+</section>

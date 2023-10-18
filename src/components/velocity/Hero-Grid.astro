@@ -2,46 +2,6 @@
 
 const team = [ 
   {
-    name: 'One Off Price',
-    image: '/assets/team-1.webp',
-    desc: 'Say goodbye to endless website subscriptions.',
-  },
-  {
-    name: 'No Hosting Costs',
-    image: '/assets/team-1.webp',
-    desc: 'Save unnecessary costs with no need to pay for servers.',
-  },
-  {
-    name: 'Customised to your Brand',
-    image: '/assets/team-2.webp',
-    desc: 'Completely customised to your brand with dark mode.',
-  },
-  {
-    name: 'Take Payments with Stripe',
-    image: '/assets/team-3.webp',
-    desc: 'Secure payments and instant SKU processing with Stripe.',
-  },
-  {
-    name: 'Code CLI Setup',
-    image: '/assets/team-1.webp',
-    desc: 'Includes GitHub CLI setup for pushing future changes.',
-  },
-  {
-    name: 'Custom Domain and DNS',
-    image: '/assets/team-1.webp',
-    desc: 'Includes connection to custom domain and DNS setup.',
-  },
-  {
-    name: 'Form Handling and CRM',
-    image: '/assets/team-2.webp',
-    desc: 'Secure and custom designed forms for your business.',
-  },
-  {
-    name: 'Instant Lead Notifications',
-    image: '/assets/team-3.webp',
-    desc: 'Close more leads with instant email notifications.',
-  },
-  {
     name: 'A+ / 100% Performance',
     image: '/assets/team-1.webp',
     desc: '0.2 second pageload out of the box.',
@@ -60,7 +20,48 @@ const team = [
     name: 'SEO-Friendly',
     image: '/assets/team-3.webp',
     desc: 'Perfect scores with Google instantly.',
+  },  
+  {
+    name: 'Customised to your Brand',
+    image: '/assets/team-2.webp',
+    desc: 'Completely customised to your brand with dark mode.',
   },
+  {
+    name: 'Instant Lead Notifications',
+    image: '/assets/team-3.webp',
+    desc: 'Close more leads with instant email notifications.',
+  },
+  {
+    name: 'Take Payments with Stripe',
+    image: '/assets/team-3.webp',
+    desc: 'Secure payments and instant SKU processing with Stripe.',
+  },
+  {
+    name: 'Custom Domain and DNS',
+    image: '/assets/team-1.webp',
+    desc: 'Includes connection to custom domain and DNS setup.',
+  },
+  {
+    name: 'Form Handling and CRM',
+    image: '/assets/team-2.webp',
+    desc: 'Secure and custom designed forms for your business.',
+  },
+  {
+    name: 'Code CLI Setup',
+    image: '/assets/team-1.webp',
+    desc: 'Includes GitHub CLI setup for pushing future changes.',
+  },
+  {
+    name: 'One Off Price',
+    image: '/assets/team-1.webp',
+    desc: 'Say goodbye to endless website subscriptions.',
+  },
+  {
+    name: 'No Hosting Costs',
+    image: '/assets/team-1.webp',
+    desc: 'Save unnecessary costs with no need to pay for servers.',
+  },
+  
 ];
 ---
 
@@ -68,21 +69,14 @@ const team = [
   <div class="max-w-2xl px-4 sm:px-6 lg:max-w-7xl mx-auto ">
     <h4 class="text-3xl font-medium tracking-tight sm:text-4xl">Everything your business needs from a website</h4>
   </div>
-  <div class="mx-auto w-full">
+  <div class="mx-auto w-full lg:max-w-7xl">
     <div class="">
-      <ul role="list" class="grid gap-8 lg:gap-12 grid-cols-2 lg:grid-cols-4">
+      <ul role="list" class="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {
           team.map((item) => (
-            <li class="border-primary-900/10 dark:border-primary-300/10 rounded-3xl border px-6 py-8">
-              <div class="flex flex-row-reverse justify-end items-center gap-6">
-                <div class="w-1/4">
-                  <img class="mx-auto h-auto w-24 rounded-full" src={item.image} alt={item.name} />  
-                </div>
-                <div class="w-3/4">
-                  <h3 class="text-lg font-medium">{item.name}</h3>
-                  <p class="text-primary-950/70 dark:text-primary-200/70 text-base">{item.desc}</p>
-                </div>
-              </div>
+            <li class="border-primary-900/10 dark:border-primary-300/10 rounded-3xl border px-6 py-8 flex flex-col justify-center items-start gap-6">
+              <h3 class="text-lg font-medium">{item.name}</h3>
+              <p class="text-primary-950/70 dark:text-primary-200/70 text-base">{item.desc}</p>
             </li>
           ))
         }
