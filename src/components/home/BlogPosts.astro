@@ -1,27 +1,39 @@
 ---
 const stats = [
   {
-    name: 'Case Study: Multi-modal marketing design in real estate',
+    name: 'Case Study: Multi-modal marketing campaign design.',
     desc: 'We deployed a multi-modal marketing strategy across the whole of the Gold Coast for a client in the Real Estate industry.',
     value: 'Marketing Management',
     link: 'https://blog.aidxn.com/posts/multi-modal-marketing',
   },
   {
-    name: 'E-Commerce design for improving conversion rate',
+    name: 'E-Commerce design for improving conversion rate.',
     desc: 'Some of our favourite, most effective web design tricks to boost conversion rates on any e-commerce store.',
     value: 'Web Design',
     link: 'https://blog.aidxn.com/posts/ecommerce-design-tricks',
   },
   {
-    name: 'Case Study: Wordpress pageload from 5.2s to 1.2s',
+    name: 'Case Study: Wordpress pageload from 5.2sec to 1.2sec.',
     desc: 'Our strategies for reducing Wordpress page load time with impressive results for a client.',
     value: 'Web Design',
     link: 'https://blog.aidxn.com/posts/website-pageload-optimisation/',
   },
   {
-    name: 'Case Study: $50k in sales with $0 in ad spend',
+    name: 'Case Study: $50k in sales with no ad spend at all.',
     desc: 'Marketing management for a client in the events industry, generating over $50k in sales without a dime on advertising.',
     value: 'Marketing Management',
+    link: 'https://blog.aidxn.com/posts/viral-marketing-strategies',
+  },
+  {
+    name: 'Case Study: Organic leads in 1 week with Velocity.',
+    desc: 'Using Velocity, we were generating organic leads in the first week thanks to perfect SEO scores, keyword research and pageload speed.',
+    value: 'Web Design',
+    link: 'https://blog.aidxn.com/posts/website-pageload-optimisation/',
+  },
+  {
+    name: 'Case Study: Competing in competitive niches.',
+    desc: 'We generated amazing results for a client by optimising Google ad campaigns to target their customer with informative creatives.',
+    value: 'Digital Marketing',
     link: 'https://blog.aidxn.com/posts/viral-marketing-strategies',
   },
 ];
@@ -50,7 +62,7 @@ const stats = [
     </div>
     <div class="w-full flex flex-col justify-center gap-y-8">
 
-      <dl class="grid gap-6 xl:grid-cols-2 my-8 lg:my-12">
+      <dl class="grid gap-2 xs:gap-4 xl:grid-cols-2 my-8 lg:my-12">
         {
           stats.map((stat) => (
           <a href={stat.link}>  
