@@ -1,7 +1,7 @@
 ---
 import Cta from '../components/home/Cta-Contact.astro';
 import Options from '../components/web-design/Options.astro';
-import Hero from '../components/web-design/Hero.astro';
+import Hero from '../components/home/Slot-CategoryHero.astro';
 import IntroSec from '../components/web-design/Intro-Webdesign-Sec.astro';
 import OptionsSec from '../components/web-design/Options-Secondary.astro';
 import Grid from '../components/web-design/Grid-Webdesign.astro';
@@ -18,9 +18,19 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout
   description="Web Design for Velocity, Shopify and Wordpress. Developed and maintained on the Gold Coast, reliably and in-person."
-  title="Gold Coast Web Design · Aidxn Design"
+  title="Web Design · Aidxn Design"
 >
-  <Hero />
+<Hero>
+  <Fragment slot="smltitle">
+    Leading Gold Coast Web Design
+  </Fragment>
+  <Fragment slot="title">
+    Conversion-focused website design.
+  </Fragment>
+  <Fragment slot="desc">
+    I have worked with Wordpress, Shopify and custom coded websites for over 10 years. Specialising in UX / UI Design and organic marketing strategies such as SEO and user-focused brand design. Let me take your business to the next level with expert website design and conversion optimisations.
+  </Fragment>
+</Hero>
   <Options />
   <Grid />
   <OptionsSec />

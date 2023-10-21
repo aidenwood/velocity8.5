@@ -1,7 +1,7 @@
 ---
 import Cta from '../components/home/Cta-Contact.astro';
 import Options from '../components/digital-marketing/Options.astro';
-import Hero from '../components/digital-marketing/Hero.astro';
+import Hero from '../components/home/Slot-CategoryHero.astro';
 import Intro from '../components/digital-marketing/Intro-Webdesign.astro';
 import IntroSec from '../components/digital-marketing/Intro-Webdesign-Sec.astro';
 import OptionsSec from '../components/digital-marketing/Options-Secondary.astro';
@@ -18,7 +18,18 @@ import Layout from '../layouts/Layout.astro';
   description="Monthly marketing manangement with focused KPI improvement. Designed and managed directly on the Gold Coast, reliably and in-person."
   title="Digital Marketing Management · Aidxn Design"
 >
-<Hero />
+
+<Hero>
+  <Fragment slot="smltitle">
+    Gold Coast Marketing Strategy Development and Marketing Management
+  </Fragment>
+  <Fragment slot="title">
+    Generate more leads from your marketing.
+  </Fragment>
+  <Fragment slot="desc">
+    Trust over 6 years experience in managing ad accounts across Google, Meta, and other platforms. With strategies that focus on extending the most life out of your ad budget, you can be assured we are a marketing agency you'll love and trust.
+  </Fragment>
+</Hero>
 <Options />
 <Grid />
 <OptionsSec />

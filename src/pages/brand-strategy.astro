@@ -1,7 +1,7 @@
 ---
 import Cta from '../components/home/Cta-Contact.astro';
 import Options from '../components/brand-strategy/Options.astro';
-import Hero from '../components/brand-strategy/Hero.astro';
+import Hero from '../components/home/Slot-CategoryHero.astro';
 import IntroSec from '../components/brand-strategy/Intro-Webdesign-Sec.astro';
 import OptionsSec from '../components/brand-strategy/Options-Secondary.astro';
 import Grid from '../components/brand-strategy/Grid-Webdesign.astro';
@@ -16,20 +16,31 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout
   description="Brand stategy development for the age of e-commerce. Designed and maintained on the Gold Coast, Australia, reliably and in-person."
-  title="Gold Coast Brand Strategy · Aidxn Design"
+  title="Brand Strategy · Aidxn Design"
 >
-  <Hero />
-  <Options />
-  <Grid />
-  <OptionsSec />
+  
+<Hero>
+  <Fragment slot="smltitle">
+    Brand Strategy Development and Graphic Design
+  </Fragment>
+  <Fragment slot="title">
+    Conversion-focused brand design.
+  </Fragment>
+  <Fragment slot="desc">
+    Helping design brand identities and marketing strategies focused on organic lead generation through SEO and UX focused design. Take your brand's design to a new level with a personalised, face-to-face graphic design experience for Gold Coast businesses.
+  </Fragment>
+</Hero>
+<Options />
+<Grid />
+<OptionsSec />
 
-  <Clients />
+<Clients />
 
-  <IntroSec />
-  <GridSec />
+<IntroSec />
+<GridSec />
 
-  <Faq />
-  <Cta />
+<Faq />
+<Cta />
   
 
 </Layout>
