@@ -1,6 +1,13 @@
 ---
 const testimonials = [
   {
+    name: 'Tina Ball',
+    description: 'Ball Realty',
+    image: '/assets/testimonial-3.webp',
+    message:
+      '“Using Wordpress for a realestate based sales and rental platform seemed like a big ask, but Aidxn Design had no problem creating an awesome website for us that displayed listings and allowed our team to make changes. Dispaly all the information that our customers wanted in an easy to find design. Excellent marketing results followed using interactive ads for Google Display.”',
+  },
+  {
     name: 'Bianca Rose',
     description: 'The Social Dandelion',
     image: '/assets/testimonial-1.webp',
@@ -25,19 +32,19 @@ const testimonials = [
 ---
 
 <section class="my-32 lg:my-28">
-  <div class="mx-auto px-4 sm:px-6 w-full lg:max-w-7xl lg:px-8">
+  <div class="mx-auto px-4 sm:px-6 w-full lg:px-8">
     <div class="flex flex-col items-center gap-6">
       <h3 class="mx-auto max-w-xl text-center text-base lg:text-lg uppercase font-thin tracking-widest pb-2">
         Websites that generate serious business
       </h3>
       <div
-        class="divide-primary-900/10 dark:divide-primary-300/10 grid divide-y lg:grid-cols-3 lg:divide-x lg:divide-y-0"
+        class="divide-primary-900/10 dark:divide-primary-300/10 grid lg:grid-cols-2 gap-16"
       >
         {
           testimonials.map((testimonial) => (
-            <figure class="mx-auto flex max-w-lg flex-col items-center gap-6 py-8 lg:px-8 lg:py-0">
+            <figure class="mx-auto flex max-w-lg flex-col items-center gap-6 border-primary-900/10 dark:border-primary-300/10 rounded-3xl border px-6 py-8">
               <div class="flex flex-row gap-2">
-                {[...Array(3)].map(() => (
+                {[...Array(5)].map(() => (
                   <svg
                     class="text-primary-600 dark:text-primary-400 h-6 w-6"
                     xmlns="http://www.w3.org/2000/svg"
@@ -56,7 +63,7 @@ const testimonials = [
                 <img class="mx-auto h-8 w-8 rounded-full" src={testimonial.image} alt="" />
                 <div class="text-center">
                   <div class="text-base font-medium">{testimonial.name}</div>
-                  <div class="text-primary-950/70 dark:text-primary-200/70 text-sm">
+                  <div class="text-primary-950/70 dark:text-primary-200/70 text-base xs:text-lg">
                     {testimonial.description}
                   </div>
                 </div>

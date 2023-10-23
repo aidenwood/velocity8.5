@@ -50,9 +50,9 @@ const stats = [
           <div class="space-y-8 sm:space-y-12">
             <div class="space-y-6">
               <h3 class="text-2xl sm:text-3xl font-medium tracking-tight leading-8">Generating serious results.</h3>
-              <p class="text-primary-950/70 dark:text-primary-200/70 max-w-5xl text-base sm:text-lg pb-6">
-                Specialising in web performance for over 6 years for the value it provides to SEO competitiveness as well as reducing advertising costs. 
-                Better understand how website pageload affects conversion rate and how we create such wildly successful results through brand and marketing design.
+              <p class="text-primary-950/70 dark:text-primary-200/70 max-w-5xl text-lg xs:text-xl pb-6">
+                Web design specialising in web performance, local SEO and conversion rate improvements. 
+                Digital marketing management focused on strategies for reducing ad spend without sacrificing results, stretching daily budgets further and giving you a competitive edge.
               </p>
               
             </div>
@@ -62,14 +62,14 @@ const stats = [
     </div>
     <div class="w-full flex flex-col justify-center gap-y-8">
 
-      <dl class="grid gap-2 xs:gap-4 my-8 lg:my-12">
+      <dl class="grid xl:grid-cols-2 gap-6 my-8">
         {
           stats.map((stat) => (
           <a href={stat.link}>  
-            <div class="border-primary-900/10 dark:border-primary-300/10 hover:bg-primary-900/10 hover:dark:bg-primary-300/10 duration-200 rounded-3xl border px-6 py-8 h-full flex flex-col justify-center">
+            <div class="border-primary-900/10 dark:border-primary-300/10 hover:bg-primary-900/10 hover:dark:bg-primary-300/10 duration-200 rounded-3xl border px-6 py-8 h-full flex flex-col justify-center gap-4">
               <dt class="text-xs uppercase font-thin tracking-widest">{stat.value}</dt>
-              <dd class="text-xl md:text-2xl xl:text-xl font-medium leading-relaxed tracking-tight py-6">{stat.name}</dd>
-              <p class="text-primary-950/70 dark:text-primary-200/70 text-base leading-6">
+              <dd class="text-xl md:text-2xl xl:text-xl font-medium leading-relaxed tracking-tight">{stat.name}</dd>
+              <p class="text-primary-950/70 dark:text-primary-200/70 text-base xs:text-lg leading-6">
                     {stat.desc}
                   </p>
             </div>
@@ -79,7 +79,7 @@ const stats = [
       </dl>
       
     </div>
-    <div class="xl:mx-auto">
+    <div class=" ">
       <a
           href="https://blog.aidxn.com/"
           class=" mr-4 bg-primary-600 dark:bg-primary-400 hover:bg-primary-700 dark:hover:bg-primary-300 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-400 dark:text-primary-950 inline-flex items-center justify-center rounded-full border border-transparent px-5 py-3 text-base font-medium text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"

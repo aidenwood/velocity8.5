@@ -1,13 +1,13 @@
-<section class="my-32 lg:my-28">
+<section class="my-44">
   <div class="mx-auto w-full lg:max-w-7xl px-4 text-center ">
     <div
-      class="bg-primary-500/10 dark:bg-primary-400/10 flex flex-col items-center gap-8 rounded-3xl px-5 py-16 sm:gap-10"
+      class="bg-primary-500/10 dark:bg-primary-400/10 flex flex-col items-center gap-8 rounded-3xl px-5 py-16 sm:gap-8"
     >
       <div class="flex flex-col gap-4 sm:gap-6">
         <h4 class="mx-auto max-w-xl text-2xl font-medium tracking-tight sm:text-3xl md:text-4xl">
-          Get a Quote in 24 Hours or less.
+          Customised quotes in under 24hrs.
         </h4>
-        <p class="text-primary-950/70 dark:text-primary-200/70 mx-auto max-w-2xl text-base md:text-lg px-4">
+        <p class="text-primary-950/70 dark:text-primary-200/70 mx-auto max-w-2xl text-xl px-4">
           I'll get back to you quickly with some personalised options.
         </p>
       </div>
@@ -16,14 +16,14 @@
           action="https://api.web3forms.com/submit"
           method="POST"
           id="cta-form"
-          class="needs-validation"
+          class="needs-validation w-full lg:w-3/4"
           novalidate>
           <input type="hidden" name="access_key" value="1e0ffadd-2f05-471b-bbc2-36fa32793837" />
           <!-- Create your free access key from https://web3forms.com/ -->
           <!-- key for email - aidenthomasgodbywood@gmail.com -->
           <input type="checkbox" class="hidden" style="display:none" name="botcheck" />
-          <div class="flex flex-row gap-4">
-            <div class="mb-5">
+          <div class="w-full flex flex-col md:flex-row gap-4">
+            <div class="w-full md:w-1/2">
               <input
                 type="text"
                 placeholder="Name"
@@ -35,7 +35,7 @@
                 Please provide your full name.
               </div>
             </div>
-            <div class="mb-5">
+            <div class="w-full md:w-1/2">
               <label for="phone" class="sr-only">Phone Number</label><input
                 id="phone"
                 type="text"
@@ -52,8 +52,8 @@
               </div>
             </div>
           </div>
-          <div class="flex flex-row gap-4">
-            <div class="mb-5">
+          <div class="flex flex-col md:flex-row gap-4 pt-4">
+            <div class="w-full md:w-1/2">
               <label for="email_address" class="sr-only">Email Address</label><input
                 id="email_address"
                 type="email"
@@ -69,7 +69,7 @@
                 Please provide a valid email address.
               </div>
             </div>
-            <div class="mb-5">
+            <div class="w-full md:w-1/2">
               <label for="brand" class="sr-only">Brand</label><input
                 id="brand"
                 type="text"
