@@ -85,6 +85,8 @@
                 Please provide your brand name or website.
               </div>
             </div>
+            <input type="hidden" class="sourceLogging" id="hiddenKey02" name="Contacted on Page" data-name="formUrl1" value="">
+	          <input type="hidden" class="sourceLogging" id="hiddenKey03" name="Previous Page" data-name="formRef1" value="">
           </div>
 
           <button
@@ -173,3 +175,10 @@
       });
   });
 </script>
+
+<script> 
+	{
+		document.getElementById('hiddenKey02').value = location.pathname;
+		document.getElementById('hiddenKey03').value = document.referrer;
+	}
+	</script>

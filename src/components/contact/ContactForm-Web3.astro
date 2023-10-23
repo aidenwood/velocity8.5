@@ -70,6 +70,8 @@
             <div class="empty-feedback invalid-feedback text-red-400 text-sm mt-1">
               Please enter your message.
             </div>
+            <input type="hidden" class="sourceLogging" id="hiddenKey02" name="Contacted on Page" data-name="formUrl1" value="">
+            <input type="hidden" class="sourceLogging" id="hiddenKey03" name="Previous Page" data-name="formRef1" value="">
           </div>
           <button
             class="bg-primary-600 dark:bg-primary-400 hover:bg-primary-700 dark:hover:bg-primary-300 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-400 dark:text-primary-950 inline-flex items-center justify-center rounded-full border border-transparent px-5 py-3 text-base font-medium text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
@@ -152,4 +154,10 @@
         }, 5000);
       });
   });
+</script>
+<script> 
+	{
+		document.getElementById('hiddenKey02').value = location.pathname;
+		document.getElementById('hiddenKey03').value = document.referrer;
+	}
 </script>
