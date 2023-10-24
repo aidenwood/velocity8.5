@@ -36,10 +36,10 @@ const links = [
 <header
   x-data="{ open: false }"
   class="transition sticky top-0 z-50 backdrop-blur-xl drop-shadow-sm"
-  :class="{ 'bg-primary-500/10 dark:bg-primary-900/90': open, 'bg-primary-500/10 dark:bg-primary-800/90': !(open) }"
+  :class="{ 'bg-primary-200/50 dark:bg-primary-900/90': open, 'bg-primary-300/20 dark:bg-primary-700/20': !(open) }"
 >
   <div
-    class="mx-auto w-full xl:max-w-7xl flex items-center justify-between px-4 md:px-8 py-2 md:py-4"
+    class="mx-auto w-full xl:max-w-7xl flex items-center justify-between px-2 xs:px-4 md:px-8 py-2 md:py-4"
   >
     <!-- Brand logo -->
     <div class="flex">
@@ -47,11 +47,11 @@ const links = [
         href="/"
         class="focus-visible:outline-primary-950 dark:group-focus-visible:outline-primary-200 rounded-md focus-visible:outline focus-visible:outline-2"
       >
-        <span class="sr-only">Aidxn - Gold Coast Web Design</span>
+        <span class="sr-only">Aidxn Web Design Logo</span>
         <img
-          class="h-14 w-auto"
+          class="h-6 xs:h-8 md:h-14 w-auto"
           :src="$store.theme.isDark ? '/ax-logo-white.svg' : '/ax-logo-black.svg'"
-          alt="Gold Coast Web Design by Aidxn Design"
+          alt="Aidxn Web Design Logo"
         />
       </a>
     </div>
@@ -59,11 +59,11 @@ const links = [
     
 
     <!-- Actions -->
-    <div class="-mr-2 flex items-center space-x-2 sm:space-x-3">
+    <div class="-mr-4 flex items-center space-x-0 md:space-x-3">
 
       <a
           href="https://g2ok5807scs.typeform.com/to/tCmzlDza?typeform-source=aidxn.com"
-          class="hover:bg-primary-700/30 dark:hover:bg-primary-300/30 border border-primary-950 dark:outline-primary-400 text-primary-950 dark:text-primary-300 inline-flex items-center justify-center rounded-full px-5 py-3 text-base font-medium transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+          class="xs:mr-2 hover:bg-primary-700/30 dark:hover:bg-primary-300/30 border border-primary-950 dark:outline-primary-400 text-primary-950 dark:text-primary-300 inline-flex tracking-tighter md:tracking-tight items-center justify-center rounded-full px-5 py-3 text-xs sm:text-sm md:text-base font-medium transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
         >
           Book a Call
       </a>

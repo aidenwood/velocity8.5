@@ -7,7 +7,7 @@ import OptionsSec from '../components/brand-strategy/Options-Secondary.astro';
 import Grid from '../components/brand-strategy/Grid-Webdesign.astro';
 import GridSec from '../components/brand-strategy/Grid-Webdesign-Sec.astro';
 import Clients from '../components/brand-strategy/Grid-Clients.astro';
-
+import IndentInfo from '../components/home/Slot-Indent-Info.astro';
 import Faq from '../components/brand-strategy/Faq.astro';
 import Spacer from '../components/home/Section-End.astro';
 
@@ -30,17 +30,33 @@ import Layout from '../layouts/Layout.astro';
     Helping design brand identities and marketing strategies focused on organic lead generation through SEO and UX focused design. Take your brand's design to a new level with a personalised, face-to-face graphic design experience for Gold Coast businesses.
   </Fragment>
 </Hero>
+
 <Options />
-<Grid />
+<IntroSec />
 <OptionsSec />
 
-<Clients />
-
-<IntroSec />
-<GridSec />
+<IndentInfo>
+  <Fragment slot="title">
+    Graphic design
+  </Fragment>
+  <Fragment slot="desc"> 
+    Gold Coast graphic designer with over 10 years experience. Helping develop brands that scale fast thanks to design that speaks to their target market, yet seperates itself from the competition. Design choices for print and digital.
+  </Fragment>
+</IndentInfo>
 
 <Faq />
+
+<IndentInfo>
+  <Fragment slot="title">
+    Marketing for local businesses
+  </Fragment>
+  <Fragment slot="desc"> 
+    My web design strategies focus a lot more on initial SEO development to reduce ad spend down the track. With a better ranking with Google, your CPC will be greatly reduced. Helping advertising budgets for smaller businesses compete further.
+  </Fragment>
+</IndentInfo>
+
+<Grid />
+
 <Cta />
   
-
 </Layout>

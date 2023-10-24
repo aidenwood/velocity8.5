@@ -1,20 +1,16 @@
 ---
-import About from '../components/home/About.astro';
-import CtaContact from '../components/home/Cta-Contact.astro';
-import Cta from '../components/home/Cta.astro';
-import Integrations from '../components/home/Integrations.astro';
+
 import Hero from '../components/home/Hero.astro';
-import HeroSliddy from '../components/home/Hero-Griddy.astro';
 import WebIntro from '../components/home/Intro-WebDesign.astro';
 import Process from '../components/home/Process.astro';
 import WebInfo from '../components/home/Info-WebDesign.astro';
 import WebGrid from '../components/home/Grid-Velocity.astro';
 import MoonSlide from '../components/home/Grid-Moonshot.astro';
 import MoonIntro from '../components/home/Intro-Moonshot.astro';
-import InteractiveInfo from '../components/home/Info-InteractiveAds.astro';
-import EcommInfo from '../components/home/Info-Ecommerce.astro';
-import SEOInfo from '../components/home/Info-Seo.astro';
 
+import About from '../components/home/About.astro';
+import CtaContact from '../components/home/Cta-Contact.astro';
+import Cta from '../components/home/Cta.astro';
 
 import BlogPosts from '../components/home/BlogPosts.astro';
 
@@ -27,29 +23,28 @@ import SectionEnd from '../components/home/Section-End.astro';
 ---
 
 <Layout
-  description="Lead Generation and UX focused Gold Coast Website Design and Digital Marketing specialising in reducing ad spend while maintaining results. Trust over 10 years experience and have your website managed directly by Aiden Wood from Aidxn Design."
+  description="Website Design and Digital Marketing with over 10 years experience based in Oxenford, Gold Coast. All-inlusive, in-person service."
   title="Home · Aidxn Design"
 >
   <Hero />
-  <HeroSliddy />
   
   <Process />
-  <WebInfo />
   <Clients />
-  <BlogPosts />
-  <CtaContact />
+  
 
   <WebIntro />
   <WebGrid />
-  <EcommInfo />
-  <SEOInfo />
+
+  <Cta />
 
   <MoonIntro />
   <MoonSlide />
-  <InteractiveInfo />
+
+  <BlogPosts />
   
+  <WebInfo />
   <Testimonials />
   <About />
-  <Cta />
+  <CtaContact />
 
 </Layout>

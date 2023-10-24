@@ -3,10 +3,11 @@ import Cta from '../components/home/Cta-Contact.astro';
 import Options from '../components/digital-marketing/Options.astro';
 import Hero from '../components/home/Slot-CategoryHero.astro';
 import Intro from '../components/digital-marketing/Intro-Webdesign.astro';
-import IntroSec from '../components/digital-marketing/Intro-Webdesign-Sec.astro';
 import OptionsSec from '../components/digital-marketing/Options-Secondary.astro';
 import Grid from '../components/digital-marketing/Grid-Marketing-Sec.astro';
 import GridSec from '../components/digital-marketing/Grid-Marketing.astro';
+import IndentInfo from '../components/home/Slot-Indent-Info.astro';
+
 import Clients from '../components/digital-marketing/Grid-Clients.astro';
 import Faq from '../components/digital-marketing/Faq.astro';
 import Layout from '../layouts/Layout.astro';
@@ -28,16 +29,36 @@ import Layout from '../layouts/Layout.astro';
     Trust over 6 years experience in managing ad accounts across Google, Meta, and other platforms. With strategies that focus on extending the most life out of your ad budget, you can be assured we are a marketing agency you'll love and trust.
   </Fragment>
 </Hero>
+
 <Options />
-<Grid />
 <OptionsSec />
 
-<Clients />
 
-<IntroSec />
-<GridSec />
+<Grid />
+
+<IndentInfo>
+  <Fragment slot="title">
+    Interactive ad designs
+  </Fragment>
+  <Fragment slot="desc"> 
+    One of our most unique strategies is designing and developing interactive ads that allow customers to view more information on your product or service without costing an ad click. Leading to massively extended daily budgets, helping smaller businesses to enter more competitive industry leading websites.
+  </Fragment>
+</IndentInfo>
 
 <Faq />
+
+<IndentInfo>
+  <Fragment slot="title">
+    Marketing for local businesses
+  </Fragment>
+  <Fragment slot="desc"> 
+    My web design strategies focus a lot more on initial SEO development to reduce ad spend down the track. With a better ranking with Google, your CPC will be greatly reduced. Helping advertising budgets for smaller businesses compete further.
+  </Fragment>
+</IndentInfo>
+
+
+<GridSec />
+
 <Cta />
 
 </Layout>

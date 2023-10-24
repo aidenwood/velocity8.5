@@ -7,6 +7,7 @@ import OptionsSec from '../components/web-design/Options-Secondary.astro';
 import Grid from '../components/web-design/Grid-Webdesign.astro';
 import GridSec from '../components/web-design/Grid-Webdesign-Sec.astro';
 import Clients from '../components/web-design/Grid-Clients.astro';
+import IndentInfo from '../components/home/Slot-Indent-Info.astro';
 
 import Faq from '../components/web-design/Faq.astro';
 import Spacer from '../components/home/Section-End.astro';
@@ -28,16 +29,35 @@ import Layout from '../layouts/Layout.astro';
     I have worked with Wordpress, Shopify and custom coded websites for over 10 years. Specialising in UX / UI Design and organic marketing strategies such as SEO and user-focused brand design. Let me take your business to the next level with expert website design and conversion optimisations.
   </Fragment>
 </Hero>
+
   <Options />
-  <Grid />
   <OptionsSec />
-
-  <Clients />
-
+  
   <IntroSec />
-  <GridSec />
+
+  <IndentInfo>
+    <Fragment slot="title">
+      E-commerce web design
+    </Fragment>
+    <Fragment slot="desc"> 
+      If you're an e-commerce business, we can help you improve your bottom line by making optimisations across the board. Depending on your niche, we can offer the best framework from Shopify, Wordpress or Velocity.
+    </Fragment>
+  </IndentInfo>
 
   <Faq />
+
+  <IndentInfo>
+    <Fragment slot="title">
+      Powerful SEO by design
+    </Fragment>
+    <Fragment slot="desc"> 
+      My web design strategies focus a lot more on initial SEO development to reduce ad spend down the track. With a better ranking with Google, your CPC will be greatly reduced. Helping advertising budgets for smaller businesses compete further.
+    </Fragment>
+  </IndentInfo>
+
+  
+  <GridSec />
+
   <Cta />
 
 </Layout>
