@@ -1,177 +1,191 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<!--  created with sitemap generator https://octopus.do  -->
 
-
-<url>
-  <loc>https://aidxn.com/</loc>
-  <lastmod>2023-10-13T00:12:34+00:00</lastmod>
-  <priority>1.00</priority>
-</url>
-<url>
-  <loc>https://aidxn.com/contact/</loc>
-  <lastmod>2023-10-13T00:12:34+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://aidxn.com/web-design/shopify/</loc>
-  <lastmod>2023-10-13T00:12:34+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://aidxn.com/web-design/wordpress/</loc>
-  <lastmod>2023-10-13T00:12:34+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://aidxn.com/web-design/velocity/</loc>
-  <lastmod>2023-10-13T00:12:34+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://aidxn.com/graphic-design/brand-identity/</loc>
-  <lastmod>2023-10-13T00:12:34+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://aidxn.com/graphic-design/brand-strategy/</loc>
-  <lastmod>2023-10-13T00:12:34+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://aidxn.com/graphic-design/brand-design-packs/</loc>
-  <lastmod>2023-10-13T00:12:34+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://aidxn.com/graphic-design/video-ad-design/</loc>
-  <lastmod>2023-10-13T00:12:34+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://aidxn.com/graphic-design/ad-campaign-design/</loc>
-  <lastmod>2023-10-13T00:12:34+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://aidxn.com/graphic-design/product-design/</loc>
-  <lastmod>2023-10-13T00:12:34+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://aidxn.com/graphic-design/packaging-design/</loc>
-  <lastmod>2023-10-13T00:12:34+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://aidxn.com/graphic-design/interactive-design/</loc>
-  <lastmod>2023-10-13T00:12:34+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://aidxn.com/digital-marketing/competitor-research/</loc>
-  <lastmod>2023-10-13T00:12:34+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://aidxn.com/digital-marketing/keyword-research/</loc>
-  <lastmod>2023-10-13T00:12:34+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://aidxn.com/digital-marketing/google-search-management/</loc>
-  <lastmod>2023-10-13T00:12:34+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://aidxn.com/digital-marketing/seo/</loc>
-  <lastmod>2023-10-13T00:12:34+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://aidxn.com/digital-marketing/local-seo/</loc>
-  <lastmod>2023-10-13T00:12:34+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://aidxn.com/digital-marketing/facebook-ad-management/</loc>
-  <lastmod>2023-10-13T00:12:34+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://aidxn.com/digital-marketing/interactive-ads/</loc>
-  <lastmod>2023-10-13T00:12:34+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://aidxn.com/digital-marketing/moonshot-plan/</loc>
-  <lastmod>2023-10-13T00:12:34+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://aidxn.com/about/</loc>
-  <lastmod>2023-10-13T00:12:34+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://aidxn.com/pricing/</loc>
-  <lastmod>2023-10-13T00:12:34+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://aidxn.com/web-design/</loc>
-  <lastmod>2023-10-13T00:12:34+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://aidxn.com/brand-strategy/</loc>
-  <lastmod>2023-10-13T00:12:34+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://aidxn.com/digital-marketing/</loc>
-  <lastmod>2023-10-13T00:12:34+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://aidxn.com/moonshot-plan/</loc>
-  <lastmod>2023-10-13T00:12:34+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://aidxn.com/privacy/</loc>
-  <lastmod>2023-10-13T00:12:34+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://aidxn.com/web-design/seo-optimisation/</loc>
-  <lastmod>2023-10-13T00:12:34+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://aidxn.com/web-design/conversion-optimisation/</loc>
-  <lastmod>2023-10-13T00:12:34+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://aidxn.com/web-design/pageload-optimisation/</loc>
-  <lastmod>2023-10-13T00:12:34+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://aidxn.com/web-design/ux-design/</loc>
-  <lastmod>2023-10-13T00:12:34+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://aidxn.com/digital-marketing/conversion-optimisation/</loc>
-  <lastmod>2023-10-13T00:12:34+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-
-
+    <url>
+        <loc>https://aidxn.com</loc>
+        <lastmod>2023-10-24</lastmod>
+        <changefreq>always</changefreq>
+        <priority>1</priority>
+    </url>
+    <url>
+        <loc>https://aidxn.com/web-design</loc>
+        <lastmod>2023-10-24</lastmod>
+        <changefreq>always</changefreq>
+        <priority>0.85</priority>
+    </url>
+    <url>
+        <loc>https://aidxn.com/web-design/velocity</loc>
+        <lastmod>2023-10-24</lastmod>
+        <changefreq>always</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://aidxn.com/web-design/shopify</loc>
+        <lastmod>2023-10-24</lastmod>
+        <changefreq>always</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://aidxn.com/web-design/seo-optimisation</loc>
+        <lastmod>2023-10-24</lastmod>
+        <changefreq>always</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://aidxn.com/web-design/wordpress</loc>
+        <lastmod>2023-10-24</lastmod>
+        <changefreq>always</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://aidxn.com/web-design/pageload-optimisation</loc>
+        <lastmod>2023-10-24</lastmod>
+        <changefreq>always</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://aidxn.com/web-design/conversion-optimisation</loc>
+        <lastmod>2023-10-24</lastmod>
+        <changefreq>always</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://aidxn.com/web-design/ux-design</loc>
+        <lastmod>2023-10-24</lastmod>
+        <changefreq>always</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://aidxn.com/pricing</loc>
+        <lastmod>2023-10-24</lastmod>
+        <changefreq>always</changefreq>
+        <priority>0.75</priority>
+    </url>
+    <url>
+        <loc>https://aidxn.com/digital-marketing</loc>
+        <lastmod>2023-10-24</lastmod>
+        <changefreq>always</changefreq>
+        <priority>0.85</priority>
+    </url>
+    <url>
+        <loc>https://aidxn.com/digital-marketing/local-seo</loc>
+        <lastmod>2023-10-24</lastmod>
+        <changefreq>always</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://aidxn.com/digital-marketing/google-search-management</loc>
+        <lastmod>2023-10-24</lastmod>
+        <changefreq>always</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://aidxn.com/digital-marketing/facebook-ad-management</loc>
+        <lastmod>2023-10-24</lastmod>
+        <changefreq>always</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://aidxn.com/digital-marketing/video-ad-production</loc>
+        <lastmod>2023-10-24</lastmod>
+        <changefreq>always</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://aidxn.com/digital-marketing/competitor-research</loc>
+        <lastmod>2023-10-24</lastmod>
+        <changefreq>always</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://aidxn.com/digital-marketing/conversion-optimisation</loc>
+        <lastmod>2023-10-24</lastmod>
+        <changefreq>always</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://aidxn.com/digital-marketing/keyword-research</loc>
+        <lastmod>2023-10-24</lastmod>
+        <changefreq>always</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://aidxn.com/contact</loc>
+        <lastmod>2023-10-24</lastmod>
+        <changefreq>always</changefreq>
+        <priority>0.75</priority>
+    </url>
+    <url>
+        <loc>https://aidxn.com/moonshot-plan</loc>
+        <lastmod>2023-10-24</lastmod>
+        <changefreq>always</changefreq>
+        <priority>0.85</priority>
+    </url>
+    <url>
+        <loc>https://aidxn.com/brand-strategy</loc>
+        <lastmod>2023-10-24</lastmod>
+        <changefreq>always</changefreq>
+        <priority>0.85</priority>
+    </url>
+    <url>
+        <loc>https://aidxn.com/about</loc>
+        <lastmod>2023-10-24</lastmod>
+        <changefreq>always</changefreq>
+        <priority>0.75</priority>
+    </url>
+    <url>
+        <loc>https://aidxn.com/privacy</loc>
+        <lastmod>2023-10-24</lastmod>
+        <changefreq>always</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://aidxn.com/graphic-design/brand-strategy</loc>
+        <lastmod>2023-10-24</lastmod>
+        <changefreq>always</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://aidxn.com/graphic-design/brand-identity</loc>
+        <lastmod>2023-10-24</lastmod>
+        <changefreq>always</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://aidxn.com/graphic-design/brand-design-packs</loc>
+        <lastmod>2023-10-24</lastmod>
+        <changefreq>always</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://aidxn.com/graphic-design/interactive-design</loc>
+        <lastmod>2023-10-24</lastmod>
+        <changefreq>always</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://aidxn.com/graphic-design/product-design</loc>
+        <lastmod>2023-10-24</lastmod>
+        <changefreq>always</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://aidxn.com/graphic-design/packaging-design</loc>
+        <lastmod>2023-10-24</lastmod>
+        <changefreq>always</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://aidxn.com/graphic-design/ad-campaign-design</loc>
+        <lastmod>2023-10-24</lastmod>
+        <changefreq>always</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://aidxn.com/graphic-design/video-ad-design</loc>
+        <lastmod>2023-10-24</lastmod>
+        <changefreq>always</changefreq>
+        <priority>0.5</priority>
+    </url>
 </urlset>
