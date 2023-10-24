@@ -1,44 +1,85 @@
 ---
-import About from '../components/home/About.astro';
-import Cta from '../components/moonshot/Cta.astro';
-import Integrations from '../components/moonshot/Integrations.astro';
-import Hero from '../components/moonshot/Hero.astro';
-import VelocityIntro from '../components/moonshot/Intro-Velocity.astro';
-import Process from '../components/moonshot/Process.astro';
-import VelocityInfo from '../components/moonshot/Info-Velocity.astro';
-import VelocitySlide from '../components/moonshot/SliderSml-Velocity.astro';
-import MoonSlide from '../components/moonshot/SliderSml-Moonshot.astro';
-import MoonIntro from '../components/moonshot/Intro-Moonshot.astro';
-import MoonInfo from '../components/moonshot/Info-Moonshot.astro';
-
-
-
-import Clients from '../components/moonshot/Grid-Clients.astro';
-import Components from '../components/moonshot/Components.astro';
-import Testimonials from '../components/moonshot/Testimonials.astro';
+import Cta from '../components/home/Cta-Contact.astro';
+import SlotHero from '../components/home/Slot-Hero.astro';
+import SectionHeadImg from "../components/home/slot-img.astro";
+import SectionHeadSecImg from "../components/home/slot-img-rev.astro";
+import Process from '../components/home/Process.astro';
 import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout
-  description="Monthly marketing manangement with focused KPI improvement. Designed and managed directly on the Gold Coast, reliably and in-person."
-  title="Complete Marketing Management · Aidxn Design"
+  description="Perfect for helping small businesses compete against larger budgets within their industry and marketing competition. Expert digital marketing management on the Gold Coast."
+  title="Moonshot Plan · Aidxn Web Design"
 >
-  <Hero />
-  <About />
 
-  <VelocityIntro />
-  <VelocitySlide />
-  <VelocityInfo />
+    <SlotHero>
+      <Fragment slot="smltitle">
+        Complete Website and Marketing Management
+      </Fragment>
+      <Fragment slot="title">
+        Improve your brand with complete website and marketing management.
+      </Fragment>
+      <Fragment slot="desc">
+        Get all our services in one perfect package. With the ability to pause anytime, come back anytime. That way we push to keep performing to keep your business. No more agency traps with giant lock in contracts. 3 month minimum for first-time customers only.
+      </Fragment>
+      
+    </SlotHero>
 
-  <Process />
+          <SectionHeadImg>
+            <Fragment slot="smltitle">
+              Web Design with the Moonshot Plan
+            </Fragment>
+            <Fragment slot="title">
+              Web design that seriously gets your business.
+            </Fragment>
+            <Fragment slot="desc">
+              All our web design services included from website performance and conversion rate optimisation. Deeply combing through your website and visitor data to improve UX, while doing the same for SEO data and improving content around the site to better compete in keywords without you needing to even ask.
+            </Fragment>
+            <Fragment slot="cover">
+              <img
+                        src="/works/br-mac-render-med.webp"
+                        class="w-full rounded duration-200 hover:shadow-sm"
+                      />
+            </Fragment>
+          </SectionHeadImg>
 
-  <MoonIntro />
-  <MoonSlide />
-  <MoonInfo />
+          <SectionHeadSecImg>
+            <Fragment slot="smltitle">
+              Brand and Graphic Design with the Moonshot Plan
+            </Fragment>
+            <Fragment slot="title">
+              Constant new assets for print and digital.
+            </Fragment>
+            <Fragment slot="desc">
+              As we design for your entire brand we will fill your shared folder with plenty of new creative assets to use in print and digital marketing. We design brands and marketing campaigns to cover all mediums. Not just another digital marketing agency.
+            </Fragment>
+            <Fragment slot="cover">
+              <img
+                        src="/works/hero-estem.webp"
+                        class="w-full rounded duration-200 hover:shadow-sm"
+                      />
+            </Fragment>
+          </SectionHeadSecImg>
 
-  <Clients />
+          <SectionHeadImg>
+            <Fragment slot="smltitle">
+              Revise face-to-face with the Moonshot Plan
+            </Fragment>
+            <Fragment slot="title">
+              Monthly in-person visits.
+            </Fragment>
+            <Fragment slot="desc">
+              We help skip plenty of text message back and forth by coming to all Moonshot customers, to speak in person about their current plan. Allowing you to offload your ideas without wasting time trapped to the phone.
+            </Fragment>
+            <Fragment slot="cover">
+              <img
+                        src="/works/br-mac-render-med.webp"
+                        class="w-full rounded duration-200 hover:shadow-sm"
+                      />
+            </Fragment>
+          </SectionHeadImg>
   
-  <Testimonials />
+  <Process />
   <Cta />
 
 </Layout>

@@ -4,6 +4,8 @@ import Cta from '../../components/home/Cta-Contact.astro';
 import Integrations from '../../components/velocity/Integrations.astro';
 import Hero from '../../components/velocity/Hero.astro';
 import HeroGrid from '../../components/velocity/Hero-Grid.astro';
+import PricingTable from '../../components/pricing/PricingTable.astro';
+
 import Intro from '../../components/velocity/Intro-Velocity.astro';
 import IntroSec from '../../components/velocity/Intro-Velocity-Sec.astro';
 import Process from '../../components/home/Process.astro';
@@ -17,21 +19,17 @@ import Layout from '../../layouts/Layout.astro';
 
 <Layout
   description="Velocity is our performance website theme, perfect for service-based business in competitive industries. Developed and maintained on the Gold Coast, Australia."
-  title="Velocity Website Design · Web Design by Aidxn Design"
+  title="Velocity Website Design · Aidxn Web Design"
 >
   <Hero />
-  <HeroGrid />
-  <SectionEnd />
-  
+  <PricingTable />
 
   <Intro />
   <Integrations />  
   <IntroSec />
-  <Clients />
-  <Process />
   <Components />
-
-
+  
+  <Process />
   <Testimonials />
   <Cta />
   
