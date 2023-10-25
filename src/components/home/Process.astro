@@ -2,9 +2,9 @@
 const services = [
   {
     step: '01',
+    name: 'Brand Strategy',
     img: '/works/ax-logo-design.webp',
-    alt: 'Brand Strategy',
-    name: 'Design',
+    alt: 'Brand Strategy and Graphic Design on the Gold Coast',
     description:
       'From logos and graphics, target market and voice, branded textures. Designed for print and digital.',
     link: '/brand-strategy',
@@ -22,7 +22,7 @@ const services = [
     step: '03',
     name: 'Digital Marketing',
     img: '/works/ax-logo-market.webp',
-    alt: 'Digital marketing and SEO',
+    alt: 'Digital marketing services and marketing management',
     description:
       'Digital marketing for all platforms. SEO, funnel optimisations and ad creative designs by an expert.',
     link: '/digital-marketing',
@@ -42,12 +42,12 @@ const services = [
 <section class="my-32 lg:my-28">
   <div class="mx-auto px-4 sm:px-6 w-full lg:max-w-7xl lg:px-8">
     <div class="">
-      <h4 class="text-2xl sm:text-3xl font-medium tracking-tight mb-6">In-person design process.</h4>
+      <h3 class="text-2xl sm:text-3xl font-medium tracking-tight my-6">Web design and marketing, face-to-face.</h3>
       <div class="grid gap-2 xs:gap-4 grid-cols-1 sm:grid-cols-2">
         {
           services.map((service) => (
           <a href={service.link}>  
-            <div class="bg-primary-500/10 dark:bg-primary-400/10 hover:bg-primary-800/10 hover:dark:bg-primary-100/10 duration-200 flex flex-col rounded-3xl px-4 py-12 h-full">
+            <div class="bg-primary-500/10 dark:bg-primary-400/10 hover:bg-primary-800/10 hover:dark:bg-primary-100/10 hover:shadow-sm duration-200 flex flex-col rounded-3xl px-4 py-12 h-full">
               <div class="flex flex-col lg:flex-row items-start lg:items-center gap-4">
                 <div class="w-2/3 lg:w-3/5">
                   <img

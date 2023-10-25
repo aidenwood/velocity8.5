@@ -2,7 +2,7 @@
 const services = [
   {
     step: '01',
-    name: 'Google Search',
+    name: 'Google Search & Maps',
     description:
       'Google Search is the absolute dominating force in defining how successful any website is. Apply serious focus to improving your rank on a weekly basis.',
     link: '/digital-marketing/google-search-management',
@@ -12,22 +12,22 @@ const services = [
   },
   {
     step: '02',
-    name: 'Google Maps',
-    description:
-      'Where digital marketing is headed. Using the power of search data mixed with localised results, Maps is by far the most useful lead generation tool.',
-    link: '/digital-marketing/local-seo',
-    linktxt: 'More info',
-    imgsrc: '/works/traffic-improvement.webp',
-    imgalt: 'Velocity web design for lead generation websites designed and developed on the Gold Coast - Leading Gold Coast web design with Aidxn Design',
-  },
-  {
-    step: '03',
     name: 'Facebook / Instagram Ads',
     description:
       'Facebook and Instagram ads, when done right can capture extreme amounts of attention and conversions. Leaving it to chance and you can burn money fast.',
     link: '/digital-marketing/facebook-ad-management',
     linktxt: 'More info',
-    imgsrc: '/works/facebook-marketing-results.png',
+    imgsrc: '/works/br-fb.webp',
+    imgalt: 'Velocity web design for lead generation websites designed and developed on the Gold Coast - Leading Gold Coast web design with Aidxn Design',
+  },
+  {
+    step: '03',
+    name: 'Video Ads',
+    description:
+      'Where digital marketing is headed. Using the power of search data mixed with localised results, Maps is by far the most useful lead generation tool.',
+    link: '/digital-marketing/video-ads',
+    linktxt: 'More info',
+    imgsrc: '/works/video-musicians.webp',
     imgalt: 'Velocity web design for lead generation websites designed and developed on the Gold Coast - Leading Gold Coast web design with Aidxn Design',
   },
   {
@@ -43,40 +43,44 @@ const services = [
 ];
 ---
 
-<section class="py-16 sm:py-20">
-  <div class="mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-36 w-full">
+<section class="my-32 lg:my-28">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
     <div class="flex flex-col gap-4">
       <h4 class="text-center text-base lg:text-lg uppercase font-thin tracking-widest">Web Design on any stack</h4>
       <div class="grid gap-8 grid-cols-1 lg:grid-cols-2">
         {
           services.map((service) => (
-            <div class="bg-primary-500/10 dark:bg-primary-400/10 flex flex-col-reverse xl:flex-row-reverse items-start xl:items-center gap-12 rounded-3xl px-6 py-12">
-              <div class="w-full xl:w-2/3">
-                
-                <div class="flex flex-col gap-4">
-                  <p class="text-sm pb-8">{service.step}</p>
-                  <h2 class="text-xl font-medium">{service.name}</h2>
-                  <p class="text-primary-950/70 dark:text-primary-200/70 text-lg xs:text-xl max-w-3xl">
-                    {service.description}
-                  </p>
-                  <div>
-                    <a
-                      href={service.link}
-                      class="mt-6 mr-4 bg-primary-600 dark:bg-primary-400 hover:bg-primary-700 dark:hover:bg-primary-300 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-400 dark:text-primary-950 inline-flex items-center justify-center rounded-full border border-transparent px-5 py-3 text-base font-medium text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
-                    >
-                      {service.linktxt}
-                    </a>
+          <div>
+            <a href={service.link}>
+              <div class="bg-primary-500/10 dark:bg-primary-400/10 hover:bg-primary-800/10 hover:dark:bg-primary-100/10 hover:shadow-sm duration-200 h-full flex flex-col-reverse items-start justify-center rounded-3xl px-6 py-12">
+                <div class="w-full cursor-pointer">  
+                  <div class="flex flex-col gap-4">
+                    <p class="text-sm mb-8">{service.step}</p>
+                    <h2 class="text-xl font-medium my-4">{service.name}</h2>
+                    <p class="text-primary-950/70 dark:text-primary-200/70 text-base xs:text-lg max-w-3xl">
+                      {service.description}
+                    </p>
+                    <div>
+                      <a
+                        href={service.link}
+                        class="mt-6 mr-4 bg-primary-600 dark:bg-primary-400 hover:bg-primary-700 dark:hover:bg-primary-300 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-400 dark:text-primary-950 inline-flex items-center justify-center rounded-full border border-transparent px-5 py-3 text-base font-medium text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+                      >
+                        {service.linktxt}
+                      </a>
+                    </div>
                   </div>
                 </div>
+                <div class="w-full md:w-3/4 lg:3/5">
+                  <a href={service.link}>
+                    <img class="cursor-pointer rounded-lg bg-primary-700 mb-8" src={service.imgsrc} alt={service.description} />
+                  </a>
+                </div>
               </div>
-              <div class="w-full md:w-3/4 xl:w-1/2">
-                <img class="rounded-xl bg-primary-700" src={service.imgsrc} alt={service.imgalt} />
-              </div>
-            </div>
+            </a>
+          </div>
           ))
         }
       </div>
     </div>
   </div>
 </section>
-

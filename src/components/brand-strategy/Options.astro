@@ -7,76 +7,76 @@ const services = [
       'Begin to define or refine your brand identity. Services such as logo design, color palette, typography, and brand guidelines.',
     link: '/graphic-design/brand-identity',
     linktxt: 'More info',
-    imgsrc: '/works/golden-render.webp',
-    imgalt: 'Velocity web design for lead generation websites designed and developed on the Gold Coast - Leading Gold Coast web design with Aidxn Design',
+    imgsrc: '/works/ax-sqr-billboard.webp',
   },
   {
     step: '02',
     name: 'Strategy & Storytelling',
     description:
-      'At the heart of effective branding is how you speak to your customer. Value propositions and messaging guidelines that resonate with your target audience.',
+      'At the heart of effective marketing, is messaging that speaks to your target market and turns them easily into customers.',
     link: '/graphic-design/brand-strategy',
     linktxt: 'More info',
-    imgsrc: '/works/hero-estem.webp',
-    imgalt: 'Velocity web design for lead generation websites designed and developed on the Gold Coast - Leading Gold Coast web design with Aidxn Design',
+    imgsrc: '/works/ax-sqr-re-placement.webp',
   },
   {
     step: '03',
-    name: 'Complete Brand Design',
+    name: 'Complete Branding Design',
     description:
       "Graphic design for print, products and digital marketing campaigns, that leaves a lasting impression and stands out in today's competitive market.",
     link: '/graphic-design/brand-design-packs',
     linktxt: 'More info',
     imgsrc: '/works/website-mock-ups.webp',
-    imgalt: 'Velocity web design for lead generation websites designed and developed on the Gold Coast - Leading Gold Coast web design with Aidxn Design',
   },
   {
     step: '04',
-    name: 'Interactive Design',
+    name: 'Keywork Strategy',
     description:
       'Custom code solutions for your brand. Ccreating unique branded digital experiences that reinforce identity and make your online presence more immersive.',
     link: '/graphic-design/interactive-design',
     linktxt: 'More info',
     imgsrc: '/works/gwd-interactive-ads.webp',
-    imgalt: 'Velocity web design for lead generation websites designed and developed on the Gold Coast - Leading Gold Coast web design with Aidxn Design',
   },
 ];
 ---
 
-<section class="py-16 sm:py-20">
-  <div class="mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-36 w-full">
+<section class="my-32 lg:my-28">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
     <div class="flex flex-col gap-4">
       <h4 class="text-center text-base lg:text-lg uppercase font-thin tracking-widest">Web Design on any stack</h4>
       <div class="grid gap-8 grid-cols-1 lg:grid-cols-2">
         {
           services.map((service) => (
-            <div class="bg-primary-500/10 dark:bg-primary-400/10 flex flex-col-reverse xl:flex-row-reverse items-start xl:items-center gap-12 rounded-3xl px-6 py-12">
-              <div class="w-full xl:w-2/3">
-                
-                <div class="flex flex-col gap-4">
-                  <p class="text-sm pb-8">{service.step}</p>
-                  <h2 class="text-xl font-medium">{service.name}</h2>
-                  <p class="text-primary-950/70 dark:text-primary-200/70 text-lg xs:text-xl max-w-3xl">
-                    {service.description}
-                  </p>
-                  <div>
-                    <a
-                      href={service.link}
-                      class="mt-6 mr-4 bg-primary-600 dark:bg-primary-400 hover:bg-primary-700 dark:hover:bg-primary-300 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-400 dark:text-primary-950 inline-flex items-center justify-center rounded-full border border-transparent px-5 py-3 text-base font-medium text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
-                    >
-                      {service.linktxt}
-                    </a>
+          <div>
+            <a href={service.link}>
+              <div class="bg-primary-500/10 dark:bg-primary-400/10 hover:bg-primary-800/10 hover:dark:bg-primary-100/10 hover:shadow-sm duration-200 h-full flex flex-col-reverse items-start justify-center rounded-3xl px-6 py-12">
+                <div class="w-full cursor-pointer">  
+                  <div class="flex flex-col gap-4">
+                    <p class="text-sm mb-8">{service.step}</p>
+                    <h2 class="text-xl font-medium my-4">{service.name}</h2>
+                    <p class="text-primary-950/70 dark:text-primary-200/70 text-base xs:text-lg max-w-3xl">
+                      {service.description}
+                    </p>
+                    <div>
+                      <a
+                        href={service.link}
+                        class="mt-6 mr-4 bg-primary-600 dark:bg-primary-400 hover:bg-primary-700 dark:hover:bg-primary-300 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-400 dark:text-primary-950 inline-flex items-center justify-center rounded-full border border-transparent px-5 py-3 text-base font-medium text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+                      >
+                        {service.linktxt}
+                      </a>
+                    </div>
                   </div>
                 </div>
+                <div class="w-full md:w-3/4 lg:3/5">
+                  <a href={service.link}>
+                    <img class="cursor-pointer rounded-lg bg-primary-700 mb-8" src={service.imgsrc} alt={service.description} />
+                  </a>
+                </div>
               </div>
-              <div class="w-full md:w-3/4 xl:w-1/2">
-                <img class="rounded-xl bg-primary-700" src={service.imgsrc} alt={service.imgalt} />
-              </div>
-            </div>
+            </a>
+          </div>
           ))
         }
       </div>
     </div>
   </div>
 </section>
-
