@@ -7,20 +7,20 @@ import OptionsSec from '../components/digital-marketing/Options-Secondary.astro'
 import Grid from '../components/digital-marketing/Grid-Marketing-Sec.astro';
 import GridSec from '../components/digital-marketing/Grid-Marketing.astro';
 import IndentInfo from '../components/home/Slot-Indent-Info.astro';
-
-import Clients from '../components/digital-marketing/Grid-Clients.astro';
+import SectionHeadImg from "../components/home/slot-img.astro";
+import SectionHeadSecImg from "../components/home/slot-img-rev.astro";
 import Faq from '../components/digital-marketing/Faq.astro';
 import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout
-  description="Monthly marketing manangement with focused KPI improvement. Designed and managed directly on the Gold Coast, reliably and in-person."
+  description="Digital marketing manangement you can rely on. Generate more leads with focused KPI improvement. Digital marketing management, reliable and in-person."
   title="Digital Marketing Management · Aidxn Web Design"
 >
 
 <Hero>
   <Fragment slot="smltitle">
-    Generate more leads with expert Marketing Management on the Gold Coast
+    Generate more leads with expert Marketing Management
   </Fragment>
   <Fragment slot="title">
     Digital marketing you can trust.
@@ -31,17 +31,52 @@ import Layout from '../layouts/Layout.astro';
 </Hero>
 
 <Options />
+
+<SectionHeadImg>
+  <Fragment slot="smltitle">
+    Search Engine Marketing Experts
+  </Fragment>
+  <Fragment slot="title">
+    Digital marketing strategies that dominate.
+  </Fragment>
+  <Fragment slot="desc">
+    In today's fast-paced digital world, every click, like, and conversion holds immense power. As a digital marketing specialist, my mission is to turn your business into a digital success story. Through carefully crafted strategies, I help you connect with your target audience, boost your brand's visibility, and ultimately achieve your business goals. In the realm of digital marketing, success is not just a possibility; it's an expectation. Google Search has evolved into the modern marketplace, and if you're not visible on search engine results pages, you're missing out on potential customers. With my Gold Coast SEO expertise, your website will rise through the ranks, attracting organic traffic, and turning visitors into loyal customers. I know the intricacies of SEO and will work relentlessly to secure your place at the top.
+  </Fragment>
+  <Fragment slot="cover">
+    <img
+              src="/works/ax-sqr-cpc-results.webp"
+              class="w-full"
+            />
+  </Fragment>
+</SectionHeadImg>
+
+<SectionHeadSecImg>
+  <Fragment slot="smltitle">
+    Run your ads on Facebook, Instagram, TikTok and Google Display
+  </Fragment>
+  <Fragment slot="title">
+    Social media marketing for success.
+  </Fragment>
+  <Fragment slot="desc">
+    From Facebook to Instagram and even TikTok, social media marketing has become the cornerstone of building a robust online presence. It's about more than just likes and shares; it's about meaningful engagement with your audience. Let me take the reins of your social media marketing campaigns, crafting content that resonates and campaigns that convert casual scrollers into brand advocates. When it comes to online advertising, interactivity is the key to grabbing attention. I specialize in crafting interactive Google Display ads that not only captivate your audience but also encourage them to take action. With nearly 100% placement on the Australian real estate industry's main news and listings platform, realestate.com.au, your message will be impossible to miss.
+  </Fragment>
+  <Fragment slot="cover">
+    <img
+              src="/works/ax-sqr-re-placement.webp"
+              class="w-full"
+            />
+  </Fragment>
+</SectionHeadSecImg>
+
 <OptionsSec />
 
 <Grid />
-<GridSec />
-
 
 <Faq />
 
 <IndentInfo>
   <Fragment slot="title">
-    Interactive ad designs
+    Cutting-edge digital marketing strategies.
   </Fragment>
   <Fragment slot="desc"> 
     One of our most unique strategies is designing and developing interactive ads that allow customers to view more information on your product or service without costing an ad click. Leading to massively extended daily budgets, helping smaller businesses to enter more competitive industry leading websites.
@@ -59,6 +94,7 @@ import Layout from '../layouts/Layout.astro';
   </Fragment>
 </IndentInfo>
 
+<GridSec />
 
 <Cta />
 

@@ -1,5 +1,7 @@
-
-<div class="flex flex-col-reverse lg:flex-row justify-start items-center mx-auto">
+<style>
+  #contain { max-width: 1980px !important; }
+</style>
+<div id="contain" class="flex flex-col-reverse lg:flex-row justify-start items-center mx-auto">
   <div id="leftContainer" class="w-full lg:w-2/3 xl:w-1/2 px-4 sm:px-6 lg:px-8 my-24 pb-12">
     <h5 class="font-thin pb-4 text-xs tracking-widest uppercase">
       <slot name="smltitle">Aidxn Design</slot>
@@ -11,7 +13,7 @@
       <slot name="desc">Some description goes here</slot>
     </p>
   </div>
-  <div class="w-full lg:w-1/3 xl:w-1/2">
-    <slot id="glass-card-dark" name="cover"></slot>
+  <div id="glass-card-dark" class="w-full lg:w-1/3 xl:w-1/2 bg-contain">
+    <slot name="cover"></slot>
   </div>
 </div>

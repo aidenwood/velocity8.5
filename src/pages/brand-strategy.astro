@@ -6,17 +6,16 @@ import IntroSec from '../components/brand-strategy/Intro-Webdesign-Sec.astro';
 import OptionsSec from '../components/brand-strategy/Options-Secondary.astro';
 import Grid from '../components/brand-strategy/Grid-Webdesign.astro';
 import GridSec from '../components/brand-strategy/Grid-Webdesign-Sec.astro';
-import Clients from '../components/brand-strategy/Grid-Clients.astro';
 import IndentInfo from '../components/home/Slot-Indent-Info.astro';
 import Faq from '../components/brand-strategy/Faq.astro';
-import Spacer from '../components/home/Section-End.astro';
-
+import SectionHeadImg from "../components/home/slot-img.astro";
+import SectionHeadSecImg from "../components/home/slot-img-rev.astro";
 import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout
-  description="Brand stategy development for the age of e-commerce. Designed and maintained on the Gold Coast, Australia, reliably and in-person."
-  title="Brand Strategy · Aidxn Web Design"
+  description="Brand stategy development for the age of e-commerce. Graphic design for print and digital. 3D design for video and product development."
+  title="Brand Strategy and Graphic Design · Aidxn Web Design"
 >
   
 <Hero>
@@ -27,20 +26,60 @@ import Layout from '../layouts/Layout.astro';
     Brand strategy and graphic design.
   </Fragment>
   <Fragment slot="desc">
-    Helping design brand identities and marketing strategies focused on organic lead generation through SEO and UX focused design. Take your brand's design to a new level with a personalised, face-to-face graphic design experience for Gold Coast businesses.
+    Effective branding is not just about a logo or a color palette; it's about telling your unique story and resonating with your target audience. As a brand strategist and graphic designer, I delve deep into the heart of your business to understand your essence. With the right brand strategy, I'll help you establish a brand identity that communicates who you are and what you stand for.
   </Fragment>
 </Hero>
 
 <Options />
-<IntroSec />
+
+<SectionHeadImg>
+  <Fragment slot="smltitle">
+    Beyond digital design: from Shopfronts to Websites to Billboards
+  </Fragment>
+  <Fragment slot="title">
+    Not just another digital marketing agency.
+  </Fragment>
+  <Fragment slot="desc">
+    Graphic design is the visual language that your brand speaks. Every image, color, and font choice conveys a message. With my graphic design expertise, I'll transform your ideas into visually appealing and impactful designs. From logos to marketing materials, I ensure that your brand's visual identity is consistent and unforgettable. In an era of digital marketing, sometimes going beyond the screen can make a remarkable impact. By tapping into traditional advertising mediums like billboards and buses, your brand can reach a broader audience. I'm here to help you bridge the gap between old-school and new-school marketing, ensuring that no potential customer is left undiscovered. Your brand's physical presence is as crucial as its online identity. I offer a holistic redesign approach, refreshing your shopfront's appearance and interiors. A revamped, modern shopfront paired with an updated online platform powered by the latest Velocity web design ensures that your brand makes a memorable impression from the street to the web.
+  </Fragment>
+  <Fragment slot="cover">
+    <img
+              src="/works/ax-sqr-cpc-results.webp"
+              class="w-full"
+            />
+  </Fragment>
+</SectionHeadImg>
+
+<SectionHeadSecImg>
+  <Fragment slot="smltitle">
+    Lasting branding guidelines that are easy to stick to.
+  </Fragment>
+  <Fragment slot="title">
+    Consistently designed brand guidelines.
+  </Fragment>
+  <Fragment slot="desc">
+    Consistency is the backbone of effective branding. I help create brand guidelines that serve as a roadmap for using your visual elements. From color codes to logo usage, these guidelines ensure that your brand maintains its identity across various mediums. The branding process doesn't stop at the initial design. I work with you to create brand strategies that can withstand the test of time. Whether you're launching a startup or revitalizing an established business, I ensure that your brand can adapt and thrive in an ever-evolving marketplace. Ready to embark on a journey of branding and graphic design excellence? Contact me, and let's elevate your brand to new heights.    
+  </Fragment>
+  <Fragment slot="cover">
+    <img
+              src="/works/ax-sqr-re-placement.webp"
+              class="w-full"
+            />
+  </Fragment>
+</SectionHeadSecImg>
+
 <OptionsSec />
+
+<IntroSec />
+
+<Grid />
 
 <IndentInfo>
   <Fragment slot="title">
-    Graphic design
+    Logo design
   </Fragment>
   <Fragment slot="desc"> 
-    Gold Coast graphic designer with over 10 years experience. Helping develop brands that scale fast thanks to design that speaks to their target market, yet seperates itself from the competition. Design choices for print and digital.
+    Your logo is often the first thing people see when they encounter your brand. It should be distinctive and memorable. I have a knack for creating compelling logos that capture the essence of your business. I ensure that your logo stands out in a crowded marketplace and leaves a lasting impression.
   </Fragment>
 </IndentInfo>
 
@@ -48,14 +87,14 @@ import Layout from '../layouts/Layout.astro';
 
 <IndentInfo>
   <Fragment slot="title">
-    Marketing for local businesses
+    Colour palettes and fonts
   </Fragment>
   <Fragment slot="desc"> 
-    My web design strategies focus a lot more on initial SEO development to reduce ad spend down the track. With a better ranking with Google, your CPC will be greatly reduced. Helping advertising budgets for smaller businesses compete further.
+    The colors and fonts you choose play a pivotal role in shaping your brand's personality. I understand the psychology behind colors and typography, ensuring that your brand elements resonate with your target audience. Whether it's a playful and vibrant palette or a sleek and modern font, I'll guide you to the right choices.
   </Fragment>
 </IndentInfo>
 
-<Grid />
+<GridSec />
 
 <Cta />
   

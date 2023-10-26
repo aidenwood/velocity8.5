@@ -6,9 +6,9 @@ import IntroSec from '../components/web-design/Intro-Webdesign-Sec.astro';
 import OptionsSec from '../components/web-design/Options-Secondary.astro';
 import Grid from '../components/web-design/Grid-Webdesign.astro';
 import GridSec from '../components/web-design/Grid-Webdesign-Sec.astro';
-import Clients from '../components/web-design/Grid-Clients.astro';
 import IndentInfo from '../components/home/Slot-Indent-Info.astro';
-
+import SectionHeadImg from "../components/home/slot-img.astro";
+import SectionHeadSecImg from "../components/home/slot-img-rev.astro";
 import Faq from '../components/web-design/Faq.astro';
 import Spacer from '../components/home/Section-End.astro';
 import Layout from '../layouts/Layout.astro';
@@ -20,10 +20,10 @@ import Layout from '../layouts/Layout.astro';
 >
 <Hero>
   <Fragment slot="smltitle">
-    All-inclusive website design for Shopify, Wordpress & custom code.
+    Website design for Shopify, Wordpress & custom code.
   </Fragment>
   <Fragment slot="title">
-    Website design you can rely on.
+    Website design experts.
   </Fragment>
   <Fragment slot="desc">
     Over 10 years of web design experience. Working with a range of frameworks and technologies. Custom website designs for your industry and niche. On-going management, hosting and one-off optimisations available.
@@ -31,12 +31,51 @@ import Layout from '../layouts/Layout.astro';
 </Hero>
 
   <Options />
+
+  <SectionHeadImg>
+    <Fragment slot="smltitle">
+      Custom Website Design: Tailored to Your Goals
+    </Fragment>
+    <Fragment slot="title">
+      Custom web design solutions.
+    </Fragment>
+    <Fragment slot="desc">
+      When you're on a quest for the perfect website, I offer a one-stop solution that covers everything from visual aesthetics to robust functionality. I tailor your web design to your unique goals, ensuring it aligns perfectly with your brand identity and audience needs. Ready to take your online presence to the next level? Reach out, and let's get started on a web design journey that will leave a lasting impression. We develop your SEO for where your business is at month to month, how many customers you need and for which particular products / services. Maximising your profit margin and workload with automated lead generation. Looking for top-notch Gold Coast SEO services to boost your online business? With over ten years of experience in optimizing website SEO, we're your go-to experts.
+    </Fragment>
+    <Fragment slot="cover">
+      <img
+                src="/works/ax-sqr-snacks.webp"
+                class="w-full"
+              />
+    </Fragment>
+  </SectionHeadImg>
+
+  <SectionHeadSecImg>
+    <Fragment slot="smltitle">
+      Optimising Your Online Store: Unlocking E-Commerce Potential
+    </Fragment>
+    <Fragment slot="title">
+      E-Commerce web design experts.
+    </Fragment>
+    <Fragment slot="desc">
+      E-commerce has revolutionized the way we shop and do business. If you're looking to dive into the world of online selling, I'm here to help. E-commerce web design is my forte, and I'll create an online store that not only looks fantastic but is also optimized for seamless transactions, secure payments, and excellent user experience. Say goodbye to cart abandonment and hello to increased sales. Organic lead generation is more than a buzzword – it's a pivotal aspect of your online success. Through my organic lead generation strategies, I ensure that your business attracts high-quality leads that genuinely care about your products or services. Get ready to experience lead generation like never before and watch your business grow.
+    </Fragment>
+    <Fragment slot="cover">
+      <img
+                src="/works/ax-sqr-estemshop.webp"
+                class="w-full"
+              />
+    </Fragment>
+  </SectionHeadSecImg>
+
   <OptionsSec />
   
   <IntroSec />
 
   <GridSec />
   <Faq />
+
+  <Grid />
 
   <IndentInfo>
     <Fragment slot="title">
