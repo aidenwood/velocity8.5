@@ -1,12 +1,12 @@
 
-<section class="my-32 lg:my-28">
+<section class="my-28">
   <div class="mx-auto px-4 sm:px-6 w-full lg:max-w-7xl lg:px-8">
     <div class="flex flex-col gap-4">
       <div class="">
         
         <div class="w-full text-center">
-          <h4 class="text-base lg:text-lg uppercase font-thin tracking-widest">
-            Works with the Best
+          <h4 class="text-base uppercase font-thin tracking-widest">
+            Clients
           </h4>
         </div>
       </div>
@@ -15,76 +15,72 @@
         class="h-16 md:h-24 lg:h-32 w-full"
         width="1280"
         height="640"
-        src="/logos/ray-white.svg"
-        alt="Web design on the Gold Coast by Aidxn Design for Ray White designing interactive ads."
+        :src="$store.theme.isDark ? '/logos/ray-white-greyed.svg' : '/logos/ray-white.svg'"
+        alt="Web design for real estate agents by Aidxn Design for Ray White."
         />
         
         <img
         class="h-16 md:h-24 lg:h-32 w-full"
         width="1280"
         height="640"
-        src="/logos/estem.svg"
-        alt="Web design on the Gold Coast by Aidxn Design for Estem Clinics improving Wordpress website design and website pageload speed. Also designing digital marketing campaigns."
+        :src="$store.theme.isDark ? '/logos/esteem-greyed.svg' : '/logos/estem.svg'"
+        alt="Web design for health clinics by Aidxn Design for Estem Clincs."
         />
         
         <img
         class="h-16 md:h-24 lg:h-32 w-full"
         width="1280"
         height="640"
-        src="/logos/ball-realty.svg"
-        alt="Web design and digital marketing management on the Gold Coast by Aidxn Design for Ball Realty. Designing marketing creatives, improving Wordpress website conversion rate and reducing ad spend while improving ad lead conversion rate."
+        :src="$store.theme.isDark ? '/logos/ball-realty-greyed.svg' : '/logos/ball-realty.svg'"
+        alt="Web Design for real estate agencies by Aidxn Design for Ball Realty."
         />
-      </div>
-
-      <div class="grid gap-4 grid-cols-3">
+      
         <img
         class="h-16 md:h-24 lg:h-32 w-full"
         width="1280"
         height="640"
-        src="/logos/nw-funding.svg"
-        alt="Website design for finance businesses on the Gold Coast by Aidxn Design. Using Velocity to build a high-conversion lead generation page with perfect SEO scores."
+        :src="$store.theme.isDark ? '/logos/nwfunding-logo-greyed.svg' : '/logos/nw-funding.svg'"
+        alt="Web design for financial lenders by Aidxn Design."
         />
         
         <img
         class="h-16 md:h-24 lg:h-32 w-full"
         width="1280"
         height="640"
-        src="/logos/boogie-collective.svg"
-        alt="Website design for events businesses and service based businesses. Lead generation website design for The Boogie Collective for improving hype and attendance at upcoming events. Website design using Velocity 8 and live."
+        :src="$store.theme.isDark ? '/logos/boogie-collective.svg' : '/logos/boogie-collective.svg'"
+        alt="Web design for events industry businesses by Aidxn Design."
         />
         
         <img
         class="h-16 md:h-24 lg:h-32 w-full"
         width="1280"
         height="640"
-        src="/logos/snacks.svg"
-        alt="Website design for photography businesses on the Gold Coast by Aidxn Design. Improving SEO and pageload performance using Velocity which is vital for photography businesses when creating a photography website."
+        :src="$store.theme.isDark ? '/logos/snacks-greyed.svg' : '/logos/snacks.svg'"
+        alt="Web design for photographers by Aidxn Design"
         />
-      </div>
-
-      <div class="grid gap-4 grid-cols-3">
+      
         <img
         class="h-16 md:h-24 lg:h-32 w-full"
         width="1280"
         height="640"
-        src="/logos/academy.svg"
-        alt="Website design for selling e-book and online courses on the Gold Coast by Aidxn Design. Improving Wordpress website design and conversion rate for better SEO and reduced ad spend in digital marketing campaigns."
+        :src="$store.theme.isDark ? '/logos/academy.svg' : '/logos/academy.svg'"
+        alt="Web design for online courses by Aidxn Design."
         />
         
         <img
         class="h-16 md:h-24 lg:h-32 w-full"
         width="1280"
         height="640"
-        src="/logos/cobra-club.svg"
-        alt="Website design for local clubs on the Gold Coast by Aidxn Design. Using Wordpress to create a managable website for your club or sports team."
+        :src="$store.theme.isDark ? '/logos/cobra-club.svg' : '/logos/cobra-club.svg'"
+        alt="Web design for local clubs and sports teams by Aidxn Design"
         />
         
         <img
         class="h-16 md:h-24 lg:h-32 w-full"
         width="1280"
         height="640"
-        src="/logos/tsd.svg"
-        alt="Website design for digital agencies done on the Gold Coast by Aidxn Design. Award winning website designer with over 10 years experience."
+        :src="$store.theme.isDark ? '/logos/tsd.svg' : '/logos/tsd.svg'"
+        alt="Web design for doctors by Aidxn design."
         />
       </div>
       

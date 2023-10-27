@@ -51,6 +51,8 @@
               <div class="invalid-feedback text-red-400 text-sm mt-1">
                 Please provide a valid phone number.
               </div>
+              <input type="hidden" class="sourceLogging" id="hiddenKey02" name="Contacted on Page" data-name="formUrl1" value="">
+	            <input type="hidden" class="sourceLogging" id="hiddenKey03" name="Previous Page" data-name="formRef1" value="">
             </div>
             
             
@@ -142,3 +144,10 @@
     });
   </script>
   
+
+<script> 
+	{
+		document.getElementById('hiddenKey02').value = location.pathname;
+		document.getElementById('hiddenKey03').value = document.referrer;
+	}
+	</script>

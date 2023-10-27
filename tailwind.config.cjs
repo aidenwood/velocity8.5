@@ -10,7 +10,8 @@ module.exports = {
       current: 'currentColor',
       transparent: 'transparent',
       white: '#ffffff',
-      primary: colors.violet,
+      primary: colors.slate,
+      violet: colors.violet,
     },
     fontFamily: {
       sans: ['Inter', 'sans-serif'],

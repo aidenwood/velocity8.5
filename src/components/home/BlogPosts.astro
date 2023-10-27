@@ -1,46 +1,34 @@
 ---
 const stats = [
   {
-    name: 'Case Study: Multi-modal marketing campaign design.',
+    name: 'Multi-modal marketing campaign design.',
     desc: 'We deployed a multi-modal marketing strategy across the whole of the Gold Coast for a client in the Real Estate industry.',
-    value: 'Marketing Management',
+    value: 'Client Case Study',
     link: 'https://blog.aidxn.com/posts/multi-modal-marketing',
   },
   {
-    name: 'E-Commerce design for improving conversion rate.',
+    name: 'CRO for e-commerce web design.',
     desc: 'Some of our favourite, most effective web design tricks to boost conversion rates on any e-commerce store.',
-    value: 'Web Design',
+    value: 'Client Case Study',
     link: 'https://blog.aidxn.com/posts/ecommerce-design-tricks',
   },
   {
-    name: 'Case Study: Wordpress pageload from 5.2sec to 1.2sec.',
+    name: 'Wordpress performance optimisation: 5.2sec to 1.2sec.',
     desc: 'Our strategies for reducing Wordpress page load time with impressive results for a client.',
-    value: 'Web Design',
+    value: 'Client Case Study',
     link: 'https://blog.aidxn.com/posts/website-pageload-optimisation/',
   },
   {
-    name: 'Case Study: $50k in sales with no ad spend at all.',
+    name: '$50k in sales with $0 in marketing.',
     desc: 'Marketing management for a client in the events industry, generating over $50k in sales without a dime on advertising.',
-    value: 'Marketing Management',
-    link: 'https://blog.aidxn.com/posts/viral-marketing-strategies',
-  },
-  {
-    name: 'Case Study: Organic leads in 1 week with Velocity.',
-    desc: 'Using Velocity, we were generating organic leads in the first week thanks to perfect SEO scores, keyword research and pageload speed.',
-    value: 'Web Design',
-    link: 'https://blog.aidxn.com/posts/website-pageload-optimisation/',
-  },
-  {
-    name: 'Case Study: Competing in competitive niches.',
-    desc: 'We generated amazing results for a client by optimising Google ad campaigns to target their customer with informative creatives.',
-    value: 'Digital Marketing',
+    value: 'Client Case Study',
     link: 'https://blog.aidxn.com/posts/viral-marketing-strategies',
   },
 ];
 ---
 
 
-<section class="my-32 lg:my-28">
+<section class="my-28">
   <div class="mx-auto w-full px-4 sm:px-6 lg:max-w-7xl lg:px-8">
     <div class="flex flex-col">
       <div class="flex flex-col justify-center">
@@ -48,11 +36,13 @@ const stats = [
         <div class="flex flex-col gap-10">
           <!-- Mission description -->
           <div class="space-y-8 sm:space-y-12">
-            <div class="space-y-6">
-              <h3 class="text-2xl sm:text-3xl font-medium tracking-tight leading-8">Generating serious results.</h3>
+            <div class="">
+              <h4 class="text-xs uppercase font-thin tracking-widest">
+                Helping businesses grow
+              </h4>
+              <h3 class="text-3xl sm:text-4xl font-medium tracking-tight my-6">Our results.</h3>
               <p class="text-primary-950/70 dark:text-primary-200/70 max-w-5xl text-lg xs:text-xl pb-6">
-                Web design specialising in web performance, local SEO and conversion rate improvements. 
-                Digital marketing management focused on strategies for reducing ad spend without sacrificing results, stretching daily budgets further and giving you a competitive edge.
+                Website design and marketing strategies that give brands the competitive edge.
               </p>
               
             </div>
@@ -66,10 +56,10 @@ const stats = [
         {
           stats.map((stat) => (
           <a href={stat.link}>  
-            <div class="border-primary-900/10 dark:border-primary-300/10 hover:bg-primary-900/10 hover:dark:bg-primary-300/10 duration-200 rounded-3xl border px-6 py-8 h-full flex flex-col justify-center gap-4">
+            <div class="border-primary-900/10 dark:border-primary-300/10 hover:bg-primary-900/10 hover:dark:bg-primary-300/10 duration-200 rounded-3xl border px-4 md:px-6 py-8 h-full flex flex-col justify-center gap-4">
               <dt class="text-xs uppercase font-thin tracking-widest">{stat.value}</dt>
-              <dd class="text-xl md:text-2xl xl:text-xl font-medium leading-relaxed tracking-tight">{stat.name}</dd>
-              <p class="text-primary-950/70 dark:text-primary-200/70 text-base xs:text-lg leading-6">
+              <dd class="text-lg xs:text-xl font-medium leading-loose tracking-tighter xs:tracking-tight">{stat.name}</dd>
+              <p class="hidden md:block text-primary-950/70 dark:text-primary-200/70 text-base xs:text-lg leading-6">
                     {stat.desc}
                   </p>
             </div>
