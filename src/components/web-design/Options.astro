@@ -52,7 +52,7 @@ const services = [
           services.map((service) => (
           <div>
             <a href={service.link}>
-              <div class="bg-primary-500/10 dark:bg-primary-400/10 hover:bg-primary-800/10 hover:dark:bg-primary-100/10 hover:shadow-sm duration-200 h-full flex flex-col-reverse items-start justify-center rounded-3xl px-6 py-12">
+              <div class="border-primary-900/10 dark:border-primary-300/10 hover:bg-primary-900/10 hover:dark:bg-primary-300/10 duration-200 rounded-3xl border px-4 md:px-6 py-8 h-full flex flex-col-reverse justify-center gap-4">
                 <div class="w-full cursor-pointer">  
                   <div class="flex flex-col gap-4">
                     <p class="text-sm mb-8">{service.step}</p>
@@ -63,7 +63,7 @@ const services = [
                     <div>
                       <a
                         href={service.link}
-                        class="mt-6 mr-4 bg-primary-600 dark:bg-primary-400 hover:bg-primary-700 dark:hover:bg-primary-300 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-400 dark:text-primary-950 inline-flex items-center justify-center rounded-full border border-transparent px-5 py-3 text-base font-medium text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+                        class="mt-8 mr-2 bg-primary-600 dark:bg-primary-400 hover:bg-primary-700 dark:hover:bg-primary-300 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-400 dark:text-primary-950 inline-flex items-center justify-center rounded-full border border-transparent px-5 py-3 text-base font-medium text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
                       >
                         {service.linktxt}
                       </a>

@@ -7,11 +7,21 @@ const services = [
       'Google Search is the absolute dominating force in defining how successful any website is. Apply serious focus to improving your rank on a weekly basis.',
     link: '/digital-marketing/google-search-management',
     linktxt: 'More info',
-    imgsrc: '/works/cpc-marketing-results-real-estate-high-competitive-term.png',
+    imgsrc: '/works/ax-sqr-cpc-results.webp',
     imgalt: 'Velocity web design for lead generation websites designed and developed on the Gold Coast - Leading Gold Coast web design with Aidxn Design',
   },
   {
     step: '02',
+    name: 'Interactive Ads',
+    description:
+      'Powering 98.5% of all webpage based ads, we take Google Display to the next level with interactive ad designs. One of our favourite marketing technologies.',
+    link: 'digital-marketing/interactive-ads',
+    linktxt: 'More info',
+    imgsrc: '/works/ax-sqr-interactive.webp',
+    imgalt: 'Velocity web design for lead generation websites designed and developed on the Gold Coast - Leading Gold Coast web design with Aidxn Design',
+  },
+  {
+    step: '03',
     name: 'Facebook / Instagram Ads',
     description:
       'Facebook and Instagram ads, when done right can capture extreme amounts of attention and conversions. Leaving it to chance and you can burn money fast.',
@@ -21,7 +31,7 @@ const services = [
     imgalt: 'Velocity web design for lead generation websites designed and developed on the Gold Coast - Leading Gold Coast web design with Aidxn Design',
   },
   {
-    step: '03',
+    step: '04',
     name: 'Video Ads',
     description:
       'Where digital marketing is headed. Using the power of search data mixed with localised results, Maps is by far the most useful lead generation tool.',
@@ -30,40 +40,31 @@ const services = [
     imgsrc: '/works/video-musicians.webp',
     imgalt: 'Velocity web design for lead generation websites designed and developed on the Gold Coast - Leading Gold Coast web design with Aidxn Design',
   },
-  {
-    step: '04',
-    name: 'Interactive Ads',
-    description:
-      'Powering 98.5% of all webpage based ads, we take Google Display to the next level with interactive ad designs. One of our favourite marketing technologies.',
-    link: 'digital-marketing/interactive-ads',
-    linktxt: 'More info',
-    imgsrc: '/works/gwd-interactive-ads.webp',
-    imgalt: 'Velocity web design for lead generation websites designed and developed on the Gold Coast - Leading Gold Coast web design with Aidxn Design',
-  },
+  
 ];
 ---
 
 <section class="my-32 lg:my-28">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
     <div class="flex flex-col gap-4">
-      <h4 class="text-center text-base lg:text-lg uppercase font-thin tracking-widest">Web Design on any stack</h4>
+      <h4 class="text-center text-base lg:text-lg uppercase font-thin tracking-widest">Digital Marketing services</h4>
       <div class="grid gap-8 grid-cols-1 lg:grid-cols-2">
         {
           services.map((service) => (
           <div>
             <a href={service.link}>
-              <div class="bg-primary-500/10 dark:bg-primary-400/10 hover:bg-primary-800/10 hover:dark:bg-primary-100/10 hover:shadow-sm duration-200 h-full flex flex-col-reverse items-start justify-center rounded-3xl px-6 py-12">
+              <div class="border-primary-900/10 dark:border-primary-300/10 hover:bg-primary-900/10 hover:dark:bg-primary-300/10 duration-200 rounded-3xl border px-4 md:px-6 py-8 h-full flex flex-col-reverse justify-center gap-4">
                 <div class="w-full cursor-pointer">  
                   <div class="flex flex-col gap-4">
                     <p class="text-sm mb-8">{service.step}</p>
                     <h2 class="text-xl font-medium my-4">{service.name}</h2>
-                    <p class="text-primary-950/70 dark:text-primary-200/70 text-base xs:text-lg max-w-3xl">
+                    <p class="text-primary-950/70 dark:text-primary-200/70 text-base xs:text-lg max-w-3xl md:pr-4">
                       {service.description}
                     </p>
                     <div>
                       <a
                         href={service.link}
-                        class="mt-6 mr-4 bg-primary-600 dark:bg-primary-400 hover:bg-primary-700 dark:hover:bg-primary-300 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-400 dark:text-primary-950 inline-flex items-center justify-center rounded-full border border-transparent px-5 py-3 text-base font-medium text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+                        class="mt-8 mr-2 bg-primary-600 dark:bg-primary-400 hover:bg-primary-700 dark:hover:bg-primary-300 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-400 dark:text-primary-950 inline-flex items-center justify-center rounded-full border border-transparent px-5 py-3 text-base font-medium text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
                       >
                         {service.linktxt}
                       </a>

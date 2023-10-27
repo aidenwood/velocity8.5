@@ -4,7 +4,7 @@ const services = [
     step: '01',
     name: 'Brand Identity',
     description:
-      'Begin to define or refine your brand identity. Services such as logo design, color palette, typography, and brand guidelines.',
+      'Begin to define or refine your brand identity. Services such as logo design, color palette, typography & guidelines.',
     link: '/graphic-design/brand-identity',
     linktxt: 'More info',
     imgsrc: '/works/ax-sqr-billboard.webp',
@@ -13,7 +13,7 @@ const services = [
     step: '02',
     name: 'Strategy & Storytelling',
     description:
-      'At the heart of effective marketing, is messaging that speaks to your target market and turns them easily into customers.',
+      'At the heart of effective marketing, is messaging that speaks to your target market and turns them into customers.',
     link: '/graphic-design/brand-strategy',
     linktxt: 'More info',
     imgsrc: '/works/ax-sqr-re-placement.webp',
@@ -22,7 +22,7 @@ const services = [
     step: '03',
     name: 'Complete Branding Design',
     description:
-      "Graphic design for print, products and digital marketing campaigns, that leaves a lasting impression and stands out in today's competitive market.",
+      "Graphic design for print, products and digital marketing campaigns, that leaves a lasting impression.",
     link: '/graphic-design/brand-design-packs',
     linktxt: 'More info',
     imgsrc: '/works/website-mock-ups.webp',
@@ -31,7 +31,7 @@ const services = [
     step: '04',
     name: 'Keywork Strategy',
     description:
-      'Custom code solutions for your brand. Ccreating unique branded digital experiences that reinforce identity and make your online presence more immersive.',
+      'Custom code solutions for your brand. Ccreating unique branded digital experiences that reinforce identity.',
     link: '/graphic-design/interactive-design',
     linktxt: 'More info',
     imgsrc: '/works/gwd-interactive-ads.webp',
@@ -42,18 +42,18 @@ const services = [
 <section class="my-32 lg:my-28">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
     <div class="flex flex-col gap-4">
-      <h4 class="text-center text-base lg:text-lg uppercase font-thin tracking-widest">Web Design on any stack</h4>
+      <h4 class="text-center text-base lg:text-lg uppercase font-thin tracking-widest">Branding and Graphic Design Services</h4>
       <div class="grid gap-8 grid-cols-1 lg:grid-cols-2">
         {
           services.map((service) => (
           <div>
             <a href={service.link}>
-              <div class="bg-primary-500/10 dark:bg-primary-400/10 hover:bg-primary-800/10 hover:dark:bg-primary-100/10 hover:shadow-sm duration-200 h-full flex flex-col-reverse items-start justify-center rounded-3xl px-6 py-12">
+              <div class="border-primary-900/10 dark:border-primary-300/10 hover:bg-primary-900/10 hover:dark:bg-primary-300/10 duration-200 rounded-3xl border px-4 md:px-6 py-8 h-full flex flex-col-reverse justify-center gap-4">
                 <div class="w-full cursor-pointer">  
                   <div class="flex flex-col gap-4">
                     <p class="text-sm mb-8">{service.step}</p>
                     <h2 class="text-xl font-medium my-4">{service.name}</h2>
-                    <p class="text-primary-950/70 dark:text-primary-200/70 text-base xs:text-lg max-w-3xl">
+                    <p class="text-primary-950/70 dark:text-primary-200/70 text-base xs:text-lg max-w-3xl lg:pr-4">
                       {service.description}
                     </p>
                     <div>
