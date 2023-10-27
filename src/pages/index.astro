@@ -1,13 +1,12 @@
 ---
 
 import Hero from '../components/home/Hero.astro';
-import WebIntro from '../components/home/Intro-WebDesign.astro';
 import Process from '../components/home/Process.astro';
-import WebInfo from '../components/home/Info-WebDesign.astro';
-import WebGrid from '../components/home/Grid-Velocity.astro';
-import MoonSlide from '../components/home/Grid-Moonshot.astro';
-import MoonIntro from '../components/home/Intro-Marketing.astro';
-
+import WebInfo from '../components/home/Web-Experience.astro';
+import WebGrid from '../components/home/Web-Grid.astro';
+import MoonSlide from '../components/home/Market-Grid.astro';
+import MoonIntro from '../components/home/Market-Intro.astro';
+import WebIntro from '../components/home/Web-Intro.astro';
 import About from '../components/home/About.astro';
 import CtaContact from '../components/home/Cta-Contact.astro';
 import Cta from '../components/home/Cta.astro';
@@ -32,17 +31,18 @@ import SectionEnd from '../components/home/Section-End.astro';
 
   <WebIntro />
   <WebGrid />
-
+  <WebInfo />
+  
   <Clients />
-
-  <Cta />
 
   <MoonIntro />
   <MoonSlide />
 
+  <Cta />
+
   <BlogPosts />
   
-  <WebInfo />
+  
   <Testimonials />
   <About />
   <CtaContact />
