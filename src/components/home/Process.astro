@@ -6,7 +6,7 @@ const services = [
     img: '/works/ax-logo-design.webp',
     alt: 'Brand Strategy and Graphic Design on the Gold Coast',
     description:
-      'From logos and graphics, target market and voice, branded textures. Designed for print and digital.',
+      'From logos to graphics, target market to voice. Designed for print and digital.',
     link: '/brand-strategy',
   },
   {
@@ -15,7 +15,7 @@ const services = [
     img: '/works/ax-logo-develop.webp',
     alt: 'Web Design with Shopify, Wordpress and Velocity',
     description:
-      'Trust over 10 years of web design experience to design the best web experience for your customer.',
+      'An expert in web design, powering brands with a range of technologies.',
     link: '/web-design',
   },
   {
@@ -24,16 +24,16 @@ const services = [
     img: '/works/ax-logo-market.webp',
     alt: 'Digital marketing services and marketing management',
     description:
-      'Digital marketing for all platforms. SEO, funnel optimisations and ad creative designs by an expert.',
+      'Marketing for all platforms, digital and physical. Optimise your entire funnel.',
     link: '/digital-marketing',
   },
   {
     step: '04',
     name: 'Moonshot',
-    img: '/works/ax-logo-moonshot.webp',
+    img: '/works/ax-sqr-moonshot.webp',
     alt: 'Complete website and digital marketing management on the Gold Coast',
     description:
-      'Our complete website and marketing management plan. Everything I offer in one, pause anytime.',
+      'Website, branding and marketing optimisation. Pause anytime.',
     link: '/moonshot-plan',
   },
 ];
@@ -63,9 +63,9 @@ const services = [
                     alt={service.alt}
                   />
                 </div>
-                <div class="mx-auto md:ml-2 flex flex-col gap-4">
-                  <p class="hidden md:block text-sm pb-4">{service.step}</p>
-                  <h2 class="text-center md:text-left text-lg lg:text-xl font-medium">{service.name}</h2>
+                <div class="mx-auto md:ml-2 flex flex-col">
+                  <p class="hidden md:block text-sm pt-4">{service.step}</p>
+                  <h2 class="text-center md:text-left text-xl lg:text-2xl font-medium md:my-6">{service.name}</h2>
                   <p class="hidden md:block text-primary-950/70 dark:text-primary-200/70 text-base xs:text-lg leading-6">
                     {service.description}
                   </p>

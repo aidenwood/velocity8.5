@@ -4,6 +4,7 @@ import SlotHero from '../../components/home/Slot-Hero.astro';
 import SectionHeadImg from "../../components/home/slot-img.astro";
 import SectionHeadSecImg from "../../components/home/slot-img-rev.astro";
 import Process from '../../components/home/Process.astro';
+import FirstProcess from '../../components/home/Process-Sml.astro';
 import Layout from '../../layouts/Layout.astro';
 ---
 
@@ -22,13 +23,9 @@ import Layout from '../../layouts/Layout.astro';
       <Fragment slot="desc">
         For over 6 years we have specialised in UX-focused web design. Promoting user experience design choices to improve monthly sales. Highly branded website design that doesn't sacrifice on user experience is the fastest way for small businesses to become memorable brands in our opinion.
       </Fragment>
-      <Fragment slot="cover">
-        <img
-                  src="/works/br-mac-render-med.webp"
-                  class="w-full rounded duration-200 hover:shadow-sm"
-                />
-      </Fragment>
     </SlotHero>
+
+    <FirstProcess />
 
           <SectionHeadImg>
             <Fragment slot="smltitle">

@@ -1,0 +1,65 @@
+---
+const services = [
+  {
+    step: '01',
+    name: 'Branding',
+    img: '/works/ax-logo-design.webp',
+    alt: 'Brand Strategy and Graphic Design on the Gold Coast',
+    description:
+      'From logos and graphics, target market and voice, branded textures. Designed for print and digital.',
+    link: '/brand-strategy',
+  },
+  {
+    step: '02',
+    name: 'Web Design',
+    img: '/works/ax-logo-develop.webp',
+    alt: 'Web Design with Shopify, Wordpress and Velocity',
+    description:
+      'Trust over 10 years of web design experience to design the best web experience for your customer.',
+    link: '/web-design',
+  },
+  {
+    step: '03',
+    name: 'Marketing',
+    img: '/works/ax-logo-market.webp',
+    alt: 'Digital marketing services and marketing management',
+    description:
+      'Digital marketing for all platforms. SEO, funnel optimisations and ad creative designs by an expert.',
+    link: '/digital-marketing',
+  },
+  {
+    step: '04',
+    name: 'Moonshot',
+    img: '/works/ax-logo-moonshot.webp',
+    alt: 'Complete website and digital marketing management on the Gold Coast',
+    description:
+      'Our complete website and marketing management plan. Everything I offer in one, pause anytime.',
+    link: '/moonshot-plan',
+  },
+];
+---
+
+<section class="my-28">
+  <div class="mx-auto px-4 sm:px-6 w-full lg:max-w-7xl lg:px-8">
+    
+    <div class="grid gap-4 grid-cols-2 md:grid-cols-4">
+      {
+        services.map((service) => (
+        <a href={service.link}>  
+          <div class="border-primary-900/10 dark:border-primary-300/10 hover:bg-primary-900/10 hover:dark:bg-primary-300/10 duration-200 rounded-3xl border px-6 py-8 h-full">
+            <div class="mx-auto w-20 md:w-24 ">
+              <img
+                class=""
+                width="640"
+                height="640"
+                src={service.img}
+                alt={service.alt}
+              />
+            </div>
+          </div>
+        </a>
+        ))
+      }
+    </div>
+  </div>
+</section>
