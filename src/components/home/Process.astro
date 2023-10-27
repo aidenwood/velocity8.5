@@ -43,9 +43,9 @@ const services = [
   <div class="mx-auto px-4 sm:px-6 w-full lg:max-w-7xl lg:px-8">
     <div class="">
       <div class="w-full text-center">
-        <h4 class="text-base uppercase font-thin tracking-widest pb-4">
+        <h3 class="text-base uppercase font-thin tracking-widest pb-4">
           Services
-        </h4>
+        </h3>
       </div>
       
       <div class="grid gap-4 grid-cols-2">
@@ -54,7 +54,7 @@ const services = [
           <a href={service.link}>  
             <div class="border-primary-900/10 dark:border-primary-300/10 hover:bg-primary-900/10 hover:dark:bg-primary-300/10 duration-200 rounded-3xl border px-4 md:px-6 py-8 h-full flex flex-col justify-center gap-4">
               <div class="flex flex-col lg:flex-row items-start lg:items-center gap-4">
-                <div class="mx-auto md:mx-0 w-3/5">
+                <div class="mx-auto md:mx-0 w-4/5 sm:w-3/5">
                   <img
                     class="h-auto w-auto bg-contain"
                     width="640"
@@ -65,7 +65,7 @@ const services = [
                 </div>
                 <div class="mx-auto md:ml-2 flex flex-col gap-4">
                   <p class="hidden md:block text-sm pb-4">{service.step}</p>
-                  <h3 class="text-center md:text-left text-base xs:text-lg lg:text-xl font-medium">{service.name}</h3>
+                  <h2 class="text-center md:text-left text-lg lg:text-xl font-medium">{service.name}</h2>
                   <p class="hidden md:block text-primary-950/70 dark:text-primary-200/70 text-base xs:text-lg leading-6">
                     {service.description}
                   </p>

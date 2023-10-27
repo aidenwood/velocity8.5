@@ -1,8 +1,9 @@
 ---
 
 import Hero from '../components/home/Hero.astro';
+import HeroGrid from '../components/home/Hero-Griddy.astro';
 import Process from '../components/home/Process.astro';
-import WebInfo from '../components/home/Web-Experience.astro';
+import WebExp from '../components/home/Web-Experience.astro';
 import WebGrid from '../components/home/Web-Grid.astro';
 import MoonSlide from '../components/home/Market-Grid.astro';
 import MoonIntro from '../components/home/Market-Intro.astro';
@@ -29,14 +30,18 @@ import SectionEnd from '../components/home/Section-End.astro';
   
   <Process />
 
+  <HeroGrid />
+
   <WebIntro />
   <WebGrid />
-  <WebInfo />
+  
   
   <Clients />
 
   <MoonIntro />
   <MoonSlide />
+
+  <WebExp />
 
   <Cta />
 
