@@ -17,7 +17,7 @@ const pricing = [
 ];
 ---
 
-<section class="my-28">
+<section class="my-8">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="-mt-8 grid gap-8 lg:mt-0">
       {
@@ -58,12 +58,15 @@ const pricing = [
                 ))}
               </ul>
             </div>
-            <a
+            <div>
+              <a
               href={item.link}
-              class="bg-primary-600 dark:bg-primary-400 hover:bg-primary-700 dark:hover:bg-primary-300 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-400 dark:text-primary-950 inline-flex w-full items-center justify-center rounded-full border border-transparent px-5 py-3 text-base font-medium text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+              class="bg-primary-600 dark:bg-primary-400 hover:bg-primary-700 dark:hover:bg-primary-300 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-400 dark:text-primary-950 inline-flex items-center justify-center rounded-full border border-transparent px-5 py-3 text-base font-medium text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
             >
               More info
             </a>
+            </div>
+            
           </div>
         ))
       }
