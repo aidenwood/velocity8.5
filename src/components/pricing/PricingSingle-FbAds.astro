@@ -1,51 +1,25 @@
 ---
 const pricing = [
   {
-    name: 'Velocity Web Design',
-    description: 'Our high-performance web stack for custom website designs.',
-    periodicity: '/once',
+    name: 'Meta Ad Management - Monthly Plan',
+    description: 'Intense optimisation of your entire Meta marketing account with bi-monthly aquisition strategy optimisation.',
+    periodicity: '/month',
     isFlagged: true,
-    price: '$2445',
+    price: '$645',
     action: 'Buy Now',
-    link: '/web-design/velocity',
+    link: 'https://buy.stripe.com/14keWt16PdFH9ji6oL',
     features: [
-      '8 pages', 
-      '1 in-person revision',
-      'Turnaround in 21 days'
-    ],
-  },
-  {
-    name: 'Wordpress Web Design',
-    description: 'High-performance Wordpress development and functionality setup.',
-    periodicity: '/once',
-    price: '$3445',
-    action: 'Buy Now',
-    link: '/web-design/wordpress',
-    features: [
-      '16 pages', 
-      '1 in-person revision', 
-      'Turnaround in 21 days'
-    ],
-  },
-  {
-    name: 'Shopify Web Design',
-    description: 'Expert e-commerce design for branding for your Shopify store.',
-    periodicity: '/once',
-    price: '$4445',
-    action: 'Buy Now',
-    link: '/web-design/shopify',
-    features: [
-      '16 pages & products',
-      'Graphic Design package',
-      '6 months of consulting'
+      'Expert marketing strategist for Meta Ads', 
+      'Daily account management and optimisation',
+      'Pause anytime after 90 days'
     ],
   },
 ];
 ---
 
-<section class="my-28">
-  <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-    <div class="-mt-8 grid gap-8 lg:mt-0 lg:grid-cols-3">
+<section class="my-8">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="-mt-8 grid gap-8 lg:mt-0">
       {
         pricing.map((item) => (
           <div
@@ -84,12 +58,15 @@ const pricing = [
                 ))}
               </ul>
             </div>
-            <a
+            <div>
+              <a
               href={item.link}
-              class="bg-primary-600 dark:bg-primary-400 hover:bg-primary-700 dark:hover:bg-primary-300 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-400 dark:text-primary-950 inline-flex w-full items-center justify-center rounded-full border border-transparent px-5 py-3 text-base font-medium text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+              class="bg-primary-600 dark:bg-primary-400 hover:bg-primary-700 dark:hover:bg-primary-300 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-400 dark:text-primary-950 inline-flex items-center justify-center rounded-full border border-transparent px-5 py-3 text-base font-medium text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
             >
               More info
             </a>
+            </div>
+            
           </div>
         ))
       }

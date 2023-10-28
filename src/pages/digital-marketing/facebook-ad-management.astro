@@ -1,6 +1,8 @@
 ---
 import Cta from '../../components/home/Cta-Contact.astro';
 import SlotHero from '../../components/home/Slot-Hero.astro';
+import Pricing from '../../components/pricing/PricingSingle-FbAds.astro';
+import BlogPost from '../../components/home/Slot-BlogPost.astro';
 import SectionHeadImg from "../../components/home/slot-img.astro";
 import SectionHeadSecImg from "../../components/home/slot-img-rev.astro";
 import Process from '../../components/home/Process.astro';
@@ -25,8 +27,42 @@ import Layout from '../../layouts/Layout.astro';
       </Fragment>
     </SlotHero>
 
+    <div class="max-w-7xl mx-auto flex flex-col lg:flex-row">
+      <div class="w-full lg:w-1/2">
+        <Pricing />
+      </div>
+      <div class="w-full lg:w-1/2">
+        <a href="https://blog.aidxn.com/posts/multi-modal-marketing/">  
+          <BlogPost>
+            <Fragment slot="smltitle">
+              Case Study
+            </Fragment>
+            <Fragment slot="title">
+              Multi-modal marketing campaign design.
+            </Fragment>
+            <Fragment slot="desc">
+              We used Google Search and Display as part of a massive multi-modal marketing strategy across the Gold Coast.
+            </Fragment>
+          </BlogPost>
+        </a>
+        <a href="https://blog.aidxn.com/posts/website-pageload-optimisation/">  
+          <BlogPost>
+            <Fragment slot="smltitle">
+              Case Study
+            </Fragment>
+            <Fragment slot="title">
+              Wordpress pageload from 5.2s to 1.2s.
+            </Fragment>
+            <Fragment slot="desc">
+              Improving Google Search average CPC and CPA through website performance optimisations. Taking budget further.
+            </Fragment>
+          </BlogPost>
+        </a>
+      </div>
+    </div>
+
     <FirstProcess />
-    
+
           <SectionHeadImg>
             <Fragment slot="smltitle">
               Social Platform Marketing and Ad Creative Design

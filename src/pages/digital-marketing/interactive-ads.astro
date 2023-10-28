@@ -1,6 +1,8 @@
 ---
 import Cta from '../../components/home/Cta-Contact.astro';
 import SlotHero from '../../components/home/Slot-Hero.astro';
+import Pricing from '../../components/pricing/PricingSingle-InteractiveAds.astro';
+import BlogPost from '../../components/home/Slot-BlogPost.astro';
 import SectionHeadImg from "../../components/home/slot-img.astro";
 import SectionHeadSecImg from "../../components/home/slot-img-rev.astro";
 import Process from '../../components/home/Process.astro';
@@ -26,6 +28,28 @@ import Layout from '../../layouts/Layout.astro';
       </Fragment>
       
     </SlotHero>
+
+    <div class="max-w-7xl mx-auto flex flex-col lg:flex-row">
+      <div class="w-full lg:w-1/2">
+        <Pricing />
+      </div>
+      <div class="w-full lg:w-1/2">
+        <a href="https://blog.aidxn.com/posts/multi-modal-marketing/">  
+          <BlogPost>
+            <Fragment slot="smltitle">
+              Case Study
+            </Fragment>
+            <Fragment slot="title">
+              98.5% of impressions on realestate.com.au, perfect ad rank from interactive ads. Vital for small business.
+            </Fragment>
+            <Fragment slot="desc">
+              We helped a local real estate agency compete strongly against even national real estate conglomorates, thanks to interactive ad designs that gave a perfect ad score, placing their ads on sites that were usually out of their reach.
+            </Fragment>
+          </BlogPost>
+        </a>
+        
+      </div>
+    </div>
 
     <FirstProcess />
 
