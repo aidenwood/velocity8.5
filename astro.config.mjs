@@ -10,5 +10,6 @@ export default defineConfig({
   experimental: {
     viewTransitions: true
   },
+  site: 'https://aidxn.com',
   integrations: [tailwind(), compress(), partytown(), sitemap()]
 });
