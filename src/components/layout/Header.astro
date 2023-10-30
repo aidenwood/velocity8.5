@@ -42,7 +42,7 @@ const links = [
   :class="{ 'bg-violet-200/50 dark:bg-violet-900/50': open, 'bg-primary-300/20 dark:bg-primary-700/20': !(open) }"
 >
   <div id="navContainer"
-    class="mx-auto w-full xl:max-w-7xl flex items-center justify-between px-2 xs:px-4 md:px-8 py-2"
+    class="mx-auto w-full xl:max-w-7xl flex items-center justify-between px-2 xs:px-4 md:px-8 py-0 sm:py-2"
   >
     <!-- Brand logo -->
     <div class="flex my-2">
@@ -52,7 +52,7 @@ const links = [
       >
         <span class="sr-only">Aidxn Web Design Logo</span>
         <img id="logo"
-          class="h-5 xs:h-10 md:h-14 w-auto"
+          class="h-8 xs:h-10 md:h-14 w-auto"
           :src="$store.theme.isDark ? '/ax-logo-white.svg' : '/ax-logo-purp.svg'"
           alt="Aidxn Web Design Logo"
         />
@@ -63,13 +63,15 @@ const links = [
 
     <!-- Actions -->
     <div class="flex items-center space-x-0 md:space-x-3">
-
-      <a  id="bookBtn"
+      <div class="hidden sm:block">
+        <a  id="bookBtn"
           href="https://g2ok5807scs.typeform.com/to/tCmzlDza?typeform-source=aidxn.com"
           class="mr-2 hover:bg-violet-950 hover:border-violet-950 dark:hover:bg-violet-200 hover:text-white dark:hover:text-primary-950 dark:hover:border-violet-200 border-2 dark:border-white dark:outline-violet-400 dark:text-white inline-flex tracking-tighter md:tracking-normal items-center justify-center rounded-full px-4 md:px-5 py-2 md:py-3 text-sm md:text-base font-medium transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
         >
           Book <span class="hidden md:block">&nbsp;a Call</span>
       </a>
+      </div>
+      
 
       
       <!-- Toggle theme mode -->
@@ -157,7 +159,7 @@ const links = [
     x-collapse
     x-collapse.duration.500ms
   >
-    <div class="grid grid-cols-1 gap-16 pb-24 pt-6 lg:grid-cols-2 lg:pt-12">
+    <div class="grid grid-cols-1 gap-16 lg:grid-cols-2 pt-8 pb-12">
       <div
         class="bg-primary-500/30 dark:bg-primary-400/30 hidden items-center justify-center rounded-3xl px-6 py-8 lg:flex"
       >
