@@ -29,7 +29,7 @@ module.exports = {
       'lg': '1024px',
       // => @media (min-width: 1024px) { ... }
 
-      'xl': '1680px',
+      'xl': '1980px',
       // => @media (min-width: 1680px) { ... }
 
       '2xl': '1986px',
