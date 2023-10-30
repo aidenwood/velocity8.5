@@ -42,12 +42,12 @@ const services = [
 <section class="my-28">
   <div class="mx-auto px-4 sm:px-6 w-full lg:max-w-7xl lg:px-8">
     
-    <div class="grid gap-4 grid-cols-2 md:grid-cols-4">
+    <div class="grid gap-4 grid-cols-2 sm:grid-cols-4">
       {
         services.map((service) => (
         <a href={service.link}>  
-          <div class="border-primary-900/10 dark:border-primary-300/10 hover:bg-primary-900/10 hover:dark:bg-primary-300/10 duration-200 rounded-3xl border px-6 py-8 h-full">
-            <div class="mx-auto w-20 md:w-24 ">
+          <div class="border-primary-900/10 dark:border-primary-300/10 hover:bg-primary-900/10 hover:dark:bg-primary-300/10 duration-200 rounded-3xl border px-4 py-6 h-full flex flex-row items-center justify-center">
+            <div class="lg:pr-4 w-16 sm:w-10 md:w-16 lg:w-24">
               <img
                 class=""
                 width="640"
@@ -56,6 +56,7 @@ const services = [
                 alt={service.alt}
               />
             </div>
+            <h4 class="text-lg font-medium hidden lg:block">{service.name}</h4>
           </div>
         </a>
         ))

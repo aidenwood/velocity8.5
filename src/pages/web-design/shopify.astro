@@ -7,6 +7,7 @@ import Process from '../../components/home/Process.astro';
 import FirstProcess from '../../components/home/Process-Sml.astro';
 import Layout from '../../layouts/Layout.astro';
 import Pricing from '../../components/pricing/PricingTable-Shopify.astro';
+import BlogPost from '../../components/home/Slot-BlogPost.astro';
 
 ---
 
@@ -28,7 +29,39 @@ import Pricing from '../../components/pricing/PricingTable-Shopify.astro';
     </SlotHero>
 
 
-    <Pricing />
+    <div class="max-w-7xl mx-auto flex flex-col lg:flex-row">
+      <div class="w-full lg:w-1/2">
+        <a href="https://pbwagyu.com/">  
+          <BlogPost>
+            <Fragment slot="smltitle">
+              Case Study
+            </Fragment>
+            <Fragment slot="title">
+              Shopify management for a nation-wide B2B brand.
+            </Fragment>
+            <Fragment slot="desc">
+              Pure Blue Beef have partnered with Aidxn Design for the last 3 years, for scalable B2B and B2C solutions.
+            </Fragment>
+          </BlogPost>
+        </a>
+      </div>
+      <div class="w-full lg:w-1/2">
+        <a href="https://esteemclinic.com.au/">  
+          <BlogPost>
+            <Fragment slot="smltitle">
+              Case Study
+            </Fragment>
+            <Fragment slot="title">
+              Custom Shopify development for a Gold Coast brand.
+            </Fragment>
+            <Fragment slot="desc">
+              Taking a 20 year old Gold Coast health brand to selling products nation-wide with a custom Shopify store.
+            </Fragment>
+          </BlogPost>
+        </a>
+      </div>
+    </div>
+    
 
     <FirstProcess />
 
@@ -86,6 +119,9 @@ import Pricing from '../../components/pricing/PricingTable-Shopify.astro';
             </Fragment>
           </SectionHeadImg>
   
+
+    <Pricing />
+
   <Process />
   <Cta />
 

@@ -5,6 +5,7 @@ import SectionHeadImg from "../../components/home/slot-img.astro";
 import SectionHeadSecImg from "../../components/home/slot-img-rev.astro";
 import Process from '../../components/home/Process.astro';
 import FirstProcess from '../../components/home/Process-Sml.astro';
+import BlogPost from "../../components/home/Slot-BlogPost.astro";
 import Layout from '../../layouts/Layout.astro';
 import Pricing from '../../components/pricing/PricingTable-Wordpress.astro';
 
@@ -17,7 +18,7 @@ import Pricing from '../../components/pricing/PricingTable-Wordpress.astro';
 
     <SlotHero>
       <Fragment slot="smltitle">
-        Gold Coast Wordpress Expert
+        Gold Coast Wordpress Design Expert
       </Fragment>
       <Fragment slot="title">
         Wordpress Web Design.
@@ -26,6 +27,40 @@ import Pricing from '../../components/pricing/PricingTable-Wordpress.astro';
         Trust over 6 years experience improving conversion rates in a range of industries. All while offering a fresh take on web design and digital marketing in general.
       </Fragment>
     </SlotHero>
+
+    <div class="max-w-7xl mx-auto flex flex-col lg:flex-row">
+      <div class="w-full lg:w-1/2">
+        <a href="#">  
+          <BlogPost>
+            <Fragment slot="smltitle">
+              Case Study
+            </Fragment>
+            <Fragment slot="title">
+              Wordpress development for a real estate success.
+            </Fragment>
+            <Fragment slot="desc">
+              Improving search engine ranking, pageload speed and website UX before moving onto scaling CPC ads.
+            </Fragment>
+          </BlogPost>
+        </a>
+      </div>
+      <div class="w-full lg:w-1/2">
+        <a href="https://blog.aidxn.com/posts/website-pageload-optimisation/">  
+          <BlogPost>
+            <Fragment slot="smltitle">
+              Case Study
+            </Fragment>
+            <Fragment slot="title">
+              Wordpress pageload from 5.2s to 1.2s.
+            </Fragment>
+            <Fragment slot="desc">
+              Improving Google Search average CPC and CPA through website performance optimisations. Taking budget further.
+            </Fragment>
+          </BlogPost>
+        </a>
+      </div>
+    </div>
+
 
 
     <FirstProcess />
