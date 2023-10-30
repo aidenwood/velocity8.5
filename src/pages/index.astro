@@ -1,6 +1,8 @@
 ---
 
 import Hero from '../components/home/Hero.astro';
+import HeroSliddy from '../components/home/Hero-Sliddy.astro';
+
 import Process from '../components/home/Process.astro';
 import WebExp from '../components/home/Web-Experience.astro';
 import WebGrid from '../components/home/Web-Grid.astro';
@@ -28,25 +30,29 @@ import SectionEnd from '../components/home/Section-End.astro';
   title="Home · Aidxn Web Design"
 >
   <Hero />
-  
+  <HeroSliddy />
   <Process />
 
   <WebIntro />
-  <WebGrid />
   <PricingWeb />
-  
-  <Clients />
-  <BlogPosts />
+  <WebGrid />
 
+  <SectionEnd />
+  
+  <BlogPosts />
+  <Clients />
   <Cta />
+
+  <SectionEnd />
   
   <MoonIntro />
-  <MoonSlide />
   <PricingMarket /> 
+  <MoonSlide />
+  
+  <SectionEnd />
+
 
   <WebExp />
- 
-  
   <Testimonials />
   <About />
   <CtaContact />

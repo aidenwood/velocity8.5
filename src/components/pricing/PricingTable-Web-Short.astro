@@ -27,25 +27,12 @@ const pricing = [
       'Turnaround in 21 days'
     ],
   },
-  {
-    name: 'Shopify Web Design',
-    description: 'Expert e-commerce design for branding for your Shopify store.',
-    periodicity: '/once',
-    price: '$4445',
-    action: 'Buy Now',
-    link: '/web-design/shopify',
-    features: [
-      '16 pages & products',
-      'Graphic Design package',
-      '6 months of consulting'
-    ],
-  },
 ];
 ---
 
 <section class="my-28">
-  <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-    <div class="-mt-8 grid gap-8 lg:mt-0 lg:grid-cols-3">
+  <div class="mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+    <div class="-mt-8 grid gap-8 lg:mt-0 lg:grid-cols-2">
       {
         pricing.map((item) => (
           <div

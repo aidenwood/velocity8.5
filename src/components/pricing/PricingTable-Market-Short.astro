@@ -2,7 +2,7 @@
 const pricing = [
   {
     name: 'Google Search Management',
-    description: 'Intense optimisation of Google Search marketing campaigns with bi-monthly keyword strategy optimisation.',
+    description: 'Intense optimisation of Google Search marketing campaigns and keyword strategy optimisation.',
     periodicity: '/month',
     isFlagged: true,
     price: '$445',
@@ -16,7 +16,7 @@ const pricing = [
   },
   {
     name: 'Meta Ad Management',
-    description: 'Intense optimisation of your entire Meta marketing account with bi-monthly aquisition strategy optimisation.',
+    description: 'Intense optimisation of your entire Meta marketing account and aquisition strategy optimisation.',
     periodicity: '/month',
     price: '$645',
     action: 'Buy Now',
@@ -27,25 +27,13 @@ const pricing = [
       'Pause anytime after 90 days'
     ],
   },
-  {
-    name: 'Interactive Ad Development',
-    description: 'Place ads for your brand on the most popular websites and blogs for your industry, with interactive ads.',
-    periodicity: '/month',
-    price: '$1445',
-    action: 'Buy Now',
-    link: '/digital-marketing/interactive-ads',
-    features: [
-      'Interactive ads for Google Display designed and managed, new creatives every month.', 
-      'Daily account management and optimisation',
-      'Pause anytime after 90 days'
-    ],
-  },
+  
 ];
 ---
 
 <section class="my-28">
-  <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-    <div class="-mt-8 grid gap-8 lg:mt-0 lg:grid-cols-3">
+  <div class="mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+    <div class="-mt-8 grid gap-8 lg:mt-0 lg:grid-cols-2">
       {
         pricing.map((item) => (
           <div
