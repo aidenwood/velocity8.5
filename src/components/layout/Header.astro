@@ -2,13 +2,18 @@
 const links = [
   {
     ref: '01',
+    name: 'Branding',
+    href: '/graphic-design',
+  },
+  {
+    ref: '02',
     name: 'Web Design',
     href: '/web-design',
   },
   {
     ref: '03',
-    name: 'Pricing',
-    href: '/pricing',
+    name: 'Marketing',
+    href: '/digital-marketing',
   },
   {
     ref: '04',
@@ -17,7 +22,7 @@ const links = [
   },
   {
     ref: '05',
-    name: 'Book a Call',
+    name: 'Book',
     href: 'https://g2ok5807scs.typeform.com/to/tCmzlDza',
   },
 ];
@@ -42,7 +47,7 @@ const links = [
   :class="{ 'bg-violet-200/50 dark:bg-violet-900/50': open, 'bg-primary-300/20 dark:bg-primary-700/20': !(open) }"
 >
   <div id="navContainer"
-    class="mx-auto w-full xl:max-w-7xl flex items-center justify-between px-2 xs:px-4 md:px-8 py-0 sm:py-2"
+    class="mx-auto w-full lg:max-w-7xl flex items-center justify-between px-2 xs:px-4 md:px-8 py-0 sm:py-2"
   >
     <!-- Brand logo -->
     <div class="flex my-2">
@@ -62,11 +67,11 @@ const links = [
     
 
     <!-- Actions -->
-    <div class="flex items-center space-x-0 md:space-x-3">
+    <div class="flex items-center space-x-2 md:space-x-3">
       <div class="hidden sm:block">
         <a  id="bookBtn"
           href="https://g2ok5807scs.typeform.com/to/tCmzlDza?typeform-source=aidxn.com"
-          class="mr-2 hover:bg-violet-950 hover:border-violet-950 dark:hover:bg-violet-200 hover:text-white dark:hover:text-primary-950 dark:hover:border-violet-200 border-2 dark:border-white dark:outline-violet-400 dark:text-white inline-flex tracking-tighter md:tracking-normal items-center justify-center rounded-full px-4 md:px-5 py-2 md:py-3 text-sm xl:text-base font-medium transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+          class="border hover:bg-violet-950 hover:border-violet-950 dark:hover:bg-violet-200 hover:text-white dark:hover:text-primary-950 dark:hover:border-violet-200 dark:border-white dark:outline-violet-400 dark:text-white inline-flex tracking-tighter md:tracking-normal items-center justify-center rounded-full px-4 xs:px-5 py-2 xs:py-3 text-sm xl:text-base font-medium transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
         >
           Book <span class="hidden md:block">&nbsp;a Call</span>
       </a>
@@ -77,14 +82,14 @@ const links = [
       <!-- Toggle theme mode -->
       <button
         type="button"
-        class="text-primary-950 dark:text-primary-200 hover:bg-primary-500/10 dark:hover:bg-primary-400/10 ring-primary-950 inline-flex h-14 w-14 items-center justify-center rounded-full transition focus:outline-none focus-visible:ring-2"
+        class="sm:border dark:border-white dark:outline-violet-400 dark:text-white text-primary-950 hover:bg-primary-500/10 dark:hover:bg-primary-400/10 ring-primary-950 inline-flex h-12 xl:h-14 w-12 xl:w-14 items-center justify-center rounded-full transition focus:outline-none focus-visible:ring-2"
         x-data
         @click="$store.theme.toggle()"
       >
         <span class="sr-only">Toggle theme mode</span>
         <svg
           x-cloak
-          class="h-6 w-6"
+          class="h-5 w-5 md:h-6 md:w-6"
           :class="{ 'hidden': !($store.theme.isDark) }"
           xmlns="http://www.w3.org/2000/svg"
           fill="currentColor"
@@ -97,7 +102,7 @@ const links = [
         </svg>
         <svg
           x-cloak
-          class="h-6 w-6"
+          class="h-5 w-5 md:h-6 w-6"
           :class="{ 'hidden': $store.theme.isDark }"
           xmlns="http://www.w3.org/2000/svg"
           fill="currentColor"
@@ -114,7 +119,7 @@ const links = [
       <!-- Toggle menu -->
       <button
         type="button"
-        class="text-primary-950 dark:text-primary-200 hover:bg-primary-500/10 dark:hover:bg-primary-400/10 ring-primary-950 inline-flex h-14 w-14 items-center justify-center rounded-full transition focus:outline-none focus-visible:ring-2"
+        class="text-primary-950 hover:bg-primary-500/10 dark:hover:bg-primary-400/10 ring-primary-950 dark:border-white dark:outline-violet-400 dark:text-white inline-flex h-12 xl:h-14 w-12 xl:w-14 items-center justify-center rounded-full transition focus:outline-none focus-visible:ring-2"
         @click="open = !open"
         @mousedown="if (open) $event.preventDefault()"
         aria-controls="website-menu"
@@ -124,7 +129,7 @@ const links = [
         <span class="sr-only">Toggle menu</span>
         <svg
           x-cloak
-          class="h-8 w-8"
+          class="h-6 w-6 md:h-8 md:w-8"
           :class="{ 'hidden': open, 'block': !(open) }"
           xmlns="http://www.w3.org/2000/svg"
           fill="currentColor"
@@ -135,7 +140,7 @@ const links = [
         </svg>
         <svg
           x-cloak
-          class="h-8 w-8"
+          class="h-6 w-6 md:h-8 md:w-8"
           :class="{ 'block': open, 'hidden': !(open) }"
           xmlns="http://www.w3.org/2000/svg"
           fill="currentColor"

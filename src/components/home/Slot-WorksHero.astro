@@ -3,18 +3,29 @@
 <style>
   svg{width:100%;height:100%;perspective:50px}circle{stroke:#26003A;stroke-width:8px;fill:none}.equator{stroke:#a600ff;transform:rotateZ(-20deg) rotateX(125deg)}.meridian{animation:2s linear infinite turn;transform:rotateZ(-20deg) rotateX(35deg) rotateY(var(--start))}@keyframes turn{100%{transform:rotateZ(-20deg) rotateX(35deg) rotateY(var(--end))}}
 
-
 /* Full Width Section CSS */
 .hero {
-max-width: 1280px;
-margin: 0 auto;
-height: calc(100vh - 90px);
-display: flex;
+  max-width: 1280px;
+  margin: 0 auto;
+  height: calc(100vh - 90px);
+  display: flex;
   flex-direction: column;
   -ms-flex-pack: center;
   justify-content: center;
   -ms-flex-align: center;
   align-items: flex-start;
+}
+
+@media screen and (max-width: 968px) {
+  .hero {
+    height: calc(100vh - 55px);
+  }
+}
+
+@media screen and (max-width: 412px) {
+  .hero {
+    height: calc(70vh - 55px);
+  }
 }
 
 .contain {
@@ -31,26 +42,8 @@ display: flex;
 
 
 <section class="hero px-2 xs:px-4 md:px-8">
-  <div class="contain">   
-    <div class="backdrop-blur-xl w-full z-20 border-primary-900/10 dark:border-primary-300/30 bg-primary-300/50 dark:bg-primary-700/10 duration-200 rounded-3xl border px-4 md:px-6 py-12">
-      <h2 class="font-thin text-xs tracking-widest uppercase">
-        <slot name="smltitle">Aidxn Design</slot>
-      </h2>
-      <h1 class="font-medium md:tracking-tight tracking-tighter leading-snug text-4xl lg:text-5xl my-6">
-        <slot name="title">Title</slot>
-      </h1>
-      <p class="hidden md:block text-sm xs:text-lg dark:text-primary-200/70 text-primary-950/70 leading-6 max-w-4xl mt-4 lg:mr-4">
-        <slot name="desc">Some description goes here</slot>
-      </p>        
-      <a
-        href="/contact"
-        class="mt-4 md:mt-8 mr-4 bg-primary-600 dark:bg-primary-400 hover:bg-primary-700 dark:hover:bg-primary-300 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-400 dark:text-primary-950 inline-flex items-center justify-center rounded-full border border-transparent px-5 py-3 text-base font-medium text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
-      >
-        Contact
-      </a>
-    </div>
-
-    <div class="w-3/4 xl:w-1/2 absolute object-center -z-50">      
+  <div class="contain">
+    <div style="" class="w-full -mb-16 md:mb-8 -z-50">      
       <div id="animationWrapper" translate="no" transition:name="meridian">
         <svg viewBox="-500 -500 1000 1000" class="w-full">
           <circle r="450"></circle>
@@ -70,6 +63,24 @@ display: flex;
         </svg>
       </div>
       
+    </div>
+    
+    <div class="w-fit px-8 block lg:absolute backdrop-blur-xl z-20 border-primary-900/10 dark:border-primary-300/30 bg-primary-300/50 dark:bg-primary-700/10 duration-200 rounded-3xl border px-4 md:px-6 py-12">
+      <h2 class="font-thin text-xs tracking-widest uppercase">
+        <slot name="smltitle">Aidxn Design</slot>
+      </h2>
+      <h1 class="font-medium md:tracking-tight tracking-tighter leading-snug text-2xl xs:text-3xl lg:text-5xl max-w-4xl my-6">
+        <slot name="title">Title</slot>
+      </h1>
+      <p class="hidden md:block text-sm xs:text-lg dark:text-primary-200/70 text-primary-950/70 leading-6 max-w-4xl mt-4 lg:mr-4">
+        <slot name="desc">Some description goes here</slot>
+      </p>        
+      <a
+        href="/contact"
+        class="mt-4 md:mt-8 mr-4 bg-primary-600 dark:bg-primary-400 hover:bg-primary-700 dark:hover:bg-primary-300 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-400 dark:text-primary-950 inline-flex items-center justify-center rounded-full border border-transparent px-5 py-3 text-base font-medium text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+      >
+        Contact
+      </a>
     </div>
   </div>
 </section>
