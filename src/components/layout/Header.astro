@@ -47,7 +47,7 @@ const links = [
   :class="{ 'bg-violet-200/50 dark:bg-violet-900/50': open, 'bg-primary-300/20 dark:bg-primary-700/20': !(open) }"
 >
   <div id="navContainer"
-    class="mx-auto w-full lg:max-w-7xl flex items-center justify-between px-2 xs:px-4 md:px-8 py-0 sm:py-2"
+    class="mx-auto w-full lg:max-w-7xl flex items-center justify-between px-2 xs:px-4 md:px-8 py-1 sm:py-2"
   >
     <!-- Brand logo -->
     <div class="flex my-2">
@@ -57,7 +57,7 @@ const links = [
       >
         <span class="sr-only">Aidxn Web Design Logo</span>
         <img id="logo"
-          class="h-8 xs:h-10 xl:h-14 w-auto"
+          class="h-6 xs:h-8 md:h-10 lg:h-12 w-auto"
           :src="$store.theme.isDark ? '/ax-logo-white.svg' : '/ax-logo-purp.svg'"
           alt="Aidxn Web Design Logo"
         />
