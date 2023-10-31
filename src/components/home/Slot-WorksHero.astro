@@ -18,7 +18,7 @@
 
 @media screen and (max-width: 968px) {
   .hero {
-    height: auto;
+    height: calc(100vh - 70px);
   }
 }
 
@@ -43,7 +43,7 @@
 
 <section class="hero px-2 xs:px-4 md:px-8">
   <div class="contain">
-    <div style="" class="w-full md:5/6 lg:w-4/5 mx-auto md:mr-0 -mb-16 md:mb-8 -z-50">      
+    <div style="" class="w-full sm:w-3/5 lg:w-4/5 mx-auto lg:mr-0 -mb-48 md:-mb-24 lg:mb-8 -z-50">      
       <div id="animationWrapper" translate="no" transition:name="meridian">
         <svg viewBox="-500 -500 1000 1000" class="w-full">
           <circle r="450"></circle>
@@ -65,11 +65,11 @@
       
     </div>
     
-    <div class="w-fit block md:absolute backdrop-blur-xl z-20 border-primary-900/10 dark:border-primary-300/30 bg-primary-300/50 dark:bg-primary-700/10 duration-200 rounded-3xl border px-4 md:px-6 py-12">
+    <div class="w-fit max-w-3xl block lg:absolute backdrop-blur-xl z-20 border-primary-900/10 dark:border-primary-300/30 bg-primary-300/50 dark:bg-primary-700/10 duration-200 rounded-3xl border px-4 md:px-6 py-12">
       <h2 class="font-thin text-xs tracking-widest uppercase">
         <slot name="smltitle">Aidxn Design</slot>
       </h2>
-      <h1 class="font-medium md:tracking-tight tracking-tighter leading-snug text-2xl xs:text-4xl lg:text-5xl max-w-4xl my-6">
+      <h1 class="font-medium md:tracking-tight tracking-tighter leading-snug text-3xl sm:text-4xl lg:text-5xl max-w-4xl my-6">
         <slot name="title">Title</slot>
       </h1>
       <p class="hidden md:block text-sm xs:text-lg dark:text-primary-200/70 text-primary-950/70 leading-6 max-w-4xl mt-4 lg:mr-4">

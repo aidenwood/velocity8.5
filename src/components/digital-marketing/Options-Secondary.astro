@@ -39,22 +39,22 @@ const services = [
   <div class="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8">
     <div class="flex flex-col gap-4">
       <h4 class="text-center text-base lg:text-lg uppercase font-thin tracking-widest">More Marketing Services</h4>
-      <div class="grid gap-6 lg:gap-8 lg:grid-cols-2">
+      <div class="grid gap-6 lg:gap-8 sm:grid-cols-2">
         {
           services.map((service) => (
           <div>
             <a href={service.link}>
-              <div class="border-primary-900/10 dark:border-primary-300/10 hover:bg-primary-900/10 hover:dark:bg-primary-300/10 duration-200 rounded-3xl border px-4 md:px-6 py-8 h-full flex flex-col justify-center gap-4">
-                <p class="text-sm mb-8">{service.step}</p>
+              <div class="border-primary-900/10 dark:border-primary-300/10 hover:bg-primary-900/10 hover:dark:bg-primary-300/10 duration-200 rounded-3xl border px-4 py-8 md:px-6 md:py-12 h-full flex flex-col justify-center gap-4">
+                <p class="text-sm">{service.step}</p>
                 <div class="cursor-pointer flex flex-col">
                   <h3 class="text-xl font-medium tracking-tight my-6">{service.name}</h3>
-                  <p class="text-primary-950/70 dark:text-primary-200/70 text-base xs:text-lg">
+                  <p class="sm:hidden md:inline-block text-primary-950/70 dark:text-primary-200/70 text-base md:text-lg">
                     {service.description}
                   </p>
                   <div>
                     <a
                       href={service.link}
-                      class="mt-8 mr-2 bg-primary-600 dark:bg-primary-400 hover:bg-primary-700 dark:hover:bg-primary-300 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-400 dark:text-primary-950 inline-flex items-center justify-center rounded-full border border-transparent px-5 py-3 text-base font-medium text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+                      class="sm:hidden md:inline-block mt-8 mr-2 bg-primary-600 dark:bg-primary-400 hover:bg-primary-700 dark:hover:bg-primary-300 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-400 dark:text-primary-950 inline-flex items-center justify-center rounded-full border border-transparent px-5 py-3 text-base font-medium text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
                     >
                       {service.linktxt}
                     </a>
