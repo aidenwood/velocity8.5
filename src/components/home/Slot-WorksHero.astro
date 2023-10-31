@@ -17,13 +17,7 @@ display: flex;
   align-items: flex-start;
 }
 
-  @media screen and (max-width: 1199px) {
-  .hero {
-    height: 95vh;
-  }
-}
-
-.container {
+.contain {
   height: 100%;
   width: 100%;
   display: flex;
@@ -37,50 +31,45 @@ display: flex;
 
 
 <section class="hero px-2 xs:px-4 md:px-8">
-  <div class="container">
+  <div class="contain">   
+    <div class="backdrop-blur-2xl w-full z-20 border-primary-900/10 dark:border-primary-300/30 bg-primary-300/50 dark:bg-primary-700/10 duration-200 rounded-3xl border px-4 md:px-6 py-12">
+      <h2 class="font-thin text-xs tracking-widest uppercase">
+        <slot name="smltitle">Aidxn Design</slot>
+      </h2>
+      <h1 class="font-medium md:tracking-tight tracking-tighter leading-snug text-4xl lg:text-5xl my-6">
+        <slot name="title">Title</slot>
+      </h1>
+      <p class="hidden md:block text-sm xs:text-lg dark:text-primary-200/70 text-primary-950/70 leading-6 max-w-4xl mt-4 lg:mr-4">
+        <slot name="desc">Some description goes here</slot>
+      </p>        
+      <a
+        href="/contact"
+        class="mt-4 md:mt-8 mr-4 bg-primary-600 dark:bg-primary-400 hover:bg-primary-700 dark:hover:bg-primary-300 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-400 dark:text-primary-950 inline-flex items-center justify-center rounded-full border border-transparent px-5 py-3 text-base font-medium text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+      >
+        Contact
+      </a>
+    </div>
 
-    
-       
-        <div class="backdrop-blur-xl z-20 border-primary-900/10 dark:border-primary-300/50 bg-primary-300/50 dark:bg-primary-700/10 duration-200 rounded-3xl border px-4 md:px-6 py-12">
-          <h2 class="font-thin text-xs tracking-widest uppercase">
-            <slot name="smltitle">Aidxn Design</slot>
-          </h2>
-          <h1 class="font-medium lg:text-5xl md:tracking-tight text-3xl tracking-tighter xl:text-6xl xs:text-4xl my-6 leading-9">
-            <slot name="title">Title</slot>
-          </h1>
-          <p class="text-base xs:text-lg dark:text-primary-200/70 text-primary-950/70 leading-6 max-w-6xl mt-4 lg:mr-4">
-            <slot name="desc">Some description goes here</slot>
-          </p>        
-          <a
-            href="/contact"
-            class="mt-8 mr-4 bg-primary-600 dark:bg-primary-400 hover:bg-primary-700 dark:hover:bg-primary-300 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-400 dark:text-primary-950 inline-flex items-center justify-center rounded-full border border-transparent px-5 py-3 text-base font-medium text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
-          >
-            Contact
-          </a>
-        </div>
-
-         <div class="w-1/2 absolute -z-50">
-              
-          <div id="animationWrapper" translate="no" transition:name="meridian">
-            <svg viewBox="-500 -500 1000 1000" class="w-full">
-              <circle r="450"></circle>
-              <circle class="equator" r="450"></circle>
-              <circle class="meridian" r="450" style="--start:165deg; --end:180deg"></circle>
-              <circle class="meridian" r="450" style="--start:150deg; --end:165deg"></circle>
-              <circle class="meridian" r="450" style="--start:135deg; --end:150deg"></circle>
-              <circle class="meridian" r="450" style="--start:120deg; --end:135deg"></circle>
-              <circle class="meridian" r="450" style="--start:105deg; --end:120deg"></circle>
-              <circle class="meridian" r="450" style="--start:90deg; --end:105deg"></circle>
-              <circle class="meridian" r="450" style="--start:75deg; --end:90deg"></circle>
-              <circle class="meridian" r="450" style="--start:60deg; --end:75deg"></circle>
-              <circle class="meridian" r="450" style="--start:45deg; --end:60deg"></circle>
-              <circle class="meridian" r="450" style="--start:30deg; --end:45deg"></circle>
-              <circle class="meridian" r="450" style="--start:15deg; --end:30deg"></circle>
-              <circle class="meridian" r="450" style="--start:0deg; --end:15deg"></circle>
-            </svg>
-          </div>
-          
-        </div>
+    <div class="w-full  xl:w-1/2 absolute object-center -z-50">      
+      <div id="animationWrapper" translate="no" transition:name="meridian">
+        <svg viewBox="-500 -500 1000 1000" class="w-full">
+          <circle r="450"></circle>
+          <circle class="equator" r="450"></circle>
+          <circle class="meridian" r="450" style="--start:165deg; --end:180deg"></circle>
+          <circle class="meridian" r="450" style="--start:150deg; --end:165deg"></circle>
+          <circle class="meridian" r="450" style="--start:135deg; --end:150deg"></circle>
+          <circle class="meridian" r="450" style="--start:120deg; --end:135deg"></circle>
+          <circle class="meridian" r="450" style="--start:105deg; --end:120deg"></circle>
+          <circle class="meridian" r="450" style="--start:90deg; --end:105deg"></circle>
+          <circle class="meridian" r="450" style="--start:75deg; --end:90deg"></circle>
+          <circle class="meridian" r="450" style="--start:60deg; --end:75deg"></circle>
+          <circle class="meridian" r="450" style="--start:45deg; --end:60deg"></circle>
+          <circle class="meridian" r="450" style="--start:30deg; --end:45deg"></circle>
+          <circle class="meridian" r="450" style="--start:15deg; --end:30deg"></circle>
+          <circle class="meridian" r="450" style="--start:0deg; --end:15deg"></circle>
+        </svg>
+      </div>
       
+    </div>
   </div>
 </section>

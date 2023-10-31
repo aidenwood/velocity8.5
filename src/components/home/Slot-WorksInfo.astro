@@ -19,7 +19,7 @@ padding-top: 120px;
   }
 }
 
-.container {
+.contain {
   height: 100%;
   width: 100%;
   display: flex;
@@ -49,21 +49,21 @@ padding-top: 120px;
 
 <section class="hero px-2 xs:px-4 md:px-8">
   
-  <div class="container fade-in">
+  <div class="contain fade-in">
     <h4 class="font-thin text-xs tracking-widest uppercase">
       <slot name="smltitle">Aidxn Design</slot>
     </h4>
-    <h3 class="font-medium lg:text-5xl md:tracking-tight text-3xl tracking-tighter xl:text-6xl xs:text-4xl my-6">
+    <h3 class="font-medium md:tracking-tighttracking-tighter text-2xl lg:text-3xl my-4">
       <slot name="title">Title</slot>
     </h3>
-    <p class="text-base xs:text-lg dark:text-primary-200/70 text-primary-950/70 leading-6 max-w-6xl mt-4 lg:mr-4">
+    <p class="text-base xs:text-lg dark:text-primary-200/70 text-primary-950/70 leading-6 max-w-6xl">
       <slot name="desc">Some description goes here</slot>
     </p>        
   </div>
 
   <!-- Perfect Gallery Tailwind Velocity8 - Start -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-2 xs:gap-4 my-8">
-          <div class="">
+          <div>
             <!-- img_01 -->
             <slot name="cover"></slot>
           </div>
