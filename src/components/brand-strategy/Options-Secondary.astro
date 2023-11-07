@@ -43,7 +43,7 @@ const services = [
         {
           services.map((service) => (
           <div>
-            <a href={service.link}>
+            <a rel="canonical" href={service.link}>
               <div class="border-primary-900/10 dark:border-primary-300/10 hover:bg-primary-900/10 hover:dark:bg-primary-300/10 duration-200 rounded-3xl border px-4 py-8 md:px-6 md:py-12 h-full flex flex-col justify-center gap-4">
                 <p class="text-sm">{service.step}</p>
                 <div class="cursor-pointer flex flex-col gap-4">
