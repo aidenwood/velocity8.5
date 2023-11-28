@@ -1,0 +1,20 @@
+<section class="py-36 bg-primary-900 text-white dark:text-primary-900 dark:bg-primary-400 text-center">
+  <div class="flex flex-col gap-6 w-full px-4 sm:px-6 lg:px-8 my-8 mx-auto pb-8">
+    <h4 class="font-thin text-base tracking-widest uppercase">
+      <slot name="smltitle">Aidxn Design</slot>
+    </h4>
+    <h3 class="font-medium md:tracking-tighttracking-tighter text-2xl lg:text-3xl">
+      <slot name="title">Title</slot>
+    </h3>
+    <p class="text-base xs:text-lg leading-6 max-w-4xl mx-auto">
+      <slot name="desc">Some description goes here</slot>
+    </p>        
+  </div>
+
+  <div class="px-4 sm:px-6 lg:px-8 border border-primary-100 hover:bg-primary-300/10 dark:border-primary-900 dark:hover:bg-primary-900/10 duration-200 w-fit m-auto rounded-2xl">
+    <div class="w-56 mx-auto m-8">
+      <!-- img_01 -->
+      <slot name="cover"></slot>
+    </div>
+  </div>
+</section>

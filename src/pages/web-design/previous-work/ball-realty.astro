@@ -5,6 +5,7 @@ import SectionInfo from "../../../components/previous-works/Slot-WorksInfo.astro
 import SectionInfoLong from "../../../components/previous-works/Slot-WorksInfoLong.astro";
 import SlotEndHero from '../../../components/previous-works/Slot-WorksHeroCta.astro';
 import BlogPosts from '../../../components/home/BlogPosts.astro';
+import ColourBlock from "../../../components/previous-works/Slot-WorksColourBlock.astro";
 
 import SectionHeadSecImg from "../../../components/home/slot-img-rev.astro";
 import Process from '../../../components/home/Process.astro';
@@ -32,6 +33,25 @@ import BlogPost from '../../../components/home/Slot-BlogPost.astro';
       </Fragment>
     </SlotHero>
 
+    <ColourBlock>
+      <Fragment slot="smltitle">
+        Wordpress Website Design and Marketing Management
+      </Fragment>
+      <Fragment slot="title">
+        Improving Competitiveness in the Real Estate Industry.
+      </Fragment>
+      <Fragment slot="desc">
+        Improving market share and competitiveness for a Gold Coast real estate business, through Wordpress website optimisation, interactive ads, and much more.
+      </Fragment>
+      <Fragment slot="cover">
+      <a href="https://ballrealty.com.au/">
+        <img
+        :src="$store.theme.isDark ? '/logos/ball-realty.svg' : '/logos/ball-realty-greyed.svg'"
+          class=""
+        />
+      </a>
+      </Fragment>
+    </ColourBlock>
     
     <SectionInfo>
       <Fragment slot="smltitle">

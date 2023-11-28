@@ -5,6 +5,7 @@ import SectionInfo from "../../../components/previous-works/Slot-WorksInfo.astro
 import SectionInfoLong from "../../../components/previous-works/Slot-WorksInfoLong.astro";
 import SlotEndHero from '../../../components/previous-works/Slot-WorksHeroCta.astro';
 import BlogPosts from '../../../components/home/BlogPosts.astro';
+import ColourBlock from "../../../components/previous-works/Slot-WorksColourBlock.astro";
 
 import SectionHeadSecImg from "../../../components/home/slot-img-rev.astro";
 import Process from '../../../components/home/Process.astro';
@@ -31,6 +32,26 @@ import BlogPost from '../../../components/home/Slot-BlogPost.astro';
         Esteem Clinics approached me with a challenge – to breathe new life into a 25 year old brand and optimise a multi-platform website. presence and create a captivating website that reflects their commitment to beauty and wellness.
       </Fragment>
     </SlotHero>
+
+    <ColourBlock>
+      <Fragment slot="smltitle">
+        Wordpress Website Design and Optimisation
+      </Fragment>
+      <Fragment slot="title">
+        Improving Lead Generation through Wordpress Web Design.
+      </Fragment>
+      <Fragment slot="desc">
+        Quickly improving the performance and design of Esteem Clinics website led to a massive boost in brand reception with new customers, and a higher return rate with previous customers.
+      </Fragment>
+      <Fragment slot="cover">
+      <a href="https://esteemclinic.com.au/">
+        <img
+        :src="$store.theme.isDark ? '/logos/estem.svg' : '/logos/esteem-greyed.svg'"
+          class=""
+        />
+      </a>
+      </Fragment>
+    </ColourBlock>
 
     
     <SectionInfo>

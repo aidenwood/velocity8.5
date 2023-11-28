@@ -1,0 +1,137 @@
+---
+import Cta from '../../../components/home/Cta-Contact.astro';
+import SlotHero from '../../../components/previous-works/Slot-WorksHero.astro';
+import SectionInfo from "../../../components/previous-works/Slot-WorksInfo.astro";
+import SectionInfoLong from "../../../components/previous-works/Slot-WorksInfoLong.astro";
+import SlotEndHero from '../../../components/previous-works/Slot-WorksHeroCta.astro';
+import BlogPosts from '../../../components/home/BlogPosts.astro';
+import ColourBlock from "../../../components/previous-works/Slot-WorksColourBlock.astro";
+
+import SectionHeadSecImg from "../../../components/home/slot-img-rev.astro";
+import Process from '../../../components/home/Process.astro';
+import FirstProcess from '../../../components/home/Process-Sml.astro';
+import Layout from '../../../layouts/Layout.astro';
+import Pricing from '../../../components/pricing/PricingTable-Shopify.astro';
+import BlogPost from '../../../components/home/Slot-BlogPost.astro';
+
+---
+
+<Layout
+  description="We have been building custom websites that run on the Shopify platform for over 6 years. One of the leaders in e-commerce management with powerful tools for easy integrations, it absolutely is a winner for larger scale business. Speak to us about a custom Shopify website design today."
+  title="The Boogie Collective · Previous Work · Aidxn Web Design"
+>
+
+    <SlotHero>
+      <Fragment slot="smltitle">
+        The Boogie Collective
+      </Fragment>
+      <Fragment slot="title">
+        E-Commerce Powered Web Design and Digital Marketing for an Event Website.
+      </Fragment>
+      <Fragment slot="desc">
+        Imagine generating $50k in sales for your event without spending a single dollar on advertising. It’s possible with the power of viral marketing. In the events industry, viral marketing can be a game-changer, enabling you to reach a massive audience and create buzz around your event. In this post, we’ll explore effective strategies to leverage viral marketing and achieve remarkable results.
+      </Fragment>
+    </SlotHero>
+
+    <ColourBlock>
+      <Fragment slot="smltitle">
+        Wordpress Website Design and Marketing Management
+      </Fragment>
+      <Fragment slot="title">
+        Viral Marketing for Generating Over $50k in Sales, $0 in Ad Spend.
+      </Fragment>
+      <Fragment slot="desc">
+        Improving market share and competitiveness for a Gold Coast real estate business, through Wordpress website optimisation, interactive ads, and much more.
+      </Fragment>
+      <Fragment slot="cover">
+      <a href="https://theboogiecollective.com/">
+        <img
+        :src="$store.theme.isDark ? '/logos/boogie-collective.svg' : '/logos/tbc-logo-greyed.svg'"
+          class=""
+        />
+      </a>
+      </Fragment>
+    </ColourBlock>
+    
+    <SectionInfo>
+      <Fragment slot="smltitle">
+        Viral Marketing Strategies
+      </Fragment>
+      <Fragment slot="title">
+        Custom Web Design in the Events Industry.
+      </Fragment>
+      <Fragment slot="desc">
+        The key to viral marketing is creating content that is shareable and sparks curiosity. Develop engaging videos, captivating images, or intriguing stories that pique the interest of your target audience. Incorporate elements of surprise, humor, or emotional appeal to make your content more likely to be shared across social media platforms. Remember, shareable content has the potential to reach thousands or even millions of people organically.
+      </Fragment>
+      <Fragment slot="cover">
+        <img
+          src="/works/ax-sqr-boog.webp"
+          class="rounded-lg"
+        />
+      </Fragment>
+      <Fragment slot="cover2">
+        <img
+          src="/works/video-musicians.webp"
+          class="rounded-lg"
+        />
+      </Fragment>
+    </SectionInfo>
+
+    <SectionInfoLong>
+      <Fragment slot="smltitle">
+        Marketing Campaign Strategies for Reducing Ad Spend
+      </Fragment>
+      <Fragment slot="title">
+        Encouraging Viralality to Marketing.
+      </Fragment>
+      <Fragment slot="desc">
+        Engagement is key to building a viral marketing campaign. Find creative ways to involve your target audience in the event planning process. Encourage them to contribute ideas, vote on event features, or participate in challenges or competitions related to your event. This not only generates excitement but also creates a sense of ownership and community around your event. Engaged participants are more likely to share their experiences and promote your event to their networks.
+        Collaborating with influencers in the events industry can significantly amplify your viral marketing efforts. Identify influencers who align with your event’s theme and target audience. Engage them to promote your event through sponsored posts, live videos, or attending as guest speakers. Influencers have established followings and can help generate buzz and reach a wider audience, resulting in increased ticket sales and event participation.
+      </Fragment>
+      <Fragment slot="desc2">
+        User-generated content is a powerful tool for viral marketing. Encourage event attendees to share their experiences through photos, videos, or testimonials. Create interactive elements at your event that prompt attendees to capture and share their moments on social media. Highlight the best user-generated content on your event’s website or social media channels to showcase the excitement and authenticity surrounding your event.
+      </Fragment>
+    </SectionInfoLong>
+
+    <SectionInfo>
+      <Fragment slot="smltitle">
+        Marketing Strategies Specific to your Industry
+      </Fragment>
+      <Fragment slot="title">
+        Social Media Focused Marketing
+      </Fragment>
+      <Fragment slot="desc">
+        Social media platforms are a viral marketer’s best friend. Identify the platforms that are most relevant to your target audience and establish a strong presence there. Encourage event attendees and enthusiasts to share their excitement about your event on social media by creating event-specific hashtags and running contests or giveaways. Engage with your audience, respond to their comments, and amplify their posts to further extend the reach of your event’s messaging.
+      </Fragment>
+      <Fragment slot="cover">
+        <img
+          src="/works/cube-3d.webp"
+          class="rounded-lg w-full"
+        />
+      </Fragment>
+      <Fragment slot="cover2">
+        <img
+          src="/works/traffic-improvement.webp"
+          class="w-full rounded-lg"
+        />
+      </Fragment>
+    </SectionInfo>
+
+
+    <SlotEndHero>
+      <Fragment slot="smltitle">
+        Want to Generate More Sales?
+      </Fragment>
+      <Fragment slot="title">
+        Let's connect.
+      </Fragment>
+      
+    </SlotEndHero>
+    
+
+
+  <Process />
+
+  <BlogPosts />
+
+</Layout>
