@@ -3,64 +3,15 @@
 <style>
   svg{width:100%;height:100%;perspective:50px}circle{stroke:#26003A;stroke-width:8px;fill:none}.equator{stroke:#a600ff;transform:rotateZ(-20deg) rotateX(125deg)}.meridian{animation:2s linear infinite turn;transform:rotateZ(-20deg) rotateX(35deg) rotateY(var(--start))}@keyframes turn{100%{transform:rotateZ(-20deg) rotateX(35deg) rotateY(var(--end))}}
 
-/* Full Width Section CSS */
-.hero {
-  max-width: 1280px;
-  margin: 0 auto;
-  height: calc(100vh - 90px);
-  min-height: fit-content;
-  display: flex;
-  flex-direction: column;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -ms-flex-align: center;
-  align-items: flex-start;
-}
+#heroArea { min-height: 90vh; display: flex; justify-content: center; align-items: center; padding: 30px 0; }
+#contain { max-width: 1920px; }
 
-@media screen and (max-width: 968px) {
-  .hero {
-    height: calc(100vh - 70px);
-  }
-}
-
-@media screen and (max-width: 568px) {
-  .hero {
-    height: calc(100vh - 60px);
-  }
-}
-
-.contain {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -ms-flex-align: center;
-  align-items: flex-start;
-}
-
-svg {
-  max-height: 90vh;
-}
-
-@media screen and (max-width: 1024px) {
-  svg {
-    max-height: 80vh;
-  }
-}
-
-@media screen and (max-width: 968px) {
-  svg {
-    margin-top: -20vh;
-  }
-}
 </style>
 
 
-<section class="hero px-2 xs:px-4 md:px-8">
-  <div class="contain">
-    <div id="spinner" class="w-full lg:w-5/6 mx-auto lg:mr-0 -z-50">      
+<section id="heroArea" class="">
+  <div id="contain" class="w-full px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row-reverse justify-center items-center">
+    <div id="spinner" class="w-full md:w-1/2 lg:w-2/5 mx-auto lg:mr-0 -z-50">      
       <div id="animationWrapper" translate="no" transition:name="meridian">
         <svg viewBox="-500 -500 1000 1000" class="w-full">
           <circle r="450"></circle>
@@ -82,11 +33,11 @@ svg {
       
     </div>
     
-    <div id="intro" class="w-full lg:w-fit block lg:absolute backdrop-blur-xl z-20 border-primary-900/10 dark:border-primary-300/30 bg-primary-300/50 dark:bg-primary-700/10 duration-200 rounded-3xl border px-4 md:px-6 py-12">
-      <h2 class="font-thin text-xs tracking-widest uppercase">
+    <div id="intro" class="w-full lg:w-3/5 h-fit backdrop-blur-xl z-20 border-primary-900/10 dark:border-primary-300/30 bg-primary-300/50 dark:bg-primary-700/10 duration-200 rounded-3xl border px-4 md:px-6 py-12">
+      <h2 class="font-thin text-base tracking-widest uppercase">
         <slot name="smltitle">Aidxn Design</slot>
       </h2>
-      <h1 class="font-medium md:tracking-tight tracking-tighter leading-snug text-2xl sm:text-4xl lg:text-5xl max-w-4xl mt-6 md:my-6">
+      <h1 class="font-medium md:tracking-tight tracking-tighter leading-snug text-3xl sm:text-4xl max-w-5xl mt-6 md:my-6">
         <slot name="title">Title</slot>
       </h1>
       <p class="text-sm xs:text-lg dark:text-primary-200/70 text-primary-950/70 leading-6 max-w-4xl mt-4 lg:mr-4">

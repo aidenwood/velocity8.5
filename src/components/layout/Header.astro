@@ -39,6 +39,7 @@ const links = [
 #logo, #bookBtn, #navContainer {
   transition: 0.2s;
 }
+#navContainer { max-width: 1920px; }
 </style>
 
 <header id="navbar"
@@ -47,7 +48,7 @@ const links = [
   :class="{ 'bg-violet-200/50 dark:bg-violet-900/50': open, 'bg-primary-300/20 dark:bg-primary-700/20': !(open) }"
 >
   <div id="navContainer"
-    class="mx-auto w-full lg:max-w-7xl flex items-center justify-between px-2 xs:px-4 md:px-8 py-1 sm:py-2"
+    class="mx-auto w-full flex items-center justify-between px-4 sm:px-6 lg:px-8 py-1 sm:py-2"
   >
     <!-- Brand logo -->
     <div class="flex my-2">

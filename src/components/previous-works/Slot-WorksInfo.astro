@@ -1,59 +1,10 @@
-<!-- SVG CSS and Animate for Aidxn Moving Logo -->
-<!-- Velocity8 Large Slider Settings -->
-<style>
-  svg{width:100%;height:100%;perspective:50px}circle{stroke:#26003A;stroke-width:8px;fill:none}.equator{stroke:#a600ff;transform:rotateZ(-20deg) rotateX(125deg)}.meridian{animation:2s linear infinite turn;transform:rotateZ(-20deg) rotateX(35deg) rotateY(var(--start))}@keyframes turn{100%{transform:rotateZ(-20deg) rotateX(35deg) rotateY(var(--end))}}
-
-
-/* Full Width Section CSS */
-.hero {
-max-width: 1280px;
-margin: 0 auto;
-margin-bottom: 180px;
-margin-top: 120px;
-}
-
-  @media screen and (max-width: 1199px) {
-  .hero {
-    margin-bottom: 120px;
-    margin-top: 80px;
-  }
-}
-
-.contain {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  -ms-flex-pack: center;
-  justify-content: flex-start;
-  -ms-flex-align: center;
-  align-items: flex-start;
-}
-
-.fade-in {
-    animation-duration: 300ms;
-}
-@keyframes .fade-in {
-  from {
-    opacity: 1;
-    transform: translate3d(0px, -30px, 0px);
-    }
-    to {
-        opacity: 0;
-        transform: none;
-    }
-}
-
-</style>
-
-
-<section class="hero px-2 xs:px-4 md:px-8">
+<section class="max-w-7xl mx-auto my-36">
   
-  <div class="contain fade-in">
-    <h4 class="font-thin text-xs tracking-widest uppercase">
+  <div class="flex flex-col gap-6 w-full px-4 sm:px-6 lg:px-8 my-8">
+    <h4 class="font-thin text-base tracking-widest uppercase">
       <slot name="smltitle">Aidxn Design</slot>
     </h4>
-    <h3 class="font-medium md:tracking-tighttracking-tighter text-2xl lg:text-3xl my-4">
+    <h3 class="font-medium md:tracking-tighttracking-tighter text-2xl lg:text-3xl">
       <slot name="title">Title</slot>
     </h3>
     <p class="text-base xs:text-lg dark:text-primary-200/70 text-primary-950/70 leading-6 max-w-6xl">
@@ -62,12 +13,12 @@ margin-top: 120px;
   </div>
 
   <!-- Perfect Gallery Tailwind Velocity8 - Start -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 xs:gap-4 my-8">
-          <div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 my-8 px-4 sm:px-6 lg:px-8">
+          <div class="shadow-md rounded-lg h-fit">
             <!-- img_01 -->
             <slot name="cover"></slot>
           </div>
-          <div>
+          <div class="shadow-md rounded-lg h-fit">
             <!-- img_03 -->
             <slot name="cover2"></slot>
           </div>

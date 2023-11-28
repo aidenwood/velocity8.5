@@ -4,6 +4,7 @@ import SlotHero from '../../../components/previous-works/Slot-WorksHero.astro';
 import SectionInfo from "../../../components/previous-works/Slot-WorksInfo.astro";
 import SectionInfoLong from "../../../components/previous-works/Slot-WorksInfoLong.astro";
 import SlotEndHero from '../../../components/previous-works/Slot-WorksHeroCta.astro';
+import BlogPosts from '../../../components/home/BlogPosts.astro';
 
 import SectionHeadSecImg from "../../../components/home/slot-img-rev.astro";
 import Process from '../../../components/home/Process.astro';
@@ -24,7 +25,7 @@ import BlogPost from '../../../components/home/Slot-BlogPost.astro';
         Esteem Clinics
       </Fragment>
       <Fragment slot="title">
-        Website redesign for a multi-clinic health care brand.
+        Wordpress Website Design refresh for a Gold Coast health care brand.
       </Fragment>
       <Fragment slot="desc">
         Esteem Clinics approached me with a challenge – to breathe new life into a 25 year old brand and optimise a multi-platform website. presence and create a captivating website that reflects their commitment to beauty and wellness.
@@ -45,62 +46,13 @@ import BlogPost from '../../../components/home/Slot-BlogPost.astro';
       <Fragment slot="cover">
         <img
           src="/works/e-comm-results.webp"
-          class="w-full rounded-2xl"
+          class="rounded-lg"
         />
       </Fragment>
       <Fragment slot="cover2">
         <img
           src="/works/facebook-marketing-results.png"
-          class="w-full rounded-2xl"
-        />
-      </Fragment>
-    </SectionInfo>
-
-    <SectionInfo>
-      <Fragment slot="smltitle">
-        Shopify Web Design: A New Avenue for Growth
-      </Fragment>
-      <Fragment slot="title">
-        Maximising e-commerce oppurtunity.
-      </Fragment>
-      <Fragment slot="desc">
-        Esteem Clinics wanted a fresh approach to their e-commerce strategy. By migrating their online store to the Shopify platform, I provided them with an efficient, user-friendly, and scalable solution. This transition significantly improved their ability to manage products, process orders, and provide a seamless shopping experience for their customers. Shopify's versatile platform allowed Esteem Clinics to accommodate future growth while maintaining a stunning online store that aligns with their brand identity.
-      </Fragment>
-      <Fragment slot="cover">
-        <img
-          src="/works/ax-sqr-estemshop.webp"
-          class="rounded-2xl"
-        />
-      </Fragment>
-      <Fragment slot="cover2">
-        <img
-          src="/works/cpc-results.webp"
-          class="object-cover object-center rounded-2xl"
-        />
-      </Fragment>
-    </SectionInfo>
-
-
-    <SectionInfo>
-      <Fragment slot="smltitle">
-        Wordpress Web Design and Optimisation
-      </Fragment>
-      <Fragment slot="title">
-        Consumer-centric UX web design.
-      </Fragment>
-      <Fragment slot="desc">
-        In conjunction with the e-commerce aspect, I revamped Esteem Clinics' content and engagement strategy. WordPress emerged as the perfect tool for creating a blog and resource center. Esteem Clinics can now share industry insights, beauty tips, and updates with their audience, establishing themselves as experts in their field. This content-driven approach not only enhances user engagement but also improves SEO rankings.
-      </Fragment>
-      <Fragment slot="cover">
-        <img
-          src="/works/ax-sqr-estem.webp"
-          class="w-full rounded-2xl"
-        />
-      </Fragment>
-      <Fragment slot="cover2">
-        <img
-          src="/works/e-comm-results.webp"
-          class="w-full rounded-2xl"
+          class="rounded-lg"
         />
       </Fragment>
     </SectionInfo>
@@ -120,6 +72,56 @@ import BlogPost from '../../../components/home/Slot-BlogPost.astro';
       </Fragment>
     </SectionInfoLong>
 
+    <SectionInfo>
+      <Fragment slot="smltitle">
+        Wordpress Web Design and Optimisation
+      </Fragment>
+      <Fragment slot="title">
+        Consumer-centric UX web design.
+      </Fragment>
+      <Fragment slot="desc">
+        In conjunction with the e-commerce aspect, I revamped Esteem Clinics' content and engagement strategy. WordPress emerged as the perfect tool for creating a blog and resource center. Esteem Clinics can now share industry insights, beauty tips, and updates with their audience, establishing themselves as experts in their field. This content-driven approach not only enhances user engagement but also improves SEO rankings.
+      </Fragment>
+      <Fragment slot="cover">
+        <img
+          src="/works/ax-sqr-estem.webp"
+          class="rounded-lg w-full"
+        />
+      </Fragment>
+      <Fragment slot="cover2">
+        <img
+          src="/works/e-comm-results.webp"
+          class="w-full rounded-lg"
+        />
+      </Fragment>
+    </SectionInfo>
+
+    <SectionInfo>
+      <Fragment slot="smltitle">
+        Shopify Web Design: A New Avenue for Growth
+      </Fragment>
+      <Fragment slot="title">
+        Maximising e-commerce oppurtunity.
+      </Fragment>
+      <Fragment slot="desc">
+        Esteem Clinics wanted a fresh approach to their e-commerce strategy. By migrating their online store to the Shopify platform, I provided them with an efficient, user-friendly, and scalable solution. This transition significantly improved their ability to manage products, process orders, and provide a seamless shopping experience for their customers. Shopify's versatile platform allowed Esteem Clinics to accommodate future growth while maintaining a stunning online store that aligns with their brand identity.
+      </Fragment>
+      <Fragment slot="cover">
+        <img
+          src="/works/ax-sqr-estemshop.webp"
+          class="rounded-lg"
+        />
+      </Fragment>
+      <Fragment slot="cover2">
+        <img
+          src="/works/cpc-results.webp"
+          class="rounded-lg"
+        />
+      </Fragment>
+    </SectionInfo>
+
+    
+
     <SlotEndHero>
       <Fragment slot="smltitle">
         Ask anything, obligation-free
@@ -131,6 +133,7 @@ import BlogPost from '../../../components/home/Slot-BlogPost.astro';
     </SlotEndHero>
 
   <Process />
-  <Cta />
+
+  <BlogPosts />
 
 </Layout>

@@ -3,13 +3,15 @@
 <!-- Velocity8 Large Slider Settings -->
 <style>
   svg{width:100%;height:100%;perspective:50px}circle{stroke:#26003A;stroke-width:8px;fill:none}.equator{stroke:#a600ff;transform:rotateZ(-20deg) rotateX(125deg)}.meridian{animation:2s linear infinite turn;transform:rotateZ(-20deg) rotateX(35deg) rotateY(var(--start))}@keyframes turn{100%{transform:rotateZ(-20deg) rotateX(35deg) rotateY(var(--end))}}
+  #heroArea { min-height: 90vh; display: flex; justify-content: center; align-items: center; padding: 30px 0; }
+  #contain { max-width: 1920px; }
 </style>
 
-<section id="area" class="mt-8 lg:my-56">
-  <div class="mx-auto px-4 sm:px-6 w-full lg:max-w-7xl lg:px-8">
-    <div class="flex flex-col gap-16">
-      <div class="flex flex-col lg:flex-row-reverse items-start lg:items-center gap-8 sm:gap-10">
-        <div class="w-full md:w-1/2 lg:w-1/3 items-start">
+<section id="heroArea" class="">
+  <div id="contain" class="mx-auto px-4 sm:px-6 w-full lg:px-8">
+    <div class="">
+      <div class="flex flex-col xl:flex-row-reverse items-start lg:items-center gap-12">
+        <div class="w-full md:w-1/5 lg:w-2/5 xl:w-1/2 items-start">
           
           <div id="animationWrapper" translate="no" transition:name="meridian">
             <svg viewBox="-500 -500 1000 1000" class="w-full">
@@ -31,30 +33,29 @@
           </div>
           
         </div>
-        <div class="w-full lg:w-2/3 gap-4">
-          <h1 class="text-xs uppercase font-thin tracking-widest pb-4">
-            Website Design, Branding & Marketing
+        <div class="w-full xl:w-2/3 gap-6">
+          <h1 class="text-xs md:text-base uppercase font-thin tracking-widest pb-4">
+            Website Design & Digital Marketing
           </h1>
-          <h2 class="font-medium tracking-tighter md:tracking-tight text-4xl sm:text-5xl md:text-7xl">
-            Code meets design
+          <h2 class="font-medium tracking-tighter md:tracking-tight text-3xl xs:text-4xl lg:text-6xl xl:text-7xl max-w-4xl">
+            Conversion-Focused Website Design.
           </h2>
-          <p class="text-primary-950/70 dark:text-primary-200/70 text-lg xs:text-xl max-w-3xl my-4">
-            Need someone dedicated to your business? 10+ years experience and all-inclusive service. A refreshing take on website and marketing management.
+          <p class="text-primary-950 dark:text-primary-200 text-lg xs:text-xl max-w-4xl my-4">
+            A true expert in web design, marketing and brand development. Creating Wordpress, Shopify and Custom websites for 10+ years. Face-to-face website design and marketing management. All-inclusive service to improve your brand and website in one place.
           </p>
           
-          
-          <a
-            href="https://billing.stripe.com/p/login/5kA4jQdGtb9m8N2fYY"
-            class="mt-6 mr-2 bg-primary-600 dark:bg-primary-400 hover:bg-primary-700 dark:hover:bg-primary-300 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-400 dark:text-primary-950 inline-flex items-center justify-center rounded-full border border-transparent px-5 py-3 text-base font-medium text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
-          >
-            Customer Portal
-          </a>
           <a
             href="https://g2ok5807scs.typeform.com/to/tCmzlDza?typeform-source=aidxn.com"
             class="mt-6 mr-2 bg-primary-600 dark:bg-primary-400 hover:bg-primary-700 dark:hover:bg-primary-300 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-400 dark:text-primary-950 inline-flex items-center justify-center rounded-full border border-transparent px-5 py-3 text-base font-medium text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
           >
-            Book
+            Book a Call
           </a>
+          <a
+          href="https://billing.stripe.com/p/login/5kA4jQdGtb9m8N2fYY"
+          class="mt-6 mr-2 bg-primary-600 dark:bg-primary-400 hover:bg-primary-700 dark:hover:bg-primary-300 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-400 dark:text-primary-950 inline-flex items-center justify-center rounded-full border border-transparent px-5 py-3 text-base font-medium text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+        >
+          Customer Portal
+        </a>
 
         </div>
       </div>
