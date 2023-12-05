@@ -1,21 +1,21 @@
 ---
+import Layout from '../layouts/Layout.astro';
 
 import Hero from '../components/home/Hero.astro';
 import Process from '../components/home/Process.astro';
 import WebExp from '../components/home/Web-Experience.astro';
-import WebGrid from '../components/home/Web-Grid.astro';
-import MoonSlide from '../components/home/Market-Grid.astro';
 import MoonIntro from '../components/home/Market-Intro.astro';
 import WebIntro from '../components/home/Web-Intro.astro';
-import About from '../components/home/About.astro';
+import Spacer from '../components/home/Section-End.astro';
 import CtaContact from '../components/home/Cta-Contact.astro';
 import PricingWeb from '../components/pricing/PricingTable-Web-Short.astro';
 import PricingMarket from '../components/pricing/PricingTable-Market-Short.astro';
 
 import BlogPosts from '../components/home/BlogPosts.astro';
 import Clients from '../components/home/Grid-Clients.astro';
-import Layout from '../layouts/Layout.astro';
-import HeroSliddy from '../components/home/Hero-Sliddy.astro';
+
+import WebSliddy from '../components/home/Hero-Sliddy-Web.astro';
+import MarketingSliddy from '../components/home/Hero-Sliddy-Marketing.astro';
 ---
 
 <Layout
@@ -24,21 +24,21 @@ import HeroSliddy from '../components/home/Hero-Sliddy.astro';
 >
   <Hero />
   <Process />
-  <HeroSliddy />
   <Clients />
-
-
+  <Spacer />
+  
   <WebIntro />
   <PricingWeb />
-  <WebGrid />
+  <WebSliddy />
+  <Spacer />
   
   <MoonIntro />
   <PricingMarket /> 
-  <MoonSlide />
-
+  <MarketingSliddy />
+  <Spacer />
+  
   <BlogPosts />
   <WebExp />
-  <About />
   <CtaContact />
 
 </Layout>
