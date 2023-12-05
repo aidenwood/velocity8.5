@@ -1,7 +1,7 @@
 ---
 import Cta from '../components/home/Cta-Contact.astro';
 import Options from '../components/brand-strategy/Options.astro';
-import Hero from '../components/home/Slot-CategoryHero.astro';
+import Hero from '../components/home/Slot-HeroFullscreen.astro';
 import IntroSec from '../components/brand-strategy/Intro-Webdesign-Sec.astro';
 import OptionsSec from '../components/brand-strategy/Options-Secondary.astro';
 import Grid from '../components/brand-strategy/Grid-Webdesign.astro';
@@ -13,6 +13,8 @@ import SectionHeadSecImg from "../components/home/slot-img-rev.astro";
 import Process from '../components/home/Process.astro';
 import FirstProcess from '../components/home/Process-Sml.astro';
 import Layout from '../layouts/Layout.astro';
+
+let backgroundUrl = 'url(/works/billboard-design.webp)' // Define image for Slot-HeroFullscreen and then call BackgroundURL in Section
 ---
 
 <Layout
@@ -20,15 +22,15 @@ import Layout from '../layouts/Layout.astro';
   title="Brand Strategy and Graphic Design · Aidxn Web Design"
 >
   
-<Hero>
+<Hero backgroundUrl={backgroundUrl}>
   <Fragment slot="smltitle">
-    Brand Strategy and Graphic Design
+    Brand Strategy & Graphic Design
   </Fragment>
   <Fragment slot="title">
-    Branding and graphic design
+    Improve Sales Through Design
   </Fragment>
   <Fragment slot="desc">
-    Effective branding is not just about a logo or a color palette; it's about telling your unique story and resonating with your target audience. With the right brand strategy, I'll help you establish a brand identity that communicates to your customer.
+    With the right brand strategy, I'll help you establish a brand identity that communicates to your customer.
   </Fragment>
 </Hero>
 

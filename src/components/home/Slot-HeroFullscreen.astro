@@ -1,24 +1,34 @@
-<!-- CSS -->
-<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+---
+export interface Props {
 
+backgroundUrl: string
+}
 
-<!-- JavaScript -->
-<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
-    
-<style>
+const {backgroundUrl} = Astro.props
+---    
+
+<style define:vars={{ backgroundUrl }}>
 
 .main-carousel {
   border: 1px black;
+  height: 1200px;
   max-width: 100vw;
-  height: 90vh;
-  max-height: 900px;
+  max-height: calc(100vh - 80px);
+  background-image: var(--backgroundUrl);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 @media only screen and (max-width: 768px) {
   .main-carousel {
-    height: 70vh;
-    max-height: 550px;
+    height: 900px;
+    max-height: calc(100vh - 65px);
   }
+}
+
+.carousel-container {
+  max-width: 1920px;
 }
 
 .carousel-cell {
@@ -42,10 +52,9 @@
   <div class="limit-container">
     <div class="main-carousel" data-flickity='{ "cellAlign": "left", "contain": true, "pageDots": false, "autoPlay": 2800, "imagesLoaded": true, "prevNextButtons": false, "wrapAround": true }'>
       
-      <div class="carousel-cell px-4 sm:px-6 lg:px-8"
-          style="background-image:url(/stock/outdoor-thirds.webp);">
-        <div class="carousel-container h-full w-full bg-slate-900/60 rounded-2xl backdrop-blur-xl max-w-3xl my-auto">
-          <div class="carousel-inner flex flex-col gap-4 sm:gap-6 px-4 sm:px-6 lg:px-8 py-8 sm:py-12 text-white">
+      <div class="carousel-cell px-4 sm:px-6 lg:px-8 py-8">
+        <div class="carousel-container h-full w-full m-auto">
+          <div class="carousel-inner flex flex-col  bg-primary-900/60 rounded-2xl backdrop-blur-xl max-w-4xl gap-4 sm:gap-6 px-4 sm:px-6 lg:px-8 py-8 sm:py-12 text-white">
             <h1 class="text-base uppercase font-thin tracking-widest">
               <slot name="smltitle">Title</slot>
             </h1>

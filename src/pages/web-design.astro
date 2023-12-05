@@ -1,7 +1,7 @@
 ---
 import Cta from '../components/home/Cta-Contact.astro';
 import Options from '../components/web-design/Options.astro';
-import Hero from '../components/home/Slot-CategoryHero.astro';
+import Hero from '../components/home/Slot-HeroFullscreen.astro';
 import IntroSec from '../components/web-design/Intro-Webdesign-Sec.astro';
 import OptionsSec from '../components/web-design/Options-Secondary.astro';
 import Grid from '../components/web-design/Grid-Webdesign.astro';
@@ -13,21 +13,24 @@ import Faq from '../components/web-design/Faq.astro';
 import Process from '../components/home/Process.astro';
 import FirstProcess from '../components/home/Process-Sml.astro';
 import Layout from '../layouts/Layout.astro';
+
+let backgroundUrl = 'url(/assets/placeholder.webp)' // Define image for Slot-HeroFullscreen and then call BackgroundURL in Section
+
 ---
 
 <Layout
   description="Web Design for Velocity, Shopify and Wordpress. Developed and maintained on the Gold Coast, reliably and in-person."
   title="Web Design · Aidxn Web Design"
 >
-<Hero>
+<Hero backgroundUrl={backgroundUrl}>
   <Fragment slot="smltitle">
-    Gold Coast Web Designer
+    Gold Coast Web Design
   </Fragment>
   <Fragment slot="title">
-    Website design from $2445
+    Custom Website design from $2445
   </Fragment>
   <Fragment slot="desc">
-    Building beautiful, fast-loading web experience for a range of industries. 10+ years experience. Working with a range of technologies to best suit your needs. 
+    Building beautiful, fast-loading websites that your customers will find easy to use. 10+ years experience. 100's of complete projects. 
   </Fragment>
 </Hero>
 

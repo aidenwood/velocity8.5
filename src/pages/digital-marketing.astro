@@ -1,7 +1,7 @@
 ---
 import Cta from '../components/home/Cta-Contact.astro';
 import Options from '../components/digital-marketing/Options.astro';
-import Hero from '../components/home/Slot-CategoryHero.astro';
+import Hero from '../components/home/Slot-HeroFullscreen.astro';
 import Intro from '../components/digital-marketing/Intro-Webdesign.astro';
 import OptionsSec from '../components/digital-marketing/Options-Secondary.astro';
 import Grid from '../components/digital-marketing/Grid-Marketing-Sec.astro';
@@ -14,6 +14,8 @@ import Process from '../components/home/Process.astro';
 import FirstProcess from '../components/home/Process-Sml.astro';
 
 import Layout from '../layouts/Layout.astro';
+
+let backgroundUrl = 'url(/works/billboard-design.webp)' // Define image for Slot-HeroFullscreen and then call BackgroundURL in Section
 ---
 
 <Layout
@@ -21,7 +23,7 @@ import Layout from '../layouts/Layout.astro';
   title="Digital Marketing Management · Aidxn Web Design"
 >
 
-<Hero>
+<Hero backgroundUrl={backgroundUrl}>
   <Fragment slot="smltitle">
     Physical & digital marketing management
   </Fragment>

@@ -1,10 +1,15 @@
 ---
 import Cta from '../components/home/Cta-Contact.astro';
-import SlotHero from '../components/home/Slot-PageHero.astro';
+import SlotHero from '../components/home/Slot-HeroFullscreen.astro';
 import SectionHeadImg from "../components/home/slot-img.astro";
 import SectionHeadSecImg from "../components/home/slot-img-rev.astro";
 import Process from '../components/home/Process.astro';
+import FirstProcess from '../components/home/Process-Sml.astro';
+
 import Layout from '../layouts/Layout.astro';
+
+let backgroundUrl = 'url(/works/br-mac-render-med.webp)' // Define image for Slot-HeroFullscreen and then call BackgroundURL in Section
+
 ---
 
 <Layout
@@ -12,18 +17,20 @@ import Layout from '../layouts/Layout.astro';
   title="Moonshot Plan · Aidxn Web Design"
 >
 
-    <SlotHero>
+    <SlotHero backgroundUrl={backgroundUrl}>
       <Fragment slot="smltitle">
-        Complete Website and Marketing Management
+        Complete website & marketing management
       </Fragment>
       <Fragment slot="title">
-        Improve your brand with complete website and marketing management.
+        Intense Marketing Optimisation
       </Fragment>
       <Fragment slot="desc">
-        Get all our services in one perfect package. With the ability to pause anytime, come back anytime. That way we push to keep performing to keep your business. No more agency traps with giant lock in contracts. 3 month minimum for first-time customers only.
+        Pause anytime intense daily optimisation of your website and all marketing avenues. For brands demanding serious results. 3 month minimum for first-time customers.
       </Fragment>
       
     </SlotHero>
+
+    <FirstProcess />
 
           <SectionHeadImg>
             <Fragment slot="smltitle">
