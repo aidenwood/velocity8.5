@@ -4,8 +4,7 @@ import Options from '../components/digital-marketing/Options.astro';
 import Hero from '../components/home/Slot-HeroFullscreen.astro';
 import Intro from '../components/digital-marketing/Intro-Webdesign.astro';
 import OptionsSec from '../components/digital-marketing/Options-Secondary.astro';
-import Grid from '../components/digital-marketing/Grid-Marketing-Sec.astro';
-import GridSec from '../components/digital-marketing/Grid-Marketing.astro';
+
 import IndentInfo from '../components/home/Slot-Indent-Info.astro';
 import SectionHeadImg from "../components/home/slot-img.astro";
 import SectionHeadSecImg from "../components/home/slot-img-rev.astro";
@@ -15,7 +14,7 @@ import FirstProcess from '../components/home/Process-Sml.astro';
 
 import Layout from '../layouts/Layout.astro';
 
-let backgroundUrl = 'url(/works/billboard-design.webp)' // Define image for Slot-HeroFullscreen and then call BackgroundURL in Section
+let backgroundUrl = 'url(/assets/placeholder.webp)' // Define image for Slot-HeroFullscreen and then call BackgroundURL in Section
 ---
 
 <Layout
@@ -28,18 +27,18 @@ let backgroundUrl = 'url(/works/billboard-design.webp)' // Define image for Slot
     Physical & digital marketing management
   </Fragment>
   <Fragment slot="title">
-    $8M+ in managed ad spend
+    $8M+ in Managed Ad Spend
   </Fragment>
   <Fragment slot="desc">
     Trust over 6 years experience in managing ad accounts across Google, Meta, and other platforms. With strategies that focus on extending the most life out of your ad budget, you can be assured we are a marketing agency you'll love and trust.
   </Fragment>
 </Hero>
 
-<FirstProcess />
-
 <Options />
 
 <OptionsSec />
+
+<FirstProcess />
 
 <SectionHeadImg>
   <Fragment slot="smltitle">
@@ -77,8 +76,6 @@ let backgroundUrl = 'url(/works/billboard-design.webp)' // Define image for Slot
   </Fragment>
 </SectionHeadSecImg>
 
-<Grid />
-
 <Faq />
 
 <IndentInfo>
@@ -101,7 +98,6 @@ let backgroundUrl = 'url(/works/billboard-design.webp)' // Define image for Slot
   </Fragment>
 </IndentInfo>
 
-<GridSec />
 
 <Cta />
 

@@ -14,7 +14,7 @@ import Process from '../components/home/Process.astro';
 import FirstProcess from '../components/home/Process-Sml.astro';
 import Layout from '../layouts/Layout.astro';
 
-let backgroundUrl = 'url(/assets/placeholder.webp)' // Define image for Slot-HeroFullscreen and then call BackgroundURL in Section
+let backgroundUrl = 'url(/works/br-mac-render-med.webp)' // Define image for Slot-HeroFullscreen and then call BackgroundURL in Section
 
 ---
 
@@ -24,19 +24,20 @@ let backgroundUrl = 'url(/assets/placeholder.webp)' // Define image for Slot-Her
 >
 <Hero backgroundUrl={backgroundUrl}>
   <Fragment slot="smltitle">
-    Gold Coast Web Design
+    Gold Coast Web Design Expert
   </Fragment>
   <Fragment slot="title">
-    Custom Website design from $2445
+    Web Design from $2445
   </Fragment>
   <Fragment slot="desc">
-    Building beautiful, fast-loading websites that your customers will find easy to use. 10+ years experience. 100's of complete projects. 
+    Building beautiful, fast-loading websites that your customers will love. Trust over 10 years of web design experience, 100's of complete projects and honest pricing.
   </Fragment>
 </Hero>
 
-  <FirstProcess />
   <Options />
   <OptionsSec />
+  
+  <FirstProcess />
 
   <SectionHeadImg>
     <Fragment slot="smltitle">
@@ -74,12 +75,9 @@ let backgroundUrl = 'url(/assets/placeholder.webp)' // Define image for Slot-Her
     </Fragment>
   </SectionHeadSecImg>
   
-  <IntroSec />
-
-  <GridSec />
+ 
   <Faq />
 
-  <Grid />
 
   <IndentInfo>
     <Fragment slot="title">
