@@ -9,16 +9,12 @@ import MoonIntro from '../components/home/Market-Intro.astro';
 import WebIntro from '../components/home/Web-Intro.astro';
 import About from '../components/home/About.astro';
 import CtaContact from '../components/home/Cta-Contact.astro';
-import Cta from '../components/home/Cta.astro';
 import PricingWeb from '../components/pricing/PricingTable-Web-Short.astro';
 import PricingMarket from '../components/pricing/PricingTable-Market-Short.astro';
 
 import BlogPosts from '../components/home/BlogPosts.astro';
-
-
 import Clients from '../components/home/Grid-Clients.astro';
 import Layout from '../layouts/Layout.astro';
-import SectionEnd from '../components/home/Section-End.astro';
 import HeroSliddy from '../components/home/Hero-Sliddy.astro';
 ---
 
@@ -27,21 +23,18 @@ import HeroSliddy from '../components/home/Hero-Sliddy.astro';
   title="Home · Aidxn Web Design"
 >
   <Hero />
-  <HeroSliddy />
   <Process />
+  <HeroSliddy />
   <Clients />
-  <SectionEnd />
 
 
   <WebIntro />
   <PricingWeb />
   <WebGrid />
-  <SectionEnd />
   
   <MoonIntro />
   <PricingMarket /> 
   <MoonSlide />
-  <SectionEnd />
 
   <BlogPosts />
   <WebExp />
