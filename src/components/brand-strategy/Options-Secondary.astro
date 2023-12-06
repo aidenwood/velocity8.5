@@ -45,10 +45,10 @@ const services = [
           <div>
             <a rel="canonical" href={service.link}>
               <div class="border-primary-900/10 dark:border-primary-300/10 hover:bg-primary-900/10 hover:dark:bg-primary-300/10 duration-200 rounded-3xl border px-4 py-8 md:px-6 md:py-12 h-full flex flex-col justify-center gap-4">
-                <p class="text-sm">{service.step}</p>
                 <div class="cursor-pointer flex flex-col gap-4">
+                  <p class="text-sm">{service.step}</p>
                   <h3 class="text-xl font-medium tracking-tight my-6">{service.name}</h3>
-                  <p class="sm:hidden md:inline-block text-primary-950/70 dark:text-primary-200/70 text-base md:text-lg">
+                  <p class="sm:hidden md:inline-block text-primary-950/70 dark:text-primary-200/70 text-base sm:text-lg">
                     {service.description}
                   </p>
                   <div>
