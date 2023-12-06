@@ -119,7 +119,7 @@ const bottomLinks = [
         <img
           class="h-8 xs:h-20 sm:h-24 w-auto"
           :src="$store.theme.isDark ? '/ax-logo-white.svg' : '/ax-logo-purp.svg'"
-          alt="Stone"
+          alt="Aidxn Design - Gold Coast Web Design"
         />
         <p class="text-primary-950 dark:text-primary-200 text-base xl:text-lg">
           Leaders on the Gold Coast in web design, SEO, graphic design and digital marketing.
@@ -133,13 +133,13 @@ const bottomLinks = [
         {
           bottomLinks.map((group) => (
             <div class="flex flex-col gap-4">
-              <p class="text-sm sm:text-base font-medium">{group.header}</p>
+              <p class="text-xl md:text-sm sm:text-base font-medium">{group.header}</p>
               <ul role="list" class="flex flex-col gap-3">
                 {group.links.map((link) => (
                   <li>
                     <a
                       href={link.href}
-                      class="focus-visible:outline-primary-950 dark:focus-visible:outline-primary-200 inline-flex items-center gap-1 rounded-md text-sm xl:text-base hover:underline focus-visible:outline focus-visible:outline-2"
+                      class="focus-visible:outline-primary-950 dark:focus-visible:outline-primary-200 inline-flex items-center gap-1 rounded-md text-lg md:text-sm xl:text-base hover:underline focus-visible:outline focus-visible:outline-2"
                       target={link.isExternal ? '_blank' : undefined}
                       rel={link.isExternal ? 'noopener' : undefined}
                     >
