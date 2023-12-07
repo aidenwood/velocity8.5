@@ -102,3 +102,19 @@ const canonicalURL = Astro.props.canonicalURL || new URL(Astro.url.pathname, Ast
     </script>
   </body>
 </html>
+<script>
+  window.onload = (event) => {
+    var elem = document.querySelector('.main-carousel');
+    var flkty = new Flickity( elem, {
+      // options
+      cellAlign: 'left',
+      contain: true,
+      autoPlay: 3200,
+      prevNextButtons: false,
+      imagesLoaded: true,
+      adaptiveHeight: true,
+      groupCells: '80%'
+    });
+    flkty.resize();
+  };
+  </script>
