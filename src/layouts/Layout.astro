@@ -17,6 +17,11 @@ const { description, title } = Astro.props;
 
 const canonicalURL = Astro.props.canonicalURL || new URL(Astro.url.pathname, Astro.site);
 ---
+<!-- CSS -->
+<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+
+<!-- JavaScript -->
+<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-MN4T5PXYLD"></script>
