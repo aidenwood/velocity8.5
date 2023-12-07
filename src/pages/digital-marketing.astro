@@ -1,9 +1,10 @@
 ---
 import Cta from '../components/home/Cta-Contact.astro';
 import Options from '../components/digital-marketing/Options.astro';
-import Hero from '../components/home/Slot-HeroFullscreen.astro';
+import Hero from '../components/home/Slot-HeroFullscreenSlider.astro';
 import Intro from '../components/digital-marketing/Intro-Webdesign.astro';
 import OptionsSec from '../components/digital-marketing/Options-Secondary.astro';
+import BlogPosts from '../components/home/BlogPosts.astro';
 
 import IndentInfo from '../components/home/Slot-Indent-Info.astro';
 import SectionHeadImg from "../components/home/slot-img.astro";
@@ -15,6 +16,8 @@ import FirstProcess from '../components/home/Process-Sml.astro';
 import Layout from '../layouts/Layout.astro';
 
 let backgroundUrl = 'url(/assets/placeholder.webp)' // Define image for Slot-HeroFullscreen and then call BackgroundURL in Section
+let backgroundUrl2 = 'url(/works/ax-sqr-cpc-results.webp)' // Define image for Slot-HeroFullscreen and then call BackgroundURL in Section
+let backgroundUrl3 = 'url(/works/gwd-interactive-ads.webp)' // Define image for Slot-HeroFullscreen and then call BackgroundURL in Section
 ---
 
 <Layout
@@ -22,19 +25,43 @@ let backgroundUrl = 'url(/assets/placeholder.webp)' // Define image for Slot-Her
   title="Digital Marketing · Aidxn Web Design"
 >
 
-<Hero backgroundUrl={backgroundUrl}>
+<Hero backgroundUrl={backgroundUrl} backgroundUrl2={backgroundUrl2} backgroundUrl3={backgroundUrl3}>
   <Fragment slot="smltitle">
     Digital Marketing Management
   </Fragment>
   <Fragment slot="title">
-    $8M+ in Managed Marketing Spend
+    $8M+ in Managed Marketing
   </Fragment>
   <Fragment slot="desc">
     Strategies that focus on extending the most life out of your ad budget. We get to know your target market like that back of our hand.
   </Fragment>
+
+  <Fragment slot="smltitle2">
+    Extending Advertising Budgets Further
+  </Fragment>
+  <Fragment slot="title2">
+    Intense A/B Creative Testing
+  </Fragment>
+  <Fragment slot="desc2">
+    Precise customer targeting and low-budget strategies for Google and Facebook. Save your budget thanks to the millions of dollars we have managed in digital marketing spend and the mistakes we've learned from on the way.
+  </Fragment>
+
+  <Fragment slot="smltitle3">
+    Display your ads on popular websites
+  </Fragment>
+  <Fragment slot="title3">
+    Interactive Ad Development
+  </Fragment>
+  <Fragment slot="desc3">
+    One of the most underutilised platforms in digital marketing is still Google Display, due to the effort it takes to develop a successful ad campaign here. With years of experience designing interactive HTML5 ads, I have made it faster.
+  </Fragment>
 </Hero>
 
 <FirstProcess />
+
+<Options />
+
+
 
 <SectionHeadImg>
   <Fragment slot="smltitle">
@@ -75,7 +102,7 @@ let backgroundUrl = 'url(/assets/placeholder.webp)' // Define image for Slot-Her
 </SectionHeadSecImg>
 
 
-<Options />
+<OptionsSec />
 
 
 <SectionHeadImg>
@@ -117,12 +144,10 @@ let backgroundUrl = 'url(/assets/placeholder.webp)' // Define image for Slot-Her
 </SectionHeadSecImg>
 
 
-<OptionsSec />
-
 <Faq />
 
 <Cta />
 
-<Process />
+<BlogPosts />
 
 </Layout>

@@ -12,6 +12,8 @@ import SectionHeadSecImg from "../components/home/slot-img-rev.astro";
 import Faq from '../components/web-design/Faq.astro';
 import Process from '../components/home/Process.astro';
 import FirstProcess from '../components/home/Process-Sml.astro';
+import BlogPosts from '../components/home/BlogPosts.astro';
+
 import Layout from '../layouts/Layout.astro';
 
 let backgroundUrl = 'url(/works/br-mac-render-med.webp)' // Define image for Slot-HeroFullscreen and then call BackgroundURL in Section
@@ -58,6 +60,9 @@ let backgroundUrl3 = 'url(/works/web-design.webp)' // Define image for Slot-Hero
   
   <FirstProcess />
 
+  <Options />
+
+
   <SectionHeadImg>
     <Fragment slot="smltitle">
       Web Design to help you sell more
@@ -82,7 +87,7 @@ let backgroundUrl3 = 'url(/works/web-design.webp)' // Define image for Slot-Hero
       Shopify & WooCommerce Experts
     </Fragment>
     <Fragment slot="title">
-      E-Commerce Optimisation Experts.
+      E-Commerce Optimisation.
     </Fragment>
     <Fragment slot="desc">
       E-commerce has revolutionized the way we shop and do business. If you're looking to dive into the world of online selling, I'm here to help. E-commerce web design is my forte, and I'll create an online store that not only looks fantastic but is also optimized for seamless transactions, secure payments, and excellent user experience. Say goodbye to cart abandonment and hello to increased sales. Organic lead generation is more than a buzzword – it's a pivotal aspect of your online success. Through my organic lead generation strategies, I ensure that your business attracts high-quality leads that genuinely care about your products or services. Get ready to experience lead generation like never before and watch your business grow.
@@ -96,10 +101,10 @@ let backgroundUrl3 = 'url(/works/web-design.webp)' // Define image for Slot-Hero
     </Fragment>
   </SectionHeadSecImg>
   
- 
-  <Options />
 
+  <OptionsSec />
 
+  
   <SectionHeadImg>
     <Fragment slot="smltitle">
       SEO-Focused Web Design
@@ -138,14 +143,12 @@ let backgroundUrl3 = 'url(/works/web-design.webp)' // Define image for Slot-Hero
     </Fragment>
   </SectionHeadSecImg>
 
-
-  <OptionsSec />
-
   
   <Cta />
 
   <Faq />
 
-  <Process />
+  <BlogPosts />
+
 
 </Layout>

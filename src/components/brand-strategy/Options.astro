@@ -38,22 +38,25 @@ const services = [
   },
 ];
 ---
+<style>
+  #contain { max-width: 1920px; }
+</style>
 
 <section class="my-28">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
+  <div id="contain" class="mx-auto px-4 sm:px-6 lg:px-8 w-full">
     <div class="flex flex-col gap-4">
-      <h4 class="text-center text-base lg:text-lg uppercase font-thin tracking-widest">Web Design Technologies</h4>
-      <div class="grid gap-6 grid-cols-1">
+      <h4 class="text-center text-base lg:text-lg uppercase font-thin tracking-widest">Graphic Design Services</h4>
+      <div class="grid gap-6 grid-cols-1 lg:grid-cols-2">
         {
           services.map((service) => (
           <div>
             <a rel="canonical" href={service.link}>
               <div class="border-primary-900/10 dark:border-primary-300/10 hover:bg-primary-900/10 hover:dark:bg-primary-300/10 duration-200 rounded-3xl border px-4 py-8 md:px-6 md:py-12 h-full flex flex-col-reverse sm:flex-row-reverse items-center gap-8">
-                <div class="w-full lg:w-3/4 cursor-pointer">  
+                <div class="w-full lg:w-2/3 cursor-pointer">  
                   <div class="flex flex-col gap-4">
-                    <p class="text-sm mb-8">{service.step}</p>
+                    <p class="text-sm">{service.step}</p>
                     <h2 class="text-xl md:text-2xl font-medium my-4">{service.name}</h2>
-                    <p class="sm:hidden md:inline-block text-primary-950/70 dark:text-primary-200/70 text-base xs:text-lg max-w-3xl">
+                    <p class="sm:hidden md:inline-block text-primary-950/80 dark:text-primary-200/80 text-base xs:text-lg max-w-3xl">
                       {service.description}
                     </p>
                     <div>
@@ -66,7 +69,7 @@ const services = [
                     </div>
                   </div>
                 </div>
-                <div class="w-full lg:w-1/4">
+                <div class="w-full lg:w-1/3">
                   <a href={service.link}>
                     <img class="cursor-pointer rounded-lg bg-primary-700" src={service.imgsrc} alt={service.description} />
                   </a>

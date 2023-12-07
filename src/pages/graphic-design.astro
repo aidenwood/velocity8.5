@@ -11,6 +11,8 @@ import Faq from '../components/brand-strategy/Faq.astro';
 import SectionHeadImg from "../components/home/slot-img.astro";
 import SectionHeadSecImg from "../components/home/slot-img-rev.astro";
 import Process from '../components/home/Process.astro';
+import BlogPosts from '../components/home/BlogPosts.astro';
+
 import FirstProcess from '../components/home/Process-Sml.astro';
 import Layout from '../layouts/Layout.astro';
 
@@ -35,7 +37,12 @@ let backgroundUrl = 'url(/works/billboard-design.webp)' // Define image for Slot
   </Fragment>
 </Hero>
 
+
 <FirstProcess />
+
+<Options />
+
+
 
 <SectionHeadImg>
   <Fragment slot="smltitle">
@@ -75,7 +82,9 @@ let backgroundUrl = 'url(/works/billboard-design.webp)' // Define image for Slot
   </Fragment>
 </SectionHeadSecImg>
 
-<Options />
+
+<OptionsSec />
+
 
 <SectionHeadImg>
   <Fragment slot="smltitle">
@@ -90,7 +99,7 @@ let backgroundUrl = 'url(/works/billboard-design.webp)' // Define image for Slot
   <Fragment slot="cover">
     <img
               src="/works/cube-3d.webp"
-              class="object-cover object-top w-full h-full"
+              class="object-cover w-full h-full"
               alt="Graphic design for all platforms from buses, billboards, Google Display / interactive ads, Facebook ad creatives in all sizes, and much more."
             />
   </Fragment>
@@ -115,7 +124,7 @@ let backgroundUrl = 'url(/works/billboard-design.webp)' // Define image for Slot
   </Fragment>
 </SectionHeadSecImg>
 
-<OptionsSec />
+
 
 <SectionHeadImg>
   <Fragment slot="smltitle">
@@ -159,6 +168,6 @@ let backgroundUrl = 'url(/works/billboard-design.webp)' // Define image for Slot
 
 <Faq />
 
-<Process />
+<BlogPosts />
   
 </Layout>
