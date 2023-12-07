@@ -2,7 +2,7 @@
 const pricing = [
   {
     name: 'Velocity Web Design',
-    description: 'Our high-performance web stack for custom website designs.',
+    description: 'Our custom, in-house website theme, developed over 6+ years. Includes everything you need for a website that generates sales and leads, for less.',
     periodicity: '+ GST',
     isFlagged: true,
     price: '$2445',
@@ -16,7 +16,7 @@ const pricing = [
   },
   {
     name: 'Wordpress Web Design',
-    description: 'High-performance Wordpress development and functionality setup.',
+    description: 'High-performance Wordpress development and functionality setup. 1 year of hosting included. Fairly priced ongoing website management available.',
     periodicity: '+ GST',
     price: '$3445',
     action: 'Buy Now',
@@ -32,7 +32,7 @@ const pricing = [
 
 <section class="my-28">
   <div class="mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-    <div class="-mt-8 grid gap-6 lg:mt-0 lg:grid-cols-2">
+    <div class="-mt-8 grid gap-6 lg:mt-0 md:grid-cols-2">
       {
         pricing.map((item) => (
           <div
@@ -41,9 +41,9 @@ const pricing = [
               item.isFlagged && 'bg-primary-500/10 dark:bg-primary-400/10',
             ]}
           >
-            <div class="flex-1">
+            <div class="flex flex-col gap-4">
               <h3 class="text-xl font-medium">{item.name}</h3>
-              <p class="mt-4 flex items-baseline">
+              <p class="flex items-baseline">
                 <span class="text-primary-950/70 dark:text-primary-200/70 mr-2 text-sm font-medium">
                   From 
                 </span> 
@@ -52,11 +52,11 @@ const pricing = [
                   {item.periodicity}
                 </span>
               </p>
-              <p class="text-primary-950/70 dark:text-primary-200/70 mt-6">{item.description}</p>
+              <p class="text-primary-950/80 dark:text-primary-200/80 text-base xs:text-lg">{item.description}</p>
 
-              <ul role="list" class="mt-6 space-y-6">
+              <ul role="list" class="mt-4 space-y-4">
                 {item.features.map((feature) => (
-                  <li class="flex gap-3">
+                  <li class="flex items-center gap-3 text-base">
                     <svg
                       class="text-primary-600 dark:text-primary-400 h-6 w-6 flex-shrink-0"
                       xmlns="http://www.w3.org/2000/svg"
@@ -71,12 +71,14 @@ const pricing = [
                 ))}
               </ul>
             </div>
-            <a
-              href={item.link}
-              class="bg-primary-600 dark:bg-primary-400 hover:bg-primary-700 dark:hover:bg-primary-300 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-400 dark:text-primary-950 inline-flex w-full items-center justify-center rounded-full border border-transparent px-5 py-3 text-base font-medium text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
-            >
-              More info
-            </a>
+            <div class="mt-2">
+              <a
+                href={item.link}
+                class="bg-primary-600 dark:bg-primary-400 hover:bg-primary-700 dark:hover:bg-primary-300 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-400 dark:text-primary-950 w-full items-center justify-center rounded-full border border-transparent px-5 py-4 text-base font-medium text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+              >
+                More info
+              </a>
+            </div>
           </div>
         ))
       }

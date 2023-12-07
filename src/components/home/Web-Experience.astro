@@ -33,7 +33,7 @@ const stats = [
                 Revise your design in-person
               </h4>
               <h3 class="text-3xl sm:text-4xl font-medium tracking-tight my-6">Expertise you can rely on.</h3>
-              <p class="text-primary-950/70 dark:text-primary-200/70 text-lg xs:text-xl">
+              <p class="text-primary-950/80 dark:text-primary-200/80 text-lg xs:text-xl">
                 Ditch the hot potato service of digital agencies for reliable, simplified service. 
               </p>
               <a
@@ -49,12 +49,12 @@ const stats = [
     </div>
     <div class="w-full flex flex-col justify-center gap-y-8">
 
-      <dl class="grid gap-4 grid-cols-2 my-8">
+      <dl class="grid gap-6 grid-cols-2 my-8">
         {
           stats.map((stat) => (
             <div class="border-primary-900/10 dark:border-primary-300/10 rounded-3xl border p-6">
-              <dt class="text-base">{stat.name}</dt>
-              <dd class="text-2xl md:text-3xl font-medium tracking-tight">{stat.value}</dd>
+              <dt class="text-base sm:text-lg">{stat.name}</dt>
+              <dd class="text-3xl md:text-4xl text-primary-600 dark:text-primary-300 font-medium tracking-tight">{stat.value}</dd>
             </div>
           ))
         }

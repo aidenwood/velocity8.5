@@ -57,14 +57,14 @@ const stats = [
     </div>
     <div class="w-full flex flex-col justify-center">
 
-      <dl class="grid xl:grid-cols-2 gap-6 my-12">
+      <dl class="grid md:grid-cols-2 gap-6 my-12">
         {
           stats.map((stat) => (
           <a href={stat.link}>  
-            <div class="border-primary-900/10 dark:border-primary-300/10 hover:bg-primary-900/10 hover:dark:bg-primary-300/10 duration-200 rounded-3xl border px-4 md:px-6 py-8 h-full flex flex-col justify-center gap-4">
+            <div class="border-primary-900/10 dark:border-primary-300/10 hover:bg-primary-900/10 hover:dark:bg-primary-300/10 duration-200 rounded-3xl border px-4 md:px-6 py-8 sm:py-12 h-full flex flex-col justify-center gap-4">
               <dt class="text-xs uppercase font-thin tracking-widest">{stat.value}</dt>
               <dd class="text-lg xs:text-xl font-medium leading-loose tracking-tighter xs:tracking-tight">{stat.name}</dd>
-              <p class="hidden md:block text-primary-950/70 dark:text-primary-200/70 text-base xs:text-lg leading-6">
+              <p class="text-primary-950/80 dark:text-primary-200/80 text-base xs:text-lg leading-6">
                     {stat.desc}
                   </p>
             </div>
