@@ -1,7 +1,7 @@
 ---
 import Cta from '../components/home/Cta-Contact.astro';
 import Options from '../components/web-design/Options.astro';
-import Hero from '../components/home/Slot-HeroFullscreen.astro';
+import Hero from '../components/home/Slot-HeroFullscreenSlider.astro';
 import IntroSec from '../components/web-design/Intro-Webdesign-Sec.astro';
 import OptionsSec from '../components/web-design/Options-Secondary.astro';
 import Grid from '../components/web-design/Grid-Webdesign.astro';
@@ -15,6 +15,8 @@ import FirstProcess from '../components/home/Process-Sml.astro';
 import Layout from '../layouts/Layout.astro';
 
 let backgroundUrl = 'url(/works/br-mac-render-med.webp)' // Define image for Slot-HeroFullscreen and then call BackgroundURL in Section
+let backgroundUrl2 = 'url(/works/app-design.webp)' // Define image for Slot-HeroFullscreen and then call BackgroundURL in Section
+let backgroundUrl3 = 'url(/works/web-design.webp)' // Define image for Slot-HeroFullscreen and then call BackgroundURL in Section
 
 ---
 
@@ -22,15 +24,35 @@ let backgroundUrl = 'url(/works/br-mac-render-med.webp)' // Define image for Slo
   description="Web Design for Velocity, Shopify and Wordpress. Developed and maintained on the Gold Coast, reliably and in-person."
   title="Web Design · Aidxn Web Design"
 >
-<Hero backgroundUrl={backgroundUrl}>
+<Hero backgroundUrl={backgroundUrl} backgroundUrl2={backgroundUrl2} backgroundUrl3={backgroundUrl3}>
   <Fragment slot="smltitle">
-    Gold Coast Web Design Expert
+    Gold Coast Web Design
   </Fragment>
   <Fragment slot="title">
     Web Design from $2445
   </Fragment>
   <Fragment slot="desc">
     Building beautiful, fast-loading websites that your customers will love. Trust over 10 years of web design experience, 100's of complete projects and honest pricing.
+  </Fragment>
+  
+  <Fragment slot="smltitle2">
+    In-Person Web Design Revisions
+  </Fragment>
+  <Fragment slot="title2">
+    Streamlined Design Process
+  </Fragment>
+  <Fragment slot="desc2">
+    Reducing email back and forth with included face-to-face, in-person web design revisions with all website packages. Oxenford office for convinience.
+  </Fragment>
+
+  <Fragment slot="smltitle3">
+    Over 120 Completed Projects
+  </Fragment>
+  <Fragment slot="title3">
+    Award-Winning Websites
+  </Fragment>
+  <Fragment slot="desc3">
+    We have worked with a number of Gold Coast and Brisbane businesses over the years to create easy to use, beautiful website designs that compliment their brand.
   </Fragment>
 </Hero>
   
