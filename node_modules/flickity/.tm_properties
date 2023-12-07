@@ -1,2 +1,0 @@
-excludeInFileChooser = "{node_modules,dist}"
-excludeInFolderSearch = "{node_modules,dist}"
