@@ -141,18 +141,16 @@ const {backgroundUrl, backgroundUrl2, backgroundUrl3} = Astro.props
 </section>
 
 
-<script>
-  window.onload = (event) => {
-    var elem = document.querySelector('.main-carousel');
-    var flkty = new Flickity( elem, {
-      // options
-      cellAlign: 'left',
-      contain: true,
-      autoPlay: 3200,
-      prevNextButtons: false,
-      imagesLoaded: true,
-      adaptiveHeight: true,
-      groupCells: '80%'
-    });
-  };
+<script is:inline>
+  var elem = document.querySelector('.main-carousel');
+  var flkty = new Flickity( elem, {
+    // options
+    cellAlign: 'left',
+    contain: true,
+    autoPlay: 3200,
+    prevNextButtons: false,
+    imagesLoaded: true,
+    adaptiveHeight: true,
+    groupCells: '80%'
+  });
   </script>
