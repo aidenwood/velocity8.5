@@ -57,7 +57,7 @@
 <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 
 <!-- JavaScript -->
-<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+<script is:inline src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 
 
 <section class="my-28">
@@ -166,7 +166,7 @@
   </div>
 </section>
 
-<script>
+<script is:inline>
 window.onload = (event) => {
   var elem = document.querySelector('.main-carousel');
   var flkty = new Flickity( elem, {
