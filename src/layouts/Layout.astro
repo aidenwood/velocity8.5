@@ -76,7 +76,7 @@ const canonicalURL = Astro.props.canonicalURL || new URL(Astro.url.pathname, Ast
         display: none !important;
       }
     </style>
-    <script is:global>
+    <script is:inline>
       import Alpine from 'alpinejs';
       import collapse from '@alpinejs/collapse';
 
