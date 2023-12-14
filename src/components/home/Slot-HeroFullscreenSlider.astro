@@ -9,12 +9,6 @@ backgroundUrl3: string
 const {backgroundUrl, backgroundUrl2, backgroundUrl3} = Astro.props
 ---    
 
-<!-- CSS -->
-<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
-
-<!-- JavaScript -->
-<script is:inline src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
-
 
 <style define:vars={{ backgroundUrl,  backgroundUrl2, backgroundUrl3 }}>
 
@@ -77,7 +71,7 @@ const {backgroundUrl, backgroundUrl2, backgroundUrl3} = Astro.props
 
 <section class="">
   <div class="limit-container">
-    <div class="main-carousel" data-flickity='{ "contain": true, "pageDots": false, "autoPlay": 3200, "pauseAutoPlayOnHover": false, "imagesLoaded": true, "prevNextButtons": false, "wrapAround": true, "groupCells": "40%" }'>
+    <div class="main-carousel" data-flickity='{ "contain": true, "pageDots": false, "autoPlay": 3200, "pauseAutoPlayOnHover": false, "imagesLoaded": true, "adaptiveHeight": true, "prevNextButtons": false, "wrapAround": true, "groupCells": "40%" }'>
       
       <div class="carousel-cell cell-1 px-4 sm:px-6 lg:px-8 py-8">
         <div class="carousel-container h-full w-full m-auto">
@@ -139,18 +133,3 @@ const {backgroundUrl, backgroundUrl2, backgroundUrl3} = Astro.props
     </div>
   </div>
 </section>
-
-
-<script is:inline>
-  var elem = document.querySelector('.main-carousel');
-  var flkty = new Flickity( elem, {
-    // options
-    cellAlign: 'left',
-    contain: true,
-    autoPlay: 3200,
-    prevNextButtons: false,
-    imagesLoaded: true,
-    adaptiveHeight: true,
-    groupCells: '80%'
-  });
-  </script>

@@ -2,29 +2,29 @@
 const pricing = [
   {
     name: 'Google Search Management',
-    description: 'Daily optimisation by PPC marketing experts of Google Search campaigns, keyword and strategy optimisation.',
+    description: 'Intense daily optimisation of campaigns, keywords and strategy.',
     periodicity: '/ mth',
-    isFlagged: true,
-    price: '$2445',
+    isFlagged: false,
+    price: '$1445',
     action: 'Buy Now',
     link: '/digital-marketing/google-search-management',
     features: [
-      'Expert marketing strategist for Google Ads', 
-      'Daily account management and optimisation',
-      'Pause anytime after 90 days'
+      'Experts in Google PPC Marketing with over $8M in managed marketing spend', 
+      'Complex Google Search marketing strategies for each industry & niche',
+      'Pause anytime after first 90 days to allow for proper testing'
     ],
   },
   {
     name: 'Meta Ad Management',
-    description: 'Optimisation of Meta marketing account, ad creatives and aquisition strategy optimisation.',
+    description: 'Intense daily optimisation of your entire Meta marketing account.',
     periodicity: '/ mth',
-    price: '$3445',
+    price: '$2445',
     action: 'Buy Now',
     link: '/digital-marketing/facebook-ad-management',
     features: [
-      'Expert marketing strategist for Meta Ads', 
-      'Daily account management and optimisation',
-      'Pause anytime after 90 days'
+      'Experts in Facebook / Instagram advertising strategies', 
+      'Includes 24 creatives for A/B testing strategies & hooks',
+      'Pause anytime after first 90 days to allow for proper testing'
     ],
   },
   
@@ -37,7 +37,7 @@ const pricing = [
         pricing.map((item) => (
           <div
             class:list={[
-              'relative flex flex-col gap-8 rounded-3xl px-8 py-12 border border-primary-900/10 dark:border-primary-300/10',
+              'relative flex flex-col gap-8 rounded-3xl px-4 sm:px-6 lg:px-8 py-12 border border-primary-900/10 dark:border-primary-300/10',
               item.isFlagged && 'bg-primary-500/10 dark:bg-primary-400/10',
             ]}
           >
