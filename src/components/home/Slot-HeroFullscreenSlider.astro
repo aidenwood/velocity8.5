@@ -14,16 +14,16 @@ const {backgroundUrl, backgroundUrl2, backgroundUrl3} = Astro.props
 
 .main-carousel {
   border: 1px black;
-  height: 1200px;
+  height: calc(100vh - 80px);
   max-width: 100vw;
-  max-height: calc(100vh - 80px);
+  min-height: 1200px;
   
 }
 
 @media only screen and (max-width: 768px) {
   .main-carousel {
-    height: 900px;
-    max-height: calc(100vh - 65px);
+    min-height: 500px;
+    height: calc(100vh - 65px);
   }
 }
 
@@ -67,7 +67,20 @@ const {backgroundUrl, backgroundUrl2, backgroundUrl3} = Astro.props
 
 </style>
 
-
+<script is:inline>
+  // Flickity Init
+  var flkty = new Flickity( '.fullscreen-carousel', {
+    contain: true,
+    pageDots: false,
+    autoPlay: 3200,
+    pauseAutoPlayOnHover: false,
+    imagesLoaded: true,
+    adaptiveHeight: true,
+    prevNextButtons: false,
+    wrapAround: true,
+    resize: true,
+  });
+</script>
 
 <section class="">
   <div class="limit-container">
@@ -133,18 +146,3 @@ const {backgroundUrl, backgroundUrl2, backgroundUrl3} = Astro.props
     </div>
   </div>
 </section>
-
-<script is:inline>
-  // Flickity Init
-  var flkty = new Flickity( '.fullscreen-carousel', {
-    contain: true,
-    pageDots: false,
-    autoPlay: 3200,
-    pauseAutoPlayOnHover: false,
-    imagesLoaded: true,
-    adaptiveHeight: true,
-    prevNextButtons: false,
-    wrapAround: true,
-    groupCells: "40%"
-  });
-</script>
