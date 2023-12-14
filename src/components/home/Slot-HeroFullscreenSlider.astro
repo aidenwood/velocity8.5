@@ -71,7 +71,7 @@ const {backgroundUrl, backgroundUrl2, backgroundUrl3} = Astro.props
 
 <section class="">
   <div class="limit-container">
-    <div class="main-carousel" data-flickity='{ "contain": true, "pageDots": false, "autoPlay": 3200, "pauseAutoPlayOnHover": false, "imagesLoaded": true, "adaptiveHeight": true, "prevNextButtons": false, "wrapAround": true, "groupCells": "40%" }'>
+    <div class="fullscreen-carousel">
       
       <div class="carousel-cell cell-1 px-4 sm:px-6 lg:px-8 py-8">
         <div class="carousel-container h-full w-full m-auto">
@@ -133,3 +133,18 @@ const {backgroundUrl, backgroundUrl2, backgroundUrl3} = Astro.props
     </div>
   </div>
 </section>
+
+<script is:inline>
+  // Flickity Init
+  var flkty = new Flickity( '.fullscreen-carousel', {
+    contain: true,
+    pageDots: false,
+    autoPlay: 3200,
+    pauseAutoPlayOnHover: false,
+    imagesLoaded: true,
+    adaptiveHeight: true,
+    prevNextButtons: false,
+    wrapAround: true,
+    groupCells: "40%"
+  });
+</script>
