@@ -18,23 +18,6 @@ const { description, title } = Astro.props;
 const canonicalURL = Astro.props.canonicalURL || new URL(Astro.url.pathname, Astro.site);
 ---
 
-<!-- CSS -->
-<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
-<!-- JavaScript -->
-<script is:inline src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
-
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-MN4T5PXYLD"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-MN4T5PXYLD');
-</script>
-
-
 <!DOCTYPE html>
 <html lang="en" x-cloak x-data :class="{ 'dark': $store.theme.isDark }">
   <head>
@@ -76,7 +59,7 @@ const canonicalURL = Astro.props.canonicalURL || new URL(Astro.url.pathname, Ast
         display: none !important;
       }
     </style>
-    <script is:inline>
+    <script>
       import Alpine from 'alpinejs';
       import collapse from '@alpinejs/collapse';
 
@@ -108,3 +91,20 @@ const canonicalURL = Astro.props.canonicalURL || new URL(Astro.url.pathname, Ast
     </script>
   </body>
 </html>
+
+
+<!-- CSS -->
+<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+<!-- JavaScript -->
+<script is:inline src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MN4T5PXYLD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-MN4T5PXYLD');
+</script>
