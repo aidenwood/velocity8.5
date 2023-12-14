@@ -109,13 +109,13 @@ const bottomLinks = [
 </style>
 
 <footer
-  class="bg-primary-500/10 dark:bg-primary-400/10 mt-16 py-16 lg:mt-20 lg:py-20"
+  class="bg-primary-900/60 dark:bg-primary-700/20 py-16 lg:mt-20 lg:py-20"
   aria-labelledby="footer-heading"
 >
   <h2 id="footer-heading" class="sr-only">Footer</h2>
-  <div id="contain" class="mx-auto px-4 sm:px-6 w-full lg:px-8">
-    <div class="flex flex-col justify-between gap-12 sm:gap-16 xl:flex-row">
-      <div class="flex w-full max-w-3xl flex-col items-start justify-center gap-6 sm:gap-8">
+  <div id="contain" class="mx-auto w-full px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col gap-16 md:gap-24 xl:flex-row">
+      <div class="flex w-full max-w-xl flex-col items-start justify-center gap-6 sm:gap-8">
         <img
           class="h-8 xs:h-20 sm:h-24 w-auto"
           :src="$store.theme.isDark ? '/ax-logo-white.svg' : '/ax-logo-purp.svg'"
@@ -125,13 +125,15 @@ const bottomLinks = [
           Leaders on the Gold Coast in web design, SEO, graphic design and digital marketing.
           Web design done face-to-face.
         </p>
+        <p class="text-primary-950 dark:text-primary-200 text-lg sm:text-xl">ABN: 13 392 753 698</p>
+        <p class="text-primary-950 dark:text-primary-200 text-lg sm:text-xl">© 2023 Aidxn Design</p>
       </div>
 
       <!-- Bottom links -->
-      <div class="grid w-full flex-1 grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4">
+      <div class="grid w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4 justify-end">
         {
           bottomLinks.map((group) => (
-            <div class="flex flex-col gap-4">
+            <div class="flex flex-col justify-center gap-4">
               <p class="text-xl md:text-sm sm:text-base font-medium">{group.header}</p>
               <ul role="list" class="flex flex-col gap-3">
                 {group.links.map((link) => (
@@ -163,6 +165,6 @@ const bottomLinks = [
         }
       </div>
     </div>
-    <p class="text-primary-950/70 dark:text-primary-200/70 text-sm my-8">© 2023 Aidxn Design</p>
+    <!-- New Row for submissions  -->
   </div>
 </footer>

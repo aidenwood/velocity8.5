@@ -4,61 +4,55 @@
   transition: height 0.2s;
 }
 
-.web-carousel { width: 100%; max-width: 1920px; margin: 0 auto; }
-.web-carousel.is-expanded { width: 100%; }
-
 .carousel-cell {
   width: calc(50% - 15px);
-  height: 550px;
+  height: 600px;
   margin-right: 15px;
 }
 @media screen and (max-width: 1980px) {
   .carousel-cell {
-    height: 500px;
+    height: 550px;
   }
 }
 @media screen and (max-width: 1680px) {
   .carousel-cell {
-    height: 420px;
-  }
-}
-@media screen and (max-width: 1480px) {
-  .carousel-cell {
-    width: calc(66% - 7.5px);
+    height: 500px;
   }
 }
 @media screen and (max-width: 1280px) {
   .carousel-cell {
-    height: 380px;
-  }
-}
-@media screen and (max-width: 1199px) {
-  .carousel-cell {
-    width: calc(50% - 7.5px);
+    height: 420px;
+    width: calc(77.5% - 7.5px);
   }
 }
 @media screen and (max-width: 980px) {
   .carousel-cell {
-    height: 320px;
+    height: 360px;
   }
 }
 @media screen and (max-width: 768px) {
   .carousel-cell {
-    width: calc(77.5% - 7.5px);
     max-height: 40vh;
-    height: 280px;
+    height: 320px;
   }
 }
+@media screen and (max-width: 568px) {
+  .carousel-cell {
+    width: 100%;
+  }
+}
+
+#contain { max-width: 1920px; }
 </style>
 
 <section class="my-28">
-  <div id="contain" class="mx-auto max-w-7xl w-full">
+  <div id="contain" class="mx-auto w-full">
   
     <!-- Perfect Slider Velocity8 - Start -->
     <div id="border" class="">
         
       
-      <div id="slider" class="web-carousel px-4 sm:px-6 lg:px-8" data-flickity='{ "cellAlign": "left", "contain": true, "prevNextButtons": false, "pageDots": false, "autoPlay": 2400, "groupCells": "85%", "lazyLoad": true, "imagesLoaded": true, "adaptiveHeight": true }'>
+      <div id="slider" class="web-carousel px-4 sm:px-6 lg:px-8" data-flickity='{ "contain": true, "prevNextButtons": false, "pageDots": false, "autoPlay": 2400, "groupCells": "1280px", "lazyLoad": true, "imagesLoaded": true, "adaptiveHeight": true }'>
 
         <div class="carousel-cell">
           <!-- img_01 -->
