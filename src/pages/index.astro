@@ -7,9 +7,12 @@ import WebExp from '../components/home/Web-Experience.astro';
 import MoonIntro from '../components/home/Market-Intro.astro';
 import WebIntro from '../components/home/Web-Intro.astro';
 import Spacer from '../components/home/Section-End.astro';
-import CtaContact from '../components/home/Cta-Contact.astro';
+import CtaContact from '../components/home/Cta-ContactServices.astro';
 import PricingWeb from '../components/pricing/PricingTable-Web-Short.astro';
 import PricingMarket from '../components/pricing/PricingTable-Market-Short.astro';
+
+import Faq from '../components/home/Faq-Home.astro';
+
 
 import BlogPosts from '../components/home/BlogPosts.astro';
 import Clients from '../components/home/Grid-Clients.astro';
@@ -35,8 +38,11 @@ import MarketingSliddy from '../components/home/Hero-Sliddy-Marketing.astro';
   <MarketingSliddy />
   <PricingMarket /> 
   
-  <BlogPosts />
+  
   <WebExp />
-  <CtaContact />
+  <BlogPosts />
 
+  <CtaContact />
+  <Faq />
+  
 </Layout>

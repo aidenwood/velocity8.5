@@ -13,6 +13,8 @@ module.exports = {
       black: colors.black,
       primary: colors.violet,
       violet: colors.violet,
+      green: colors.green,
+      cyan: colors.cyan,
     },
     fontFamily: {
       sans: ['Inter', 'sans-serif'],
