@@ -10,10 +10,6 @@ import Spacer from '../components/home/Section-End.astro';
 import CtaContact from '../components/home/Cta-ContactServices.astro';
 import PricingWeb from '../components/pricing/PricingTable-Web-Short.astro';
 import PricingMarket from '../components/pricing/PricingTable-Market-Short.astro';
-
-import Faq from '../components/home/Faq-Home.astro';
-
-
 import BlogPosts from '../components/home/BlogPosts.astro';
 import Clients from '../components/home/Grid-Clients.astro';
 
@@ -27,22 +23,19 @@ import MarketingSliddy from '../components/home/Hero-Sliddy-Marketing.astro';
 >
   <Hero />
   <Process />
-  
-  <WebIntro />
-  <WebSliddy />
-  <PricingWeb />
 
+  <WebExp />
   <Clients />
   
+  <WebIntro />
+  <PricingWeb />
+  <WebSliddy />
+  
   <MoonIntro />
-  <MarketingSliddy />
-  <PricingMarket /> 
-  
-  
-  <WebExp />
-  <BlogPosts />
+  <PricingMarket />
+  <MarketingSliddy /> 
 
   <CtaContact />
-  <Faq />
+  <BlogPosts />
   
 </Layout>
