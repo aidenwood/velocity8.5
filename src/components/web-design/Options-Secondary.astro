@@ -42,7 +42,7 @@ const services = [
   <div id="contain" class="mx-auto w-full px-4 sm:px-6 lg:px-8">
     <div class="flex flex-col gap-4">
       <h4 class="text-center text-base lg:text-lg uppercase font-thin tracking-widest">More Web Design Services</h4>
-      <div class="grid gap-6 lg:gap-8 grid-cols-1 sm:grid-cols-2">
+      <div class="grid gap-6 lg:gap-8 grid-cols-1 md:grid-cols-2">
         {
           services.map((service) => (
           <div>
@@ -52,7 +52,7 @@ const services = [
                 <div class="cursor-pointer flex flex-col">
                   <p class="text-sm">{service.step}</p>
                   <h3 class="text-xl font-medium tracking-tight my-4">{service.name}</h3>
-                  <p class="sm:hidden md:inline-block text-primary-950/70 dark:text-primary-200/70 text-base xs:text-lg">
+                  <p class="inline-block text-primary-950/70 dark:text-primary-200/70 text-base xs:text-lg">
                     {service.description}
                   </p>
                   <div>

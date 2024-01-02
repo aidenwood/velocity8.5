@@ -10,12 +10,11 @@ import IndentInfo from '../components/home/Slot-Indent-Info.astro';
 import SectionHeadImg from "../components/home/slot-img.astro";
 import SectionHeadSecImg from "../components/home/slot-img-rev.astro";
 import Faq from '../components/digital-marketing/Faq.astro';
-import Process from '../components/home/Process.astro';
-import FirstProcess from '../components/home/Process-Sml.astro';
+import FirstProcess from '../components/home/Process.astro';
 
 import Layout from '../layouts/Layout.astro';
 
-let backgroundUrl = 'url(/assets/placeholder.webp)' // Define image for Slot-HeroFullscreen and then call BackgroundURL in Section
+let backgroundUrl = 'url(/assets/visual-marketing-funnel.webp)' // Define image for Slot-HeroFullscreen and then call BackgroundURL in Section
 let backgroundUrl2 = 'url(/works/ax-sqr-cpc-results.webp)' // Define image for Slot-HeroFullscreen and then call BackgroundURL in Section
 let backgroundUrl3 = 'url(/works/gwd-interactive-ads.webp)' // Define image for Slot-HeroFullscreen and then call BackgroundURL in Section
 ---
@@ -30,7 +29,7 @@ let backgroundUrl3 = 'url(/works/gwd-interactive-ads.webp)' // Define image for 
     Digital Marketing Management
   </Fragment>
   <Fragment slot="title">
-    $8M+ in Managed Marketing
+    Over $8M in Managed Marketing
   </Fragment>
   <Fragment slot="desc">
     Strategies that focus on extending the most life out of your ad budget. We get to know your target market like that back of our hand.
@@ -57,10 +56,8 @@ let backgroundUrl3 = 'url(/works/gwd-interactive-ads.webp)' // Define image for 
   </Fragment>
 </Hero>
 
-<FirstProcess />
 
 <Options />
-
 
 
 <SectionHeadImg>
@@ -143,10 +140,11 @@ let backgroundUrl3 = 'url(/works/gwd-interactive-ads.webp)' // Define image for 
   </Fragment>
 </SectionHeadSecImg>
 
-
-<Faq />
+<FirstProcess />
 
 <Cta />
+
+<Faq />
 
 <BlogPosts />
 

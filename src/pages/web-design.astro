@@ -10,15 +10,14 @@ import IndentInfo from '../components/home/Slot-Indent-Info.astro';
 import SectionHeadImg from "../components/home/slot-img.astro";
 import SectionHeadSecImg from "../components/home/slot-img-rev.astro";
 import Faq from '../components/web-design/Faq.astro';
-import Process from '../components/home/Process.astro';
-import FirstProcess from '../components/home/Process-Sml.astro';
+import FirstProcess from '../components/home/Process.astro';
 import BlogPosts from '../components/home/BlogPosts.astro';
 
 import Layout from '../layouts/Layout.astro';
 
-let backgroundUrl = 'url(/works/br-mac-render-med.webp)' // Define image for Slot-HeroFullscreen and then call BackgroundURL in Section
-let backgroundUrl2 = 'url(/works/app-design.webp)' // Define image for Slot-HeroFullscreen and then call BackgroundURL in Section
-let backgroundUrl3 = 'url(/works/web-design.webp)' // Define image for Slot-HeroFullscreen and then call BackgroundURL in Section
+let backgroundUrl = 'url(/assets/placeholder.webp)' // Define image for Slot-HeroFullscreen and then call BackgroundURL in Section
+let backgroundUrl2 = 'url(/works/br-mac-render-med.webp)' // Define image for Slot-HeroFullscreen and then call BackgroundURL in Section
+let backgroundUrl3 = 'url(/works/website-mock-ups.webp)' // Define image for Slot-HeroFullscreen and then call BackgroundURL in Section
 
 ---
 
@@ -28,37 +27,35 @@ let backgroundUrl3 = 'url(/works/web-design.webp)' // Define image for Slot-Hero
 >
 <Hero backgroundUrl={backgroundUrl} backgroundUrl2={backgroundUrl2} backgroundUrl3={backgroundUrl3}>
   <Fragment slot="smltitle">
-    Gold Coast Web Design
+    Custom Web Design & High Conversion UX Design
   </Fragment>
   <Fragment slot="title">
-    Web Design from $2445
+    Leading Gold Coast Web Designer
   </Fragment>
   <Fragment slot="desc">
-    Building beautiful, fast-loading websites that your customers will love. Trust over 10 years of web design experience, 100's of complete projects and honest pricing.
+    Building beautiful, fast-loading websites that your customers will love. Trust over 10 years of web design experience, 100's of complete projects and honest pricing. Designing websites in a range of industries with highly inclusive work.
   </Fragment>
   
   <Fragment slot="smltitle2">
     In-Person Web Design Revisions
   </Fragment>
   <Fragment slot="title2">
-    Streamlined Design Process
+    Web Design from $2445
   </Fragment>
   <Fragment slot="desc2">
-    Reducing email back and forth with included face-to-face, in-person web design revisions with all website packages. Oxenford office for convinience.
+    Face-to-face revisions to reduce email back and forth with and create beautiful website that generate more business through both PPC and SEO. Oxenford office for convinience.
   </Fragment>
 
   <Fragment slot="smltitle3">
     Over 120 Completed Projects
   </Fragment>
   <Fragment slot="title3">
-    Award-Winning Websites
+    Award-Winning Website Designs
   </Fragment>
   <Fragment slot="desc3">
     We have worked with a number of Gold Coast and Brisbane businesses over the years to create easy to use, beautiful website designs that compliment their brand.
   </Fragment>
 </Hero>
-  
-  <FirstProcess />
 
   <Options />
 
@@ -68,10 +65,10 @@ let backgroundUrl3 = 'url(/works/web-design.webp)' // Define image for Slot-Hero
       Web Design to help you sell more
     </Fragment>
     <Fragment slot="title">
-      Custom Website Design.
+      Custom web design for all industries and niches
     </Fragment>
     <Fragment slot="desc">
-      When you're on a quest for the perfect website, I offer a one-stop solution that covers everything from visual aesthetics to robust functionality. I tailor your web design to your unique goals, ensuring it aligns perfectly with your brand identity and audience needs. Ready to take your online presence to the next level? Reach out, and let's get started on a web design journey that will leave a lasting impression. We develop your SEO for where your business is at month to month, how many customers you need and for which particular products / services. Maximising your profit margin and workload with automated lead generation. Looking for top-notch Gold Coast SEO services to boost your online business? With over ten years of experience in optimizing website SEO, we're your go-to experts.
+      I tailor your web design to your unique goals, ensuring it aligns perfectly with your brand identity and audience needs. Ready to take your online presence to the next level? Reach out, and let's get started on a web design journey that will leave a lasting impression. We develop your SEO for where your business is at month to month, how many customers you need and for which particular products / services. Maximising your profit margin and workload with automated lead generation. Looking for top-notch Gold Coast SEO services to boost your online business? With over ten years of experience in optimizing website SEO, we're your go-to experts.
     </Fragment>
     <Fragment slot="cover">
       <img
@@ -87,10 +84,10 @@ let backgroundUrl3 = 'url(/works/web-design.webp)' // Define image for Slot-Hero
       Shopify & WooCommerce Experts
     </Fragment>
     <Fragment slot="title">
-      E-Commerce Optimisation.
+      Gold Coast e-commerce optimisation experts
     </Fragment>
     <Fragment slot="desc">
-      E-commerce has revolutionized the way we shop and do business. If you're looking to dive into the world of online selling, I'm here to help. E-commerce web design is my forte, and I'll create an online store that not only looks fantastic but is also optimized for seamless transactions, secure payments, and excellent user experience. Say goodbye to cart abandonment and hello to increased sales. Organic lead generation is more than a buzzword – it's a pivotal aspect of your online success. Through my organic lead generation strategies, I ensure that your business attracts high-quality leads that genuinely care about your products or services. Get ready to experience lead generation like never before and watch your business grow.
+      E-commerce has revolutionized the way we shop and do business. If you're looking to dive into the world of online selling, I'm here to help. E-commerce web design is my forte, and I'll create an online store that not only looks fantastic but is also optimized for seamless transactions, secure payments, and excellent user experience. Say goodbye to cart abandonment and hello to increased sales. Through my organic lead generation strategies, I ensure that your business attracts high-quality leads that genuinely care about your products or services. Get ready to experience lead generation like never before and watch your business grow.
     </Fragment>
     <Fragment slot="cover">
       <img
@@ -110,7 +107,7 @@ let backgroundUrl3 = 'url(/works/web-design.webp)' // Define image for Slot-Hero
       SEO-Focused Web Design
     </Fragment>
     <Fragment slot="title">
-      Powerful SEO.
+      Powerful SEO, for all our website designs.
     </Fragment>
     <Fragment slot="desc">
       My web design strategies focus a lot more on initial SEO development to reduce ad spend down the track. With a better ranking with Google, your CPC will be greatly reduced. Helping advertising budgets for smaller businesses compete further.
@@ -143,6 +140,7 @@ let backgroundUrl3 = 'url(/works/web-design.webp)' // Define image for Slot-Hero
     </Fragment>
   </SectionHeadSecImg>
 
+  <FirstProcess />
   
   <Cta />
 

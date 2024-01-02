@@ -10,10 +10,9 @@ import IndentInfo from '../components/home/Slot-Indent-Info.astro';
 import Faq from '../components/brand-strategy/Faq.astro';
 import SectionHeadImg from "../components/home/slot-img.astro";
 import SectionHeadSecImg from "../components/home/slot-img-rev.astro";
-import Process from '../components/home/Process.astro';
 import BlogPosts from '../components/home/BlogPosts.astro';
+import FirstProcess from '../components/home/Process.astro';
 
-import FirstProcess from '../components/home/Process-Sml.astro';
 import Layout from '../layouts/Layout.astro';
 
 let backgroundUrl = 'url(/works/billboard-design.webp)' // Define image for Slot-HeroFullscreen and then call BackgroundURL in Section
@@ -38,10 +37,7 @@ let backgroundUrl = 'url(/works/billboard-design.webp)' // Define image for Slot
 </Hero>
 
 
-<FirstProcess />
-
 <Options />
-
 
 
 <SectionHeadImg>
@@ -163,6 +159,8 @@ let backgroundUrl = 'url(/works/billboard-design.webp)' // Define image for Slot
             />
   </Fragment>
 </SectionHeadSecImg>
+
+<FirstProcess />
 
 <Cta />
 
