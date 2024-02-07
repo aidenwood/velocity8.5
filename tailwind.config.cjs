@@ -23,13 +23,13 @@ module.exports = {
       'xs': '412px',
       // => @media (min-width: 412px) { ... }
       
-      'sm': '512px',
+      'sm': '668px',
       // => @media (min-width: 512px) { ... }
 
-      'md': '768px',
+      'md': '968px',
       // => @media (min-width: 768px) { ... }
 
-      'lg': '1199px',
+      'lg': '1280px',
       // => @media (min-width: 1024px) { ... }
 
       'xl': '1680px',
