@@ -191,9 +191,7 @@ declare module 'astro:content' {
 	};
 
 	type DataEntryMap = {
-		"blog": {
-};
-
+		
 	};
 
 	type AnyEntryMap = ContentEntryMap & DataEntryMap;
