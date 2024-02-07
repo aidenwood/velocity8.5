@@ -1,8 +1,9 @@
 ---
 import Cta from '../../components/home/Cta-Contact.astro';
 import SlotHero from '../../components/home/Slot-PageHero.astro';
-import SectionHeadImg from "../../components/home/Slot-img-gsap.astro";
+import SlotImgGSAP from "../../components/home/Slot-img-gsap.astro";
 import SectionHeadSecImg from "../../components/home/slot-img-rev.astro";
+import SectionHeadImg from "../../components/home/slot-img.astro";
 import Process from '../../components/home/Process.astro';
 import FirstProcess from '../../components/home/Process-Sml.astro';
 import Layout from '../../layouts/Layout.astro';
@@ -67,12 +68,12 @@ import BlogPost from '../../components/home/Slot-BlogPost.astro';
 
     <FirstProcess />
 
-          <SectionHeadImg>
+          <SectionHeadImg> <!-- Replace with SlotImgGSAP to load GSAP1 -->
             <Fragment slot="smltitle">
               Seamless Shopping, Effortless Management
             </Fragment>
             <Fragment slot="title">
-              Crafting a seamless shopping experience.
+              Seamless Shopping Experiences.
             </Fragment>
             <Fragment slot="desc">
               Tired of juggling complex e-commerce tools and battling with technology? Our Shopify web design solutions are designed for ease. We create a seamless shopping experience for your customers and provide you with an intuitive platform for managing your products, orders, and customers. Say goodbye to tech headaches and hello to smooth sailing in the world of e-commerce. Let's redefine your online store together.
