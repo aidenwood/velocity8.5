@@ -2,7 +2,8 @@
 import About from '../../components/velocity/About.astro';
 import Cta from '../../components/home/Cta-Contact.astro';
 import Integrations from '../../components/velocity/Integrations.astro';
-import Hero from '../../components/velocity/Hero.astro';
+import FullScreenSliderHero from '../../components/home/Slot-HeroFullscreenSlider.astro';
+import SecHero from '../../components/velocity/Hero.astro';
 import HeroGrid from '../../components/velocity/Hero-Grid.astro';
 import PricingTable from '../../components/pricing/PricingTable.astro';
 import Process from '../../components/home/Process.astro';
@@ -15,13 +16,56 @@ import Testimonials from '../../components/velocity/Testimonials.astro';
 import SectionEnd from '../../components/home/Section-End.astro';
 
 import Layout from '../../layouts/Layout.astro';
+
+
+let backgroundUrl = 'url(/assets/visual-web-variables.webp)' // Define image for Slot-HeroFullscreen and then call BackgroundURL in Section
+let backgroundUrl2 = 'url(/assets/visual-seo-content-writing.webp)' // Define image for Slot-HeroFullscreen and then call BackgroundURL in Section
+let backgroundUrl3 = 'url(/works/website-mock-ups.webp)' // Define image for Slot-HeroFullscreen and then call BackgroundURL in Section
+
+
 ---
 
 <Layout
   description="Velocity is our performance website theme, perfect for service-based business in competitive industries. Developed and maintained on the Gold Coast, Australia."
-  title="Velocity Website Design · Aidxn Web Design"
+  title="Velocity Website Theme · Aidxn"
 >
-  <Hero />
+
+<SecHero />
+
+<FullScreenSliderHero backgroundUrl={backgroundUrl} backgroundUrl2={backgroundUrl2} backgroundUrl3={backgroundUrl3}>
+  <Fragment slot="smltitle">
+    Major Update Now Available
+  </Fragment>
+  <Fragment slot="title">
+    Introducing Velocity 9.0
+  </Fragment>
+  <Fragment slot="desc">
+    Velocity V9 is now available, introducing a huge collection of new components with DevX focused on faster development, meaning better content, faster. Over 50 new components added in version 9.0 including Slider-Hero-Fullscreen-Slot, Form-Labels-CallBackTopics and SecHero-AnimatedCTA.
+  </Fragment>
+  
+  <Fragment slot="smltitle2">
+    New Integration
+  </Fragment>
+  <Fragment slot="title2">
+    GSAP Animations
+  </Fragment>
+  <Fragment slot="desc2">
+    GSAP has now been integrated with Velocity in a range of components for beautiful, high conversion animations where you need them most. Sleek web animation with industry-leading performance. More animated components are being added in minor updates every month.
+  </Fragment>
+
+  <Fragment slot="smltitle3">
+    Further Integration
+  </Fragment>
+  <Fragment slot="title3">
+    Stripe E-Commerce Tools
+  </Fragment>
+  <Fragment slot="desc3">
+    We have been powering Velocity E-Commerce solutions with Stripe for a number of years for their industry leading technolgies, e-commerce management tools, and API integrations. We have linked their newest services directly to Velocity to help you sell more, with less stress.
+  </Fragment>
+</FullScreenSliderHero>
+
+
+  
 
   <FirstProcess />
 
