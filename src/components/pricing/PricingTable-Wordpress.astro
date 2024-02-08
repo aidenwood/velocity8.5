@@ -4,7 +4,7 @@ const pricing = [
     name: 'Small',
     description: 'For small sitemaps with basic functionality integrated Wordpress sites.',
     periodicity: '+ GST',
-    price: '$4445',
+    price: '$5445',
     action: 'Buy Now',
     link: 'https://buy.stripe.com/8wMcOlbLt9pr9ji5kI',
     features: [
@@ -31,7 +31,7 @@ const pricing = [
     description: 'For medium sitemaps and functionality integrated Wordpress sites.',
     isFlagged: true,
     periodicity: '+ GST',
-    price: '$5445',
+    price: '$8445',
     action: 'Buy Now',
     link: 'https://buy.stripe.com/6oE29HdTB8lnanmaF3',
     features: [
@@ -57,9 +57,9 @@ const pricing = [
   },
   {
     name: 'Large',
-    description: 'For large sitemaps and Woo-Commerce Wordpress sites.',
+    description: 'For extremely large sitemaps and custom Wordpress development.',
     periodicity: '+ GST',
-    price: '$7445',
+    price: '$12445',
     action: 'Buy Now',
     link: 'https://buy.stripe.com/6oEaGdeXFfNPgLK4gG',
     features: [
@@ -86,9 +86,12 @@ const pricing = [
   },
 ];
 ---
+<style>
+  #contain { max-width: 1920px; }
+</style>
 
-<section class="my-28">
-  <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+<section class="py-16 sm:py-20">
+  <div id="contain" class="mx-auto px-4 sm:px-6 lg:px-8">
     <div class="-mt-8 grid gap-8 lg:mt-0 lg:grid-cols-3">
       {
         pricing.map((item) => (

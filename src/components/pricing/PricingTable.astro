@@ -1,8 +1,13 @@
 ---
+
+/* Velocity9 - Pricing Table */
+/* Most Current Pricing Table Design */
+/* Copy from this file for client projects */
+
 const pricing = [
   {
     name: 'Small',
-    description: 'Custom web design built on the Velocity9 theme. Recommended package for small businesses in need of basic online lead generation, with a modern design and user-friendly interface.',
+    description: 'Custom web design built on the Velocity9 theme. Recommended package for small businesses in need of strong online lead generation and custom web design.',
     periodicity: '+ GST',
     price: '$3445',
     action: 'Buy Now',
@@ -72,10 +77,13 @@ const pricing = [
   },
 ];
 ---
+<style>
+  #contain { max-width: 1920px; }
+</style>
 
 <section class="py-16 sm:py-20">
-  <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-    <div class="-mt-8 grid gap-8 lg:mt-0 lg:grid-cols-3">
+  <div id="contain" class="mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="-mt-8 grid gap-8 lg:mt-0 md:grid-cols-3">
       {
         pricing.map((item) => (
           <div
@@ -88,15 +96,15 @@ const pricing = [
               <h2 class="text-xl font-medium">{item.name}</h2>
               <p class="mt-4 flex items-baseline">
                 <span class="text-4xl font-medium tracking-tight">{item.price}</span>
-                <span class="text-primary-950/70 dark:text-primary-200/70 ml-1 text-sm font-medium">
+                <span class="text-primary-950/70 dark:text-primary-200/70 ml-1 text-xs font-medium">
                   {item.periodicity}
                 </span>
               </p>
-              <p class="text-primary-950/70 dark:text-primary-200/70 mt-6">{item.description}</p>
+              <p class="text-primary-950/70 dark:text-primary-200/70 my-6 max-w-3xl text-lg md:text-sm lg:text-base">{item.description}</p>
 
-              <ul role="list" class="mt-6 space-y-6">
+              <ul role="list" class="mt-8 text-base lg:text-lg space-y-4 lg:space-y-6">
                 {item.features.map((feature) => (
-                  <li class="flex gap-3">
+                  <li class="flex items-center gap-3">
                     <svg
                       class="text-primary-600 dark:text-primary-400 h-6 w-6 flex-shrink-0"
                       xmlns="http://www.w3.org/2000/svg"
@@ -111,12 +119,14 @@ const pricing = [
                 ))}
               </ul>
             </div>
-            <a
-              href={item.link}
-              class="bg-primary-600 dark:bg-primary-400 hover:bg-primary-700 dark:hover:bg-primary-300 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-400 dark:text-primary-950 inline-flex w-full items-center justify-center rounded-full border border-transparent px-5 py-3 text-base font-medium text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
-            >
-              Buy now
-            </a>
+            <div class="block">
+              <a
+                href={item.link}
+                class="bg-primary-600 dark:bg-primary-400 hover:bg-primary-700 dark:hover:bg-primary-300 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-400 dark:text-primary-950 inline-flex items-center justify-center rounded-full border border-transparent px-5 py-3 text-base font-medium text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+              >
+                Buy now
+              </a>
+            </div>
           </div>
         ))
       }
