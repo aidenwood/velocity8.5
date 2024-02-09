@@ -2,40 +2,52 @@
 import Layout from '../layouts/Layout.astro';
 
 import Hero from '../components/home/Hero.astro';
-import Process from '../components/home/Process.astro';
-import WebExp from '../components/home/Web-Experience.astro';
-import MoonIntro from '../components/home/Market-Intro.astro';
-import WebIntro from '../components/home/Web-Intro.astro';
-import Spacer from '../components/home/Section-End.astro';
-import CtaContact from '../components/home/Cta-ContactServices.astro';
-import PricingWeb from '../components/pricing/PricingTable-Web-Short.astro';
-import PricingMarket from '../components/pricing/PricingTable-Market-Short.astro';
-import BlogPosts from '../components/home/BlogPosts.astro';
-import Clients from '../components/home/Grid-Clients.astro';
+import Process from '../components/home/Section-Process.astro';
+import Intro from '../components/home/Section-Numbers-Intro.astro';
+import Clients from '../components/home/Section-IconGrid-Clients.astro';
 
-import WebSliddy from '../components/home/Hero-Sliddy-Web.astro';
-import MarketingSliddy from '../components/home/Hero-Sliddy-Marketing.astro';
+import CtaContactShort from '../components/home/Cta-ContactShort.astro';
+
+import WebIntro from '../components/home/Basic-Intro-Web.astro';
+import PricingWeb from '../components/pricing/PricingTable-Duo-Web.astro';
+import WebSliddy from '../components/home/Sliddy-Sml-Web.astro';
+
+import MarketIntro from '../components/home/Basic-Intro-Market.astro';
+import PricingMarket from '../components/pricing/PricingTable-Duo-Market.astro';
+import MarketingSliddy from '../components/home/Sliddy-Sml-Marketing.astro';
+
+import CtaContactServices from '../components/home/Cta-ContactServices.astro';
+
+import BlogPosts from '../components/home/BlogPosts.astro';
+
 ---
 
 <Layout
-  description="Website Design and Digital Marketing with over 10 years experience based in Oxenford, Gold Coast. All-inlusive, in-person service."
+  description="Over 10 years professional experience in website design and digital marketing. Where code meets design."
   title="Home · Aidxn"
 >
+  
+
   <Hero />
+  
+  <Intro />
   <Process />
 
-  <WebExp />
   <Clients />
   
   <WebIntro />
   <PricingWeb />
   <WebSliddy />
+
+  <CtaContactShort />
   
-  <MoonIntro />
+  <MarketIntro />
   <PricingMarket />
   <MarketingSliddy /> 
 
-  <CtaContact />
+  <CtaContactServices />
+
   <BlogPosts />
-  
+
+
 </Layout>

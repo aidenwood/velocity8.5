@@ -1,20 +1,20 @@
 ---
 const stats = [
   {
-    name: 'Expert',
-    value: '1',
+    name: 'Years of Experience',
+    value: '10+',
   },
   {
-    name: 'Years',
-    value: '10',
-  },
-  {
-    name: 'Projects',
+    name: 'Projects Completed',
     value: '120+',
   },
   {
-    name: 'Awards',
+    name: 'Web Design Awards',
     value: '3',
+  },
+  {
+    name: 'Expert',
+    value: '1',
   },
 ];
 ---
@@ -30,9 +30,9 @@ const stats = [
           <div class="space-y-8 sm:space-y-12">
             <div class="space-y-6">
               <h4 class="text-base uppercase font-thin tracking-widest">
-                Website Design for All Industries
+                Complete Brand Improvement
               </h4>
-              <h3 class="text-3xl sm:text-4xl font-medium tracking-tight my-6">Custom Website Design Tailored to your Brand</h3>
+              <h3 class="text-3xl sm:text-4xl font-medium tracking-tight my-6">Code Meets Design</h3>
               <p class="text-primary-950/80 dark:text-primary-200/80 text-lg xs:text-xl">
                 Offering a range of reliable, simplified web design and digital marketing services. 
                 Face to face web design revisions to make sure you and your customers love your website.
@@ -54,8 +54,8 @@ const stats = [
         {
           stats.map((stat) => (
             <div class="border-primary-900/10 dark:border-primary-300/10 rounded-3xl border p-6">
-              <dt class="text-base sm:text-lg">{stat.name}</dt>
               <dd class="text-4xl text-primary-950 dark:text-primary-200 font-medium tracking-tight">{stat.value}</dd>
+              <dt class="text-base sm:text-lg">{stat.name}</dt>
             </div>
           ))
         }
