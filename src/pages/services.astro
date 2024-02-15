@@ -1,0 +1,30 @@
+---
+
+import SlotHero from '../components/home/Slot-PageHero.astro';
+import Process from '../components/home/Section-Process-Lrg.astro';
+import ContactServices from '../components/home/Cta-ContactServices.astro';
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  description="Contact our team to learn more about how we can help you."
+  title="Services · Aidxn"
+>
+
+  <SlotHero>
+    <Fragment slot="smltitle">
+      All Services
+    </Fragment>
+    <Fragment slot="title">
+      Web Design and Marketing, in one place.
+    </Fragment>
+    <Fragment slot="desc">
+      With over 10 years experience in managing and improving brands, and a wide range of skills on offer, Aidxn Design is here to make running a business easier.
+    </Fragment>
+    
+  </SlotHero>
+
+  <Process />
+  <ContactServices />
+
+</Layout>
