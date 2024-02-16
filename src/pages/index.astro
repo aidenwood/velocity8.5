@@ -6,6 +6,9 @@ import Process from '../components/home/Section-Process.astro';
 import Intro from '../components/home/Section-Numbers-Intro.astro';
 import Clients from '../components/home/Section-IconGrid-Clients.astro';
 
+import FullScreenSliddy from '../components/home/Slot-ContentFullscreenSlider.astro';
+
+
 import CtaContactShort from '../components/home/Cta-ContactShort.astro';
 
 import WebIntro from '../components/home/Basic-Intro-Web.astro';
@@ -20,6 +23,10 @@ import CtaContactServices from '../components/home/Cta-ContactServices.astro';
 
 import BlogPosts from '../components/home/BlogPosts.astro';
 
+let backgroundUrl = 'url(/assets/visual-marketing-funnel.webp)' // Define image for Slot-HeroFullscreen and then call BackgroundURL in Section
+let backgroundUrl2 = 'url(/assets/visual-seo-content-writing.webp)' // Define image for Slot-HeroFullscreen and then call BackgroundURL in Section
+let backgroundUrl3 = 'url(/assets/visual-bubble-funnel.webp)' // Define image for Slot-HeroFullscreen and then call BackgroundURL in Section
+
 ---
 
 <Layout
@@ -30,24 +37,56 @@ import BlogPosts from '../components/home/BlogPosts.astro';
 
   <Hero />
   
+  <FullScreenSliddy backgroundUrl={backgroundUrl} backgroundUrl2={backgroundUrl2} backgroundUrl3={backgroundUrl3}>
+    <Fragment slot="smltitle">
+      Effective and Affordable Web Design
+    </Fragment>
+    <Fragment slot="title">
+      Websites That Convert
+    </Fragment>
+    <Fragment slot="desc">
+      Websites your customers will love. Custom website design and functionality, as you need. Powered by our very own, lightning-fast framework, Velocity9.
+    </Fragment>
+    
+    <Fragment slot="smltitle2">
+      Experts in Search Engine Optimisation
+    </Fragment>
+    <Fragment slot="title2">
+      Competitive SEO and Keyword Research
+    </Fragment>
+    <Fragment slot="desc2">
+      Today's age of online product searches and demand for easy-to-use website designs, means that your business is leaving money in the water if you're not putting focus into your website's content and writing. We take serious time to research competitive SEO copywriting to use across your website, making sure you get free local advertising with Google.
+    </Fragment>
+  
+    <Fragment slot="smltitle3">
+      Digital Marketing and Web Design, Together
+    </Fragment>
+    <Fragment slot="title3">
+      Cohesive Marketing Strategies
+    </Fragment>
+    <Fragment slot="desc3">
+      Customers will quickly notice when effort has been taken to make a brand shine, beautiful website designs that compliment their brand.
+    </Fragment>
+  </FullSCreenSliddy>
+
   <Intro />
   <Process />
 
   <Clients />
+  <BlogPosts />
   
+  <CtaContactShort />
+
   <WebIntro />
   <PricingWeb />
   <WebSliddy />
-
-  <CtaContactShort />
   
   <MarketIntro />
   <PricingMarket />
   <MarketingSliddy /> 
 
   <CtaContactServices />
-
-  <BlogPosts />
+  
 
 
 </Layout>

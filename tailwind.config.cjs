@@ -20,7 +20,7 @@ module.exports = {
       sans: ['Inter', 'sans-serif'],
     },
     screens: {
-      'xs': '412px',
+      'xs': '442px',
       // => @media (min-width: 412px) { ... }
       
       'sm': '668px',

@@ -1,0 +1,59 @@
+<!-- New Component to be made, 
+  align left the orb for new design
+  headings slightly smaller
+  For H3 and H4 under Slider on Velocity page etc
+-->
+<style>
+  svg{width:100%;height:100%;perspective:50px}circle{stroke:#26003A;stroke-width:8px;fill:none}.equator{stroke:#a600ff;transform:rotateZ(-20deg) rotateX(125deg)}.meridian{animation:2s linear infinite turn;transform:rotateZ(-20deg) rotateX(35deg) rotateY(var(--start))}@keyframes turn{100%{transform:rotateZ(-20deg) rotateX(35deg) rotateY(var(--end))}}
+  #contain { max-width: 1920px; }
+</style>
+
+<section class="mt-16 mb-24">
+  <div id="contain" class="mx-auto px-4 sm:px-6 w-full lg:px-8">
+    <div class="w-full gap-16">
+      <div class="flex flex-col items-center gap-8 sm:gap-12">
+        <div class="w-24">
+          
+          <div id="animationWrapper" translate="no" transition:name="meridian">
+            <svg viewBox="-500 -500 1000 1000" class="w-full">
+              <circle r="450"></circle>
+              <circle class="equator" r="450"></circle>
+              <circle class="meridian" r="450" style="--start:165deg; --end:180deg"></circle>
+              <circle class="meridian" r="450" style="--start:150deg; --end:165deg"></circle>
+              <circle class="meridian" r="450" style="--start:135deg; --end:150deg"></circle>
+              <circle class="meridian" r="450" style="--start:120deg; --end:135deg"></circle>
+              <circle class="meridian" r="450" style="--start:105deg; --end:120deg"></circle>
+              <circle class="meridian" r="450" style="--start:90deg; --end:105deg"></circle>
+              <circle class="meridian" r="450" style="--start:75deg; --end:90deg"></circle>
+              <circle class="meridian" r="450" style="--start:60deg; --end:75deg"></circle>
+              <circle class="meridian" r="450" style="--start:45deg; --end:60deg"></circle>
+              <circle class="meridian" r="450" style="--start:30deg; --end:45deg"></circle>
+              <circle class="meridian" r="450" style="--start:15deg; --end:30deg"></circle>
+              <circle class="meridian" r="450" style="--start:0deg; --end:15deg"></circle>
+            </svg>
+          </div>
+          
+        </div>
+        <div class="w-full gap-y-4 text-center">
+          <h1 class="font-thin pb-4 text-xs tracking-widest uppercase">
+            <slot name="smltitle">Aidxn Design</slot>
+          </h1>
+          <h2 class="font-medium md:tracking-tight tracking-tighter text-4xl md:text-5xl">
+            <slot name="title">Title</slot>
+          </h2>
+          <p class="text-lg xs:text-xl text-primary-950/70 dark:text-primary-200/70 max-w-4xl mx-auto mt-4">
+            <slot name="desc">Some description goes here</slot>
+          </p>
+          <a
+            href="/contact"
+            class="mt-6 mx-auto bg-primary-600 dark:bg-primary-400 hover:bg-primary-700 dark:hover:bg-primary-300 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-400 dark:text-primary-950 inline-flex items-center justify-center rounded-full border border-transparent px-5 py-3 text-base font-medium text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+          >
+            Contact
+          </a>
+        
+        </div>
+      </div>
+
+    </div>  
+  </div>
+</section>

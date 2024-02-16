@@ -1,0 +1,143 @@
+---
+export interface Props {
+
+backgroundUrl: string
+backgroundUrl2: string
+backgroundUrl3: string
+}
+
+const {backgroundUrl, backgroundUrl2, backgroundUrl3} = Astro.props
+---    
+
+
+<style define:vars={{ backgroundUrl,  backgroundUrl2, backgroundUrl3 }}>
+
+.fullscreen-carousel {
+  border: 1px black;
+  height: calc(100vh - 80px);
+  max-width: 100vw;
+  max-height: 900px;
+  
+}
+
+@media only screen and (max-width: 768px) {
+  .fullscreen-carousel {
+    min-height: 500px;
+    height: calc(100vh - 65px);
+  }
+}
+
+.container-offset {
+  max-width: 1920px;
+  margin: auto;
+}
+
+.carousel-container {
+  background: linear-gradient(to bottom right,#002f4b10,#c4210030);
+}
+
+.carousel-cell {
+  border: 1px black;
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  text-align: left;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.cell-1 {
+  background-image: var(--backgroundUrl);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.cell-2 {
+  background-image: var(--backgroundUrl2);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.cell-3 {
+  background-image: var(--backgroundUrl3);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+</style>
+
+<section class="">
+  <div class="limit-container">
+    <div class="fullscreen-carousel" data-flickity='{ "cellAlign": "left", "contain": true, "pageDots": false, "autoPlay": 3200, "groupCells": "85%", "lazyLoad": true, "imagesLoaded": true, "adaptiveHeight": true, "wrapAround": true }'>
+      <div class="carousel-cell cell-1 h-full">
+        <div class="carousel-container h-full w-full">
+          <div class="container-offset h-full flex items-center px-4 sm:px-6 lg:px-8">
+            <div class="carousel-inner flex flex-col justify-center text-white bg-primary-800/20 dark:bg-black/30 rounded-2xl backdrop-blur-xl max-w-7xl gap-4 sm:gap-6 px-4 sm:px-6 lg:px-8 py-8 sm:py-12 my-auto">
+              <h3 class="text-xs md:text-base uppercase font-thin tracking-widest">
+                <slot name="smltitle">Small Title</slot>
+              </h3>
+              <h4 class="font-medium tracking-tighter md:tracking-tight max-w-3xl text-2xl sm:text-3xl md:text-4xl xl:text-5xl lg:pr-4">
+                <slot name="title">Title</slot>
+              </h4>
+              <p class="text-base xs:text-lg max-w-2xl">
+                <slot name="desc">Desc</slot>
+              </p>
+              <div class="pt-2 flex gap-6">
+                <a href="/enquire" class="text-lg text-white dark:text-white bg-primary-700 hover:bg-primary-400 items-center inline-flex font-medium justify-center rounded-full transition px-6 py-4 mr-2">Enquire</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-cell cell-2 h-full">
+        <div class="carousel-container h-full w-full">
+          <div class="container-offset h-full flex items-center px-4 sm:px-6 lg:px-8">
+            <div class="carousel-inner flex flex-col justify-center text-white bg-primary-800/20 dark:bg-black/30 rounded-2xl backdrop-blur-xl max-w-7xl gap-4 sm:gap-6 px-4 sm:px-6 lg:px-8 py-8 sm:py-12 my-auto">
+              <h3 class="text-xs md:text-base uppercase font-thin tracking-widest">
+                <slot name="smltitle2">Small Title</slot>
+              </h3>
+              <h4 class="font-medium tracking-tighter md:tracking-tight max-w-3xl text-2xl sm:text-3xl md:text-4xl xl:text-5xl lg:pr-4">
+                <slot name="title2">Title</slot>
+              </h4>
+              <p class="text-base xs:text-lg max-w-2xl">
+                <slot name="desc2">Desc</slot>
+              </p>
+              <div class="pt-2 flex gap-6">
+                <a href="/enquire" class="text-lg text-white dark:text-white bg-primary-700 hover:bg-primary-400 items-center inline-flex font-medium justify-center rounded-full transition px-6 py-4 mr-2">Enquire</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-cell cell-3 h-full">
+        <div class="carousel-container h-full w-full">
+          <div class="container-offset h-full flex items-center px-4 sm:px-6 lg:px-8">
+            <div class="carousel-inner flex flex-col justify-center text-white bg-primary-800/20 dark:bg-black/30 rounded-2xl backdrop-blur-xl max-w-7xl gap-4 sm:gap-6 px-4 sm:px-6 lg:px-8 py-8 sm:py-12 my-auto">
+              <h3 class="text-xs md:text-base uppercase font-thin tracking-widest">
+                <slot name="smltitle3">Small Title</slot>
+              </h3>
+              <h4 class="font-medium tracking-tighter md:tracking-tight max-w-3xl text-2xl sm:text-3xl md:text-4xl xl:text-5xl lg:pr-4">
+                <slot name="title3">Title</slot>
+              </h4>
+              <p class="text-base xs:text-lg max-w-2xl">
+                <slot name="desc3">Desc</slot>
+              </p>
+              <div class="pt-2 flex gap-6">
+                <a href="/enquire" class="text-lg text-white dark:text-white bg-primary-700 hover:bg-primary-400 items-center inline-flex font-medium justify-center rounded-full transition px-6 py-4 mr-2">Enquire</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
