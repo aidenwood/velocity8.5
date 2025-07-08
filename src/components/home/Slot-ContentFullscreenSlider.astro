@@ -145,3 +145,23 @@ const {backgroundUrl, backgroundUrl2, backgroundUrl3} = Astro.props
     </div>
   </div>
 </section>
+
+
+<!-- 
+Script to fix blank Flickity loads 
+Also requires scripts in the astro component preferably at the top for inital load  
+-->
+<script is:inline>
+window.onload = (event) => {
+  var elem = document.querySelector('.main-carousel');
+  var flkty = new Flickity( elem, {
+    // options
+    cellAlign: 'left',
+    contain: true,
+    prevNextButtons: false,
+    imagesLoaded: true,
+    adaptiveHeight: true,
+    groupCells: '85%'
+  });
+};
+</script>
