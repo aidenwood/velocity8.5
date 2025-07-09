@@ -9,9 +9,18 @@ backgroundUrl3: string
 const {backgroundUrl, backgroundUrl2, backgroundUrl3} = Astro.props
 ---    
 
-<!-- CSS -->
+<!-- 
+CSS for Flickity 
+Must be on every flickity slider component and not in the layout file at all 
+Inline css styles below also help stop small bugs
+-->
 <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
-<!-- JavaScript -->
+
+<!-- 
+JavaScript for Flickity
+Must be on every flickity slider component and has a fall back for after dom is loaded at bottom of component 
+Dont inline
+-->
 <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 
 
