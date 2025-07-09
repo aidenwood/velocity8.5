@@ -16,13 +16,6 @@ Inline css styles below also help stop small bugs
 -->
 <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 
-<!-- 
-JavaScript for Flickity
-Must be on every flickity slider component and has a fall back for after dom is loaded at bottom of component 
-Dont inline
--->
-<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
-
 
 <style define:vars={{ backgroundUrl,  backgroundUrl2, backgroundUrl3 }}>
 
@@ -87,7 +80,7 @@ Dont inline
 
 <section class="">
   <div class="limit-container">
-    <div class="fullscreen-carousel" data-flickity='{ "cellAlign": "left", "contain": true, "pageDots": false, "autoPlay": 3200, "groupCells": "85%", "lazyLoad": true, "imagesLoaded": true, "adaptiveHeight": true, "wrapAround": true }'>
+    <div class="fullscreen-carousel">
       <div class="carousel-cell cell-1 h-full">
         <div class="carousel-container h-full w-full">
           <div class="container-offset h-full flex items-center px-4 sm:px-6 lg:px-8">
@@ -155,22 +148,36 @@ Dont inline
   </div>
 </section>
 
+<!-- Flickity JS best to run at bottom -->
+<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 
-<!-- 
-Script to fix blank Flickity loads 
-Also requires scripts in the astro component preferably at the top for inital load  
--->
 <script is:inline>
-window.onload = (event) => {
-  var elem = document.querySelector('.main-carousel');
-  var flkty = new Flickity( elem, {
-    // options
-    cellAlign: 'left',
-    contain: true,
-    prevNextButtons: false,
-    imagesLoaded: true,
-    adaptiveHeight: true,
-    groupCells: '85%'
+function initFlickityCarousels() {
+  document.querySelectorAll('.fullscreen-carousel').forEach((elem) => {
+    // Prevent double initialization
+    if (!elem.flickityInstance) {
+      elem.flickityInstance = new Flickity(elem, {
+        cellAlign: 'left',
+        contain: true,
+        prevNextButtons: false,
+        imagesLoaded: true,
+        adaptiveHeight: true,
+        groupCells: '85%',
+        pageDots: false,
+        autoPlay: 3200,
+        wrapAround: true,
+        lazyLoad: true,
+      });
+    }
   });
-};
+}
+
+// Run on DOM ready (for SSR and SPA navigation)
+if (document.readyState === 'complete' || document.readyState === 'interactive') {
+  initFlickityCarousels();
+} else {
+  window.addEventListener('DOMContentLoaded', initFlickityCarousels);
+}
+
+// Optional: If you use a SPA router, call initFlickityCarousels() after every navigation.
 </script>
