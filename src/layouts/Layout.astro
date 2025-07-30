@@ -89,6 +89,50 @@ const canonicalURL = Astro.props.canonicalURL || new URL(Astro.url.pathname, Ast
       window.Alpine = Alpine;
       Alpine.start();
     </script>
+    <script type="module">
+      import { initFlickity } from '../scripts/initFlickity.js';
+
+      window.addEventListener('astro:after-swap', () => {
+        initFlickity('.fullscreen-carousel', {
+          cellAlign: 'left',
+          contain: true,
+          prevNextButtons: false,
+          imagesLoaded: true,
+          adaptiveHeight: true,
+          groupCells: '85%',
+          pageDots: false,
+          autoPlay: 3200,
+          wrapAround: true,
+          lazyLoad: true,
+        });
+
+        initFlickity('.web-carousel', {
+          cellAlign: 'left',
+          contain: true,
+          prevNextButtons: false,
+          imagesLoaded: true,
+          adaptiveHeight: true,
+          groupCells: '85%',
+          pageDots: false,
+          autoPlay: 2400,
+          wrapAround: true,
+          lazyLoad: true,
+        });
+
+        initFlickity('.market-carousel', {
+          cellAlign: 'left',
+          contain: true,
+          prevNextButtons: false,
+          imagesLoaded: true,
+          adaptiveHeight: true,
+          groupCells: '85%',
+          pageDots: false,
+          autoPlay: 2400,
+          wrapAround: true,
+          lazyLoad: true,
+        });
+      });
+    </script>
   </body>
 </html>
 
