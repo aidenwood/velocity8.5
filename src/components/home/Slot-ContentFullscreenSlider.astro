@@ -157,20 +157,21 @@ Dont inline
 
 
 <!-- 
-Script to fix blank Flickity loads 
-Also requires scripts in the astro component preferably at the top for inital load  
+Script to initialize Flickity for fullscreen-carousel.
 -->
-<script is:inline>
-window.onload = (event) => {
-  var elem = document.querySelector('.main-carousel');
-  var flkty = new Flickity( elem, {
-    // options
+<script type="module" client:visible>
+  import { initFlickity } from '../../scripts/initFlickity.js';
+
+  initFlickity('.fullscreen-carousel', {
     cellAlign: 'left',
     contain: true,
     prevNextButtons: false,
     imagesLoaded: true,
     adaptiveHeight: true,
-    groupCells: '85%'
+    groupCells: '85%',
+    pageDots: false,
+    autoPlay: 3200,
+    wrapAround: true,
+    lazyLoad: true,
   });
-};
 </script>

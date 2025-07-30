@@ -1,3 +1,21 @@
+</style>
+
+<script type="module" client:visible>
+  import { initFlickity } from '../../scripts/initFlickity.js';
+
+  initFlickity('.web-carousel', {
+    cellAlign: 'left',
+    contain: true,
+    prevNextButtons: false,
+    imagesLoaded: true,
+    adaptiveHeight: true,
+    groupCells: '85%',
+    pageDots: false,
+    autoPlay: 2400,
+    wrapAround: true,
+    lazyLoad: true,
+  });
+</script>
 <style>
 /* transition height change */
 .flickity-viewport {

@@ -151,33 +151,19 @@ Inline css styles below also help stop small bugs
 <!-- Flickity JS best to run at bottom -->
 <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 
-<script is:inline>
-function initFlickityCarousels() {
-  document.querySelectorAll('.fullscreen-carousel').forEach((elem) => {
-    // Prevent double initialization
-    if (!elem.flickityInstance) {
-      elem.flickityInstance = new Flickity(elem, {
-        cellAlign: 'left',
-        contain: true,
-        prevNextButtons: false,
-        imagesLoaded: true,
-        adaptiveHeight: true,
-        groupCells: '85%',
-        pageDots: false,
-        autoPlay: 3200,
-        wrapAround: true,
-        lazyLoad: true,
-      });
-    }
+<script type="module" client:visible>
+  import { initFlickity } from '../../scripts/initFlickity.js';
+
+  initFlickity('.fullscreen-carousel', {
+    cellAlign: 'left',
+    contain: true,
+    prevNextButtons: false,
+    imagesLoaded: true,
+    adaptiveHeight: true,
+    groupCells: '85%',
+    pageDots: false,
+    autoPlay: 3200,
+    wrapAround: true,
+    lazyLoad: true,
   });
-}
-
-// Run on DOM ready (for SSR and SPA navigation)
-if (document.readyState === 'complete' || document.readyState === 'interactive') {
-  initFlickityCarousels();
-} else {
-  window.addEventListener('DOMContentLoaded', initFlickityCarousels);
-}
-
-// Optional: If you use a SPA router, call initFlickityCarousels() after every navigation.
 </script>
