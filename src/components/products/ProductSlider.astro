@@ -1,0 +1,223 @@
+---
+// ProductSlider.astro - Dynamic product slider component
+import productsData from '../../content/products.json';
+
+export interface Props {
+  category?: 'webDesign' | 'digitalMarketing' | 'graphicDesign' | 'moonshotPlan' | 'all';
+  featured?: boolean;
+  limit?: number;
+  title?: string;
+  description?: string;
+}
+
+const { 
+  category = 'all', 
+  featured = false, 
+  limit = 10,
+  title = "Our Products & Services",
+  description = "Explore our comprehensive range of digital solutions"
+} = Astro.props;
+
+// Get products based on category
+let products = [];
+if (category === 'all') {
+  products = [
+    ...productsData.webDesign,
+    ...productsData.digitalMarketing,
+    ...productsData.graphicDesign,
+    ...productsData.moonshotPlan
+  ];
+} else {
+  products = productsData[category] || [];
+}
+
+// Filter by featured if specified
+if (featured) {
+  products = products.filter(product => product.featured);
+}
+
+// Limit the number of products
+products = products.slice(0, limit);
+---
+
+<!-- CSS for Flickity -->
+<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+
+<style>
+  .product-carousel {
+    padding-bottom: 40px;
+  }
+  
+  .product-card {
+    width: 100%;
+    height: 100%;
+    margin-right: 20px;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  .product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+  }
+  
+  .product-carousel-cell {
+    width: 350px;
+    height: auto;
+    margin-right: 20px;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .product-carousel-cell {
+      width: 280px;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .product-carousel-cell {
+      width: 90%;
+    }
+  }
+  
+  .flickity-page-dots {
+    bottom: 10px;
+  }
+  
+  .flickity-page-dots .dot {
+    background: rgb(var(--color-primary-500));
+    opacity: 0.3;
+  }
+  
+  .flickity-page-dots .dot.is-selected {
+    opacity: 1;
+  }
+</style>
+
+<section class="py-16 md:py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-primary-950 dark:text-primary-200 mb-4">
+        {title}
+      </h2>
+      <p class="text-lg text-primary-950/70 dark:text-primary-200/70 max-w-3xl mx-auto">
+        {description}
+      </p>
+    </div>
+    
+    <!-- Product Carousel -->
+    <div class="product-carousel" data-product-carousel>
+      {products.map((product) => (
+        <div class="product-carousel-cell">
+          <div class="product-card h-full flex flex-col bg-white dark:bg-gray-800 shadow-lg">
+            <!-- Product Image -->
+            <div class="relative h-48 bg-gradient-to-br from-primary-500 to-primary-700 overflow-hidden">
+              {product.image && (
+                <img 
+                  src={product.image} 
+                  alt={product.name}
+                  class="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity"
+                  loading="lazy"
+                />
+              )}
+              {product.featured && (
+                <span class="absolute top-4 right-4 bg-yellow-500 text-white text-xs font-bold px-3 py-1 rounded-full">
+                  FEATURED
+                </span>
+              )}
+            </div>
+            
+            <!-- Product Content -->
+            <div class="flex-1 p-6 flex flex-col">
+              <!-- Category Badge -->
+              <span class="inline-block text-xs font-semibold text-primary-600 dark:text-primary-400 mb-2">
+                {product.category}
+              </span>
+              
+              <!-- Product Name -->
+              <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                {product.name}
+              </h3>
+              
+              <!-- Short Description -->
+              <p class="text-sm text-gray-600 dark:text-gray-300 mb-4 flex-1">
+                {product.shortDescription}
+              </p>
+              
+              <!-- Price -->
+              <div class="mb-4">
+                <span class="text-2xl font-bold text-primary-600 dark:text-primary-400">
+                  ${product.price.toLocaleString()}
+                </span>
+                <span class="text-sm text-gray-500 dark:text-gray-400 ml-1">
+                  {product.priceNote}
+                </span>
+              </div>
+              
+              <!-- Highlights -->
+              {product.highlights && (
+                <ul class="mb-4 space-y-1">
+                  {product.highlights.slice(0, 3).map((highlight) => (
+                    <li class="flex items-start text-sm text-gray-600 dark:text-gray-300">
+                      <svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                      </svg>
+                      <span>{highlight}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+              
+              <!-- Actions -->
+              <div class="flex gap-3 mt-auto">
+                <a 
+                  href={product.link}
+                  class="flex-1 text-center px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg transition-colors"
+                >
+                  Learn More
+                </a>
+                {product.buyLink && product.buyLink !== '#' && (
+                  <a 
+                    href={product.buyLink}
+                    class="flex-1 text-center px-4 py-2 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg transition-colors"
+                  >
+                    Buy Now
+                  </a>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Flickity JS -->
+<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+
+<script type="module">
+  import { initFlickity } from '../../scripts/initFlickity.js';
+  
+  // Initialize the product carousel
+  document.addEventListener('DOMContentLoaded', () => {
+    const carousel = document.querySelector('[data-product-carousel]');
+    if (carousel && carousel.children.length > 0) {
+      initFlickity('[data-product-carousel]', {
+        cellAlign: 'left',
+        contain: true,
+        prevNextButtons: true,
+        pageDots: true,
+        imagesLoaded: true,
+        adaptiveHeight: false,
+        groupCells: false,
+        autoPlay: 4000,
+        wrapAround: true,
+        lazyLoad: 2,
+        pauseAutoPlayOnHover: true
+      });
+    }
+  });
+</script>

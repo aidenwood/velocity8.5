@@ -1,0 +1,403 @@
+{
+  "velocityPlans": {
+    "title": "Velocity Web Design Plans",
+    "description": "High-performance websites built on our Velocity framework",
+    "plans": [
+      {
+        "id": "velocity-small",
+        "name": "Small",
+        "description": "Custom web design built on the Velocity9 theme. Recommended package for small businesses in need of strong online lead generation and custom web design.",
+        "price": 2445,
+        "currency": "AUD",
+        "periodicity": "+ GST",
+        "featured": false,
+        "buyLink": "https://buy.stripe.com/9AQ4hPbLt457532fZ5",
+        "features": [
+          "Velocity V9 Installation",
+          "Lifetime License",
+          "A+ / 100% Web Performance",
+          "8 Pages",
+          "1 In-Person Revision",
+          "3,000 words of content min.",
+          "Keyword Research & SEO",
+          "Domain & DNS Setup",
+          "Turnaround in 21 days",
+          "1 Year of Email Support"
+        ]
+      },
+      {
+        "id": "velocity-medium",
+        "name": "Medium",
+        "description": "Custom web design built on the Velocity9 theme. Recommended package for brands needing major improvements to online competitiveness, conversion rate, CTR and SEO.",
+        "price": 3445,
+        "currency": "AUD",
+        "periodicity": "+ GST",
+        "featured": true,
+        "buyLink": "https://buy.stripe.com/cN2aGd6r9eJL0MMaEZ",
+        "features": [
+          "Velocity V9 Installation",
+          "Lifetime License",
+          "A+ / 100% Web Performance",
+          "16 Pages",
+          "2 In-Person Revisions",
+          "7,500 words of content min.",
+          "Small Graphic Design Pack",
+          "Keyword Research & SEO",
+          "Competitor Research",
+          "Domain & DNS Setup",
+          "Turnaround in 45 days",
+          "1 Year of Email Support"
+        ]
+      },
+      {
+        "id": "velocity-large",
+        "name": "Large",
+        "description": "Custom e-commerce solution powered by the Velocity9 theme. Integrated with Stripe for industry leading e-commerce tools and secure payment processing.",
+        "price": 5445,
+        "currency": "AUD",
+        "periodicity": "+ GST",
+        "featured": false,
+        "buyLink": "https://buy.stripe.com/fZe8y53eX9prcrufZn",
+        "features": [
+          "Velocity V9 Installation",
+          "Lifetime License",
+          "A+ / 100% Web Performance",
+          "32 Pages",
+          "3 In-Person Revisions",
+          "15,000 words of content min.",
+          "Medium Graphic Design Pack",
+          "E-commerce Integration",
+          "Stripe, ApplePay, GPay, AfterPay",
+          "Keyword Research & SEO",
+          "Competitor Research",
+          "Domain & DNS Setup",
+          "Turnaround in 60 days",
+          "1 Year of Email Support"
+        ]
+      }
+    ]
+  },
+  "wordpressPlans": {
+    "title": "WordPress Development Plans",
+    "description": "Professional WordPress websites with hosting included",
+    "plans": [
+      {
+        "id": "wordpress-small",
+        "name": "Small",
+        "description": "For small sitemaps with basic functionality integrated WordPress sites.",
+        "price": 3445,
+        "currency": "AUD",
+        "periodicity": "+ GST",
+        "featured": false,
+        "buyLink": "https://buy.stripe.com/8wMcOlbLt9pr9ji5kI",
+        "features": [
+          "Headless WordPress install",
+          "1 year of hosting",
+          "8 Pages",
+          "1 In-person revision",
+          "5,000 words of content min.",
+          "CMS Integration",
+          "Basic Graphic Design Pack",
+          "Image Optimisation",
+          "Keyword & Competitor Research",
+          "Custom Domain & DNS Setup",
+          "Google My Business Optimisation",
+          "Google Search Console Connection",
+          "Turnaround in 30 days",
+          "1 Year Domain Included",
+          "Lifetime access",
+          "Email Support"
+        ]
+      },
+      {
+        "id": "wordpress-medium",
+        "name": "Medium",
+        "description": "For medium sitemaps and functionality integrated WordPress sites.",
+        "price": 4445,
+        "currency": "AUD",
+        "periodicity": "+ GST",
+        "featured": true,
+        "buyLink": "https://buy.stripe.com/6oE29HdTB8lnanmaF3",
+        "features": [
+          "Headless WordPress install",
+          "1 year of hosting",
+          "16 Pages",
+          "2 In-person revisions",
+          "7,500 words of content min.",
+          "CMS Integration",
+          "Medium Graphic Design Pack",
+          "Image Optimisation",
+          "Keyword & Competitor Research",
+          "Stripe Checkouts",
+          "ApplePay & GPay",
+          "Custom Domain & DNS Setup",
+          "Google My Business Optimisation",
+          "Google Search Console Connection",
+          "Turnaround in 45 days",
+          "1 Year Domain Included",
+          "Lifetime access",
+          "Email Support"
+        ]
+      },
+      {
+        "id": "wordpress-large",
+        "name": "Large",
+        "description": "For large sitemaps and advanced functionality WordPress sites.",
+        "price": 6445,
+        "currency": "AUD",
+        "periodicity": "+ GST",
+        "featured": false,
+        "buyLink": "https://buy.stripe.com/3cs8y58vf457bre00p",
+        "features": [
+          "Headless WordPress install",
+          "1 year of hosting",
+          "32+ Pages",
+          "3 In-person revisions",
+          "15,000 words of content min.",
+          "CMS Integration",
+          "Large Graphic Design Pack",
+          "Advanced Image Optimisation",
+          "Keyword & Competitor Research",
+          "Full E-commerce Integration",
+          "All Payment Methods",
+          "API Integrations",
+          "Custom Domain & DNS Setup",
+          "Google My Business Optimisation",
+          "Google Search Console Connection",
+          "Turnaround in 60 days",
+          "1 Year Domain Included",
+          "Lifetime access",
+          "Priority Email Support"
+        ]
+      }
+    ]
+  },
+  "shopifyPlans": {
+    "title": "Shopify E-commerce Plans",
+    "description": "Professional Shopify stores for e-commerce success",
+    "plans": [
+      {
+        "id": "shopify-small",
+        "name": "Small",
+        "description": "Take Shopify to the next level with a planned launch strategy to quickly rise to success.",
+        "price": 3445,
+        "currency": "AUD",
+        "periodicity": "+ GST",
+        "featured": false,
+        "buyLink": "#",
+        "features": [
+          "Custom Shopify Development",
+          "Custom Plugin Setup",
+          "16 Products",
+          "1 In-person revision",
+          "All Payment Platforms Connected",
+          "5,000 words of content min.",
+          "Basic Graphic Design Pack",
+          "Keyword & Competitor Research",
+          "Turnaround in 21 days",
+          "1 Year Domain Included",
+          "Email Support",
+          "6 Months of Extended Optimisation"
+        ]
+      },
+      {
+        "id": "shopify-medium",
+        "name": "Medium",
+        "description": "For nation-wide e-commerce brands that need Shopify's technical capabilities.",
+        "price": 4445,
+        "currency": "AUD",
+        "periodicity": "+ GST",
+        "featured": true,
+        "buyLink": "#",
+        "features": [
+          "Custom Shopify Development",
+          "Custom Plugin Setup",
+          "32 Products",
+          "2 In-person revisions",
+          "API Connections",
+          "All Payment Platforms Connected",
+          "10,000 words of content min.",
+          "Medium Graphic Design Pack",
+          "Keyword & Competitor Research",
+          "Turnaround in 30 days",
+          "1 Year Domain Included",
+          "Email Support",
+          "6 Months of Extended Optimisation"
+        ]
+      },
+      {
+        "id": "shopify-large",
+        "name": "Large",
+        "description": "For international e-commerce brands needing to optimise flow of sales and processes at scale.",
+        "price": 6445,
+        "currency": "AUD",
+        "periodicity": "+ GST",
+        "featured": false,
+        "buyLink": "#",
+        "features": [
+          "Custom Shopify Development",
+          "Advanced Plugin Setup",
+          "64+ Products",
+          "3 In-person revisions",
+          "Advanced API Connections",
+          "All Payment Platforms Connected",
+          "International Payment Methods",
+          "20,000 words of content min.",
+          "Large Graphic Design Pack",
+          "Advanced Keyword & Competitor Research",
+          "Multi-language Support",
+          "Turnaround in 45 days",
+          "1 Year Domain Included",
+          "Priority Email Support",
+          "12 Months of Extended Optimisation"
+        ]
+      }
+    ]
+  },
+  "digitalMarketingPlans": {
+    "googleAds": {
+      "title": "Google Ads Management",
+      "description": "Professional Google Ads campaign management",
+      "plans": [
+        {
+          "id": "google-ads-small",
+          "name": "Small Business",
+          "description": "Perfect for local businesses and startups",
+          "price": 750,
+          "currency": "AUD",
+          "periodicity": "/month + GST",
+          "adSpend": "$2,000 - $5,000",
+          "featured": false,
+          "features": [
+            "Account Setup & Structure",
+            "Keyword Research",
+            "Ad Copy Creation",
+            "Landing Page Optimization",
+            "Bid Management",
+            "Weekly Performance Reviews",
+            "Monthly Reporting",
+            "Conversion Tracking",
+            "A/B Testing",
+            "Competitor Analysis"
+          ]
+        },
+        {
+          "id": "google-ads-medium",
+          "name": "Growth Business",
+          "description": "For established businesses looking to scale",
+          "price": 1250,
+          "currency": "AUD",
+          "periodicity": "/month + GST",
+          "adSpend": "$5,000 - $15,000",
+          "featured": true,
+          "features": [
+            "Everything in Small Business",
+            "Advanced Keyword Strategy",
+            "Shopping Campaigns",
+            "Display Network Campaigns",
+            "Remarketing Setup",
+            "Custom Audiences",
+            "Bi-weekly Reviews",
+            "Phone Support",
+            "Landing Page A/B Testing",
+            "Advanced Analytics Setup"
+          ]
+        },
+        {
+          "id": "google-ads-large",
+          "name": "Enterprise",
+          "description": "For large businesses with complex needs",
+          "price": 2500,
+          "currency": "AUD",
+          "periodicity": "/month + GST",
+          "adSpend": "$15,000+",
+          "featured": false,
+          "features": [
+            "Everything in Growth Business",
+            "Dedicated Account Manager",
+            "Daily Optimization",
+            "Multi-location Campaigns",
+            "Advanced Automation",
+            "Custom Reporting Dashboard",
+            "Weekly Strategy Calls",
+            "Priority Support",
+            "Conversion Rate Optimization",
+            "Competitor Intelligence Reports"
+          ]
+        }
+      ]
+    },
+    "facebookAds": {
+      "title": "Facebook & Instagram Ads",
+      "description": "Social media advertising management",
+      "plans": [
+        {
+          "id": "facebook-ads-small",
+          "name": "Starter",
+          "description": "Build your social media presence",
+          "price": 750,
+          "currency": "AUD",
+          "periodicity": "/month + GST",
+          "adSpend": "$2,000 - $5,000",
+          "featured": false,
+          "features": [
+            "Campaign Strategy",
+            "Audience Research & Targeting",
+            "Creative Design (4 per month)",
+            "Ad Copywriting",
+            "Campaign Setup",
+            "Daily Monitoring",
+            "Weekly Optimization",
+            "Monthly Reporting",
+            "Pixel Installation",
+            "Retargeting Campaigns"
+          ]
+        },
+        {
+          "id": "facebook-ads-medium",
+          "name": "Professional",
+          "description": "Scale your social media advertising",
+          "price": 1250,
+          "currency": "AUD",
+          "periodicity": "/month + GST",
+          "adSpend": "$5,000 - $15,000",
+          "featured": true,
+          "features": [
+            "Everything in Starter",
+            "Creative Design (8 per month)",
+            "Video Ad Creation",
+            "Instagram Stories Ads",
+            "Carousel & Collection Ads",
+            "Custom Audiences",
+            "Lookalike Audiences",
+            "Bi-weekly Reviews",
+            "A/B Testing",
+            "Influencer Integration"
+          ]
+        },
+        {
+          "id": "facebook-ads-large",
+          "name": "Enterprise",
+          "description": "Complete social media domination",
+          "price": 2500,
+          "currency": "AUD",
+          "periodicity": "/month + GST",
+          "adSpend": "$15,000+",
+          "featured": false,
+          "features": [
+            "Everything in Professional",
+            "Unlimited Creative Design",
+            "Video Production",
+            "Multi-platform Campaigns",
+            "Advanced Automation",
+            "Custom Analytics Dashboard",
+            "Daily Optimization",
+            "Dedicated Account Manager",
+            "Weekly Strategy Calls",
+            "Competitor Analysis Reports"
+          ]
+        }
+      ]
+    }
+  }
+}

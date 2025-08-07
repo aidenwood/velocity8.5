@@ -1,0 +1,192 @@
+---
+// Products Showcase Page - Demonstrates JSON-driven components
+import Layout from '../layouts/Layout.astro';
+import ProductSlider from '../components/products/ProductSlider.astro';
+import DynamicPricingTable from '../components/dynamic/DynamicPricingTable.astro';
+import DynamicPageBuilder from '../components/dynamic/DynamicPageBuilder.astro';
+
+const pageTitle = "Products & Services Showcase";
+const pageDescription = "Explore our comprehensive range of digital solutions powered by dynamic JSON data";
+---
+
+<Layout title={pageTitle}>
+  <!-- Hero Section -->
+  <section class="relative bg-gradient-to-br from-primary-600 to-primary-800 text-white py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+        {pageTitle}
+      </h1>
+      <p class="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-8">
+        {pageDescription}
+      </p>
+      <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4 inline-block">
+        <p class="text-sm font-semibold">
+          ✨ This page is dynamically built using JSON data files
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Products Slider -->
+  <ProductSlider 
+    featured={true}
+    title="Featured Solutions"
+    description="Our most popular products and services"
+    limit={6}
+  />
+
+  <!-- Web Design Products -->
+  <ProductSlider 
+    category="webDesign"
+    title="Web Design Services"
+    description="Professional websites that convert visitors into customers"
+    limit={5}
+  />
+
+  <!-- Digital Marketing Products -->
+  <ProductSlider 
+    category="digitalMarketing"
+    title="Digital Marketing Solutions"
+    description="Grow your online presence and reach your target audience"
+    limit={4}
+  />
+
+  <!-- Graphic Design Products -->
+  <ProductSlider 
+    category="graphicDesign"
+    title="Graphic Design Services"
+    description="Visual solutions that make your brand stand out"
+    limit={3}
+  />
+
+  <!-- Pricing Tables Section -->
+  <section class="bg-gray-50 dark:bg-gray-900 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          Transparent Pricing
+        </h2>
+        <p class="text-lg text-gray-600 dark:text-gray-400">
+          Choose the perfect plan for your business needs
+        </p>
+      </div>
+    </div>
+    
+    <!-- Velocity Pricing -->
+    <DynamicPricingTable planType="velocityPlans" />
+    
+    <!-- WordPress Pricing -->
+    <div class="mt-20">
+      <DynamicPricingTable planType="wordpressPlans" />
+    </div>
+    
+    <!-- Google Ads Pricing -->
+    <div class="mt-20">
+      <DynamicPricingTable planType="googleAds" />
+    </div>
+  </section>
+
+  <!-- Dynamic Page Builder Example -->
+  <section class="py-16 bg-white dark:bg-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          Dynamic Page Builder Demo
+        </h2>
+        <p class="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+          The sections below are generated dynamically using our page builder component with custom sections configuration
+        </p>
+      </div>
+    </div>
+    
+    <DynamicPageBuilder 
+      sections={[
+        {
+          type: "productSlider",
+          props: {
+            category: "moonshotPlan",
+            title: "Complete Business Solutions",
+            description: "Everything you need to launch and grow your business online"
+          }
+        },
+        {
+          type: "pricing",
+          props: {
+            planType: "shopifyPlans"
+          }
+        }
+      ]}
+    />
+  </section>
+
+  <!-- All Products Grid -->
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 dark:text-white mb-12">
+        All Products & Services
+      </h2>
+      <ProductSlider 
+        category="all"
+        title=""
+        description=""
+        limit={20}
+      />
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="bg-primary-600 text-white py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">
+        Ready to Transform Your Business?
+      </h2>
+      <p class="text-xl mb-8 text-white/90">
+        Let's discuss how our solutions can help you achieve your goals
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/contact" class="px-8 py-4 bg-white text-primary-600 font-semibold rounded-lg hover:bg-gray-100 transition">
+          Get Started
+        </a>
+        <a href="/pricing" class="px-8 py-4 bg-primary-700 text-white font-semibold rounded-lg hover:bg-primary-800 transition">
+          View Pricing
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Info Box -->
+  <section class="py-8 bg-gray-100 dark:bg-gray-900">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-6">
+        <h3 class="text-lg font-semibold text-blue-900 dark:text-blue-300 mb-2">
+          🚀 About This Implementation
+        </h3>
+        <p class="text-blue-800 dark:text-blue-400 mb-4">
+          This page demonstrates the JSON-driven content system imported from the immersive-lighting concept:
+        </p>
+        <ul class="space-y-2 text-blue-700 dark:text-blue-400">
+          <li class="flex items-start">
+            <span class="mr-2">•</span>
+            <span><strong>products.json:</strong> Contains all product/service data</span>
+          </li>
+          <li class="flex items-start">
+            <span class="mr-2">•</span>
+            <span><strong>pricing.json:</strong> Defines pricing tiers and features</span>
+          </li>
+          <li class="flex items-start">
+            <span class="mr-2">•</span>
+            <span><strong>ProductSlider:</strong> Dynamically displays products from JSON</span>
+          </li>
+          <li class="flex items-start">
+            <span class="mr-2">•</span>
+            <span><strong>DynamicPricingTable:</strong> Renders pricing tables from JSON</span>
+          </li>
+          <li class="flex items-start">
+            <span class="mr-2">•</span>
+            <span><strong>DynamicPageBuilder:</strong> Assembles pages from JSON templates</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</Layout>
