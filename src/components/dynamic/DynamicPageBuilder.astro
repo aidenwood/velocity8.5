@@ -1,0 +1,101 @@
+---
+// DynamicPageBuilder.astro - Dynamic page builder using JSON templates
+import pageTemplates from '../../content/page-templates.json';
+
+// Import all possible components
+import ProductSlider from '../products/ProductSlider.astro';
+import DynamicPricingTable from './DynamicPricingTable.astro';
+
+// Import existing components
+import Hero from '../home/Hero.astro';
+import Cta from '../home/Cta.astro';
+import Testimonials from '../home/Testimonials.astro';
+
+export interface Props {
+  template?: string;
+  sections?: Array<{
+    type: string;
+    props?: Record<string, any>;
+  }>;
+  data?: Record<string, any>;
+}
+
+const { template, sections: customSections, data = {} } = Astro.props;
+
+// Get sections either from template or custom sections
+let sections = customSections;
+if (template && !customSections) {
+  const templateConfig = pageTemplates.templates[template];
+  if (!templateConfig) {
+    throw new Error(`Template "${template}" not found`);
+  }
+  sections = templateConfig.sections;
+}
+
+if (!sections) {
+  throw new Error('Either template or sections must be provided');
+}
+
+// Function to replace template variables with actual data
+function processProps(props: Record<string, any>, data: Record<string, any>): Record<string, any> {
+  const processed: Record<string, any> = {};
+  
+  for (const [key, value] of Object.entries(props)) {
+    if (typeof value === 'string' && value.startsWith('{{') && value.endsWith('}}')) {
+      // Extract the path from the template variable
+      const path = value.slice(2, -2).trim();
+      const keys = path.split('.');
+      
+      // Navigate through the data object
+      let result = data;
+      for (const k of keys) {
+        result = result?.[k];
+      }
+      
+      processed[key] = result !== undefined ? result : value;
+    } else {
+      processed[key] = value;
+    }
+  }
+  
+  return processed;
+}
+
+// Map section types to components
+const componentMap: Record<string, any> = {
+  productSlider: ProductSlider,
+  pricing: DynamicPricingTable,
+  hero: Hero,
+  cta: Cta,
+  testimonials: Testimonials,
+  // Add more mappings as components are created
+};
+---
+
+<div class="dynamic-page">
+  {sections.map((section) => {
+    const Component = componentMap[section.type];
+    
+    if (!Component) {
+      return (
+        <div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded my-4">
+          <p class="font-bold">Component not found: {section.type}</p>
+          <p class="text-sm">This component needs to be implemented or mapped.</p>
+        </div>
+      );
+    }
+    
+    const processedProps = section.props ? processProps(section.props, data) : {};
+    
+    return <Component {...processedProps} />;
+  })}
+</div>
+
+<style>
+  .dynamic-page {
+    /* Ensure proper spacing between sections */
+    > * + * {
+      margin-top: 0;
+    }
+  }
+</style>

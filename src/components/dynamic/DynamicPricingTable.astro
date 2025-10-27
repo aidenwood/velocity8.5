@@ -1,0 +1,113 @@
+---
+// DynamicPricingTable.astro - Dynamic pricing table that uses JSON data
+import pricingData from '../../content/pricing.json';
+
+export interface Props {
+  planType: 'velocityPlans' | 'wordpressPlans' | 'shopifyPlans' | 'googleAds' | 'facebookAds';
+  columns?: number;
+}
+
+const { planType, columns = 3 } = Astro.props;
+
+// Get the appropriate pricing data
+let pricingSection;
+if (planType === 'googleAds' || planType === 'facebookAds') {
+  pricingSection = pricingData.digitalMarketingPlans[planType];
+} else {
+  pricingSection = pricingData[planType];
+}
+
+if (!pricingSection) {
+  throw new Error(`Invalid plan type: ${planType}`);
+}
+
+const { title, description, plans } = pricingSection;
+---
+
+<section class="py-16 md:py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-primary-950 dark:text-primary-200 mb-4">
+        {title}
+      </h2>
+      <p class="text-lg text-primary-950/70 dark:text-primary-200/70 max-w-3xl mx-auto">
+        {description}
+      </p>
+    </div>
+    
+    <!-- Pricing Grid -->
+    <div class={`grid grid-cols-1 md:grid-cols-${Math.min(columns, plans.length)} gap-8`}>
+      {plans.map((plan) => (
+        <div 
+          class:list={[
+            'relative flex flex-col rounded-2xl p-8 shadow-lg transition-all hover:shadow-xl',
+            plan.featured ? 'bg-primary-600 text-white ring-2 ring-primary-600 transform scale-105' : 'bg-white dark:bg-gray-800'
+          ]}
+        >
+          {plan.featured && (
+            <span class="absolute -top-4 left-1/2 -translate-x-1/2 bg-yellow-500 text-black text-xs font-bold px-4 py-1 rounded-full uppercase tracking-wider">
+              Most Popular
+            </span>
+          )}
+          
+          <!-- Plan Name -->
+          <h3 class={`text-2xl font-bold mb-2 ${plan.featured ? 'text-white' : 'text-gray-900 dark:text-white'}`}>
+            {plan.name}
+          </h3>
+          
+          <!-- Plan Description -->
+          <p class={`text-sm mb-6 ${plan.featured ? 'text-white/90' : 'text-gray-600 dark:text-gray-400'}`}>
+            {plan.description}
+          </p>
+          
+          <!-- Price -->
+          <div class="mb-6">
+            <span class={`text-4xl font-bold ${plan.featured ? 'text-white' : 'text-primary-600 dark:text-primary-400'}`}>
+              ${plan.price.toLocaleString()}
+            </span>
+            <span class={`text-sm ml-2 ${plan.featured ? 'text-white/80' : 'text-gray-500 dark:text-gray-400'}`}>
+              {plan.periodicity}
+            </span>
+            {plan.adSpend && (
+              <p class={`text-sm mt-2 ${plan.featured ? 'text-white/80' : 'text-gray-600 dark:text-gray-400'}`}>
+                Ad Spend: {plan.adSpend}
+              </p>
+            )}
+          </div>
+          
+          <!-- Features -->
+          <ul class="space-y-3 mb-8 flex-1">
+            {plan.features.map((feature) => (
+              <li class={`flex items-start text-sm ${plan.featured ? 'text-white' : 'text-gray-600 dark:text-gray-300'}`}>
+                <svg 
+                  class={`w-5 h-5 mr-2 flex-shrink-0 mt-0.5 ${plan.featured ? 'text-white' : 'text-green-500'}`} 
+                  fill="currentColor" 
+                  viewBox="0 0 20 20"
+                >
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                <span>{feature}</span>
+              </li>
+            ))}
+          </ul>
+          
+          <!-- CTA Button -->
+          {plan.buyLink && (
+            <a 
+              href={plan.buyLink}
+              class:list={[
+                'w-full text-center py-3 px-6 rounded-lg font-medium transition-all',
+                plan.featured 
+                  ? 'bg-white text-primary-600 hover:bg-gray-100' 
+                  : 'bg-primary-600 text-white hover:bg-primary-700'
+              ]}
+            >
+              Get Started
+            </a>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,206 @@
+{
+  "templates": {
+    "servicePage": {
+      "name": "Service Page Template",
+      "description": "Standard template for service pages",
+      "sections": [
+        {
+          "type": "hero",
+          "props": {
+            "title": "{{service.name}}",
+            "description": "{{service.description}}",
+            "backgroundImage": "{{service.heroImage}}",
+            "ctaText": "Get Started",
+            "ctaLink": "/enquire"
+          }
+        },
+        {
+          "type": "features",
+          "props": {
+            "title": "Key Features",
+            "features": "{{service.features}}"
+          }
+        },
+        {
+          "type": "productSlider",
+          "props": {
+            "category": "{{service.category}}",
+            "title": "Related Services",
+            "limit": 6
+          }
+        },
+        {
+          "type": "pricing",
+          "props": {
+            "planType": "{{service.pricingType}}"
+          }
+        },
+        {
+          "type": "cta",
+          "props": {
+            "title": "Ready to Get Started?",
+            "description": "Let's discuss how we can help your business grow.",
+            "buttonText": "Contact Us",
+            "buttonLink": "/contact"
+          }
+        }
+      ]
+    },
+    "landingPage": {
+      "name": "Landing Page Template",
+      "description": "High-converting landing page template",
+      "sections": [
+        {
+          "type": "hero",
+          "props": {
+            "variant": "fullscreen",
+            "title": "{{page.heroTitle}}",
+            "description": "{{page.heroDescription}}",
+            "backgroundImage": "{{page.heroBackground}}"
+          }
+        },
+        {
+          "type": "logos",
+          "props": {
+            "title": "Trusted By",
+            "logos": "{{page.clientLogos}}"
+          }
+        },
+        {
+          "type": "features",
+          "props": {
+            "layout": "grid",
+            "title": "{{page.featuresTitle}}",
+            "features": "{{page.features}}"
+          }
+        },
+        {
+          "type": "productSlider",
+          "props": {
+            "featured": true,
+            "title": "Featured Solutions"
+          }
+        },
+        {
+          "type": "testimonials",
+          "props": {
+            "title": "What Our Clients Say",
+            "testimonials": "{{page.testimonials}}"
+          }
+        },
+        {
+          "type": "faq",
+          "props": {
+            "title": "Frequently Asked Questions",
+            "questions": "{{page.faq}}"
+          }
+        }
+      ]
+    },
+    "productShowcase": {
+      "name": "Product Showcase Template",
+      "description": "Template for showcasing multiple products/services",
+      "sections": [
+        {
+          "type": "hero",
+          "props": {
+            "variant": "centered",
+            "title": "{{page.title}}",
+            "description": "{{page.description}}"
+          }
+        },
+        {
+          "type": "productGrid",
+          "props": {
+            "products": "{{page.products}}",
+            "columns": 3
+          }
+        },
+        {
+          "type": "comparison",
+          "props": {
+            "title": "Compare Our Plans",
+            "items": "{{page.comparisonItems}}"
+          }
+        },
+        {
+          "type": "cta",
+          "props": {
+            "variant": "centered",
+            "title": "Need Help Choosing?",
+            "description": "Our team is here to help you find the perfect solution.",
+            "buttonText": "Get Expert Advice",
+            "buttonLink": "/contact"
+          }
+        }
+      ]
+    }
+  },
+  "sectionDefaults": {
+    "hero": {
+      "component": "HeroSection",
+      "defaultProps": {
+        "variant": "standard",
+        "alignment": "left"
+      }
+    },
+    "features": {
+      "component": "FeaturesSection",
+      "defaultProps": {
+        "layout": "grid",
+        "columns": 3
+      }
+    },
+    "productSlider": {
+      "component": "ProductSlider",
+      "defaultProps": {
+        "category": "all",
+        "featured": false,
+        "limit": 8
+      }
+    },
+    "pricing": {
+      "component": "DynamicPricingTable",
+      "defaultProps": {
+        "columns": 3
+      }
+    },
+    "testimonials": {
+      "component": "TestimonialsSection",
+      "defaultProps": {
+        "layout": "carousel"
+      }
+    },
+    "faq": {
+      "component": "FaqSection",
+      "defaultProps": {
+        "layout": "accordion"
+      }
+    },
+    "cta": {
+      "component": "CtaSection",
+      "defaultProps": {
+        "variant": "standard"
+      }
+    },
+    "logos": {
+      "component": "LogosSection",
+      "defaultProps": {
+        "variant": "scrolling"
+      }
+    },
+    "productGrid": {
+      "component": "ProductGrid",
+      "defaultProps": {
+        "columns": 3,
+        "showFilters": false
+      }
+    },
+    "comparison": {
+      "component": "ComparisonTable",
+      "defaultProps": {
+        "highlightBest": true
+      }
+    }
+  }
+}
