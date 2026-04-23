@@ -4,6 +4,8 @@ import '@fontsource/inter/latin-500.css';
 import { ViewTransitions } from 'astro:transitions';
 import Footer from '../components/layout/Footer.astro';
 import Header from '../components/layout/Header.astro';
+import HeaderApp from '../components/layout/HeaderApp.tsx';
+import AppContextMenu from '../components/layout/AppContextMenu.tsx';
 import type { arrayOutputType } from 'astro/zod';
 
 
@@ -49,10 +51,12 @@ const canonicalURL = Astro.props.canonicalURL || new URL(Astro.url.pathname, Ast
   <body 
     class="bg-primary-50/30 text-primary-950 dark:bg-black dark:text-white antialiased transition" 
   >
-    <Header />
-    <main >
-      <slot />
-    </main>
+    <HeaderApp client:load />
+    <AppContextMenu client:load>
+      <main>
+        <slot />
+      </main>
+    </AppContextMenu>
     <Footer />
     <style is:global>
       [x-cloak] {

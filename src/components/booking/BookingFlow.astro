@@ -4,15 +4,24 @@
 /* Step 2: Fill in project brief */
 /* Step 3: Review & pay via Stripe */
 
+/*
+ * Stripe IDs (live):
+ * Strategy Call $299 — price_1TPJXbI6j3bRmHwkE8hayq9A / prod_UO5jyW2zaKWtb8
+ * Deep Dive $499    — price_1TPJXxI6j3bRmHwkW5Z3tkiQ / prod_UO5j8ykTGTDExx
+ * Publishable key:    pk_live_51Mc3tdI6j3bRmHwkdDBpXfr9TQZVgvVToaYDLbensav3FydJtI2vt2V941EsNovfFynbCitFYrdwXWM4IK2Cjp6M00nIfYsj8W
+ */
+
 interface CallOption {
   id: string;
   name: string;
   duration: string;
   price: string;
+  priceValue: number;
   priceNote: string;
   description: string;
   includes: string[];
   stripeLink: string;
+  recommended?: boolean;
 }
 
 const callOptions: CallOption[] = [
@@ -20,21 +29,24 @@ const callOptions: CallOption[] = [
     id: 'strategy',
     name: 'Strategy Call',
     duration: '30 min',
-    price: '$149',
+    price: '$299',
+    priceValue: 299,
     priceNote: '+ GST',
-    description: 'Quick, focused session on one specific challenge. Ideal for getting expert advice on a defined problem.',
+    description: 'Focused session on a specific challenge. Get expert advice, a site walkthrough, and clear next steps.',
     includes: [
       'Screen-share walkthrough of your current site',
-      'Top 3 priority recommendations',
+      'Top priorities & quick wins identified',
       'Summary email with action items',
+      'Tech stack & architecture advice',
     ],
-    stripeLink: 'https://buy.stripe.com/REPLACE_WITH_30MIN_LINK',
+    stripeLink: 'https://buy.stripe.com/REPLACE_WITH_STRATEGY_LINK',
   },
   {
     id: 'deep-dive',
     name: 'Deep Dive',
     duration: '60 min',
-    price: '$299',
+    price: '$499',
+    priceValue: 499,
     priceNote: '+ GST',
     description: 'Comprehensive strategy session covering design, development, SEO, and marketing. Walk away with a full roadmap.',
     includes: [
@@ -45,7 +57,8 @@ const callOptions: CallOption[] = [
       'Priority action plan with timeline',
       '7-day follow-up email support',
     ],
-    stripeLink: 'https://buy.stripe.com/REPLACE_WITH_60MIN_LINK',
+    stripeLink: 'https://buy.stripe.com/REPLACE_WITH_DEEPDIVE_LINK',
+    recommended: true,
   },
 ];
 ---
@@ -57,41 +70,37 @@ const callOptions: CallOption[] = [
       x-data="{
         step: 1,
         selectedCall: '',
+        selectedPrice: '',
+        selectedName: '',
         name: '',
         email: '',
         business: '',
         website: '',
         brief: '',
         getStripeLink() {
-          const links = {
-            'strategy': this.$refs.strategyLink?.dataset.link || '',
-            'deep-dive': this.$refs.deepDiveLink?.dataset.link || ''
-          };
-          return links[this.selectedCall] || '#';
+          const el = this.$refs[this.selectedCall + 'Link'];
+          return el ? el.dataset.link : '#';
         }
       }"
       class="flex flex-col gap-8"
     >
       <!-- Progress Steps -->
       <div class="flex items-center justify-center gap-2 sm:gap-4 mb-4">
-        <template x-for="i in 3" :key="i">
+        <template x-for="(label, i) in ['Select', 'Your Brief', 'Book & Pay']" :key="i">
           <div class="flex items-center gap-2 sm:gap-4">
             <div
-              :class="step >= i
+              :class="step >= (i+1)
                 ? 'bg-primary-600 dark:bg-primary-400 text-white dark:text-primary-950'
                 : 'bg-primary-200/50 dark:bg-primary-800/50 text-primary-500'"
               class="w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-colors duration-300"
-              x-text="i"
+              x-text="i+1"
             ></div>
             <span
               class="hidden sm:block text-sm font-medium"
-              :class="step >= i ? 'text-primary-900 dark:text-primary-100' : 'text-primary-400 dark:text-primary-600'"
-            >
-              <span x-show="i === 1">Select</span>
-              <span x-show="i === 2">Your Brief</span>
-              <span x-show="i === 3">Book & Pay</span>
-            </span>
-            <div x-show="i < 3" class="w-8 sm:w-16 h-px bg-primary-300 dark:bg-primary-700"></div>
+              :class="step >= (i+1) ? 'text-primary-900 dark:text-primary-100' : 'text-primary-400 dark:text-primary-600'"
+              x-text="label"
+            ></span>
+            <div x-show="i < 2" class="w-8 sm:w-16 h-px bg-primary-300 dark:bg-primary-700"></div>
           </div>
         </template>
       </div>
@@ -102,17 +111,22 @@ const callOptions: CallOption[] = [
           Choose Your Session
         </h3>
         <p class="text-center text-primary-950/60 dark:text-primary-200/60 mb-10 max-w-xl mx-auto">
-          Both options include a written summary. Discovery call fees are credited toward any project booked within 30 days.
+          Both include a written summary. Discovery call fees are credited toward any project booked within 30 days.
         </p>
 
         <div class="grid md:grid-cols-2 gap-6">
           {callOptions.map((option) => (
             <button
               type="button"
-              x-on:click={`selectedCall = '${option.id}'`}
+              x-on:click={`selectedCall = '${option.id}'; selectedPrice = '${option.price}'; selectedName = '${option.name} — ${option.duration}'`}
               :class={`selectedCall === '${option.id}' ? 'ring-2 ring-primary-600 dark:ring-primary-400 bg-primary-500/10 dark:bg-primary-400/10' : 'bg-primary-100/30 dark:bg-primary-900/30 hover:bg-primary-100/60 dark:hover:bg-primary-900/60'`}
               class="relative text-left flex flex-col gap-4 rounded-2xl border border-primary-900/10 dark:border-primary-300/10 p-6 sm:p-8 transition-all duration-200 cursor-pointer"
             >
+              {option.recommended && (
+                <span class="absolute -top-3 left-6 inline-flex items-center rounded-full bg-primary-600 dark:bg-primary-400 px-3 py-0.5 text-xs font-semibold text-white dark:text-primary-950">
+                  Recommended
+                </span>
+              )}
               <div class="flex items-center justify-between">
                 <div>
                   <span class="text-xs uppercase tracking-widest text-primary-500 dark:text-primary-400 font-medium">{option.duration}</span>
@@ -148,7 +162,7 @@ const callOptions: CallOption[] = [
 
         <!-- Hidden data refs for Stripe links -->
         <span x-ref="strategyLink" data-link={callOptions[0].stripeLink} class="hidden"></span>
-        <span x-ref="deepDiveLink" data-link={callOptions[1].stripeLink} class="hidden"></span>
+        <span x-ref="deep-diveLink" data-link={callOptions[1].stripeLink} class="hidden"></span>
 
         <div class="flex justify-end mt-8">
           <button
@@ -184,7 +198,7 @@ const callOptions: CallOption[] = [
                 type="text"
                 x-model="name"
                 required
-                placeholder="Aiden Wood"
+                placeholder="Jane Smith"
                 class="w-full px-4 py-3 border border-primary-300 dark:border-primary-700 bg-white dark:bg-primary-950 rounded-xl outline-none focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 transition"
               />
             </div>
@@ -280,16 +294,10 @@ const callOptions: CallOption[] = [
             <div class="flex items-center justify-between pb-6 border-b border-primary-900/10 dark:border-primary-300/10">
               <div>
                 <span class="text-xs uppercase tracking-widest text-primary-500 dark:text-primary-400 font-medium">Selected</span>
-                <h4 class="text-xl font-medium mt-1">
-                  <span x-show="selectedCall === 'strategy'">Strategy Call — 30 min</span>
-                  <span x-show="selectedCall === 'deep-dive'">Deep Dive — 60 min</span>
-                </h4>
+                <h4 class="text-xl font-medium mt-1" x-text="selectedName"></h4>
               </div>
               <div class="text-right">
-                <span class="text-3xl font-medium tracking-tight">
-                  <span x-show="selectedCall === 'strategy'">$149</span>
-                  <span x-show="selectedCall === 'deep-dive'">$299</span>
-                </span>
+                <span class="text-3xl font-medium tracking-tight" x-text="selectedPrice"></span>
                 <span class="text-xs text-primary-950/50 dark:text-primary-200/50 block">+ GST</span>
               </div>
             </div>
@@ -351,7 +359,7 @@ const callOptions: CallOption[] = [
                   headers: { 'Content-Type': 'application/json' },
                   body: JSON.stringify({
                     access_key: '1e0ffadd-2f05-471b-bbc2-36fa32793837',
-                    subject: 'Discovery Call Booking: ' + (selectedCall === 'strategy' ? 'Strategy 30min' : 'Deep Dive 60min'),
+                    subject: 'Discovery Call Booking: ' + selectedName + ' ' + selectedPrice,
                     name: name,
                     email: email,
                     business: business,
@@ -367,7 +375,7 @@ const callOptions: CallOption[] = [
               <svg class="mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M10 1a4.5 4.5 0 00-4.5 4.5V9H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-.5V5.5A4.5 4.5 0 0010 1zm3 8V5.5a3 3 0 10-6 0V9h6z" clip-rule="evenodd"/>
               </svg>
-              Pay & Book
+              <span x-text="'Pay ' + selectedPrice + ' & Book'"></span>
             </a>
           </div>
 

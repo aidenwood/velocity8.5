@@ -2,8 +2,8 @@ import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import compress from 'astro-compress';
 import partytown from "@astrojs/partytown";
-
 import sitemap from "@astrojs/sitemap";
+import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
@@ -11,5 +11,5 @@ export default defineConfig({
     viewTransitions: true
   },
   site: 'https://aidxn.com',
-  integrations: [tailwind(), compress(), partytown(), sitemap()]
+  integrations: [react(), tailwind(), compress(), partytown(), sitemap()]
 });

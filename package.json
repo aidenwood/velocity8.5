@@ -12,10 +12,17 @@
   "dependencies": {
     "@alpinejs/collapse": "3.12.3",
     "@astrojs/partytown": "^1.2.3",
+    "@astrojs/react": "^3.6.3",
     "@astrojs/sitemap": "^3.0.2",
     "@astrojs/tailwind": "4.0.0",
     "@fontsource/inter": "5.0.8",
+    "@radix-ui/react-context-menu": "^2.2.16",
+    "@radix-ui/react-dialog": "^1.1.15",
+    "@radix-ui/react-dropdown-menu": "^2.1.16",
+    "@radix-ui/react-navigation-menu": "^1.2.14",
     "@types/alpinejs": "3.7.2",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
     "alpinejs": "3.12.3",
     "astro": "^2.10.13",
     "astro-compress": "2.0.14",
@@ -25,6 +32,8 @@
     "prettier": "3.0.2",
     "prettier-plugin-astro": "0.12.0",
     "prettier-plugin-tailwindcss": "0.5.3",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
     "tailwindcss": "3.3.3"
   }
 }
