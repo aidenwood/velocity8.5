@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 import { createScanner } from './scanner';
+import { cachedSpaces, cachedBreakLinesWithSpaces, supportedEols } from './string-intern';
 export function format(documentText, range, options) {
     let initialIndentLevel;
     let formatText;
@@ -32,24 +33,31 @@ export function format(documentText, range, options) {
         rangeEnd = documentText.length;
     }
     const eol = getEOL(options, documentText);
+    const eolFastPathSupported = supportedEols.includes(eol);
     let numberLineBreaks = 0;
     let indentLevel = 0;
     let indentValue;
     if (options.insertSpaces) {
-        indentValue = repeat(' ', options.tabSize || 4);
+        indentValue = cachedSpaces[options.tabSize || 4] ?? repeat(cachedSpaces[1], options.tabSize || 4);
     }
     else {
         indentValue = '\t';
     }
+    const indentType = indentValue === '\t' ? '\t' : ' ';
     let scanner = createScanner(formatText, false);
     let hasError = false;
     function newLinesAndIndent() {
         if (numberLineBreaks > 1) {
             return repeat(eol, numberLineBreaks) + repeat(indentValue, initialIndentLevel + indentLevel);
         }
-        else {
+        const amountOfSpaces = indentValue.length * (initialIndentLevel + indentLevel);
+        if (!eolFastPathSupported || amountOfSpaces > cachedBreakLinesWithSpaces[indentType][eol].length) {
             return eol + repeat(indentValue, initialIndentLevel + indentLevel);
         }
+        if (amountOfSpaces <= 0) {
+            return eol;
+        }
+        return cachedBreakLinesWithSpaces[indentType][eol][amountOfSpaces];
     }
     function scanNext() {
         let token = scanner.scan();
@@ -78,7 +86,9 @@ export function format(documentText, range, options) {
     }
     if (firstToken !== 17 /* SyntaxKind.EOF */) {
         let firstTokenStart = scanner.getTokenOffset() + formatTextStart;
-        let initialIndent = repeat(indentValue, initialIndentLevel);
+        let initialIndent = (indentValue.length * initialIndentLevel < 20) && options.insertSpaces
+            ? cachedSpaces[indentValue.length * initialIndentLevel]
+            : repeat(indentValue, initialIndentLevel);
         addEdit(initialIndent, formatTextStart, firstTokenStart);
     }
     while (firstToken !== 17 /* SyntaxKind.EOF */) {
@@ -88,7 +98,7 @@ export function format(documentText, range, options) {
         let needsLineBreak = false;
         while (numberLineBreaks === 0 && (secondToken === 12 /* SyntaxKind.LineCommentTrivia */ || secondToken === 13 /* SyntaxKind.BlockCommentTrivia */)) {
             let commentTokenStart = scanner.getTokenOffset() + formatTextStart;
-            addEdit(' ', firstTokenEnd, commentTokenStart);
+            addEdit(cachedSpaces[1], firstTokenEnd, commentTokenStart);
             firstTokenEnd = scanner.getTokenOffset() + scanner.getTokenLength() + formatTextStart;
             needsLineBreak = secondToken === 12 /* SyntaxKind.LineCommentTrivia */;
             replaceContent = needsLineBreak ? newLinesAndIndent() : '';
@@ -103,7 +113,7 @@ export function format(documentText, range, options) {
                 replaceContent = newLinesAndIndent();
             }
             else if (options.keepLines) {
-                replaceContent = ' ';
+                replaceContent = cachedSpaces[1];
             }
         }
         else if (secondToken === 4 /* SyntaxKind.CloseBracketToken */) {
@@ -115,7 +125,7 @@ export function format(documentText, range, options) {
                 replaceContent = newLinesAndIndent();
             }
             else if (options.keepLines) {
-                replaceContent = ' ';
+                replaceContent = cachedSpaces[1];
             }
         }
         else {
@@ -127,7 +137,7 @@ export function format(documentText, range, options) {
                         replaceContent = newLinesAndIndent();
                     }
                     else {
-                        replaceContent = ' ';
+                        replaceContent = cachedSpaces[1];
                     }
                     break;
                 case 5 /* SyntaxKind.CommaToken */:
@@ -135,7 +145,7 @@ export function format(documentText, range, options) {
                         replaceContent = newLinesAndIndent();
                     }
                     else {
-                        replaceContent = ' ';
+                        replaceContent = cachedSpaces[1];
                     }
                     break;
                 case 12 /* SyntaxKind.LineCommentTrivia */:
@@ -146,7 +156,7 @@ export function format(documentText, range, options) {
                         replaceContent = newLinesAndIndent();
                     }
                     else if (!needsLineBreak) {
-                        replaceContent = ' ';
+                        replaceContent = cachedSpaces[1];
                     }
                     break;
                 case 6 /* SyntaxKind.ColonToken */:
@@ -154,7 +164,7 @@ export function format(documentText, range, options) {
                         replaceContent = newLinesAndIndent();
                     }
                     else if (!needsLineBreak) {
-                        replaceContent = ' ';
+                        replaceContent = cachedSpaces[1];
                     }
                     break;
                 case 10 /* SyntaxKind.StringLiteral */:
@@ -176,7 +186,7 @@ export function format(documentText, range, options) {
                     }
                     else {
                         if ((secondToken === 12 /* SyntaxKind.LineCommentTrivia */ || secondToken === 13 /* SyntaxKind.BlockCommentTrivia */) && !needsLineBreak) {
-                            replaceContent = ' ';
+                            replaceContent = cachedSpaces[1];
                         }
                         else if (secondToken !== 5 /* SyntaxKind.CommaToken */ && secondToken !== 17 /* SyntaxKind.EOF */) {
                             hasError = true;
@@ -218,7 +228,7 @@ function computeIndentLevel(content, options) {
     const tabSize = options.tabSize || 4;
     while (i < content.length) {
         let ch = content.charAt(i);
-        if (ch === ' ') {
+        if (ch === cachedSpaces[1]) {
             nChars++;
         }
         else if (ch === '\t') {

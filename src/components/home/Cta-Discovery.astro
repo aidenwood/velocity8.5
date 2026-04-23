@@ -1,0 +1,47 @@
+---
+/* Primary CTA — drives to paid discovery call */
+/* Replaces free contact CTAs across the site */
+
+interface Props {
+  heading?: string;
+  subheading?: string;
+  compact?: boolean;
+}
+
+const {
+  heading = "Ready to level up your web presence?",
+  subheading = "Book a paid discovery call and walk away with a custom strategy — not a sales pitch.",
+  compact = false,
+} = Astro.props;
+---
+
+<section class:list={[compact ? 'my-16 md:my-20' : 'my-36 md:my-44']}>
+  <div class="mx-auto w-full lg:max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+    <div
+      class="border border-primary-900/10 dark:border-primary-300/10 bg-primary-500/10 dark:bg-primary-400/10 flex flex-col items-center gap-8 rounded-3xl px-4 py-16 sm:gap-10"
+    >
+      <div class="flex flex-col gap-4 sm:gap-6">
+        <h4 class="mx-auto max-w-lg text-3xl font-medium tracking-tight sm:text-4xl">
+          {heading}
+        </h4>
+        <p class="text-primary-950/80 dark:text-primary-200/80 mx-auto max-w-2xl text-lg xs:text-xl px-4">
+          {subheading}
+        </p>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-4 items-center">
+        <a
+          href="/book"
+          class="bg-primary-600 dark:bg-primary-400 hover:bg-violet-700 dark:hover:bg-violet-300 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-400 dark:text-primary-950 inline-flex items-center justify-center rounded-full border border-transparent px-6 py-3.5 text-base font-medium text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+        >
+          Book a Discovery Call
+          <svg class="ml-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/>
+          </svg>
+        </a>
+        <span class="text-sm text-primary-950/50 dark:text-primary-200/50">
+          From $149 + GST · Credited toward your project
+        </span>
+      </div>
+    </div>
+  </div>
+</section>

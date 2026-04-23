@@ -1,0 +1,79 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Your discovery call has been booked. Here's what happens next."
+  title="Booking Confirmed · Aidxn Design"
+>
+  <section class="py-24 sm:py-32">
+    <div class="mx-auto w-full max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
+
+      <!-- Success Icon -->
+      <div class="mx-auto w-16 h-16 rounded-full bg-green-500/10 dark:bg-green-400/10 flex items-center justify-center mb-8">
+        <svg class="h-8 w-8 text-green-600 dark:text-green-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+          <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd"/>
+        </svg>
+      </div>
+
+      <h1 class="text-4xl sm:text-5xl font-medium tracking-tight mb-4">
+        You're Booked
+      </h1>
+      <p class="text-lg sm:text-xl text-primary-950/70 dark:text-primary-200/70 max-w-xl mx-auto mb-12">
+        Payment confirmed. Check your email for a calendar invite and preparation guide.
+      </p>
+
+      <!-- What's Next Steps -->
+      <div class="border border-primary-900/10 dark:border-primary-300/10 bg-primary-500/5 dark:bg-primary-400/5 rounded-2xl p-8 text-left max-w-lg mx-auto">
+        <h2 class="text-xl font-medium mb-6">What happens next</h2>
+        <ol class="space-y-6">
+          <li class="flex gap-4">
+            <span class="flex-shrink-0 w-8 h-8 rounded-full bg-primary-600 dark:bg-primary-400 text-white dark:text-primary-950 flex items-center justify-center text-sm font-medium">1</span>
+            <div>
+              <p class="font-medium">Confirmation email (now)</p>
+              <p class="text-sm text-primary-950/60 dark:text-primary-200/60 mt-1">Receipt + calendar booking link sent to your email</p>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <span class="flex-shrink-0 w-8 h-8 rounded-full bg-primary-600 dark:bg-primary-400 text-white dark:text-primary-950 flex items-center justify-center text-sm font-medium">2</span>
+            <div>
+              <p class="font-medium">Brief review (before the call)</p>
+              <p class="text-sm text-primary-950/60 dark:text-primary-200/60 mt-1">I review your project brief and research your current site and competitors</p>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <span class="flex-shrink-0 w-8 h-8 rounded-full bg-primary-600 dark:bg-primary-400 text-white dark:text-primary-950 flex items-center justify-center text-sm font-medium">3</span>
+            <div>
+              <p class="font-medium">Discovery call</p>
+              <p class="text-sm text-primary-950/60 dark:text-primary-200/60 mt-1">We meet via video call for a focused strategy session</p>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <span class="flex-shrink-0 w-8 h-8 rounded-full bg-primary-600 dark:bg-primary-400 text-white dark:text-primary-950 flex items-center justify-center text-sm font-medium">4</span>
+            <div>
+              <p class="font-medium">Written action plan (within 24h)</p>
+              <p class="text-sm text-primary-950/60 dark:text-primary-200/60 mt-1">Custom recommendations doc delivered to your inbox</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <!-- Back to site -->
+      <div class="mt-12 flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="/"
+          class="inline-flex items-center justify-center rounded-full border border-primary-300 dark:border-primary-700 px-6 py-3 text-base font-medium text-primary-900 dark:text-primary-100 transition hover:bg-primary-100 dark:hover:bg-primary-900"
+        >
+          Back to Home
+        </a>
+        <a
+          href="/web-design/previous-work/ball-realty"
+          class="inline-flex items-center justify-center rounded-full border border-primary-300 dark:border-primary-700 px-6 py-3 text-base font-medium text-primary-900 dark:text-primary-100 transition hover:bg-primary-100 dark:hover:bg-primary-900"
+        >
+          Browse Previous Work
+        </a>
+      </div>
+
+    </div>
+  </section>
+</Layout>

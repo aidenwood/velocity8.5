@@ -8,9 +8,8 @@ This package contains type definitions for resolve (https://github.com/browserif
 Files were exported from https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/resolve.
 
 ### Additional Details
- * Last updated: Thu, 21 Apr 2022 18:01:43 GMT
+ * Last updated: Mon, 20 Nov 2023 23:36:24 GMT
  * Dependencies: none
- * Global values: none
 
 # Credits
 These definitions were written by [Mario Nebl](https://github.com/marionebl), [Klaus Meinhardt](https://github.com/ajafff), and [Jordan Harband](https://github.com/ljharb).

@@ -4,7 +4,7 @@
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "./scanner"], factory);
+        define(["require", "exports", "./scanner", "./string-intern"], factory);
     }
 })(function (require, exports) {
     /*---------------------------------------------------------------------------------------------
@@ -15,6 +15,7 @@
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.isEOL = exports.format = void 0;
     const scanner_1 = require("./scanner");
+    const string_intern_1 = require("./string-intern");
     function format(documentText, range, options) {
         let initialIndentLevel;
         let formatText;
@@ -43,24 +44,31 @@
             rangeEnd = documentText.length;
         }
         const eol = getEOL(options, documentText);
+        const eolFastPathSupported = string_intern_1.supportedEols.includes(eol);
         let numberLineBreaks = 0;
         let indentLevel = 0;
         let indentValue;
         if (options.insertSpaces) {
-            indentValue = repeat(' ', options.tabSize || 4);
+            indentValue = string_intern_1.cachedSpaces[options.tabSize || 4] ?? repeat(string_intern_1.cachedSpaces[1], options.tabSize || 4);
         }
         else {
             indentValue = '\t';
         }
+        const indentType = indentValue === '\t' ? '\t' : ' ';
         let scanner = (0, scanner_1.createScanner)(formatText, false);
         let hasError = false;
         function newLinesAndIndent() {
             if (numberLineBreaks > 1) {
                 return repeat(eol, numberLineBreaks) + repeat(indentValue, initialIndentLevel + indentLevel);
             }
-            else {
+            const amountOfSpaces = indentValue.length * (initialIndentLevel + indentLevel);
+            if (!eolFastPathSupported || amountOfSpaces > string_intern_1.cachedBreakLinesWithSpaces[indentType][eol].length) {
                 return eol + repeat(indentValue, initialIndentLevel + indentLevel);
             }
+            if (amountOfSpaces <= 0) {
+                return eol;
+            }
+            return string_intern_1.cachedBreakLinesWithSpaces[indentType][eol][amountOfSpaces];
         }
         function scanNext() {
             let token = scanner.scan();
@@ -89,7 +97,9 @@
         }
         if (firstToken !== 17 /* SyntaxKind.EOF */) {
             let firstTokenStart = scanner.getTokenOffset() + formatTextStart;
-            let initialIndent = repeat(indentValue, initialIndentLevel);
+            let initialIndent = (indentValue.length * initialIndentLevel < 20) && options.insertSpaces
+                ? string_intern_1.cachedSpaces[indentValue.length * initialIndentLevel]
+                : repeat(indentValue, initialIndentLevel);
             addEdit(initialIndent, formatTextStart, firstTokenStart);
         }
         while (firstToken !== 17 /* SyntaxKind.EOF */) {
@@ -99,7 +109,7 @@
             let needsLineBreak = false;
             while (numberLineBreaks === 0 && (secondToken === 12 /* SyntaxKind.LineCommentTrivia */ || secondToken === 13 /* SyntaxKind.BlockCommentTrivia */)) {
                 let commentTokenStart = scanner.getTokenOffset() + formatTextStart;
-                addEdit(' ', firstTokenEnd, commentTokenStart);
+                addEdit(string_intern_1.cachedSpaces[1], firstTokenEnd, commentTokenStart);
                 firstTokenEnd = scanner.getTokenOffset() + scanner.getTokenLength() + formatTextStart;
                 needsLineBreak = secondToken === 12 /* SyntaxKind.LineCommentTrivia */;
                 replaceContent = needsLineBreak ? newLinesAndIndent() : '';
@@ -114,7 +124,7 @@
                     replaceContent = newLinesAndIndent();
                 }
                 else if (options.keepLines) {
-                    replaceContent = ' ';
+                    replaceContent = string_intern_1.cachedSpaces[1];
                 }
             }
             else if (secondToken === 4 /* SyntaxKind.CloseBracketToken */) {
@@ -126,7 +136,7 @@
                     replaceContent = newLinesAndIndent();
                 }
                 else if (options.keepLines) {
-                    replaceContent = ' ';
+                    replaceContent = string_intern_1.cachedSpaces[1];
                 }
             }
             else {
@@ -138,7 +148,7 @@
                             replaceContent = newLinesAndIndent();
                         }
                         else {
-                            replaceContent = ' ';
+                            replaceContent = string_intern_1.cachedSpaces[1];
                         }
                         break;
                     case 5 /* SyntaxKind.CommaToken */:
@@ -146,7 +156,7 @@
                             replaceContent = newLinesAndIndent();
                         }
                         else {
-                            replaceContent = ' ';
+                            replaceContent = string_intern_1.cachedSpaces[1];
                         }
                         break;
                     case 12 /* SyntaxKind.LineCommentTrivia */:
@@ -157,7 +167,7 @@
                             replaceContent = newLinesAndIndent();
                         }
                         else if (!needsLineBreak) {
-                            replaceContent = ' ';
+                            replaceContent = string_intern_1.cachedSpaces[1];
                         }
                         break;
                     case 6 /* SyntaxKind.ColonToken */:
@@ -165,7 +175,7 @@
                             replaceContent = newLinesAndIndent();
                         }
                         else if (!needsLineBreak) {
-                            replaceContent = ' ';
+                            replaceContent = string_intern_1.cachedSpaces[1];
                         }
                         break;
                     case 10 /* SyntaxKind.StringLiteral */:
@@ -187,7 +197,7 @@
                         }
                         else {
                             if ((secondToken === 12 /* SyntaxKind.LineCommentTrivia */ || secondToken === 13 /* SyntaxKind.BlockCommentTrivia */) && !needsLineBreak) {
-                                replaceContent = ' ';
+                                replaceContent = string_intern_1.cachedSpaces[1];
                             }
                             else if (secondToken !== 5 /* SyntaxKind.CommaToken */ && secondToken !== 17 /* SyntaxKind.EOF */) {
                                 hasError = true;
@@ -230,7 +240,7 @@
         const tabSize = options.tabSize || 4;
         while (i < content.length) {
             let ch = content.charAt(i);
-            if (ch === ' ') {
+            if (ch === string_intern_1.cachedSpaces[1]) {
                 nChars++;
             }
             else if (ch === '\t') {

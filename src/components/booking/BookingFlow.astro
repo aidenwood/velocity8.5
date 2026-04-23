@@ -1,0 +1,382 @@
+---
+/* Multi-step booking flow with Alpine.js */
+/* Step 1: Select call type */
+/* Step 2: Fill in project brief */
+/* Step 3: Review & pay via Stripe */
+
+interface CallOption {
+  id: string;
+  name: string;
+  duration: string;
+  price: string;
+  priceNote: string;
+  description: string;
+  includes: string[];
+  stripeLink: string;
+}
+
+const callOptions: CallOption[] = [
+  {
+    id: 'strategy',
+    name: 'Strategy Call',
+    duration: '30 min',
+    price: '$149',
+    priceNote: '+ GST',
+    description: 'Quick, focused session on one specific challenge. Ideal for getting expert advice on a defined problem.',
+    includes: [
+      'Screen-share walkthrough of your current site',
+      'Top 3 priority recommendations',
+      'Summary email with action items',
+    ],
+    stripeLink: 'https://buy.stripe.com/REPLACE_WITH_30MIN_LINK',
+  },
+  {
+    id: 'deep-dive',
+    name: 'Deep Dive',
+    duration: '60 min',
+    price: '$299',
+    priceNote: '+ GST',
+    description: 'Comprehensive strategy session covering design, development, SEO, and marketing. Walk away with a full roadmap.',
+    includes: [
+      'Full site audit (performance, SEO, UX)',
+      'Competitor analysis & positioning',
+      'Custom recommendations document',
+      'Tech stack & architecture advice',
+      'Priority action plan with timeline',
+      '7-day follow-up email support',
+    ],
+    stripeLink: 'https://buy.stripe.com/REPLACE_WITH_60MIN_LINK',
+  },
+];
+---
+
+<section id="booking" class="py-16 sm:py-24">
+  <div class="mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8">
+
+    <div
+      x-data="{
+        step: 1,
+        selectedCall: '',
+        name: '',
+        email: '',
+        business: '',
+        website: '',
+        brief: '',
+        getStripeLink() {
+          const links = {
+            'strategy': this.$refs.strategyLink?.dataset.link || '',
+            'deep-dive': this.$refs.deepDiveLink?.dataset.link || ''
+          };
+          return links[this.selectedCall] || '#';
+        }
+      }"
+      class="flex flex-col gap-8"
+    >
+      <!-- Progress Steps -->
+      <div class="flex items-center justify-center gap-2 sm:gap-4 mb-4">
+        <template x-for="i in 3" :key="i">
+          <div class="flex items-center gap-2 sm:gap-4">
+            <div
+              :class="step >= i
+                ? 'bg-primary-600 dark:bg-primary-400 text-white dark:text-primary-950'
+                : 'bg-primary-200/50 dark:bg-primary-800/50 text-primary-500'"
+              class="w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-colors duration-300"
+              x-text="i"
+            ></div>
+            <span
+              class="hidden sm:block text-sm font-medium"
+              :class="step >= i ? 'text-primary-900 dark:text-primary-100' : 'text-primary-400 dark:text-primary-600'"
+            >
+              <span x-show="i === 1">Select</span>
+              <span x-show="i === 2">Your Brief</span>
+              <span x-show="i === 3">Book & Pay</span>
+            </span>
+            <div x-show="i < 3" class="w-8 sm:w-16 h-px bg-primary-300 dark:bg-primary-700"></div>
+          </div>
+        </template>
+      </div>
+
+      <!-- Step 1: Select Call Type -->
+      <div x-show="step === 1" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0">
+        <h3 class="text-2xl sm:text-3xl font-medium tracking-tight text-center mb-2">
+          Choose Your Session
+        </h3>
+        <p class="text-center text-primary-950/60 dark:text-primary-200/60 mb-10 max-w-xl mx-auto">
+          Both options include a written summary. Discovery call fees are credited toward any project booked within 30 days.
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          {callOptions.map((option) => (
+            <button
+              type="button"
+              x-on:click={`selectedCall = '${option.id}'`}
+              :class={`selectedCall === '${option.id}' ? 'ring-2 ring-primary-600 dark:ring-primary-400 bg-primary-500/10 dark:bg-primary-400/10' : 'bg-primary-100/30 dark:bg-primary-900/30 hover:bg-primary-100/60 dark:hover:bg-primary-900/60'`}
+              class="relative text-left flex flex-col gap-4 rounded-2xl border border-primary-900/10 dark:border-primary-300/10 p-6 sm:p-8 transition-all duration-200 cursor-pointer"
+            >
+              <div class="flex items-center justify-between">
+                <div>
+                  <span class="text-xs uppercase tracking-widest text-primary-500 dark:text-primary-400 font-medium">{option.duration}</span>
+                  <h4 class="text-xl font-medium mt-1">{option.name}</h4>
+                </div>
+                <div class="text-right">
+                  <span class="text-3xl font-medium tracking-tight">{option.price}</span>
+                  <span class="text-xs text-primary-950/50 dark:text-primary-200/50 block">{option.priceNote}</span>
+                </div>
+              </div>
+              <p class="text-primary-950/70 dark:text-primary-200/70 text-sm">{option.description}</p>
+              <ul class="space-y-2 mt-2">
+                {option.includes.map((item) => (
+                  <li class="flex items-start gap-2 text-sm">
+                    <svg class="text-primary-600 dark:text-primary-400 h-4 w-4 flex-shrink-0 mt-0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd"/>
+                    </svg>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <div
+                x-show={`selectedCall === '${option.id}'`}
+                class="absolute top-4 right-4"
+              >
+                <svg class="h-6 w-6 text-primary-600 dark:text-primary-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                  <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd"/>
+                </svg>
+              </div>
+            </button>
+          ))}
+        </div>
+
+        <!-- Hidden data refs for Stripe links -->
+        <span x-ref="strategyLink" data-link={callOptions[0].stripeLink} class="hidden"></span>
+        <span x-ref="deepDiveLink" data-link={callOptions[1].stripeLink} class="hidden"></span>
+
+        <div class="flex justify-end mt-8">
+          <button
+            type="button"
+            x-on:click="if (selectedCall) step = 2"
+            :disabled="!selectedCall"
+            :class="selectedCall ? 'bg-primary-600 dark:bg-primary-400 hover:bg-primary-700 dark:hover:bg-primary-300 dark:text-primary-950 text-white' : 'bg-primary-300 dark:bg-primary-700 text-primary-500 cursor-not-allowed'"
+            class="inline-flex items-center justify-center rounded-full border border-transparent px-6 py-3 text-base font-medium transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
+          >
+            Continue
+            <svg class="ml-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 2: Project Brief -->
+      <div x-show="step === 2" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0">
+        <h3 class="text-2xl sm:text-3xl font-medium tracking-tight text-center mb-2">
+          Tell Me About Your Project
+        </h3>
+        <p class="text-center text-primary-950/60 dark:text-primary-200/60 mb-10 max-w-xl mx-auto">
+          The more detail you share, the more value you'll get from our session. This brief is sent to me before the call so I can prepare.
+        </p>
+
+        <div class="max-w-2xl mx-auto flex flex-col gap-6">
+          <div class="grid sm:grid-cols-2 gap-6">
+            <div>
+              <label for="book-name" class="block text-sm font-medium mb-2">Your Name *</label>
+              <input
+                id="book-name"
+                type="text"
+                x-model="name"
+                required
+                placeholder="Aiden Wood"
+                class="w-full px-4 py-3 border border-primary-300 dark:border-primary-700 bg-white dark:bg-primary-950 rounded-xl outline-none focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 transition"
+              />
+            </div>
+            <div>
+              <label for="book-email" class="block text-sm font-medium mb-2">Email *</label>
+              <input
+                id="book-email"
+                type="email"
+                x-model="email"
+                required
+                placeholder="you@company.com"
+                class="w-full px-4 py-3 border border-primary-300 dark:border-primary-700 bg-white dark:bg-primary-950 rounded-xl outline-none focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 transition"
+              />
+            </div>
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-6">
+            <div>
+              <label for="book-business" class="block text-sm font-medium mb-2">Business Name *</label>
+              <input
+                id="book-business"
+                type="text"
+                x-model="business"
+                required
+                placeholder="Your Company"
+                class="w-full px-4 py-3 border border-primary-300 dark:border-primary-700 bg-white dark:bg-primary-950 rounded-xl outline-none focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 transition"
+              />
+            </div>
+            <div>
+              <label for="book-website" class="block text-sm font-medium mb-2">Current Website</label>
+              <input
+                id="book-website"
+                type="url"
+                x-model="website"
+                placeholder="https://example.com"
+                class="w-full px-4 py-3 border border-primary-300 dark:border-primary-700 bg-white dark:bg-primary-950 rounded-xl outline-none focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 transition"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label for="book-brief" class="block text-sm font-medium mb-2">Project Brief *</label>
+            <textarea
+              id="book-brief"
+              x-model="brief"
+              required
+              rows="5"
+              placeholder="What are you looking to build or improve? What's your biggest challenge right now? Any specific goals (more leads, better design, faster site, etc.)?"
+              class="w-full px-4 py-3 border border-primary-300 dark:border-primary-700 bg-white dark:bg-primary-950 rounded-xl outline-none focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 transition resize-none"
+            ></textarea>
+          </div>
+
+          <div class="flex justify-between mt-4">
+            <button
+              type="button"
+              x-on:click="step = 1"
+              class="inline-flex items-center justify-center rounded-full border border-primary-300 dark:border-primary-700 px-6 py-3 text-base font-medium text-primary-900 dark:text-primary-100 transition hover:bg-primary-100 dark:hover:bg-primary-900"
+            >
+              <svg class="mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M17 10a.75.75 0 01-.75.75H5.612l4.158 3.96a.75.75 0 11-1.04 1.08l-5.5-5.25a.75.75 0 010-1.08l5.5-5.25a.75.75 0 111.04 1.08L5.612 9.25H16.25A.75.75 0 0117 10z" clip-rule="evenodd"/>
+              </svg>
+              Back
+            </button>
+            <button
+              type="button"
+              x-on:click="if (name && email && business && brief) step = 3"
+              :disabled="!name || !email || !business || !brief"
+              :class="(name && email && business && brief) ? 'bg-primary-600 dark:bg-primary-400 hover:bg-primary-700 dark:hover:bg-primary-300 dark:text-primary-950 text-white' : 'bg-primary-300 dark:bg-primary-700 text-primary-500 cursor-not-allowed'"
+              class="inline-flex items-center justify-center rounded-full border border-transparent px-6 py-3 text-base font-medium transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
+            >
+              Review & Pay
+              <svg class="ml-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3: Review & Pay -->
+      <div x-show="step === 3" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0">
+        <h3 class="text-2xl sm:text-3xl font-medium tracking-tight text-center mb-2">
+          Confirm & Pay
+        </h3>
+        <p class="text-center text-primary-950/60 dark:text-primary-200/60 mb-10 max-w-xl mx-auto">
+          Review your details, then proceed to secure payment via Stripe.
+        </p>
+
+        <div class="max-w-2xl mx-auto">
+          <div class="border border-primary-900/10 dark:border-primary-300/10 bg-primary-500/5 dark:bg-primary-400/5 rounded-2xl p-6 sm:p-8 flex flex-col gap-6">
+
+            <!-- Selected Call Summary -->
+            <div class="flex items-center justify-between pb-6 border-b border-primary-900/10 dark:border-primary-300/10">
+              <div>
+                <span class="text-xs uppercase tracking-widest text-primary-500 dark:text-primary-400 font-medium">Selected</span>
+                <h4 class="text-xl font-medium mt-1">
+                  <span x-show="selectedCall === 'strategy'">Strategy Call — 30 min</span>
+                  <span x-show="selectedCall === 'deep-dive'">Deep Dive — 60 min</span>
+                </h4>
+              </div>
+              <div class="text-right">
+                <span class="text-3xl font-medium tracking-tight">
+                  <span x-show="selectedCall === 'strategy'">$149</span>
+                  <span x-show="selectedCall === 'deep-dive'">$299</span>
+                </span>
+                <span class="text-xs text-primary-950/50 dark:text-primary-200/50 block">+ GST</span>
+              </div>
+            </div>
+
+            <!-- Client Details Summary -->
+            <div class="grid sm:grid-cols-2 gap-4 text-sm">
+              <div>
+                <span class="text-primary-950/50 dark:text-primary-200/50">Name</span>
+                <p class="font-medium mt-0.5" x-text="name"></p>
+              </div>
+              <div>
+                <span class="text-primary-950/50 dark:text-primary-200/50">Email</span>
+                <p class="font-medium mt-0.5" x-text="email"></p>
+              </div>
+              <div>
+                <span class="text-primary-950/50 dark:text-primary-200/50">Business</span>
+                <p class="font-medium mt-0.5" x-text="business"></p>
+              </div>
+              <div>
+                <span class="text-primary-950/50 dark:text-primary-200/50">Website</span>
+                <p class="font-medium mt-0.5" x-text="website || 'Not provided'"></p>
+              </div>
+            </div>
+
+            <div class="text-sm">
+              <span class="text-primary-950/50 dark:text-primary-200/50">Project Brief</span>
+              <p class="font-medium mt-0.5" x-text="brief"></p>
+            </div>
+
+            <!-- What happens next -->
+            <div class="bg-primary-100/50 dark:bg-primary-900/50 rounded-xl p-4 text-sm">
+              <p class="font-medium mb-2">What happens next:</p>
+              <ol class="list-decimal list-inside space-y-1 text-primary-950/70 dark:text-primary-200/70">
+                <li>Secure payment via Stripe</li>
+                <li>Receive a confirmation email with booking link</li>
+                <li>I review your brief before the call</li>
+                <li>We meet — you get a written action plan within 24 hours</li>
+              </ol>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="flex justify-between mt-8">
+            <button
+              type="button"
+              x-on:click="step = 2"
+              class="inline-flex items-center justify-center rounded-full border border-primary-300 dark:border-primary-700 px-6 py-3 text-base font-medium text-primary-900 dark:text-primary-100 transition hover:bg-primary-100 dark:hover:bg-primary-900"
+            >
+              <svg class="mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M17 10a.75.75 0 01-.75.75H5.612l4.158 3.96a.75.75 0 11-1.04 1.08l-5.5-5.25a.75.75 0 010-1.08l5.5-5.25a.75.75 0 111.04 1.08L5.612 9.25H16.25A.75.75 0 0117 10z" clip-rule="evenodd"/>
+              </svg>
+              Edit Details
+            </button>
+            <a
+              :href="getStripeLink() + '?prefilled_email=' + encodeURIComponent(email) + '&client_reference_id=' + encodeURIComponent(business)"
+              x-on:click="
+                fetch('https://api.web3forms.com/submit', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({
+                    access_key: '1e0ffadd-2f05-471b-bbc2-36fa32793837',
+                    subject: 'Discovery Call Booking: ' + (selectedCall === 'strategy' ? 'Strategy 30min' : 'Deep Dive 60min'),
+                    name: name,
+                    email: email,
+                    business: business,
+                    website: website,
+                    brief: brief,
+                    call_type: selectedCall,
+                    source: 'booking-flow'
+                  })
+                })
+              "
+              class="bg-primary-600 dark:bg-primary-400 hover:bg-primary-700 dark:hover:bg-primary-300 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-400 dark:text-primary-950 inline-flex items-center justify-center rounded-full border border-transparent px-8 py-3.5 text-base font-medium text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+            >
+              <svg class="mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 1a4.5 4.5 0 00-4.5 4.5V9H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-.5V5.5A4.5 4.5 0 0010 1zm3 8V5.5a3 3 0 10-6 0V9h6z" clip-rule="evenodd"/>
+              </svg>
+              Pay & Book
+            </a>
+          </div>
+
+          <p class="text-center text-xs text-primary-950/40 dark:text-primary-200/40 mt-6">
+            Secured by Stripe. Your brief is emailed to me immediately so I can prepare for your call.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

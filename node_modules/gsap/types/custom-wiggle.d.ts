@@ -1,11 +1,27 @@
-// TODO
-declare const CustomWiggle: any;
+interface CustomWiggleVars {
+  type?: "uniform" | "random" | "anticipate" | "easeOut" | "easeInOut";
+  wiggles?: number;
+  amplitudeEase?: string | EaseFunction;
+  timingEase?: string | EaseFunction;
+}
+
+interface EaseFunction {
+  (progress: number): number;
+}
+
+declare class CustomWiggle {
+  ease: EaseFunction;
+
+  constructor(id: string, vars?: CustomWiggleVars);
+  
+  static create(id: string, vars?: CustomWiggleVars): EaseFunction;
+  static register(core: object): void;
+}
 
 declare module "gsap/CustomWiggle" {
-
-  // TODO
-  export const CustomWiggle: any;
-  export { CustomWiggle as default };
+  class _CustomWiggle extends CustomWiggle {}
+  export { _CustomWiggle as CustomWiggle };
+  export { _CustomWiggle as default };
 }
 
 declare module "gsap/dist/CustomWiggle" {
@@ -19,24 +35,5 @@ declare module "gsap/src/CustomWiggle" {
 }
 
 declare module "gsap/all" {
-  export * from "gsap/CustomWiggle";
-}
-
-declare module "gsap-trial/CustomWiggle" {
-  export * from "gsap/CustomWiggle";
-  export { CustomWiggle as default } from "gsap/CustomWiggle";
-}
-
-declare module "gsap-trial/dist/CustomWiggle" {
-  export * from "gsap/CustomWiggle";
-  export { CustomWiggle as default } from "gsap/CustomWiggle";
-}
-
-declare module "gsap-trial/src/CustomWiggle" {
-  export * from "gsap/CustomWiggle";
-  export { CustomWiggle as default } from "gsap/CustomWiggle";
-}
-
-declare module "gsap-trial/all" {
   export * from "gsap/CustomWiggle";
 }

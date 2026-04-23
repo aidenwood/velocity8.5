@@ -32,7 +32,7 @@
         ScanError[ScanError["InvalidUnicode"] = 4] = "InvalidUnicode";
         ScanError[ScanError["InvalidEscapeCharacter"] = 5] = "InvalidEscapeCharacter";
         ScanError[ScanError["InvalidCharacter"] = 6] = "InvalidCharacter";
-    })(ScanError = exports.ScanError || (exports.ScanError = {}));
+    })(ScanError || (exports.ScanError = ScanError = {}));
     var SyntaxKind;
     (function (SyntaxKind) {
         SyntaxKind[SyntaxKind["OpenBraceToken"] = 1] = "OpenBraceToken";
@@ -52,7 +52,7 @@
         SyntaxKind[SyntaxKind["Trivia"] = 15] = "Trivia";
         SyntaxKind[SyntaxKind["Unknown"] = 16] = "Unknown";
         SyntaxKind[SyntaxKind["EOF"] = 17] = "EOF";
-    })(SyntaxKind = exports.SyntaxKind || (exports.SyntaxKind = {}));
+    })(SyntaxKind || (exports.SyntaxKind = SyntaxKind = {}));
     /**
      * For a given offset, evaluate the location in the JSON document. Each segment in the location path is either a property name or an array index.
      */
@@ -110,7 +110,7 @@
         ParseErrorCode[ParseErrorCode["InvalidUnicode"] = 14] = "InvalidUnicode";
         ParseErrorCode[ParseErrorCode["InvalidEscapeCharacter"] = 15] = "InvalidEscapeCharacter";
         ParseErrorCode[ParseErrorCode["InvalidCharacter"] = 16] = "InvalidCharacter";
-    })(ParseErrorCode = exports.ParseErrorCode || (exports.ParseErrorCode = {}));
+    })(ParseErrorCode || (exports.ParseErrorCode = ParseErrorCode = {}));
     function printParseErrorCode(code) {
         switch (code) {
             case 1 /* ParseErrorCode.InvalidSymbol */: return 'InvalidSymbol';

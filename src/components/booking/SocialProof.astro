@@ -1,0 +1,39 @@
+---
+/* Social proof strip between hero and booking flow */
+/* Builds confidence before the payment step */
+---
+
+<section class="py-12 sm:py-16">
+  <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+
+    <!-- Trust signals -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
+      <div class="text-center">
+        <div class="text-3xl sm:text-4xl font-medium tracking-tight text-primary-600 dark:text-primary-400">10+</div>
+        <p class="text-sm text-primary-950/60 dark:text-primary-200/60 mt-1">Years Experience</p>
+      </div>
+      <div class="text-center">
+        <div class="text-3xl sm:text-4xl font-medium tracking-tight text-primary-600 dark:text-primary-400">50+</div>
+        <p class="text-sm text-primary-950/60 dark:text-primary-200/60 mt-1">Projects Delivered</p>
+      </div>
+      <div class="text-center">
+        <div class="text-3xl sm:text-4xl font-medium tracking-tight text-primary-600 dark:text-primary-400">100%</div>
+        <p class="text-sm text-primary-950/60 dark:text-primary-200/60 mt-1">Performance Scores</p>
+      </div>
+      <div class="text-center">
+        <div class="text-3xl sm:text-4xl font-medium tracking-tight text-primary-600 dark:text-primary-400">A+</div>
+        <p class="text-sm text-primary-950/60 dark:text-primary-200/60 mt-1">Core Web Vitals</p>
+      </div>
+    </div>
+
+    <!-- Expertise tags -->
+    <div class="flex flex-wrap justify-center gap-2 sm:gap-3 mt-10">
+      {['React', 'Astro', 'Next.js', 'TypeScript', 'Supabase', 'Stripe', 'Tailwind CSS', 'SEO', 'GSAP', 'Figma', 'Node.js', 'PostgreSQL'].map((tech) => (
+        <span class="inline-flex items-center rounded-full bg-primary-100/50 dark:bg-primary-900/50 border border-primary-200/50 dark:border-primary-800/50 px-3 py-1 text-xs sm:text-sm font-medium text-primary-700 dark:text-primary-300">
+          {tech}
+        </span>
+      ))}
+    </div>
+
+  </div>
+</section>
