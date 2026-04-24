@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useAuth } from './AuthProvider';
+import { PageTransition } from './PageTransition';
 
 interface NavItem {
   label: string;
@@ -64,6 +65,14 @@ interface DashboardShellProps {
 export function DashboardShell({ children, currentPath = '/dashboard' }: DashboardShellProps) {
   const { profile, signOut } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [transitioning, setTransitioning] = useState<string | null>(null);
+
+  const handleNav = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    // Don't animate if already on the page or if it's the same page
+    if (href === currentPath || (href === '/dashboard' && currentPath === '/dashboard/')) return;
+    e.preventDefault();
+    setTransitioning(href);
+  }, [currentPath]);
 
   const isActive = (href: string) => {
     if (href === '/dashboard') return currentPath === '/dashboard' || currentPath === '/dashboard/';
@@ -80,6 +89,10 @@ export function DashboardShell({ children, currentPath = '/dashboard' }: Dashboa
     .slice(0, 2);
 
   return (
+    <>
+    {transitioning && (
+      <PageTransition onComplete={() => { window.location.href = transitioning; }} />
+    )}
     <div className="flex min-h-screen bg-black">
       {/* Desktop Sidebar */}
       <aside className="hidden md:flex md:w-64 md:flex-col md:border-r md:border-primary-500/10 md:bg-primary-950/20">
@@ -99,6 +112,7 @@ export function DashboardShell({ children, currentPath = '/dashboard' }: Dashboa
             <a
               key={item.href}
               href={item.href}
+              onClick={(e) => handleNav(e, item.href)}
               className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition ${
                 isActive(item.href)
                   ? 'bg-primary-600/20 text-primary-300'
@@ -169,6 +183,7 @@ export function DashboardShell({ children, currentPath = '/dashboard' }: Dashboa
                 <a
                   key={item.href}
                   href={item.href}
+                  onClick={(e) => handleNav(e, item.href)}
                   className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition ${
                     isActive(item.href)
                       ? 'bg-primary-600/20 text-primary-300'
@@ -201,6 +216,7 @@ export function DashboardShell({ children, currentPath = '/dashboard' }: Dashboa
           <a
             key={item.href}
             href={item.href}
+            onClick={(e) => handleNav(e, item.href)}
             className={`flex flex-col items-center gap-0.5 px-3 py-2 text-[10px] font-medium transition ${
               isActive(item.href)
                 ? 'text-primary-400'
@@ -220,5 +236,6 @@ export function DashboardShell({ children, currentPath = '/dashboard' }: Dashboa
         </div>
       </main>
     </div>
+    </>
   );
 }

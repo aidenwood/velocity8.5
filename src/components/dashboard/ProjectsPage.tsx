@@ -5,6 +5,7 @@ import { AuthProvider } from './AuthProvider';
 import { ProtectedRoute } from './ProtectedRoute';
 import { DashboardShell } from './DashboardShell';
 import { ProjectCard } from './ProjectCard';
+import { ProjectCardSkeleton } from './Skeleton';
 
 function ProjectsContent() {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -52,12 +53,22 @@ function ProjectsContent() {
       </div>
 
       {loading ? (
-        <div className="flex items-center justify-center py-24">
-          <div className="h-8 w-8 animate-spin rounded-full border-2 border-primary-500 border-t-transparent" />
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <ProjectCardSkeleton />
+          <ProjectCardSkeleton />
+          <ProjectCardSkeleton />
+          <ProjectCardSkeleton />
+          <ProjectCardSkeleton />
+          <ProjectCardSkeleton />
         </div>
       ) : filtered.length === 0 ? (
         <div className="flex flex-col items-center justify-center rounded-2xl border border-primary-500/10 bg-primary-950/40 py-16 backdrop-blur-sm">
-          <p className="text-sm text-primary-400/50">No projects found.</p>
+          <svg className="mb-3 h-8 w-8 text-primary-500/30" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12.75V12A2.25 2.25 0 0 1 4.5 9.75h15A2.25 2.25 0 0 1 21.75 12v.75m-8.69-6.44-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z" />
+          </svg>
+          <p className="text-sm text-primary-400/50">
+            {filter === 'all' ? 'No projects yet.' : `No ${filter} projects.`}
+          </p>
         </div>
       ) : (
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">

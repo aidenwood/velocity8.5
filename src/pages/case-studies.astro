@@ -1,0 +1,241 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SkewedPanel from '../components/home/SkewedPanel.astro';
+import TopoBackground from '../components/home/TopoBackground.astro';
+import CtaDiscovery from '../components/home/Cta-Discovery.astro';
+
+interface CaseStudy {
+  slug: string;
+  client: string;
+  industry: string;
+  services: string[];
+  headline: string;
+  description: string;
+  results: { label: string; value: string }[];
+  heroImage: string;
+  gallery: { src: string; alt: string; span?: string }[];
+  searchProof?: { src: string; query: string }[];
+}
+
+const studies: CaseStudy[] = [
+  {
+    slug: 'ball-realty',
+    client: 'Ball Realty',
+    industry: 'Real Estate · Gold Coast',
+    services: ['Web Design', 'Google Ads', 'SEO', 'HTML5 Ads', 'Graphic Design'],
+    headline: '#1 in Google across 10+ suburbs.',
+    description: 'Managed web design, SEO, Google Ads, and display advertising for Ball Realty Pacific Pines over 3+ years. Built location-targeted ad campaigns that consistently ranked #1 for property management and sales searches across every northern Gold Coast suburb. Designed responsive HTML5 display ads, WordPress website with interactive maps, and a complete responsive ad creative system.',
+    results: [
+      { label: '#1 Ad Position', value: '10+' },
+      { label: 'Suburb Campaigns', value: '15+' },
+      { label: 'Years Managed', value: '3+' },
+      { label: 'Google Reviews', value: '400+' },
+    ],
+    heroImage: '/works/case-studies/br-macbook-render.png',
+    gallery: [
+      { src: '/works/case-studies/br-gads-1year.png', alt: 'Ball Realty Google Ads 1 year improvement report', span: 'md:col-span-2' },
+      { src: '/works/case-studies/br-avg-position.png', alt: 'Average position and clicks growth Q3 to Q1' },
+      { src: '/works/case-studies/br-seo-growth.png', alt: 'Real estate agent Pacific Pines SEO growth' },
+      { src: '/works/case-studies/br-interactive-maps.png', alt: 'Interactive maps integration for Ball Realty website', span: 'md:col-span-2' },
+      { src: '/works/case-studies/br-sidebar-seo.png', alt: 'Cornerstone SEO sidebar and animated hero' },
+      { src: '/works/case-studies/br-responsive-ads.png', alt: 'Thinking of Selling responsive display ad placements', span: 'md:col-span-2' },
+      { src: '/works/case-studies/br-display-ad-isometric.png', alt: 'Google Display 300x600 isometric campaign ad' },
+      { src: '/works/case-studies/br-stand-out.png', alt: 'Stand Out - Ball Realty Helensvale Accuweather campaign' },
+      { src: '/works/case-studies/br-listing-mockup.png', alt: 'New listing interactive ad mockup' },
+      { src: '/works/case-studies/br-facebook-ad.png', alt: 'Ball Realty Facebook property listing ad' },
+    ],
+    searchProof: [
+      { src: '/works/case-studies/br-search-pp-mgmt.jpg', query: 'pacific pines property management' },
+      { src: '/works/case-studies/br-search-pp-sales.jpg', query: 'pacific pines real estate agents' },
+      { src: '/works/case-studies/br-search-coomera.jpg', query: 'coomera property management' },
+    ],
+  },
+  {
+    slug: 'rebuild-relief',
+    client: 'Rebuild Relief',
+    industry: 'Insurance Claims · QLD Australia',
+    services: ['Web Development', 'Data Engineering', 'SaaS', 'Billboard Design', 'Video Ads'],
+    headline: 'Full-stack internal tools and marketing.',
+    description: 'Built the entire digital infrastructure for Rebuild Relief -- from a multi-tenant SaaS scheduling platform (FleetRoute) and hail damage mapping tool (6,000+ geocoded claims), to billboard campaigns, Meta video ads with 3D glass text effects, and a marketing data pipeline feeding BigQuery. Every tool custom-built for the insurance claims workflow.',
+    results: [
+      { label: 'Geocoded Claims', value: '6,000+' },
+      { label: 'Apps Built', value: '8' },
+      { label: 'Billboard Campaigns', value: '3' },
+      { label: 'Data Points/Day', value: '50K+' },
+    ],
+    heroImage: '/works/case-studies/rr-hail-map-desktop.png',
+    gallery: [
+      { src: '/works/case-studies/rr-hail-map-desktop.png', alt: 'Hail damage map calculator with 6000+ geocoded claims', span: 'md:col-span-2' },
+      { src: '/works/case-studies/rr-hail-map-phone.png', alt: 'Hail damage map mobile view' },
+      { src: '/works/case-studies/rr-billboard.png', alt: 'Ipswich Dinmore billboard ad campaign', span: 'md:col-span-2' },
+      { src: '/works/case-studies/rr-billboard-v5.jpg', alt: 'Maryborough billboard design V5' },
+    ],
+  },
+  {
+    slug: 'aidxn-design',
+    client: 'Aidxn Design',
+    industry: 'Web Design Studio',
+    services: ['Creative Coding', '3D Animation', 'Interactive Ads', 'Framework Development'],
+    headline: 'The tools behind the studio.',
+    description: 'Built the Velocity framework from scratch -- now on version 9 with perfect Lighthouse scores across every build. Created interactive HTML5 display ads with Google Web Designer, a 3D animated globe using pure CSS/SVG, and browser-based design tools with Three.js and WebGL. Every client project ships on the same performance-first architecture.',
+    results: [
+      { label: 'Lighthouse Score', value: '100' },
+      { label: 'Velocity Versions', value: '9' },
+      { label: 'Framework Sites', value: '50+' },
+      { label: 'Pageload Speed', value: '<1s' },
+    ],
+    heroImage: '/works/case-studies/aidxn-3d-globe.png',
+    gallery: [
+      { src: '/works/case-studies/aidxn-3d-globe.png', alt: '3D Globe SVG animated with GSAP', span: 'md:col-span-2' },
+      { src: '/works/case-studies/aidxn-3d-code.png', alt: 'HTML and CSS code for 3D spinner animation' },
+      { src: '/works/case-studies/velocity-pagespeed.png', alt: 'Velocity V6 page load scores vs V5', span: 'md:col-span-2' },
+      { src: '/works/case-studies/aidxn-interactive-ads.png', alt: 'Interactive HTML5 ad designs by Aidxn Design' },
+      { src: '/works/case-studies/br-gads-mgmt.png', alt: 'Google Ads management results dashboard' },
+    ],
+  },
+];
+---
+
+<Layout
+  description="Case studies from Aidxn Design. Real results from real projects -- Google Ads, web development, SaaS platforms, and creative coding. Gold Coast, Australia."
+  title="Case Studies · Real Results · Aidxn Design"
+>
+
+  <!-- ════════════════════════════════════
+       HERO
+       ════════════════════════════════════ -->
+  <section class="relative min-h-[60vh] flex items-center overflow-hidden">
+    <SkewedPanel class="opacity-25" />
+    <TopoBackground opacity={0.1} />
+    <div class="relative z-10 mx-auto px-4 sm:px-6 w-full lg:max-w-7xl lg:px-8 py-24 sm:py-32">
+      <div class="flex flex-col gap-6 max-w-3xl">
+        <p class="text-xs md:text-base uppercase font-thin tracking-widest text-primary-600 dark:text-primary-400">
+          Case Studies
+        </p>
+        <h1 class="font-medium tracking-tighter md:tracking-tight text-4xl sm:text-5xl lg:text-6xl xl:text-7xl">
+          Results you can see. Code you can trust.
+        </h1>
+        <p class="text-primary-950/80 dark:text-primary-200/80 text-lg xs:text-xl max-w-2xl">
+          Real projects, real clients, real outcomes. From #1 Google Ads rankings to production SaaS platforms -- here's the work behind the pitch.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════
+       CASE STUDIES
+       ════════════════════════════════════ -->
+  {studies.map((study, i) => (
+    <section id={study.slug} class:list={['py-20 sm:py-28', i % 2 === 1 ? 'bg-primary-100/50 dark:bg-primary-950/50' : '']}>
+      <div class="mx-auto px-4 sm:px-6 w-full lg:max-w-7xl lg:px-8">
+        <div class="flex flex-col gap-12">
+
+          <!-- Header -->
+          <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+            <div class="flex flex-col gap-4 max-w-2xl">
+              <div class="flex items-center gap-3">
+                <span class="text-xs uppercase tracking-widest text-primary-600 dark:text-primary-400 font-thin">
+                  {study.industry}
+                </span>
+              </div>
+              <h2 class="text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight">
+                {study.client}
+              </h2>
+              <p class="text-xl sm:text-2xl text-primary-600 dark:text-primary-400 font-medium">
+                {study.headline}
+              </p>
+              <p class="text-primary-950/70 dark:text-primary-200/70 text-base sm:text-lg leading-relaxed">
+                {study.description}
+              </p>
+              <!-- Service tags -->
+              <div class="flex flex-wrap gap-2 mt-1">
+                {study.services.map((service) => (
+                  <span class="text-xs px-3 py-1 rounded-full border border-primary-900/15 dark:border-primary-300/15 text-primary-950/60 dark:text-primary-200/60">
+                    {service}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <!-- Results numbers -->
+            <div class="grid grid-cols-2 gap-6 lg:gap-8 shrink-0">
+              {study.results.map((r) => (
+                <div class="flex flex-col gap-0.5">
+                  <span class="text-3xl sm:text-4xl font-medium tracking-tight text-primary-600 dark:text-primary-400">
+                    {r.value}
+                  </span>
+                  <span class="text-xs text-primary-950/50 dark:text-primary-200/50 uppercase tracking-wider">
+                    {r.label}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Hero image -->
+          <div class="rounded-2xl overflow-hidden border border-primary-900/10 dark:border-primary-300/10">
+            <img
+              src={study.heroImage}
+              alt={`${study.client} project hero`}
+              class="w-full h-auto object-cover"
+              loading={i === 0 ? 'eager' : 'lazy'}
+            />
+          </div>
+
+          <!-- Gallery grid -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {study.gallery.map((img) => (
+              <div class:list={[
+                'rounded-xl overflow-hidden border border-primary-900/10 dark:border-primary-300/10 bg-primary-100/50 dark:bg-primary-900/20',
+                img.span || '',
+              ]}>
+                <img
+                  src={img.src}
+                  alt={img.alt}
+                  class="w-full h-auto object-cover"
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </div>
+
+          <!-- Search proof (mobile screenshots) -->
+          {study.searchProof && (
+            <div class="flex flex-col gap-6">
+              <h3 class="text-lg font-medium">
+                Live search results -- #1 position, every suburb.
+              </h3>
+              <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                {study.searchProof.map((proof) => (
+                  <div class="flex flex-col gap-2">
+                    <div class="rounded-xl overflow-hidden border border-primary-900/10 dark:border-primary-300/10 bg-primary-100/30 dark:bg-primary-900/20">
+                      <img
+                        src={proof.src}
+                        alt={`Google search: ${proof.query}`}
+                        class="w-full h-auto object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+                    <p class="text-xs text-primary-950/40 dark:text-primary-200/40 truncate">
+                      "{proof.query}"
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <!-- ════════════════════════════════════
+       CTA
+       ════════════════════════════════════ -->
+  <CtaDiscovery
+    heading="Want results like these?"
+    subheading="Book a discovery call and let's scope your project. Come prepared, leave with a plan."
+  />
+
+</Layout>

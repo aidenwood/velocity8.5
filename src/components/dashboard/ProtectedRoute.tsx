@@ -14,18 +14,9 @@ export function ProtectedRoute({ children }: ProtectedRouteProps) {
     }
   }, [user, loading]);
 
-  if (loading) {
-    return (
-      <div className="flex min-h-screen items-center justify-center bg-black">
-        <div className="flex flex-col items-center gap-4">
-          <div className="h-8 w-8 animate-spin rounded-full border-2 border-primary-500 border-t-transparent" />
-          <p className="text-sm text-primary-300">Loading...</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (!user) {
+  // Render children immediately so skeleton loaders show while auth loads.
+  // Only block render after we've confirmed there's no user.
+  if (!loading && !user) {
     return null;
   }
 

@@ -7,6 +7,7 @@ import { DashboardShell } from './DashboardShell';
 import { AnalyticsPanel } from './AnalyticsPanel';
 import { InvoiceTable } from './InvoiceTable';
 import { StatCard } from './StatCard';
+import { Skeleton, StatCardSkeleton, ChartSkeleton } from './Skeleton';
 
 interface ProjectDetailPageProps {
   projectId?: string;
@@ -55,8 +56,20 @@ function ProjectDetailContent({ projectId: propId }: ProjectDetailPageProps) {
   if (loading) {
     return (
       <DashboardShell currentPath="/dashboard/projects">
-        <div className="flex items-center justify-center py-24">
-          <div className="h-8 w-8 animate-spin rounded-full border-2 border-primary-500 border-t-transparent" />
+        <div className="mb-6">
+          <Skeleton className="mb-3 h-4 w-32" />
+          <Skeleton className="h-7 w-56" />
+          <Skeleton className="mt-2 h-4 w-40" />
+        </div>
+        <div className="grid grid-cols-1 gap-4 xs:grid-cols-2 lg:grid-cols-4">
+          <StatCardSkeleton />
+          <StatCardSkeleton />
+          <StatCardSkeleton />
+          <StatCardSkeleton />
+        </div>
+        <div className="mt-8">
+          <Skeleton className="mb-4 h-5 w-24" />
+          <ChartSkeleton />
         </div>
       </DashboardShell>
     );

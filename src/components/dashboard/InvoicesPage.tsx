@@ -6,6 +6,7 @@ import { ProtectedRoute } from './ProtectedRoute';
 import { DashboardShell } from './DashboardShell';
 import { InvoiceTable } from './InvoiceTable';
 import { StatCard } from './StatCard';
+import { StatCardSkeleton } from './Skeleton';
 
 function InvoicesContent() {
   const [invoices, setInvoices] = useState<Invoice[]>([]);
@@ -42,10 +43,21 @@ function InvoicesContent() {
 
       {/* Summary */}
       <div className="mb-6 grid grid-cols-1 gap-4 xs:grid-cols-2 lg:grid-cols-4">
-        <StatCard label="Total Invoiced" value={fmt(totalInvoiced)} />
-        <StatCard label="Paid" value={fmt(totalPaid)} />
-        <StatCard label="Pending" value={fmt(totalPending)} />
-        <StatCard label="Overdue" value={fmt(totalOverdue)} />
+        {loading ? (
+          <>
+            <StatCardSkeleton />
+            <StatCardSkeleton />
+            <StatCardSkeleton />
+            <StatCardSkeleton />
+          </>
+        ) : (
+          <>
+            <StatCard label="Total Invoiced" value={fmt(totalInvoiced)} />
+            <StatCard label="Paid" value={fmt(totalPaid)} />
+            <StatCard label="Pending" value={fmt(totalPending)} />
+            <StatCard label="Overdue" value={fmt(totalOverdue)} />
+          </>
+        )}
       </div>
 
       <InvoiceTable invoices={invoices} loading={loading} />

@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import type { AnalyticsSnapshot, AnalyticsSource } from '../../lib/types';
 import { Chart } from './Chart';
 import { DataSourceBadge } from './DataSourceBadge';
+import { Skeleton, ChartSkeleton } from './Skeleton';
 
 interface AnalyticsPanelProps {
   snapshots: AnalyticsSnapshot[];
@@ -61,9 +62,20 @@ export function AnalyticsPanel({ snapshots, loading }: AnalyticsPanelProps) {
 
   if (loading) {
     return (
-      <div className="rounded-2xl border border-primary-500/10 bg-primary-950/40 p-6 backdrop-blur-sm">
-        <div className="flex items-center justify-center py-12">
-          <div className="h-6 w-6 animate-spin rounded-full border-2 border-primary-500 border-t-transparent" />
+      <div className="space-y-4">
+        <div className="flex gap-2">
+          <Skeleton className="h-8 w-16 rounded-xl" />
+          <Skeleton className="h-8 w-20 rounded-xl" />
+          <Skeleton className="h-8 w-20 rounded-xl" />
+        </div>
+        <ChartSkeleton />
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+          {Array.from({ length: 4 }).map((_, i) => (
+            <div key={i} className="rounded-xl border border-primary-500/10 bg-primary-950/40 p-3 backdrop-blur-sm">
+              <Skeleton className="mb-1 h-3 w-16" />
+              <Skeleton className="h-6 w-12" />
+            </div>
+          ))}
         </div>
       </div>
     );

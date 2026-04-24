@@ -51,13 +51,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setSession(s);
       setUser(s?.user ?? null);
       if (s?.user) {
-        fetchProfile(s.user.id).then((p) => {
-          setProfile(p);
-          setLoading(false);
-        });
+        fetchProfile(s.user.id)
+          .then((p) => setProfile(p))
+          .catch((err) => console.error('Profile fetch failed:', err))
+          .finally(() => setLoading(false));
       } else {
         setLoading(false);
       }
+    }).catch(() => {
+      setLoading(false);
     });
 
     // Listen for auth changes
@@ -67,11 +69,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setSession(s);
       setUser(s?.user ?? null);
       if (s?.user) {
-        const p = await fetchProfile(s.user.id);
-        setProfile(p);
+        try {
+          const p = await fetchProfile(s.user.id);
+          setProfile(p);
+        } catch (err) {
+          console.error('Profile fetch failed on auth change:', err);
+        }
       } else {
         setProfile(null);
       }
+      setLoading(false);
     });
 
     return () => {
@@ -117,12 +124,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const updateProfile = async (updates: Partial<Profile>) => {
     if (!user) return { error: new Error('Not authenticated') };
+    // Use upsert so it works even if no profile row exists yet
     const { error } = await supabase
       .from('profiles')
-      .update(updates)
-      .eq('id', user.id);
+      .upsert({ id: user.id, ...updates }, { onConflict: 'id' });
     if (!error) {
-      setProfile((prev) => (prev ? { ...prev, ...updates } : null));
+      setProfile((prev) =>
+        prev
+          ? { ...prev, ...updates }
+          : { id: user.id, role: 'client', created_at: new Date().toISOString(), full_name: null, company_name: null, avatar_url: null, ...updates }
+      );
     }
     return { error: error as Error | null };
   };

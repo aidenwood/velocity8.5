@@ -1,0 +1,429 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SkewedPanel from '../components/home/SkewedPanel.astro';
+import TopoBackground from '../components/home/TopoBackground.astro';
+import IsometricIntegration from '../components/home/IsometricIntegration.astro';
+import CtaDiscovery from '../components/home/Cta-Discovery.astro';
+
+interface Project {
+  title: string;
+  client: string;
+  category: string;
+  description: string;
+  features: string[];
+  stack: string[];
+  image: string;
+  span: string;
+}
+
+const projects: Project[] = [
+  {
+    title: 'FleetRoute',
+    client: 'Rebuild Relief',
+    category: 'Multi-Tenant SaaS',
+    description: 'Field service scheduling platform with route optimisation, CRM sync, and subscription billing. Multi-tenant architecture with subdomain isolation and encrypted API key storage.',
+    features: ['Pipedrive CRM sync', 'Google Maps routing', 'Stripe subscriptions', 'Magic link auth', 'Multi-tenant subdomains'],
+    stack: ['React', 'Supabase', 'Stripe', 'Google Maps', 'Netlify Functions'],
+    image: '/works/app-design.webp',
+    span: 'md:col-span-2 md:row-span-2',
+  },
+  {
+    title: 'Marketing Dashboard',
+    client: 'Rebuild Relief',
+    category: 'Data Engineering',
+    description: 'Real-time CPA tracking across Google Ads and Facebook, powered by BigQuery data warehouse with automated daily processing and Looker Studio integration.',
+    features: ['Google BigQuery', 'Daily CPA tracking', 'Multi-platform aggregation', 'Automated pipelines', 'Looker Studio'],
+    stack: ['React', 'BigQuery', 'Google Ads API', 'Cloud Functions', 'Recharts'],
+    image: '/works/cpc-results.webp',
+    span: 'md:col-span-1 md:row-span-1',
+  },
+  {
+    title: 'WebGL Design Tools',
+    client: 'Aidxn Design',
+    category: 'Creative Suite',
+    description: 'Suite of browser-based design tools -- colour palettes, gradient builders, particle systems, 3D text, shader playground. Subdomain architecture with export to PNG, SVG, and CSS.',
+    features: ['Three.js / p5.js', 'WebGL shaders', 'Export PNG/SVG/CSS', 'Draggable UI', 'Subdomain routing'],
+    stack: ['Next.js', 'Three.js', 'p5.js', 'Radix UI', 'TypeScript'],
+    image: '/works/cube-3d.webp',
+    span: 'md:col-span-1 md:row-span-1',
+  },
+  {
+    title: 'BookMyStaff',
+    client: 'Rebuild Relief',
+    category: 'Booking Platform',
+    description: 'Staff and customer booking system with availability management, email notifications, and comprehensive E2E test coverage with Playwright.',
+    features: ['Staff management', 'Customer booking', 'Email notifications', 'E2E testing', 'Component library'],
+    stack: ['Astro', 'React', 'Supabase', 'Radix UI', 'Playwright'],
+    image: '/works/web-design.webp',
+    span: 'md:col-span-1 md:row-span-2',
+  },
+  {
+    title: 'Hail Damage Estimator',
+    client: 'Rebuild Relief',
+    category: 'Geospatial App',
+    description: '6,000+ geocoded insurance claims mapped with Google Maps clustering. Haversine distance calculations for damage radius estimation.',
+    features: ['Google Maps clusters', '6,000+ data points', 'Haversine distance', 'CSV parsing', 'Real-time filtering'],
+    stack: ['React', 'Google Maps API', 'Jest', 'Playwright', 'ESLint'],
+    image: '/works/golden-render.webp',
+    span: 'md:col-span-1 md:row-span-1',
+  },
+  {
+    title: 'PIC Web Form',
+    client: 'Rebuild Relief',
+    category: 'Multi-Step Form',
+    description: '5-step property insurance claim form with e-signatures, IP geolocation, and Zapier webhook integration. Zustand state management for complex form flows.',
+    features: ['E-signatures', 'IP geolocation', 'Zapier webhooks', 'Form validation', 'Progress tracking'],
+    stack: ['Astro', 'React', 'Zustand', 'Zapier', 'TypeScript'],
+    image: '/works/br-re.webp',
+    span: 'md:col-span-1 md:row-span-1',
+  },
+  {
+    title: 'Audio Transcriber',
+    client: 'Internal Tool',
+    category: 'AI Integration',
+    description: 'Drag-and-drop audio/video transcription powered by AssemblyAI. Supports MP3, WAV, M4A, MP4 and more with real-time progress and transcript export.',
+    features: ['AssemblyAI API', 'Multi-format support', 'FFmpeg processing', 'Drag-drop upload', 'Transcript export'],
+    stack: ['Express.js', 'AssemblyAI', 'FFmpeg', 'Multer', 'Node.js'],
+    image: '/works/moonshot-mgmt-clipped.webp',
+    span: 'md:col-span-1 md:row-span-1',
+  },
+  {
+    title: 'F1 MIDI Controller',
+    client: 'Personal Project',
+    category: 'Creative Coding',
+    description: 'Web-based sound board mapped to Traktor Kontrol F1 via Web MIDI API. 16 velocity-sensitive pads, filter knobs, volume faders, and LED feedback.',
+    features: ['Web MIDI API', '16 velocity pads', 'Tone.js synthesis', 'LED feedback', 'Custom samples'],
+    stack: ['Vite', 'Tone.js', 'Web MIDI', 'Three.js', 'RecordRTC'],
+    image: '/works/video-musicians.webp',
+    span: 'md:col-span-1 md:row-span-1',
+  },
+];
+
+interface Capability {
+  title: string;
+  description: string;
+  icon: string;
+}
+
+const capabilities: Capability[] = [
+  {
+    title: 'Full-Stack SaaS',
+    description: 'Multi-tenant platforms with auth, RLS, subscriptions, and CRM integrations. From database schema to deployed product.',
+    icon: 'M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z',
+  },
+  {
+    title: 'Data Pipelines',
+    description: 'BigQuery warehousing, Python ETL scripts, API integrations, and automated reporting dashboards with real-time metrics.',
+    icon: 'M4 7v10c0 2.21 3.58 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.58 4 8 4s8-1.79 8-4M4 7c0-2.21 3.58-4 8-4s8 1.79 8 4m0 5c0 2.21-3.58 4-8 4s-8-1.79-8-4',
+  },
+  {
+    title: 'API Integrations',
+    description: 'Pipedrive, Stripe, Google Maps, Google Ads, AssemblyAI, Zapier -- connecting your business tools into unified workflows.',
+    icon: 'M13 10V3L4 14h7v7l9-11h-7z',
+  },
+  {
+    title: '3D & Creative Coding',
+    description: 'Three.js, WebGL, p5.js, GSAP, Web MIDI. Interactive visualisations, 3D product configurators, and generative art.',
+    icon: 'M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5',
+  },
+  {
+    title: 'Auth & Security',
+    description: 'Supabase Auth with RLS policies, magic links, role-based access, encrypted key storage. Security-first architecture.',
+    icon: 'M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z',
+  },
+  {
+    title: 'Testing & CI',
+    description: 'Playwright E2E, Jest unit tests, ESLint + Prettier, Husky pre-commit hooks. Production-grade code from day one.',
+    icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z',
+  },
+];
+
+const stackCategories = [
+  {
+    label: 'Frontend',
+    items: ['React 19', 'Astro 5', 'Next.js 16', 'TypeScript', 'Tailwind CSS', 'Radix UI'],
+  },
+  {
+    label: 'Backend',
+    items: ['Supabase', 'Node.js', 'Netlify Functions', 'Express.js', 'Python'],
+  },
+  {
+    label: 'APIs',
+    items: ['Stripe', 'Pipedrive', 'Google Maps', 'Google Ads', 'BigQuery', 'AssemblyAI'],
+  },
+  {
+    label: '3D & Creative',
+    items: ['Three.js', 'p5.js', 'WebGL', 'GSAP', 'Framer Motion', 'Web MIDI'],
+  },
+  {
+    label: 'Data',
+    items: ['BigQuery', 'PostgreSQL', 'Python ETL', 'CSV pipelines', 'Recharts', 'Looker'],
+  },
+  {
+    label: 'DevOps',
+    items: ['Netlify', 'Playwright', 'Jest', 'Docker', 'FFmpeg', 'GitHub Actions'],
+  },
+];
+---
+
+<Layout
+  description="Full-stack web development by Aiden Wood. SaaS platforms, data pipelines, API integrations, 3D creative coding. React, Supabase, TypeScript, Three.js. Gold Coast, Australia."
+  title="Web Development · Full-Stack Apps & SaaS · Aidxn Design"
+>
+
+  <!-- ════════════════════════════════════
+       HERO
+       ════════════════════════════════════ -->
+  <section class="relative min-h-[90vh] flex items-center overflow-hidden">
+    <SkewedPanel class="opacity-30" />
+    <TopoBackground opacity={0.12} />
+
+    <div class="relative z-10 mx-auto px-4 sm:px-6 w-full lg:max-w-7xl lg:px-8 py-24 sm:py-32">
+      <div class="flex flex-col gap-6 max-w-3xl">
+        <p class="text-xs md:text-base uppercase font-thin tracking-widest text-primary-600 dark:text-primary-400">
+          Full-Stack Development
+        </p>
+        <h1 class="font-medium tracking-tighter md:tracking-tight text-4xl sm:text-5xl lg:text-6xl xl:text-7xl">
+          I build the software your business runs on.
+        </h1>
+        <p class="text-primary-950/80 dark:text-primary-200/80 text-lg xs:text-xl max-w-2xl">
+          SaaS platforms, data dashboards, API integrations, creative coding tools. Not templates -- real applications with auth, billing, and production architecture.
+        </p>
+        <div class="flex gap-4 mt-2">
+          <a
+            href="/book"
+            class="inline-flex items-center justify-center rounded-full bg-primary-600 dark:bg-primary-400 px-6 py-3 text-base font-medium text-white dark:text-primary-950 transition hover:bg-primary-700 dark:hover:bg-primary-300"
+          >
+            Book a Discovery Call
+          </a>
+          <a
+            href="#projects"
+            class="inline-flex items-center justify-center rounded-full border-2 border-primary-600 dark:border-primary-400 px-6 py-3 text-base font-medium text-primary-600 dark:text-primary-400 transition hover:bg-primary-600 hover:text-white dark:hover:bg-primary-400 dark:hover:text-primary-950"
+          >
+            View Projects
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════
+       CAPABILITIES GRID
+       ════════════════════════════════════ -->
+  <section class="my-28">
+    <div class="mx-auto px-4 sm:px-6 w-full lg:max-w-7xl lg:px-8">
+      <div class="flex flex-col gap-8">
+        <div class="flex flex-col gap-4 max-w-3xl">
+          <h2 class="text-base lg:text-lg uppercase font-thin tracking-widest">
+            Capabilities
+          </h2>
+          <h3 class="text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight">
+            Beyond websites. Real software.
+          </h3>
+          <p class="text-primary-950/80 dark:text-primary-200/80 text-lg xs:text-xl">
+            10+ years building production applications. From database schema to deployed SaaS -- I own the full stack.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {capabilities.map((cap) => (
+            <div class="group flex flex-col gap-3 p-6 rounded-2xl border border-primary-900/10 dark:border-primary-300/10 transition-all duration-300 hover:border-primary-500/30 dark:hover:border-primary-400/30 hover:shadow-lg hover:shadow-primary-500/5">
+              <div class="w-10 h-10 rounded-xl bg-primary-100 dark:bg-primary-900/40 flex items-center justify-center">
+                <svg class="w-5 h-5 text-primary-600 dark:text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d={cap.icon} />
+                </svg>
+              </div>
+              <h4 class="text-lg font-medium">{cap.title}</h4>
+              <p class="text-sm text-primary-950/60 dark:text-primary-200/60 leading-relaxed">
+                {cap.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════
+       ISOMETRIC INTEGRATION GRAPHIC
+       ════════════════════════════════════ -->
+  <section class="relative my-28 overflow-hidden">
+    <SkewedPanel class="opacity-20" />
+    <div class="relative z-10 mx-auto px-4 sm:px-6 w-full lg:max-w-7xl lg:px-8">
+      <div class="flex flex-col gap-4 max-w-3xl mb-8">
+        <h2 class="text-base lg:text-lg uppercase font-thin tracking-widest">
+          Architecture
+        </h2>
+        <h3 class="text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight">
+          Code to production, connected.
+        </h3>
+        <p class="text-primary-950/80 dark:text-primary-200/80 text-lg xs:text-xl">
+          Every project ships with auth, database, integrations, and edge deployment baked in from day one.
+        </p>
+      </div>
+      <IsometricIntegration class="my-8" />
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════
+       PROJECTS GRID
+       ════════════════════════════════════ -->
+  <section id="projects" class="my-28">
+    <div class="mx-auto px-4 sm:px-6 w-full lg:max-w-7xl lg:px-8">
+      <div class="flex flex-col gap-8">
+        <div class="flex flex-col gap-4 max-w-3xl">
+          <h2 class="text-base lg:text-lg uppercase font-thin tracking-widest">
+            Selected Projects
+          </h2>
+          <h3 class="text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight">
+            Built, shipped, running in production.
+          </h3>
+          <p class="text-primary-950/80 dark:text-primary-200/80 text-lg xs:text-xl">
+            Real applications solving real business problems. Every project here is deployed, tested, and actively used.
+          </p>
+        </div>
+
+        <!-- Bento project grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5">
+          {projects.map((project) => (
+            <div
+              class:list={[
+                'group relative overflow-hidden rounded-2xl border border-primary-900/10 dark:border-primary-300/10',
+                'transition-all duration-300 hover:border-primary-500/30 dark:hover:border-primary-400/30',
+                'hover:shadow-lg hover:shadow-primary-500/10 dark:hover:shadow-primary-400/10',
+                project.span,
+              ]}
+            >
+              <!-- Background Image -->
+              <div class="absolute inset-0">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-black/20" />
+              </div>
+
+              <!-- Content overlay -->
+              <div class="relative flex flex-col justify-end p-5 sm:p-6 min-h-[280px] md:min-h-[320px]">
+                <div class="flex items-center gap-2 mb-3">
+                  <span class="text-[10px] uppercase tracking-widest text-primary-300 font-thin">
+                    {project.category}
+                  </span>
+                  <span class="text-white/20">--</span>
+                  <span class="text-[10px] uppercase tracking-widest text-white/40 font-thin">
+                    {project.client}
+                  </span>
+                </div>
+                <h4 class="text-xl sm:text-2xl font-medium text-white tracking-tight mb-2">
+                  {project.title}
+                </h4>
+                <p class="text-sm text-white/60 leading-relaxed line-clamp-2 mb-3">
+                  {project.description}
+                </p>
+
+                <!-- Tech stack pills -->
+                <div class="flex flex-wrap gap-1.5 mb-3">
+                  {project.stack.slice(0, 4).map((tech) => (
+                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-white/10 text-white/60 border border-white/5">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                <!-- Feature list (shown on larger cards) -->
+                <ul class:list={[
+                  'space-y-1 text-xs text-white/40',
+                  project.span.includes('row-span-2') ? 'block' : 'hidden md:hidden',
+                ]}>
+                  {project.features.slice(0, 3).map((feature) => (
+                    <li class="flex items-center gap-1.5">
+                      <svg class="w-3 h-3 text-primary-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════
+       TECH STACK BREAKDOWN
+       ════════════════════════════════════ -->
+  <section class="my-28">
+    <div class="mx-auto px-4 sm:px-6 w-full lg:max-w-7xl lg:px-8">
+      <div class="flex flex-col gap-8">
+        <div class="flex flex-col gap-4 max-w-3xl">
+          <h2 class="text-base lg:text-lg uppercase font-thin tracking-widest">
+            Tech Stack
+          </h2>
+          <h3 class="text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight">
+            The right tool for every job.
+          </h3>
+          <p class="text-primary-950/80 dark:text-primary-200/80 text-lg xs:text-xl">
+            I pick the stack that matches the project -- not the one that's trending. Every tool here has been used in production.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
+          {stackCategories.map((cat) => (
+            <div class="flex flex-col gap-3">
+              <h4 class="text-sm font-medium uppercase tracking-wider text-primary-600 dark:text-primary-400">
+                {cat.label}
+              </h4>
+              <ul class="flex flex-col gap-2">
+                {cat.items.map((item) => (
+                  <li class="text-sm text-primary-950/70 dark:text-primary-200/70">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════
+       BY THE NUMBERS
+       ════════════════════════════════════ -->
+  <section class="relative my-28 overflow-hidden">
+    <div class="mx-auto px-4 sm:px-6 w-full lg:max-w-7xl lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 py-12 border-y border-primary-900/10 dark:border-primary-300/10">
+        <div class="flex flex-col gap-1">
+          <span class="text-4xl sm:text-5xl font-medium tracking-tight text-primary-600 dark:text-primary-400">36+</span>
+          <span class="text-sm text-primary-950/60 dark:text-primary-200/60">Projects built</span>
+        </div>
+        <div class="flex flex-col gap-1">
+          <span class="text-4xl sm:text-5xl font-medium tracking-tight text-primary-600 dark:text-primary-400">10+</span>
+          <span class="text-sm text-primary-950/60 dark:text-primary-200/60">Years experience</span>
+        </div>
+        <div class="flex flex-col gap-1">
+          <span class="text-4xl sm:text-5xl font-medium tracking-tight text-primary-600 dark:text-primary-400">6</span>
+          <span class="text-sm text-primary-950/60 dark:text-primary-200/60">Production SaaS apps</span>
+        </div>
+        <div class="flex flex-col gap-1">
+          <span class="text-4xl sm:text-5xl font-medium tracking-tight text-primary-600 dark:text-primary-400">100</span>
+          <span class="text-sm text-primary-950/60 dark:text-primary-200/60">Lighthouse scores</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════
+       CTA
+       ════════════════════════════════════ -->
+  <CtaDiscovery
+    heading="Let's build your next product"
+    subheading="From SaaS MVP to production platform. Book a discovery call to scope your project."
+  />
+
+</Layout>
