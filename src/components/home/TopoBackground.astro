@@ -1,0 +1,140 @@
+---
+interface Props {
+  class?: string;
+  opacity?: number;
+}
+
+const { class: className = '', opacity = 0.3 } = Astro.props;
+---
+
+<div
+  class:list={['topo-bg-wrapper absolute inset-0 overflow-hidden pointer-events-none', className]}
+  style={`opacity: ${opacity};`}
+  aria-hidden="true"
+>
+  <svg
+    class="topo-bg-svg w-full h-full min-w-full min-h-full"
+    viewBox="0 0 1200 800"
+    xmlns="http://www.w3.org/2000/svg"
+    preserveAspectRatio="xMidYMid slice"
+  >
+    <!-- Contour group 1: centered cluster -->
+    <g class="topo-contours topo-lines-light dark:topo-lines-dark" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <!-- Outermost ring -->
+      <path
+        d="M 600 120 C 750 100, 900 180, 920 320 C 940 460, 860 600, 700 650 C 540 700, 350 660, 280 520 C 210 380, 260 200, 400 140 C 480 110, 540 130, 600 120 Z"
+        stroke-width="0.6"
+      />
+      <path
+        d="M 600 170 C 720 155, 850 220, 870 330 C 890 440, 820 560, 680 600 C 540 640, 380 610, 320 500 C 260 390, 300 240, 420 190 C 490 165, 550 175, 600 170 Z"
+        stroke-width="0.6"
+      />
+      <path
+        d="M 590 215 C 690 200, 800 260, 815 345 C 830 430, 775 520, 660 555 C 545 590, 410 565, 360 475 C 310 385, 340 280, 435 240 C 495 215, 545 225, 590 215 Z"
+        stroke-width="0.7"
+      />
+      <path
+        d="M 585 260 C 665 248, 750 295, 762 360 C 774 425, 732 490, 640 515 C 548 540, 440 520, 400 450 C 360 380, 385 310, 455 280 C 500 263, 545 268, 585 260 Z"
+        stroke-width="0.7"
+      />
+      <path
+        d="M 580 300 C 640 290, 705 325, 715 375 C 725 425, 695 465, 625 480 C 555 495, 475 480, 445 430 C 415 380, 430 340, 480 318 C 515 303, 548 305, 580 300 Z"
+        stroke-width="0.8"
+      />
+      <!-- Innermost ring -->
+      <path
+        d="M 575 340 C 615 333, 660 355, 665 388 C 670 421, 650 445, 610 452 C 570 459, 520 448, 505 415 C 490 382, 505 355, 535 345 C 550 340, 562 342, 575 340 Z"
+        stroke-width="0.8"
+      />
+    </g>
+
+    <!-- Contour group 2: upper-left cluster -->
+    <g class="topo-contours" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path
+        d="M 200 80 C 310 50, 420 100, 400 190 C 380 280, 290 320, 190 290 C 90 260, 50 170, 80 110 C 100 70, 150 90, 200 80 Z"
+        stroke-width="0.5"
+      />
+      <path
+        d="M 210 120 C 290 100, 370 140, 355 200 C 340 260, 275 290, 205 270 C 135 250, 105 190, 125 150 C 140 120, 170 128, 210 120 Z"
+        stroke-width="0.6"
+      />
+      <path
+        d="M 220 155 C 270 143, 325 170, 315 210 C 305 250, 262 268, 220 255 C 178 242, 158 205, 170 180 C 180 160, 195 158, 220 155 Z"
+        stroke-width="0.7"
+      />
+    </g>
+
+    <!-- Contour group 3: lower-right cluster -->
+    <g class="topo-contours" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path
+        d="M 950 500 C 1060 470, 1150 530, 1130 620 C 1110 710, 1020 760, 920 730 C 820 700, 790 620, 820 560 C 850 510, 900 515, 950 500 Z"
+        stroke-width="0.5"
+      />
+      <path
+        d="M 950 540 C 1030 520, 1095 565, 1080 625 C 1065 685, 1000 715, 930 695 C 860 675, 840 615, 860 575 C 880 545, 910 548, 950 540 Z"
+        stroke-width="0.6"
+      />
+      <path
+        d="M 950 575 C 1000 562, 1045 590, 1035 630 C 1025 670, 985 688, 945 675 C 905 662, 892 625, 905 600 C 915 580, 930 578, 950 575 Z"
+        stroke-width="0.7"
+      />
+    </g>
+
+    <!-- Contour group 4: upper-right sparse -->
+    <g class="topo-contours" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path
+        d="M 900 60 C 980 40, 1080 80, 1070 150 C 1060 220, 990 260, 910 240 C 830 220, 800 150, 830 100 C 850 70, 870 65, 900 60 Z"
+        stroke-width="0.5"
+      />
+      <path
+        d="M 910 100 C 960 88, 1025 115, 1018 160 C 1011 205, 965 228, 920 215 C 875 202, 856 160, 870 130 C 882 108, 892 103, 910 100 Z"
+        stroke-width="0.6"
+      />
+    </g>
+
+    <!-- Contour group 5: bottom-left sparse -->
+    <g class="topo-contours" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path
+        d="M 120 550 C 220 520, 320 560, 300 640 C 280 720, 200 760, 130 730 C 60 700, 30 630, 55 580 C 70 548, 90 555, 120 550 Z"
+        stroke-width="0.5"
+      />
+      <path
+        d="M 140 585 C 210 565, 275 595, 262 645 C 249 695, 200 720, 150 705 C 100 690, 82 640, 95 610 C 105 588, 120 588, 140 585 Z"
+        stroke-width="0.6"
+      />
+    </g>
+  </svg>
+</div>
+
+<style>
+  .topo-bg-wrapper {
+    z-index: 0;
+  }
+
+  .topo-bg-svg {
+    animation: topoDrift 60s linear infinite;
+  }
+
+  @keyframes topoDrift {
+    0%   { transform: rotate(0deg) scale(1); }
+    50%  { transform: rotate(1.5deg) scale(1.02); }
+    100% { transform: rotate(0deg) scale(1); }
+  }
+
+  /* Light mode: dark lines at low opacity */
+  .topo-contours {
+    stroke: rgba(0, 0, 0, 0.1);
+  }
+
+  /* Dark mode: white lines at low opacity */
+  :global(.dark) .topo-contours {
+    stroke: rgba(255, 255, 255, 0.1);
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .topo-bg-svg {
+      animation: none !important;
+    }
+  }
+</style>

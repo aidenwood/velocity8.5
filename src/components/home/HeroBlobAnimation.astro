@@ -1,0 +1,215 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<div class:list={['hero-blob-container relative w-full flex items-center justify-center overflow-hidden', className]}>
+  <svg
+    class="hero-blob-svg w-full max-w-3xl"
+    viewBox="0 0 800 500"
+    xmlns="http://www.w3.org/2000/svg"
+    preserveAspectRatio="xMidYMid meet"
+    aria-hidden="true"
+  >
+    <defs>
+      <!-- Blur filter for soft glow edges -->
+      <filter id="blobSoftGlow" x="-40%" y="-40%" width="180%" height="180%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="18" />
+      </filter>
+      <filter id="blobSharpGlow" x="-20%" y="-20%" width="140%" height="140%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="6" />
+      </filter>
+
+      <!-- Gradient 1: Violet to Blue -->
+      <linearGradient id="blobGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" class="blob-grad1-start" />
+        <stop offset="100%" class="blob-grad1-end" />
+      </linearGradient>
+
+      <!-- Gradient 2: Blue to Cyan -->
+      <linearGradient id="blobGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" class="blob-grad2-start" />
+        <stop offset="100%" class="blob-grad2-end" />
+      </linearGradient>
+
+      <!-- Gradient 3: Purple to Violet -->
+      <linearGradient id="blobGrad3" x1="0%" y1="100%" x2="100%" y2="0%">
+        <stop offset="0%" class="blob-grad3-start" />
+        <stop offset="100%" class="blob-grad3-end" />
+      </linearGradient>
+
+      <!-- Gradient 4: Cyan to Purple (accent blob) -->
+      <radialGradient id="blobGrad4" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" class="blob-grad4-start" />
+        <stop offset="100%" class="blob-grad4-end" />
+      </radialGradient>
+    </defs>
+
+    <!-- Blob 1: Large background blob (violet-blue) -->
+    <path
+      class="blob blob-1"
+      d="M 380 100 C 480 80, 580 140, 560 220 C 540 300, 480 360, 400 340 C 320 320, 240 300, 220 220 C 200 140, 280 120, 380 100 Z"
+      fill="url(#blobGrad1)"
+      filter="url(#blobSoftGlow)"
+    />
+
+    <!-- Blob 2: Medium mid-layer blob (blue-cyan) -->
+    <path
+      class="blob blob-2"
+      d="M 420 140 C 520 120, 600 180, 580 260 C 560 340, 500 380, 420 360 C 340 340, 280 300, 280 230 C 280 160, 340 160, 420 140 Z"
+      fill="url(#blobGrad2)"
+      filter="url(#blobSharpGlow)"
+    />
+
+    <!-- Blob 3: Smaller foreground blob (purple-violet) -->
+    <path
+      class="blob blob-3"
+      d="M 360 180 C 440 150, 520 190, 510 260 C 500 330, 440 360, 370 340 C 300 320, 260 270, 270 220 C 280 170, 300 210, 360 180 Z"
+      fill="url(#blobGrad3)"
+      filter="url(#blobSharpGlow)"
+    />
+
+    <!-- Blob 4: Small accent blob (cyan-purple) -->
+    <path
+      class="blob blob-4"
+      d="M 440 200 C 490 180, 540 210, 530 260 C 520 310, 480 330, 430 310 C 380 290, 360 250, 380 220 C 400 190, 410 220, 440 200 Z"
+      fill="url(#blobGrad4)"
+      filter="url(#blobSoftGlow)"
+    />
+  </svg>
+</div>
+
+<style>
+  .hero-blob-container {
+    height: 500px;
+  }
+
+  @media (max-width: 768px) {
+    .hero-blob-container {
+      height: 300px;
+    }
+  }
+
+  /* ------------------------------------------------
+     Gradient stops: Light mode (softer, more pastel)
+     ------------------------------------------------ */
+  .blob-grad1-start { stop-color: #a78bfa; stop-opacity: 0.7; }
+  .blob-grad1-end   { stop-color: #60a5fa; stop-opacity: 0.5; }
+
+  .blob-grad2-start { stop-color: #60a5fa; stop-opacity: 0.6; }
+  .blob-grad2-end   { stop-color: #22d3ee; stop-opacity: 0.4; }
+
+  .blob-grad3-start { stop-color: #c084fc; stop-opacity: 0.65; }
+  .blob-grad3-end   { stop-color: #a78bfa; stop-opacity: 0.45; }
+
+  .blob-grad4-start { stop-color: #67e8f9; stop-opacity: 0.5; }
+  .blob-grad4-end   { stop-color: #c084fc; stop-opacity: 0.3; }
+
+  /* ------------------------------------------------
+     Gradient stops: Dark mode (brighter, saturated)
+     ------------------------------------------------ */
+  :global(.dark) .blob-grad1-start { stop-color: #7c3aed; stop-opacity: 0.85; }
+  :global(.dark) .blob-grad1-end   { stop-color: #3b82f6; stop-opacity: 0.7; }
+
+  :global(.dark) .blob-grad2-start { stop-color: #3b82f6; stop-opacity: 0.75; }
+  :global(.dark) .blob-grad2-end   { stop-color: #06b6d4; stop-opacity: 0.6; }
+
+  :global(.dark) .blob-grad3-start { stop-color: #9333ea; stop-opacity: 0.8; }
+  :global(.dark) .blob-grad3-end   { stop-color: #7c3aed; stop-opacity: 0.65; }
+
+  :global(.dark) .blob-grad4-start { stop-color: #06b6d4; stop-opacity: 0.7; }
+  :global(.dark) .blob-grad4-end   { stop-color: #9333ea; stop-opacity: 0.5; }
+
+  /* ------------------------------------------------
+     Blob animations: morph + float + rotate
+     Each blob has a different duration for organic feel
+     ------------------------------------------------ */
+  .blob {
+    transform-origin: center center;
+    will-change: transform;
+  }
+
+  .blob-1 {
+    animation:
+      blobMorph1 12s ease-in-out infinite,
+      blobFloat1 12s ease-in-out infinite;
+  }
+
+  .blob-2 {
+    animation:
+      blobMorph2 16s ease-in-out infinite,
+      blobFloat2 16s ease-in-out infinite;
+  }
+
+  .blob-3 {
+    animation:
+      blobMorph3 20s ease-in-out infinite,
+      blobFloat3 20s ease-in-out infinite;
+  }
+
+  .blob-4 {
+    animation:
+      blobMorph4 14s ease-in-out infinite,
+      blobFloat4 14s ease-in-out infinite;
+  }
+
+  /* Morph: breathing via scale + subtle rotation */
+  @keyframes blobMorph1 {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    25%      { transform: scale(1.06) rotate(2deg); }
+    50%      { transform: scale(0.95) rotate(-1deg); }
+    75%      { transform: scale(1.03) rotate(1.5deg); }
+  }
+
+  @keyframes blobMorph2 {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    30%      { transform: scale(1.08) rotate(-2.5deg); }
+    60%      { transform: scale(0.93) rotate(1.5deg); }
+    80%      { transform: scale(1.04) rotate(-1deg); }
+  }
+
+  @keyframes blobMorph3 {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    20%      { transform: scale(0.94) rotate(3deg); }
+    45%      { transform: scale(1.07) rotate(-2deg); }
+    70%      { transform: scale(0.97) rotate(1deg); }
+  }
+
+  @keyframes blobMorph4 {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    35%      { transform: scale(1.1) rotate(-3deg); }
+    65%      { transform: scale(0.92) rotate(2deg); }
+    85%      { transform: scale(1.05) rotate(-1.5deg); }
+  }
+
+  /* Float: gentle vertical oscillation at offset timings */
+  @keyframes blobFloat1 {
+    0%, 100% { translate: 0 0; }
+    50%      { translate: 10px -15px; }
+  }
+
+  @keyframes blobFloat2 {
+    0%, 100% { translate: 0 0; }
+    50%      { translate: -12px 18px; }
+  }
+
+  @keyframes blobFloat3 {
+    0%, 100% { translate: 0 0; }
+    50%      { translate: 8px 12px; }
+  }
+
+  @keyframes blobFloat4 {
+    0%, 100% { translate: 0 0; }
+    50%      { translate: -6px -10px; }
+  }
+
+  /* Reduced motion: disable all animations */
+  @media (prefers-reduced-motion: reduce) {
+    .blob {
+      animation: none !important;
+    }
+  }
+</style>

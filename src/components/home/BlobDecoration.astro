@@ -1,0 +1,128 @@
+---
+interface Props {
+  class?: string;
+  color?: 'violet' | 'blue' | 'cyan' | 'purple';
+  size?: 'sm' | 'md' | 'lg';
+}
+
+const {
+  class: className = '',
+  color = 'violet',
+  size = 'md',
+} = Astro.props;
+
+const sizeMap: Record<string, number> = {
+  sm: 100,
+  md: 200,
+  lg: 400,
+};
+
+const pxSize = sizeMap[size] ?? 200;
+
+const colorMap: Record<string, { from: string; to: string; darkFrom: string; darkTo: string }> = {
+  violet: {
+    from: '#a78bfa',
+    to: '#7c3aed',
+    darkFrom: '#8b5cf6',
+    darkTo: '#7c3aed',
+  },
+  blue: {
+    from: '#93c5fd',
+    to: '#3b82f6',
+    darkFrom: '#60a5fa',
+    darkTo: '#3b82f6',
+  },
+  cyan: {
+    from: '#67e8f9',
+    to: '#06b6d4',
+    darkFrom: '#22d3ee',
+    darkTo: '#06b6d4',
+  },
+  purple: {
+    from: '#c084fc',
+    to: '#9333ea',
+    darkFrom: '#a855f7',
+    darkTo: '#9333ea',
+  },
+};
+
+const colors = colorMap[color] ?? colorMap.violet;
+
+// Generate a unique ID suffix to avoid SVG filter/gradient collisions
+const uid = `bd-${Math.random().toString(36).slice(2, 8)}`;
+---
+
+<div
+  class:list={['blob-decoration absolute pointer-events-none', className]}
+  style={`width: ${pxSize}px; height: ${pxSize}px;`}
+  aria-hidden="true"
+>
+  <svg
+    class="blob-deco-svg w-full h-full"
+    viewBox="0 0 200 200"
+    xmlns="http://www.w3.org/2000/svg"
+    preserveAspectRatio="xMidYMid meet"
+  >
+    <defs>
+      <filter id={`glow-${uid}`} x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="10" />
+      </filter>
+      <radialGradient id={`grad-${uid}`} cx="40%" cy="40%" r="60%">
+        <stop offset="0%" class="blob-deco-stop-start" />
+        <stop offset="100%" class="blob-deco-stop-end" />
+      </radialGradient>
+    </defs>
+    <path
+      class="blob-deco-path"
+      d="M 100 30 C 140 20, 175 50, 178 90 C 181 130, 160 165, 125 175 C 90 185, 50 170, 35 140 C 20 110, 25 65, 55 42 C 72 30, 80 35, 100 30 Z"
+      fill={`url(#grad-${uid})`}
+      filter={`url(#glow-${uid})`}
+    />
+  </svg>
+</div>
+
+<style
+  define:vars={{
+    colorFrom: colors.from,
+    colorTo: colors.to,
+    darkColorFrom: colors.darkFrom,
+    darkColorTo: colors.darkTo,
+  }}
+>
+  .blob-deco-stop-start {
+    stop-color: var(--colorFrom);
+    stop-opacity: 0.7;
+  }
+  .blob-deco-stop-end {
+    stop-color: var(--colorTo);
+    stop-opacity: 0.4;
+  }
+
+  :global(.dark) .blob-deco-stop-start {
+    stop-color: var(--darkColorFrom);
+    stop-opacity: 0.85;
+  }
+  :global(.dark) .blob-deco-stop-end {
+    stop-color: var(--darkColorTo);
+    stop-opacity: 0.6;
+  }
+
+  .blob-deco-path {
+    transform-origin: center center;
+    animation: decoBreath 10s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  @keyframes decoBreath {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    30%      { transform: scale(1.08) rotate(3deg); }
+    60%      { transform: scale(0.94) rotate(-2deg); }
+    80%      { transform: scale(1.03) rotate(1deg); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .blob-deco-path {
+      animation: none !important;
+    }
+  }
+</style>

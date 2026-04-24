@@ -1,0 +1,74 @@
+---
+import IsometricIntegration from './IsometricIntegration.astro';
+import SkewedPanel from './SkewedPanel.astro';
+---
+
+<section class="relative my-28 overflow-hidden">
+  <!-- Skewed grid background -->
+  <SkewedPanel class="opacity-40" />
+
+  <div class="relative z-10 mx-auto px-4 sm:px-6 w-full lg:max-w-7xl lg:px-8">
+    <div class="flex flex-col gap-8">
+
+      <div class="flex flex-col gap-4 max-w-3xl">
+        <h2 class="text-base lg:text-lg uppercase font-thin tracking-widest">
+          How It Works
+        </h2>
+        <h3 class="text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight">
+          From code to live, connected.
+        </h3>
+        <p class="text-primary-950/80 dark:text-primary-200/80 text-lg xs:text-xl">
+          Your source code deploys through our integration pipeline to a live, lightning-fast website -- connected to your CRM, payments, analytics, and everything else your business runs on.
+        </p>
+      </div>
+
+      <!-- Isometric 3D SVG Illustration -->
+      <IsometricIntegration class="my-8" />
+
+      <!-- Integration features grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-4">
+        <div class="flex flex-col gap-2">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-primary-100 dark:bg-primary-900/40 flex items-center justify-center">
+              <svg class="w-4 h-4 text-primary-600 dark:text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+              </svg>
+            </div>
+            <h4 class="font-medium text-lg">Custom Code</h4>
+          </div>
+          <p class="text-sm text-primary-950/60 dark:text-primary-200/60 leading-relaxed">
+            Astro, React, TypeScript -- no page builders. Real code that you own, optimised for performance.
+          </p>
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-primary-100 dark:bg-primary-900/40 flex items-center justify-center">
+              <svg class="w-4 h-4 text-primary-600 dark:text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <h4 class="font-medium text-lg">Integrations</h4>
+          </div>
+          <p class="text-sm text-primary-950/60 dark:text-primary-200/60 leading-relaxed">
+            Stripe, Supabase, Google Maps, CRM -- your site connects to the tools your business already uses.
+          </p>
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-primary-100 dark:bg-primary-900/40 flex items-center justify-center">
+              <svg class="w-4 h-4 text-primary-600 dark:text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064" />
+              </svg>
+            </div>
+            <h4 class="font-medium text-lg">Live & Fast</h4>
+          </div>
+          <p class="text-sm text-primary-950/60 dark:text-primary-200/60 leading-relaxed">
+            Deployed to edge networks worldwide. Perfect Lighthouse scores. Your site loads before they blink.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

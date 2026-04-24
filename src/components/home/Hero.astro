@@ -1,3 +1,7 @@
+---
+import SkewedPanel from './SkewedPanel.astro';
+import TopoBackground from './TopoBackground.astro';
+---
 
 <!-- SVG CSS and Animate for Aidxn Moving Logo -->
 <!-- Velocity8 Large Slider Settings -->
@@ -20,8 +24,13 @@
 
 
 
-<section id="heroArea" class="">
-  <div id="contain" class="mx-auto w-full px-4 sm:px-6 lg:px-8">
+<section id="heroArea" class="relative">
+  <!-- Skewed grid background -->
+  <SkewedPanel class="opacity-30" />
+  <!-- Topo contour lines -->
+  <TopoBackground opacity={0.15} />
+
+  <div id="contain" class="relative z-10 mx-auto w-full px-4 sm:px-6 lg:px-8">
     <div class="">
       <div class="flex flex-col lg:flex-row-reverse items-start lg:items-center gap-8 sm:gap-12">
         <div class="w-64 lg:w-1/2 items-start">

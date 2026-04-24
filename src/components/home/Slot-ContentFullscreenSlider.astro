@@ -1,139 +1,139 @@
 ---
-export interface Props {
-  backgroundUrl: string
-  backgroundUrl2: string
-  backgroundUrl3: string
+interface Slide {
+  image: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  link: string;
 }
 
-const {backgroundUrl, backgroundUrl2, backgroundUrl3} = Astro.props
+const slides: Slide[] = [
+  {
+    image: '/works/hero-snacks.webp',
+    title: 'Snacks Hats',
+    subtitle: 'E-Commerce & Brand',
+    description: 'Full brand identity, Shopify store, and product photography for a streetwear label.',
+    link: '/web-design',
+  },
+  {
+    image: '/works/br-mac-render-med.webp',
+    title: 'Rebuild Relief',
+    subtitle: 'Web Design & Development',
+    description: 'Corporate web platform with custom CMS, lead generation, and multi-location SEO.',
+    link: '/web-design',
+  },
+  {
+    image: '/works/hero-estem.webp',
+    title: 'Esteem Skin',
+    subtitle: 'Shopify & Marketing',
+    description: 'Custom Shopify theme, product pages, and Google Ads campaign driving 340% ROAS.',
+    link: '/web-design/shopify',
+  },
+  {
+    image: '/works/golden-render.webp',
+    title: 'Golden Homes',
+    subtitle: 'Web Design & SEO',
+    description: 'High-converting real estate website with IDX integration and local SEO strategy.',
+    link: '/web-design',
+  },
+  {
+    image: '/works/complete-brand-pack.webp',
+    title: 'Complete Brand Packs',
+    subtitle: 'Graphic Design',
+    description: 'Logo, collateral, social templates, and brand guidelines -- everything in one system.',
+    link: '/graphic-design',
+  },
+  {
+    image: '/works/br-bill-render.webp',
+    title: 'Billboard Campaign',
+    subtitle: 'Print & Digital',
+    description: 'Large-format outdoor advertising with matching digital campaign assets.',
+    link: '/graphic-design',
+  },
+];
 ---
 
-<style define:vars={{ backgroundUrl, backgroundUrl2, backgroundUrl3 }}>
-
-.fullscreen-carousel {
-  border: 1px black;
-  height: calc(100vh - 80px);
-  max-width: 100vw;
-}
-
-@media only screen and (max-width: 768px) {
+<style>
   .fullscreen-carousel {
-    min-height: 500px;
-    height: calc(100vh - 65px);
+    height: calc(100vh - 48px);
+    max-width: 100vw;
   }
-}
 
-.container-offset {
-  max-width: 1920px;
-  margin: auto;
-}
+  @media only screen and (max-width: 768px) {
+    .fullscreen-carousel {
+      min-height: 500px;
+      height: calc(100vh - 48px);
+    }
+  }
 
-.carousel-container {
-  background: linear-gradient(to bottom right,#002f4b10,#c4210030);
-}
+  .carousel-cell {
+    width: 100%;
+    height: 100%;
+  }
 
-.carousel-cell {
-  border: 1px black;
-  width: 100%;
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-items: center;
-  text-align: left;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-}
+  .slide-image {
+    transition: transform 8s ease-out;
+  }
 
-.cell-1 {
-  background-image: var(--backgroundUrl);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-}
-
-.cell-2 {
-  background-image: var(--backgroundUrl2);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-}
-
-.cell-3 {
-  background-image: var(--backgroundUrl3);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-}
-
+  .flickity-enabled .is-selected .slide-image {
+    transform: scale(1.08);
+  }
 </style>
 
-<section class="">
-  <div class="limit-container">
-    <div class="fullscreen-carousel">
-      <div class="carousel-cell cell-1 h-full">
-        <div class="carousel-container h-full w-full">
-          <div class="container-offset h-full flex items-center px-4 sm:px-6 lg:px-8">
-            <div class="carousel-inner flex flex-col justify-center text-white bg-primary-800/20 dark:bg-black/30 rounded-2xl backdrop-blur-xl max-w-7xl gap-4 sm:gap-6 px-4 sm:px-6 lg:px-8 py-8 sm:py-12 my-auto">
-              <h3 class="text-xs md:text-base uppercase font-thin tracking-widest">
-                <slot name="smltitle">Small Title</slot>
-              </h3>
-              <h4 class="font-medium tracking-tighter md:tracking-tight max-w-3xl text-2xl sm:text-3xl md:text-4xl xl:text-5xl lg:pr-4">
-                <slot name="title">Title</slot>
-              </h4>
-              <p class="text-base xs:text-lg max-w-2xl">
-                <slot name="desc">Desc</slot>
+<section>
+  <div class="fullscreen-carousel">
+    {slides.map((slide, i) => (
+      <div class="carousel-cell relative overflow-hidden">
+        <!-- Fullscreen background image -->
+        <img
+          src={slide.image}
+          alt={slide.title}
+          class="slide-image absolute inset-0 w-full h-full object-cover object-center"
+          loading={i === 0 ? 'eager' : 'lazy'}
+        />
+
+        <!-- Dark overlay gradient -->
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
+
+        <!-- Content positioned bottom-left -->
+        <div class="absolute inset-0 flex items-end">
+          <div class="w-full mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8 pb-16 sm:pb-20 md:pb-24">
+            <div class="max-w-2xl flex flex-col gap-3">
+              <p class="text-xs sm:text-sm uppercase tracking-widest text-white/60 font-thin">
+                {slide.subtitle}
               </p>
-              <div class="pt-2 flex gap-6">
-                <a href="/enquire" class="text-lg text-white dark:text-white bg-primary-700 hover:bg-primary-400 items-center inline-flex font-medium justify-center rounded-full transition px-6 py-4 mr-2">Enquire</a>
+              <h3 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-white">
+                {slide.title}
+              </h3>
+              <p class="text-base sm:text-lg text-white/70 max-w-xl leading-relaxed">
+                {slide.description}
+              </p>
+              <div class="flex gap-4 mt-2">
+                <a
+                  href={slide.link}
+                  class="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-white/20"
+                >
+                  View Project
+                  <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </a>
+                <a
+                  href="/book"
+                  class="inline-flex items-center rounded-full bg-primary-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-primary-500"
+                >
+                  Book a Call
+                </a>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="carousel-cell cell-2 h-full">
-        <div class="carousel-container h-full w-full">
-          <div class="container-offset h-full flex items-center px-4 sm:px-6 lg:px-8">
-            <div class="carousel-inner flex flex-col justify-center text-white bg-primary-800/20 dark:bg-black/30 rounded-2xl backdrop-blur-xl max-w-7xl gap-4 sm:gap-6 px-4 sm:px-6 lg:px-8 py-8 sm:py-12 my-auto">
-              <h3 class="text-xs md:text-base uppercase font-thin tracking-widest">
-                <slot name="smltitle2">Small Title</slot>
-              </h3>
-              <h4 class="font-medium tracking-tighter md:tracking-tight max-w-3xl text-2xl sm:text-3xl md:text-4xl xl:text-5xl lg:pr-4">
-                <slot name="title2">Title</slot>
-              </h4>
-              <p class="text-base xs:text-lg max-w-2xl">
-                <slot name="desc2">Desc</slot>
-              </p>
-              <div class="pt-2 flex gap-6">
-                <a href="/enquire" class="text-lg text-white dark:text-white bg-primary-700 hover:bg-primary-400 items-center inline-flex font-medium justify-center rounded-full transition px-6 py-4 mr-2">Enquire</a>
-              </div>
-            </div>
-          </div>
+        <!-- Slide counter -->
+        <div class="absolute top-6 right-6 sm:top-8 sm:right-8 text-white/40 text-sm font-thin tracking-widest">
+          {String(i + 1).padStart(2, '0')} / {String(slides.length).padStart(2, '0')}
         </div>
       </div>
-
-      <div class="carousel-cell cell-3 h-full">
-        <div class="carousel-container h-full w-full">
-          <div class="container-offset h-full flex items-center px-4 sm:px-6 lg:px-8">
-            <div class="carousel-inner flex flex-col justify-center text-white bg-primary-800/20 dark:bg-black/30 rounded-2xl backdrop-blur-xl max-w-7xl gap-4 sm:gap-6 px-4 sm:px-6 lg:px-8 py-8 sm:py-12 my-auto">
-              <h3 class="text-xs md:text-base uppercase font-thin tracking-widest">
-                <slot name="smltitle3">Small Title</slot>
-              </h3>
-              <h4 class="font-medium tracking-tighter md:tracking-tight max-w-3xl text-2xl sm:text-3xl md:text-4xl xl:text-5xl lg:pr-4">
-                <slot name="title3">Title</slot>
-              </h4>
-              <p class="text-base xs:text-lg max-w-2xl">
-                <slot name="desc3">Desc</slot>
-              </p>
-              <div class="pt-2 flex gap-6">
-                <a href="/enquire" class="text-lg text-white dark:text-white bg-primary-700 hover:bg-primary-400 items-center inline-flex font-medium justify-center rounded-full transition px-6 py-4 mr-2">Enquire</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
+    ))}
   </div>
 </section>

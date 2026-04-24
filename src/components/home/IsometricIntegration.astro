@@ -1,0 +1,550 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<div class:list={['iso-integration relative w-full overflow-hidden', className]} aria-hidden="true">
+  <svg
+    class="iso-svg w-full"
+    viewBox="0 0 900 520"
+    xmlns="http://www.w3.org/2000/svg"
+    preserveAspectRatio="xMidYMid meet"
+  >
+    <defs>
+      <!-- Glow filters -->
+      <filter id="iso-glow" x="-30%" y="-30%" width="160%" height="160%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="3" />
+      </filter>
+      <filter id="iso-soft" x="-20%" y="-20%" width="140%" height="140%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="1.5" />
+      </filter>
+
+      <!-- Connection line gradient -->
+      <linearGradient id="iso-conn-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" class="iso-grad-start" />
+        <stop offset="100%" class="iso-grad-end" />
+      </linearGradient>
+    </defs>
+
+    <!-- ==========================================
+         LEFT: Code Editor (isometric)
+         ========================================== -->
+    <g class="iso-editor" transform="translate(80, 120)">
+      <!-- Editor body (isometric box) -->
+      <g transform="skewY(-12)">
+        <!-- Back face -->
+        <rect class="iso-face-back" x="0" y="0" width="240" height="280" rx="8" />
+        <!-- Screen face -->
+        <rect class="iso-face-screen" x="8" y="36" width="224" height="236" rx="4" />
+
+        <!-- Title bar dots -->
+        <circle class="iso-dot-red" cx="22" cy="18" r="4" />
+        <circle class="iso-dot-yellow" cx="36" cy="18" r="4" />
+        <circle class="iso-dot-green" cx="50" cy="18" r="4" />
+
+        <!-- Code lines (animated typing) -->
+        <g class="code-lines">
+          <rect class="code-line cl-1" x="20" y="52" width="100" height="4" rx="2" />
+          <rect class="code-line cl-2" x="32" y="66" width="140" height="4" rx="2" />
+          <rect class="code-line cl-3" x="32" y="80" width="80" height="4" rx="2" />
+          <rect class="code-line cl-4" x="32" y="94" width="160" height="4" rx="2" />
+          <rect class="code-line cl-5" x="44" y="108" width="120" height="4" rx="2" />
+          <rect class="code-line cl-6" x="44" y="122" width="90" height="4" rx="2" />
+          <rect class="code-line cl-7" x="32" y="136" width="50" height="4" rx="2" />
+          <rect class="code-line cl-8" x="20" y="150" width="110" height="4" rx="2" />
+          <rect class="code-line cl-9" x="32" y="164" width="180" height="4" rx="2" />
+          <rect class="code-line cl-10" x="32" y="178" width="60" height="4" rx="2" />
+          <rect class="code-line cl-11" x="20" y="192" width="140" height="4" rx="2" />
+          <rect class="code-line cl-12" x="20" y="206" width="100" height="4" rx="2" />
+          <rect class="code-line cl-accent" x="32" y="220" width="130" height="4" rx="2" />
+          <rect class="code-line cl-14" x="20" y="234" width="70" height="4" rx="2" />
+          <rect class="code-line cl-15" x="20" y="248" width="120" height="4" rx="2" />
+        </g>
+
+        <!-- Cursor blink -->
+        <rect class="cursor-blink" x="150" y="220" width="2" height="12" rx="1" />
+      </g>
+
+      <!-- Label -->
+      <text class="iso-label" x="120" y="310" text-anchor="middle">Source Code</text>
+    </g>
+
+    <!-- ==========================================
+         CENTER: Integration Hub (floating node)
+         ========================================== -->
+    <g class="iso-hub" transform="translate(415, 200)">
+      <!-- Outer ring (pulsing) -->
+      <circle class="hub-ring-outer" cx="35" cy="35" r="48" fill="none" stroke-width="1.5" />
+      <circle class="hub-ring-mid" cx="35" cy="35" r="36" fill="none" stroke-width="1" />
+
+      <!-- Core hexagon -->
+      <polygon
+        class="hub-hex"
+        points="35,0 65,17.5 65,52.5 35,70 5,52.5 5,17.5"
+      />
+
+      <!-- Integration icon (lightning bolt / connection) -->
+      <path
+        class="hub-icon"
+        d="M 30 18 L 25 35 L 35 32 L 28 52 L 48 28 L 37 31 L 42 18 Z"
+        fill="none"
+        stroke-width="1.8"
+        stroke-linejoin="round"
+        stroke-linecap="round"
+      />
+
+      <!-- Orbiting dots -->
+      <g class="orbit-dots">
+        <circle class="orbit-dot od-1" cx="35" cy="-12" r="3" />
+        <circle class="orbit-dot od-2" cx="82" cy="35" r="2.5" />
+        <circle class="orbit-dot od-3" cx="35" cy="82" r="3" />
+        <circle class="orbit-dot od-4" cx="-12" cy="35" r="2.5" />
+      </g>
+
+      <!-- Label -->
+      <text class="iso-label" x="35" y="100" text-anchor="middle">Integration</text>
+    </g>
+
+    <!-- ==========================================
+         RIGHT: Website/Browser (isometric)
+         ========================================== -->
+    <g class="iso-browser" transform="translate(580, 100)">
+      <g transform="skewY(12)">
+        <!-- Browser body -->
+        <rect class="iso-face-back" x="0" y="0" width="240" height="300" rx="8" />
+
+        <!-- URL bar -->
+        <rect class="iso-face-urlbar" x="8" y="28" width="224" height="20" rx="4" />
+        <circle class="iso-url-dot" cx="20" cy="16" r="4" />
+        <circle class="iso-url-dot" cx="34" cy="16" r="4" />
+        <circle class="iso-url-dot" cx="48" cy="16" r="4" />
+
+        <!-- URL text line -->
+        <rect class="iso-url-text" x="18" y="35" width="100" height="4" rx="2" />
+        <circle class="iso-url-lock" cx="15" cy="37" r="3" fill="none" stroke-width="1" />
+
+        <!-- Website content -->
+        <rect class="iso-face-screen" x="8" y="54" width="224" height="238" rx="4" />
+
+        <!-- Hero block -->
+        <rect class="web-block wb-hero" x="16" y="62" width="208" height="50" rx="4" />
+
+        <!-- Nav dots -->
+        <circle class="web-nav-dot" cx="180" cy="72" r="2" />
+        <circle class="web-nav-dot" cx="192" cy="72" r="2" />
+        <circle class="web-nav-dot" cx="204" cy="72" r="2" />
+
+        <!-- Content blocks (cards) -->
+        <rect class="web-block wb-card" x="16" y="120" width="64" height="50" rx="3" />
+        <rect class="web-block wb-card" x="88" y="120" width="64" height="50" rx="3" />
+        <rect class="web-block wb-card" x="160" y="120" width="64" height="50" rx="3" />
+
+        <!-- Text lines -->
+        <rect class="web-text" x="16" y="180" width="150" height="4" rx="2" />
+        <rect class="web-text" x="16" y="192" width="180" height="4" rx="2" />
+        <rect class="web-text" x="16" y="204" width="100" height="4" rx="2" />
+
+        <!-- CTA Button -->
+        <rect class="web-cta" x="16" y="220" width="80" height="22" rx="6" />
+
+        <!-- Footer -->
+        <rect class="web-footer" x="16" y="260" width="208" height="24" rx="3" />
+      </g>
+
+      <!-- Label -->
+      <text class="iso-label" x="120" y="340" text-anchor="middle">Live Website</text>
+    </g>
+
+    <!-- ==========================================
+         CONNECTION LINES (animated data flow)
+         ========================================== -->
+    <!-- Editor → Hub -->
+    <path
+      class="conn-line conn-left"
+      d="M 300 240 C 340 230, 380 220, 420 225"
+      fill="none"
+      stroke="url(#iso-conn-grad)"
+      stroke-width="2"
+      stroke-linecap="round"
+    />
+
+    <!-- Hub → Browser -->
+    <path
+      class="conn-line conn-right"
+      d="M 490 235 C 530 240, 560 245, 600 250"
+      fill="none"
+      stroke="url(#iso-conn-grad)"
+      stroke-width="2"
+      stroke-linecap="round"
+    />
+
+    <!-- Data packets (animated dots along the paths) -->
+    <circle class="data-packet dp-1" r="4" filter="url(#iso-soft)">
+      <animateMotion dur="3s" repeatCount="indefinite" begin="0s">
+        <mpath href="#conn-path-1" />
+      </animateMotion>
+    </circle>
+    <circle class="data-packet dp-2" r="3.5" filter="url(#iso-soft)">
+      <animateMotion dur="3s" repeatCount="indefinite" begin="1.5s">
+        <mpath href="#conn-path-2" />
+      </animateMotion>
+    </circle>
+
+    <!-- Hidden paths for animateMotion -->
+    <path id="conn-path-1" d="M 300 240 C 340 230, 380 220, 440 230" fill="none" stroke="none" />
+    <path id="conn-path-2" d="M 490 235 C 530 240, 560 245, 600 250" fill="none" stroke="none" />
+
+    <!-- Floating accent elements -->
+    <g class="float-accents">
+      <rect class="float-chip fc-1" x="360" y="140" width="30" height="16" rx="4" />
+      <rect class="float-chip fc-2" x="520" y="360" width="24" height="14" rx="3" />
+      <circle class="float-orb fo-1" cx="340" cy="380" r="6" />
+      <circle class="float-orb fo-2" cx="540" cy="130" r="5" />
+    </g>
+  </svg>
+</div>
+
+<style>
+  .iso-integration {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  /* ----------------------------------
+     Face colors: Light mode
+     ---------------------------------- */
+  .iso-face-back {
+    fill: #f3f0ff;
+    stroke: rgba(124, 58, 237, 0.2);
+    stroke-width: 1;
+  }
+
+  .iso-face-screen {
+    fill: #1e1b2e;
+  }
+
+  .iso-face-urlbar {
+    fill: #ede9fe;
+    stroke: rgba(124, 58, 237, 0.1);
+    stroke-width: 0.5;
+  }
+
+  .iso-dot-red { fill: #f87171; }
+  .iso-dot-yellow { fill: #fbbf24; }
+  .iso-dot-green { fill: #34d399; }
+
+  /* Code line colors */
+  .code-line {
+    fill: rgba(167, 139, 250, 0.4);
+  }
+
+  .cl-accent {
+    fill: rgba(6, 182, 212, 0.6);
+  }
+
+  .cl-2, .cl-4, .cl-9 {
+    fill: rgba(139, 92, 246, 0.5);
+  }
+
+  .cursor-blink {
+    fill: #06b6d4;
+    animation: cursorBlink 1s step-end infinite;
+  }
+
+  /* Website content colors */
+  .web-block {
+    stroke: rgba(124, 58, 237, 0.15);
+    stroke-width: 0.5;
+  }
+
+  .wb-hero {
+    fill: rgba(124, 58, 237, 0.15);
+  }
+
+  .wb-card {
+    fill: rgba(167, 139, 250, 0.1);
+  }
+
+  .web-text {
+    fill: rgba(255, 255, 255, 0.15);
+  }
+
+  .web-cta {
+    fill: #7c3aed;
+    opacity: 0.7;
+  }
+
+  .web-footer {
+    fill: rgba(255, 255, 255, 0.05);
+  }
+
+  .web-nav-dot {
+    fill: rgba(167, 139, 250, 0.3);
+  }
+
+  .iso-url-text {
+    fill: rgba(167, 139, 250, 0.3);
+  }
+
+  .iso-url-dot {
+    fill: rgba(124, 58, 237, 0.2);
+  }
+
+  .iso-url-lock {
+    stroke: rgba(167, 139, 250, 0.4);
+  }
+
+  /* Hub */
+  .hub-ring-outer {
+    stroke: rgba(124, 58, 237, 0.2);
+    animation: hubPulseOuter 4s ease-in-out infinite;
+  }
+
+  .hub-ring-mid {
+    stroke: rgba(124, 58, 237, 0.3);
+    animation: hubPulseMid 4s ease-in-out 1s infinite;
+  }
+
+  .hub-hex {
+    fill: rgba(124, 58, 237, 0.08);
+    stroke: rgba(124, 58, 237, 0.3);
+    stroke-width: 1;
+  }
+
+  .hub-icon {
+    stroke: #7c3aed;
+  }
+
+  .orbit-dot {
+    fill: #a78bfa;
+  }
+
+  /* Connection lines */
+  .iso-grad-start {
+    stop-color: #a78bfa;
+    stop-opacity: 0.6;
+  }
+
+  .iso-grad-end {
+    stop-color: #06b6d4;
+    stop-opacity: 0.6;
+  }
+
+  .data-packet {
+    fill: #a78bfa;
+  }
+
+  /* Floating accents */
+  .float-chip {
+    fill: rgba(124, 58, 237, 0.08);
+    stroke: rgba(124, 58, 237, 0.15);
+    stroke-width: 0.5;
+  }
+
+  .float-orb {
+    fill: rgba(6, 182, 212, 0.15);
+  }
+
+  /* Labels */
+  .iso-label {
+    fill: rgba(0, 0, 0, 0.4);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+  }
+
+  /* ----------------------------------
+     Dark mode overrides
+     ---------------------------------- */
+  :global(.dark) .iso-face-back {
+    fill: #1a1625;
+    stroke: rgba(167, 139, 250, 0.25);
+  }
+
+  :global(.dark) .iso-face-screen {
+    fill: #0d0b14;
+  }
+
+  :global(.dark) .iso-face-urlbar {
+    fill: #1a1625;
+    stroke: rgba(167, 139, 250, 0.15);
+  }
+
+  :global(.dark) .code-line {
+    fill: rgba(167, 139, 250, 0.35);
+  }
+
+  :global(.dark) .cl-accent {
+    fill: rgba(34, 211, 238, 0.5);
+  }
+
+  :global(.dark) .cl-2, :global(.dark) .cl-4, :global(.dark) .cl-9 {
+    fill: rgba(139, 92, 246, 0.45);
+  }
+
+  :global(.dark) .wb-hero {
+    fill: rgba(139, 92, 246, 0.2);
+  }
+
+  :global(.dark) .wb-card {
+    fill: rgba(167, 139, 250, 0.08);
+  }
+
+  :global(.dark) .web-cta {
+    fill: #8b5cf6;
+    opacity: 0.8;
+  }
+
+  :global(.dark) .hub-ring-outer {
+    stroke: rgba(167, 139, 250, 0.25);
+  }
+
+  :global(.dark) .hub-ring-mid {
+    stroke: rgba(167, 139, 250, 0.35);
+  }
+
+  :global(.dark) .hub-hex {
+    fill: rgba(139, 92, 246, 0.12);
+    stroke: rgba(167, 139, 250, 0.35);
+  }
+
+  :global(.dark) .hub-icon {
+    stroke: #a78bfa;
+  }
+
+  :global(.dark) .iso-grad-start {
+    stop-color: #a78bfa;
+    stop-opacity: 0.7;
+  }
+
+  :global(.dark) .iso-grad-end {
+    stop-color: #22d3ee;
+    stop-opacity: 0.7;
+  }
+
+  :global(.dark) .data-packet {
+    fill: #c4b5fd;
+  }
+
+  :global(.dark) .float-chip {
+    fill: rgba(139, 92, 246, 0.1);
+    stroke: rgba(167, 139, 250, 0.2);
+  }
+
+  :global(.dark) .float-orb {
+    fill: rgba(34, 211, 238, 0.15);
+  }
+
+  :global(.dark) .iso-label {
+    fill: rgba(255, 255, 255, 0.4);
+  }
+
+  /* ----------------------------------
+     Animations
+     ---------------------------------- */
+  @keyframes cursorBlink {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0; }
+  }
+
+  @keyframes hubPulseOuter {
+    0%, 100% { r: 48; opacity: 0.3; }
+    50%      { r: 54; opacity: 0.8; }
+  }
+
+  @keyframes hubPulseMid {
+    0%, 100% { r: 36; opacity: 0.4; }
+    50%      { r: 40; opacity: 0.9; }
+  }
+
+  /* Code line typing animation (staggered) */
+  .code-lines .code-line {
+    opacity: 0;
+    animation: codeAppear 0.3s ease-out forwards;
+  }
+
+  .cl-1  { animation-delay: 0.1s; }
+  .cl-2  { animation-delay: 0.3s; }
+  .cl-3  { animation-delay: 0.5s; }
+  .cl-4  { animation-delay: 0.7s; }
+  .cl-5  { animation-delay: 0.9s; }
+  .cl-6  { animation-delay: 1.1s; }
+  .cl-7  { animation-delay: 1.3s; }
+  .cl-8  { animation-delay: 1.5s; }
+  .cl-9  { animation-delay: 1.7s; }
+  .cl-10 { animation-delay: 1.9s; }
+  .cl-11 { animation-delay: 2.1s; }
+  .cl-12 { animation-delay: 2.3s; }
+  .cl-accent { animation-delay: 2.5s; }
+  .cl-14 { animation-delay: 2.7s; }
+  .cl-15 { animation-delay: 2.9s; }
+
+  @keyframes codeAppear {
+    0%   { opacity: 0; transform: scaleX(0); transform-origin: left; }
+    100% { opacity: 1; transform: scaleX(1); transform-origin: left; }
+  }
+
+  /* Connection line dash flow */
+  .conn-line {
+    stroke-dasharray: 8 6;
+    animation: connFlow 2s linear infinite;
+  }
+
+  @keyframes connFlow {
+    0%   { stroke-dashoffset: 0; }
+    100% { stroke-dashoffset: -28; }
+  }
+
+  /* Orbit rotation */
+  .orbit-dots {
+    transform-origin: 35px 35px;
+    animation: orbitSpin 12s linear infinite;
+  }
+
+  @keyframes orbitSpin {
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  /* Floating accents */
+  .fc-1 { animation: chipFloat 6s ease-in-out infinite; }
+  .fc-2 { animation: chipFloat 8s ease-in-out 2s infinite; }
+  .fo-1 { animation: orbFloat 7s ease-in-out 1s infinite; }
+  .fo-2 { animation: orbFloat 9s ease-in-out 3s infinite; }
+
+  @keyframes chipFloat {
+    0%, 100% { opacity: 0.4; transform: translateY(0); }
+    50%      { opacity: 0.8; transform: translateY(-8px); }
+  }
+
+  @keyframes orbFloat {
+    0%, 100% { opacity: 0.3; transform: translate(0, 0); }
+    50%      { opacity: 0.7; transform: translate(4px, -6px); }
+  }
+
+  /* ----------------------------------
+     Reduced motion
+     ---------------------------------- */
+  @media (prefers-reduced-motion: reduce) {
+    .code-lines .code-line {
+      opacity: 1;
+      animation: none !important;
+    }
+
+    .cursor-blink,
+    .hub-ring-outer,
+    .hub-ring-mid,
+    .orbit-dots,
+    .conn-line,
+    .float-chip,
+    .float-orb {
+      animation: none !important;
+    }
+
+    .cursor-blink { opacity: 1; }
+    .conn-line { stroke-dasharray: none; }
+  }
+</style>

@@ -1,0 +1,311 @@
+---
+interface Props {
+  class?: string;
+  variant?: 'hero' | 'section' | 'cta';
+}
+
+const { class: className = '', variant = 'section' } = Astro.props;
+---
+
+<div
+  class:list={[
+    'skewed-panel-wrap absolute inset-0 overflow-hidden pointer-events-none',
+    className,
+  ]}
+  aria-hidden="true"
+>
+  <!-- Perspective container -->
+  <div class="skewed-plane absolute inset-0">
+    <svg
+      class="skewed-svg w-full h-full"
+      viewBox="0 0 1400 900"
+      xmlns="http://www.w3.org/2000/svg"
+      preserveAspectRatio="xMidYMid slice"
+    >
+      <defs>
+        <!-- Grid pattern -->
+        <pattern id="skew-grid" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+          <path d="M 80 0 L 0 0 0 80" fill="none" class="grid-line" stroke-width="0.5" />
+        </pattern>
+
+        <!-- Animated gradient for flowing lines -->
+        <linearGradient id="flow-grad-1" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="var(--flow-color-1)" stop-opacity="0" />
+          <stop offset="40%" stop-color="var(--flow-color-1)" stop-opacity="0.6" />
+          <stop offset="60%" stop-color="var(--flow-color-2)" stop-opacity="0.8" />
+          <stop offset="100%" stop-color="var(--flow-color-2)" stop-opacity="0" />
+        </linearGradient>
+
+        <linearGradient id="flow-grad-2" x1="100%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="var(--flow-color-2)" stop-opacity="0" />
+          <stop offset="30%" stop-color="var(--flow-color-2)" stop-opacity="0.5" />
+          <stop offset="70%" stop-color="var(--flow-color-3)" stop-opacity="0.7" />
+          <stop offset="100%" stop-color="var(--flow-color-3)" stop-opacity="0" />
+        </linearGradient>
+
+        <!-- Glow filter -->
+        <filter id="skew-glow" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="3" />
+        </filter>
+
+        <!-- Dot glow -->
+        <filter id="dot-glow" x="-100%" y="-100%" width="300%" height="300%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="4" />
+        </filter>
+      </defs>
+
+      <!-- Base grid -->
+      <rect width="100%" height="100%" fill="url(#skew-grid)" />
+
+      <!-- Animated flow line 1: diagonal sweep -->
+      <path
+        class="flow-line flow-1"
+        d="M -100 200 Q 300 150, 600 350 T 1200 300 T 1600 400"
+        fill="none"
+        stroke="url(#flow-grad-1)"
+        stroke-width="1.5"
+        stroke-linecap="round"
+      />
+
+      <!-- Animated flow line 2: counter diagonal -->
+      <path
+        class="flow-line flow-2"
+        d="M 1500 100 Q 1100 250, 800 200 T 200 500 T -100 450"
+        fill="none"
+        stroke="url(#flow-grad-2)"
+        stroke-width="1.5"
+        stroke-linecap="round"
+      />
+
+      <!-- Animated flow line 3: horizontal -->
+      <path
+        class="flow-line flow-3"
+        d="M -50 500 Q 200 480, 500 520 T 900 480 T 1450 530"
+        fill="none"
+        stroke="url(#flow-grad-1)"
+        stroke-width="1"
+        stroke-linecap="round"
+      />
+
+      <!-- Connection nodes (animated dots at grid intersections) -->
+      <g class="connection-nodes">
+        <circle class="node node-1" cx="320" cy="240" r="3" filter="url(#dot-glow)" />
+        <circle class="node node-2" cx="640" cy="320" r="4" filter="url(#dot-glow)" />
+        <circle class="node node-3" cx="960" cy="400" r="3" filter="url(#dot-glow)" />
+        <circle class="node node-4" cx="480" cy="480" r="3.5" filter="url(#dot-glow)" />
+        <circle class="node node-5" cx="800" cy="160" r="3" filter="url(#dot-glow)" />
+        <circle class="node node-6" cx="1120" cy="240" r="3.5" filter="url(#dot-glow)" />
+      </g>
+
+      <!-- Connecting dashes between nodes -->
+      <g class="connection-dashes">
+        <line class="dash dash-1" x1="323" y1="238" x2="637" y2="318" stroke-dasharray="6 8" stroke-width="0.8" />
+        <line class="dash dash-2" x1="643" y1="322" x2="957" y2="398" stroke-dasharray="6 8" stroke-width="0.8" />
+        <line class="dash dash-3" x1="483" y1="478" x2="637" y2="323" stroke-dasharray="6 8" stroke-width="0.8" />
+        <line class="dash dash-4" x1="803" y1="162" x2="957" y2="398" stroke-dasharray="6 8" stroke-width="0.8" />
+        <line class="dash dash-5" x1="963" y1="398" x2="1117" y2="242" stroke-dasharray="6 8" stroke-width="0.8" />
+      </g>
+
+      <!-- Accent rectangles (skewed code/window hints) -->
+      <rect class="accent-rect rect-1" x="560" y="240" width="160" height="100" rx="6" fill="none" stroke-width="0.8" />
+      <rect class="accent-rect rect-2" x="880" y="320" width="120" height="80" rx="4" fill="none" stroke-width="0.6" />
+    </svg>
+  </div>
+
+  <!-- Fade mask overlay -->
+  <div class="skew-fade-mask absolute inset-0"></div>
+</div>
+
+<style>
+  /* ----------------------------------
+     Perspective Transform (the skew)
+     ---------------------------------- */
+  .skewed-plane {
+    perspective: 900px;
+    transform-style: preserve-3d;
+  }
+
+  .skewed-svg {
+    transform: rotateX(12deg) rotateY(-6deg) rotateZ(-2deg);
+    transform-origin: 60% 40%;
+  }
+
+  /* ----------------------------------
+     Fade mask: edges fade out smoothly
+     ---------------------------------- */
+  .skew-fade-mask {
+    background: linear-gradient(
+      135deg,
+      transparent 20%,
+      rgba(var(--bg-rgb), 0.3) 50%,
+      rgba(var(--bg-rgb), 0.8) 75%,
+      rgba(var(--bg-rgb), 1) 90%
+    );
+  }
+
+  /* ----------------------------------
+     Colors: Light mode
+     ---------------------------------- */
+  .skewed-panel-wrap {
+    --flow-color-1: #a78bfa;
+    --flow-color-2: #7c3aed;
+    --flow-color-3: #06b6d4;
+    --bg-rgb: 249, 248, 251;
+  }
+
+  .grid-line {
+    stroke: rgba(0, 0, 0, 0.06);
+  }
+
+  .node {
+    fill: #a78bfa;
+  }
+
+  .dash {
+    stroke: rgba(124, 58, 237, 0.2);
+  }
+
+  .accent-rect {
+    stroke: rgba(124, 58, 237, 0.12);
+  }
+
+  /* ----------------------------------
+     Colors: Dark mode
+     ---------------------------------- */
+  :global(.dark) .skewed-panel-wrap {
+    --flow-color-1: #8b5cf6;
+    --flow-color-2: #a78bfa;
+    --flow-color-3: #22d3ee;
+    --bg-rgb: 0, 0, 0;
+  }
+
+  :global(.dark) .grid-line {
+    stroke: rgba(255, 255, 255, 0.06);
+  }
+
+  :global(.dark) .node {
+    fill: #a78bfa;
+  }
+
+  :global(.dark) .dash {
+    stroke: rgba(167, 139, 250, 0.2);
+  }
+
+  :global(.dark) .accent-rect {
+    stroke: rgba(167, 139, 250, 0.12);
+  }
+
+  :global(.dark) .skew-fade-mask {
+    background: linear-gradient(
+      135deg,
+      transparent 20%,
+      rgba(0, 0, 0, 0.3) 50%,
+      rgba(0, 0, 0, 0.8) 75%,
+      rgba(0, 0, 0, 1) 90%
+    );
+  }
+
+  /* ----------------------------------
+     Flow line animations
+     ---------------------------------- */
+  .flow-line {
+    stroke-dasharray: 600;
+    stroke-dashoffset: 600;
+    will-change: stroke-dashoffset;
+  }
+
+  .flow-1 {
+    animation: flowSweep 8s ease-in-out infinite;
+  }
+
+  .flow-2 {
+    animation: flowSweep 10s ease-in-out 2s infinite;
+  }
+
+  .flow-3 {
+    animation: flowSweep 12s ease-in-out 4s infinite;
+  }
+
+  @keyframes flowSweep {
+    0%   { stroke-dashoffset: 600; opacity: 0; }
+    10%  { opacity: 1; }
+    50%  { stroke-dashoffset: 0; }
+    90%  { opacity: 1; }
+    100% { stroke-dashoffset: -600; opacity: 0; }
+  }
+
+  /* ----------------------------------
+     Node pulse animations
+     ---------------------------------- */
+  .node {
+    will-change: transform, opacity;
+  }
+
+  .node-1 { animation: nodePulse 4s ease-in-out 0s infinite; }
+  .node-2 { animation: nodePulse 4s ease-in-out 0.7s infinite; }
+  .node-3 { animation: nodePulse 4s ease-in-out 1.4s infinite; }
+  .node-4 { animation: nodePulse 4s ease-in-out 2.1s infinite; }
+  .node-5 { animation: nodePulse 4s ease-in-out 2.8s infinite; }
+  .node-6 { animation: nodePulse 4s ease-in-out 3.5s infinite; }
+
+  @keyframes nodePulse {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50%      { opacity: 1; transform: scale(1.8); }
+  }
+
+  /* ----------------------------------
+     Dash animations
+     ---------------------------------- */
+  .dash {
+    stroke-dashoffset: 0;
+    will-change: stroke-dashoffset;
+  }
+
+  .dash-1 { animation: dashFlow 6s linear 0s infinite; }
+  .dash-2 { animation: dashFlow 6s linear 1s infinite; }
+  .dash-3 { animation: dashFlow 6s linear 2s infinite; }
+  .dash-4 { animation: dashFlow 6s linear 3s infinite; }
+  .dash-5 { animation: dashFlow 6s linear 4s infinite; }
+
+  @keyframes dashFlow {
+    0%   { stroke-dashoffset: 0; }
+    100% { stroke-dashoffset: -28; }
+  }
+
+  /* ----------------------------------
+     Accent rectangle float
+     ---------------------------------- */
+  .rect-1 {
+    animation: rectFloat 8s ease-in-out infinite;
+  }
+
+  .rect-2 {
+    animation: rectFloat 10s ease-in-out 3s infinite;
+  }
+
+  @keyframes rectFloat {
+    0%, 100% { opacity: 0.5; transform: translate(0, 0); }
+    50%      { opacity: 0.9; transform: translate(4px, -6px); }
+  }
+
+  /* ----------------------------------
+     Reduced motion
+     ---------------------------------- */
+  @media (prefers-reduced-motion: reduce) {
+    .flow-line,
+    .node,
+    .dash,
+    .accent-rect {
+      animation: none !important;
+    }
+
+    .flow-line {
+      stroke-dashoffset: 0;
+      opacity: 0.4;
+    }
+
+    .node {
+      opacity: 0.6;
+    }
+  }
+</style>
