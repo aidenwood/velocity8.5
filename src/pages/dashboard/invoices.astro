@@ -1,0 +1,8 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import InvoicesPage from '../../components/dashboard/InvoicesPage';
+---
+
+<DashboardLayout title="Invoices — Aidxn Design">
+  <InvoicesPage client:only="react" />
+</DashboardLayout>

@@ -1,29 +1,19 @@
 ---
 export interface Props {
-
-backgroundUrl: string
-backgroundUrl2: string
-backgroundUrl3: string
+  backgroundUrl: string
+  backgroundUrl2: string
+  backgroundUrl3: string
 }
 
 const {backgroundUrl, backgroundUrl2, backgroundUrl3} = Astro.props
----    
+---
 
-<!-- 
-CSS for Flickity 
-Must be on every flickity slider component and not in the layout file at all 
-Inline css styles below also help stop small bugs
--->
-<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
-
-
-<style define:vars={{ backgroundUrl,  backgroundUrl2, backgroundUrl3 }}>
+<style define:vars={{ backgroundUrl, backgroundUrl2, backgroundUrl3 }}>
 
 .fullscreen-carousel {
   border: 1px black;
   height: calc(100vh - 80px);
   max-width: 100vw;
-  
 }
 
 @media only screen and (max-width: 768px) {
@@ -147,23 +137,3 @@ Inline css styles below also help stop small bugs
     </div>
   </div>
 </section>
-
-<!-- Flickity JS best to run at bottom -->
-<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
-
-<script type="module" client:visible>
-  import { initFlickity } from '../../scripts/initFlickity.js';
-
-  initFlickity('.fullscreen-carousel', {
-    cellAlign: 'left',
-    contain: true,
-    prevNextButtons: false,
-    imagesLoaded: true,
-    adaptiveHeight: true,
-    groupCells: '85%',
-    pageDots: false,
-    autoPlay: 3200,
-    wrapAround: true,
-    lazyLoad: true,
-  });
-</script>

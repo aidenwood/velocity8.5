@@ -3,10 +3,8 @@ import '@fontsource/inter/latin-400.css';
 import '@fontsource/inter/latin-500.css';
 import { ViewTransitions } from 'astro:transitions';
 import Footer from '../components/layout/Footer.astro';
-import Header from '../components/layout/Header.astro';
 import HeaderApp from '../components/layout/HeaderApp.tsx';
 import AppContextMenu from '../components/layout/AppContextMenu.tsx';
-import type { arrayOutputType } from 'astro/zod';
 
 
 interface Props {
@@ -46,17 +44,19 @@ const canonicalURL = Astro.props.canonicalURL || new URL(Astro.url.pathname, Ast
     <title>{title}</title>
 
 
+    <!-- Flickity CSS + JS -->
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+    <script is:inline src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+
     <ViewTransitions />
   </head>
   <body 
     class="bg-primary-50/30 text-primary-950 dark:bg-black dark:text-white antialiased transition" 
   >
     <HeaderApp client:load />
-    <AppContextMenu client:load>
-      <main>
-        <slot />
-      </main>
-    </AppContextMenu>
+    <main>
+      <slot />
+    </main>
     <Footer />
     <style is:global>
       [x-cloak] {
@@ -93,49 +93,40 @@ const canonicalURL = Astro.props.canonicalURL || new URL(Astro.url.pathname, Ast
       window.Alpine = Alpine;
       Alpine.start();
     </script>
-    <script type="module">
-      import { initFlickity } from '../scripts/initFlickity.js';
-
-      window.addEventListener('astro:after-swap', () => {
-        initFlickity('.fullscreen-carousel', {
-          cellAlign: 'left',
-          contain: true,
-          prevNextButtons: false,
-          imagesLoaded: true,
-          adaptiveHeight: true,
-          groupCells: '85%',
-          pageDots: false,
-          autoPlay: 3200,
-          wrapAround: true,
-          lazyLoad: true,
+    <script is:inline>
+      function initCarousel(selector, opts) {
+        if (typeof window.Flickity === 'undefined') return;
+        document.querySelectorAll(selector).forEach(function(el) {
+          if (el.classList.contains('flickity-enabled')) return;
+          new window.Flickity(el, opts);
         });
+      }
 
-        initFlickity('.web-carousel', {
-          cellAlign: 'left',
-          contain: true,
-          prevNextButtons: false,
-          imagesLoaded: true,
-          adaptiveHeight: true,
-          groupCells: '85%',
-          pageDots: false,
-          autoPlay: 2400,
-          wrapAround: true,
-          lazyLoad: true,
+      function initAllCarousels() {
+        initCarousel('.fullscreen-carousel', {
+          cellAlign: 'left', contain: true, prevNextButtons: false,
+          imagesLoaded: true, adaptiveHeight: true, groupCells: '85%',
+          pageDots: false, autoPlay: 3200, wrapAround: true
         });
+        initCarousel('.web-carousel', {
+          cellAlign: 'left', contain: true, prevNextButtons: false,
+          imagesLoaded: true, adaptiveHeight: true, groupCells: '85%',
+          pageDots: false, autoPlay: 2400, wrapAround: true
+        });
+        initCarousel('.market-carousel', {
+          cellAlign: 'left', contain: true, prevNextButtons: false,
+          imagesLoaded: true, adaptiveHeight: true, groupCells: '85%',
+          pageDots: false, autoPlay: 2400, wrapAround: true
+        });
+      }
 
-        initFlickity('.market-carousel', {
-          cellAlign: 'left',
-          contain: true,
-          prevNextButtons: false,
-          imagesLoaded: true,
-          adaptiveHeight: true,
-          groupCells: '85%',
-          pageDots: false,
-          autoPlay: 2400,
-          wrapAround: true,
-          lazyLoad: true,
-        });
-      });
+      // Run on load, on ready, and on Astro page transitions
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initAllCarousels);
+      } else {
+        initAllCarousels();
+      }
+      document.addEventListener('astro:after-swap', initAllCarousels);
     </script>
   </body>
 </html>

@@ -1,0 +1,132 @@
+---
+interface WorkItem {
+  title: string;
+  category: string;
+  tags: string[];
+  image: string;
+  link: string;
+}
+
+const works: WorkItem[] = [
+  {
+    title: 'Ball Realty',
+    category: 'Web Design & Marketing',
+    tags: ['Velocity', 'Google Ads', 'SEO'],
+    image: '/works/ax-sqr-br-render.webp',
+    link: '/web-design/previous-work/ball-realty',
+  },
+  {
+    title: 'Esteem Clinics',
+    category: 'Wordpress & E-Commerce',
+    tags: ['Wordpress', 'Shopify', 'CRO'],
+    image: '/works/ax-sqr-estem.webp',
+    link: '/web-design/previous-work/esteem-clinics',
+  },
+  {
+    title: 'The Boogie Collective',
+    category: 'Brand & Web Design',
+    tags: ['Velocity', 'Brand', 'Events'],
+    image: '/works/ax-sqr-boog.webp',
+    link: '/web-design/previous-work/the-boogie-collective',
+  },
+  {
+    title: 'Snacks Photography',
+    category: 'Portfolio Website',
+    tags: ['Velocity', 'Gallery', 'SEO'],
+    image: '/works/ax-sqr-snacks.webp',
+    link: '/web-design/velocity',
+  },
+  {
+    title: 'Golden Trades',
+    category: 'Lead Generation',
+    tags: ['Velocity', 'Google Ads', 'Trades'],
+    image: '/works/ax-sqr-golden.webp',
+    link: '/web-design/velocity',
+  },
+  {
+    title: 'Interactive Display Ads',
+    category: 'Rich Media Campaigns',
+    tags: ['HTML5', 'GSAP', 'Google Ads'],
+    image: '/works/gwd-interactive-ads.webp',
+    link: '/digital-marketing/interactive-ads',
+  },
+];
+---
+
+<style>
+  .work-carousel .carousel-cell {
+    width: calc(33.333% - 14px);
+    margin-right: 14px;
+  }
+  @media screen and (max-width: 1280px) {
+    .work-carousel .carousel-cell {
+      width: calc(50% - 12px);
+      margin-right: 12px;
+    }
+  }
+  @media screen and (max-width: 668px) {
+    .work-carousel .carousel-cell {
+      width: 85%;
+      margin-right: 12px;
+    }
+  }
+</style>
+
+<section class="my-28">
+  <div class="mx-auto px-4 sm:px-6 w-full lg:max-w-7xl lg:px-8">
+    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
+      <div class="flex flex-col gap-4 max-w-3xl">
+        <h2 class="text-base lg:text-lg uppercase font-thin tracking-widest">
+          Recent Work
+        </h2>
+        <h3 class="text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight">
+          Projects that prove it.
+        </h3>
+      </div>
+      <a
+        href="/web-design/previous-work"
+        class="flex-shrink-0 inline-flex items-center gap-2 text-primary-600 dark:text-primary-400 font-medium hover:underline text-base"
+      >
+        View all work
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+    </div>
+
+    <!-- Work Cards Grid (static, no carousel dependency) -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {works.map((work) => (
+        <a href={work.link} class="group flex flex-col rounded-2xl border border-primary-900/10 dark:border-primary-300/10 overflow-hidden hover:border-primary-500/30 dark:hover:border-primary-400/30 hover:shadow-lg hover:shadow-primary-500/10 dark:hover:shadow-primary-400/10 transition-all duration-300">
+          <!-- Image -->
+          <div class="relative aspect-[4/3] overflow-hidden">
+            <img
+              src={work.image}
+              alt={work.title}
+              class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          </div>
+
+          <!-- Content -->
+          <div class="flex flex-col gap-3 p-5 sm:p-6 bg-white/50 dark:bg-primary-950/50">
+            <p class="text-xs uppercase tracking-widest text-primary-500 dark:text-primary-400 font-thin">
+              {work.category}
+            </p>
+            <h4 class="text-xl font-medium tracking-tight text-primary-950 dark:text-white">
+              {work.title}
+            </h4>
+            <div class="flex flex-wrap gap-2">
+              {work.tags.map((tag) => (
+                <span class="text-xs px-2.5 py-1 rounded-full border border-primary-900/10 dark:border-primary-300/10 text-primary-700 dark:text-primary-300 bg-primary-50/50 dark:bg-primary-900/30">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

@@ -2,12 +2,14 @@
 import Layout from '../layouts/Layout.astro';
 
 import Hero from '../components/home/Hero.astro';
-import Process from '../components/home/Section-Process.astro';
-import Intro from '../components/home/Section-Numbers-Intro.astro';
-import Clients from '../components/home/Section-IconGrid-Clients.astro';
-
 import FullScreenSliddy from '../components/home/Slot-ContentFullscreenSlider.astro';
 
+import NumbersAnimated from '../components/home/Section-Numbers-Animated.astro';
+import WhatWeBuild from '../components/home/Section-WhatWeBuild.astro';
+import ProcessVisual from '../components/home/Section-Process-Visual.astro';
+import TechStack from '../components/home/Section-TechStack.astro';
+import RecentWork from '../components/home/Section-RecentWork.astro';
+import Clients from '../components/home/Section-IconGrid-Clients.astro';
 
 import CtaDiscovery from '../components/home/Cta-Discovery.astro';
 
@@ -19,24 +21,21 @@ import MarketIntro from '../components/home/Basic-Intro-Market.astro';
 import PricingMarket from '../components/pricing/PricingTable-Duo-Market.astro';
 import MarketingSliddy from '../components/home/Sliddy-Sml-Marketing.astro';
 
-import CtaDiscoveryCompact from '../components/home/Cta-Discovery.astro';
-
 import BlogPosts from '../components/home/BlogPosts.astro';
 
-let backgroundUrl = 'url(/assets/visual-marketing-funnel.webp)' // Define image for Slot-HeroFullscreen and then call BackgroundURL in Section
-let backgroundUrl2 = 'url(/assets/visual-seo-content-writing.webp)' // Define image for Slot-HeroFullscreen and then call BackgroundURL in Section
-let backgroundUrl3 = 'url(/assets/visual-bubble-funnel.webp)' // Define image for Slot-HeroFullscreen and then call BackgroundURL in Section
+let backgroundUrl = 'url(/assets/visual-marketing-funnel.webp)'
+let backgroundUrl2 = 'url(/assets/visual-seo-content-writing.webp)'
+let backgroundUrl3 = 'url(/assets/visual-bubble-funnel.webp)'
 
 ---
 
 <Layout
-  description="Over 10 years professional experience in website design and digital marketing. Where code meets design."
-  title="Aidxn Design | Web Design Gold Coast | Website Development"
+  description="Full-stack web design, development & digital marketing by Aiden Wood. Over 10 years experience. Custom websites with Velocity — built for conversion, SEO, and speed."
+  title="Aidxn Design | Full-Stack Web Design & Development | Gold Coast"
 >
-  
 
   <Hero />
-  
+
   <FullScreenSliddy backgroundUrl={backgroundUrl} backgroundUrl2={backgroundUrl2} backgroundUrl3={backgroundUrl3}>
     <Fragment slot="smltitle">
       Effective and Affordable Web Design
@@ -47,7 +46,7 @@ let backgroundUrl3 = 'url(/assets/visual-bubble-funnel.webp)' // Define image fo
     <Fragment slot="desc">
       Websites your customers will love. Custom website design and functionality, as you need. Powered by our very own, lightning-fast framework, Velocity9.
     </Fragment>
-    
+
     <Fragment slot="smltitle2">
       Experts in Search Engine Optimisation
     </Fragment>
@@ -57,7 +56,7 @@ let backgroundUrl3 = 'url(/assets/visual-bubble-funnel.webp)' // Define image fo
     <Fragment slot="desc2">
       Today's age of online product searches and demand for easy-to-use website designs, means that your business is leaving money in the water if you're not putting focus into your website's content and writing. We take serious time to research competitive SEO copywriting to use across your website, making sure you get free local advertising with Google.
     </Fragment>
-  
+
     <Fragment slot="smltitle3">
       Digital Marketing and Web Design, Together
     </Fragment>
@@ -69,24 +68,25 @@ let backgroundUrl3 = 'url(/assets/visual-bubble-funnel.webp)' // Define image fo
     </Fragment>
   </FullScreenSliddy>
 
-  <Intro />
-  <Process />
-
+  <NumbersAnimated />
+  <WhatWeBuild />
+  <ProcessVisual />
   <Clients />
+  <TechStack />
+  <RecentWork />
+
   <BlogPosts />
-  
+
   <CtaDiscovery />
 
   <WebIntro />
   <PricingWeb />
   <WebSliddy />
-  
+
   <MarketIntro />
   <PricingMarket />
-  <MarketingSliddy /> 
+  <MarketingSliddy />
 
-  <CtaDiscoveryCompact heading="Let's build something great" subheading="Every project starts with a discovery call. Come prepared, leave with a plan." compact />
-  
-
+  <CtaDiscovery heading="Let's build something great" subheading="Every project starts with a discovery call. Come prepared, leave with a plan." compact />
 
 </Layout>

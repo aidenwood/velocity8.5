@@ -1,0 +1,8 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import ProjectDetailPage from '../../components/dashboard/ProjectDetailPage';
+---
+
+<DashboardLayout title="Project — Aidxn Design">
+  <ProjectDetailPage client:only="react" />
+</DashboardLayout>

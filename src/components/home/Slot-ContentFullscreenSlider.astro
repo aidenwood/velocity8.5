@@ -1,36 +1,19 @@
 ---
 export interface Props {
-
-backgroundUrl: string
-backgroundUrl2: string
-backgroundUrl3: string
+  backgroundUrl: string
+  backgroundUrl2: string
+  backgroundUrl3: string
 }
 
 const {backgroundUrl, backgroundUrl2, backgroundUrl3} = Astro.props
----    
+---
 
-<!-- 
-CSS for Flickity 
-Must be on every flickity slider component and not in the layout file at all 
-Inline css styles below also help stop small bugs
--->
-<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
-
-<!-- 
-JavaScript for Flickity
-Must be on every flickity slider component and has a fall back for after dom is loaded at bottom of component 
-Dont inline
--->
-<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
-
-
-<style define:vars={{ backgroundUrl,  backgroundUrl2, backgroundUrl3 }}>
+<style define:vars={{ backgroundUrl, backgroundUrl2, backgroundUrl3 }}>
 
 .fullscreen-carousel {
   border: 1px black;
   height: calc(100vh - 80px);
   max-width: 100vw;
-  
 }
 
 @media only screen and (max-width: 768px) {
@@ -87,7 +70,7 @@ Dont inline
 
 <section class="">
   <div class="limit-container">
-    <div class="fullscreen-carousel" data-flickity='{ "cellAlign": "left", "contain": true, "pageDots": false, "autoPlay": 3200, "groupCells": "85%", "lazyLoad": true, "imagesLoaded": true, "adaptiveHeight": true, "wrapAround": true }'>
+    <div class="fullscreen-carousel">
       <div class="carousel-cell cell-1 h-full">
         <div class="carousel-container h-full w-full">
           <div class="container-offset h-full flex items-center px-4 sm:px-6 lg:px-8">
@@ -154,24 +137,3 @@ Dont inline
     </div>
   </div>
 </section>
-
-
-<!-- 
-Script to initialize Flickity for fullscreen-carousel.
--->
-<script type="module" client:visible>
-  import { initFlickity } from '../../scripts/initFlickity.js';
-
-  initFlickity('.fullscreen-carousel', {
-    cellAlign: 'left',
-    contain: true,
-    prevNextButtons: false,
-    imagesLoaded: true,
-    adaptiveHeight: true,
-    groupCells: '85%',
-    pageDots: false,
-    autoPlay: 3200,
-    wrapAround: true,
-    lazyLoad: true,
-  });
-</script>

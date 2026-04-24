@@ -1,0 +1,8 @@
+---
+import DashboardLayout from '../../../layouts/DashboardLayout.astro';
+import ProjectsPage from '../../../components/dashboard/ProjectsPage';
+---
+
+<DashboardLayout title="Projects — Aidxn Design">
+  <ProjectsPage client:only="react" />
+</DashboardLayout>

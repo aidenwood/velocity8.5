@@ -1,0 +1,108 @@
+---
+interface TechItem {
+  name: string;
+  category: string;
+}
+
+const techStack: TechItem[] = [
+  { name: 'React', category: 'Frontend' },
+  { name: 'Astro', category: 'Frontend' },
+  { name: 'Next.js', category: 'Frontend' },
+  { name: 'TypeScript', category: 'Language' },
+  { name: 'Tailwind CSS', category: 'Styling' },
+  { name: 'GSAP', category: 'Animation' },
+  { name: 'Three.js', category: '3D / WebGL' },
+  { name: 'Supabase', category: 'Backend' },
+  { name: 'Stripe', category: 'Payments' },
+  { name: 'Shopify', category: 'Commerce' },
+  { name: 'Wordpress', category: 'CMS' },
+  { name: 'Node.js', category: 'Runtime' },
+  { name: 'Google Ads', category: 'Marketing' },
+  { name: 'Google Maps', category: 'API' },
+  { name: 'Figma', category: 'Design' },
+  { name: 'Framer', category: 'Design' },
+  { name: 'Netlify', category: 'Deploy' },
+  { name: 'Python', category: 'Data' },
+  { name: 'After Effects', category: 'Video' },
+  { name: 'Affinity', category: 'Design' },
+];
+
+// Double the array for seamless marquee loop
+const marqueeRow1 = techStack.slice(0, 10);
+const marqueeRow2 = techStack.slice(10, 20);
+---
+
+<style>
+  @keyframes marquee-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @keyframes marquee-right {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+  }
+  .marquee-track-left {
+    animation: marquee-left 90s linear infinite;
+  }
+  .marquee-track-right {
+    animation: marquee-right 90s linear infinite;
+  }
+  .marquee-perspective {
+    perspective: 800px;
+  }
+  .marquee-skew {
+    transform: rotateX(8deg) rotateY(-4deg);
+    transform-origin: center center;
+  }
+  .marquee-fade-mask {
+    mask-image: linear-gradient(to top right, rgba(0,0,0,1) 40%, rgba(0,0,0,0.3) 75%, rgba(0,0,0,0) 100%);
+    -webkit-mask-image: linear-gradient(to top right, rgba(0,0,0,1) 40%, rgba(0,0,0,0.3) 75%, rgba(0,0,0,0) 100%);
+  }
+</style>
+
+<section class="my-28 overflow-hidden">
+  <div class="mx-auto px-4 sm:px-6 w-full lg:max-w-7xl lg:px-8 mb-8">
+    <div class="flex flex-col gap-4 max-w-3xl">
+      <h2 class="text-base lg:text-lg uppercase font-thin tracking-widest">
+        Built With
+      </h2>
+      <h3 class="text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight">
+        Modern tools. Serious results.
+      </h3>
+      <p class="text-primary-950/80 dark:text-primary-200/80 text-lg xs:text-xl">
+        We pick the right tool for the job -- not the trendiest one. Every project gets a stack tailored to its goals, from static sites to full-stack SaaS.
+      </p>
+    </div>
+  </div>
+
+  <!-- Marquee with 3D perspective and fade to top-right -->
+  <div class="marquee-perspective marquee-fade-mask">
+    <div class="marquee-skew flex flex-col gap-4">
+
+      <!-- Row 1 (scrolls left, slow) -->
+      <div class="relative w-full overflow-hidden py-2">
+        <div class="marquee-track-left flex gap-4 w-max">
+          {[...marqueeRow1, ...marqueeRow1, ...marqueeRow1, ...marqueeRow1].map((tech) => (
+            <div class="flex-shrink-0 flex items-center gap-3 border border-primary-900/10 dark:border-primary-300/10 rounded-xl px-5 py-3 bg-white/50 dark:bg-primary-950/50">
+              <span class="text-base font-medium text-primary-950 dark:text-primary-100 whitespace-nowrap">{tech.name}</span>
+              <span class="text-xs text-primary-500 dark:text-primary-400 whitespace-nowrap">{tech.category}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Row 2 (scrolls right, slow) -->
+      <div class="relative w-full overflow-hidden py-2">
+        <div class="marquee-track-right flex gap-4 w-max">
+          {[...marqueeRow2, ...marqueeRow2, ...marqueeRow2, ...marqueeRow2].map((tech) => (
+            <div class="flex-shrink-0 flex items-center gap-3 border border-primary-900/10 dark:border-primary-300/10 rounded-xl px-5 py-3 bg-white/50 dark:bg-primary-950/50">
+              <span class="text-base font-medium text-primary-950 dark:text-primary-100 whitespace-nowrap">{tech.name}</span>
+              <span class="text-xs text-primary-500 dark:text-primary-400 whitespace-nowrap">{tech.category}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

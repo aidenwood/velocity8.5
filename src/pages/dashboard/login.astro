@@ -1,0 +1,8 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import LoginPage from '../../components/dashboard/LoginPage';
+---
+
+<DashboardLayout title="Sign In — Aidxn Design">
+  <LoginPage client:only="react" />
+</DashboardLayout>

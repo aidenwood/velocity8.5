@@ -1,0 +1,146 @@
+---
+interface StatItem {
+  value: number;
+  suffix: string;
+  label: string;
+  description: string;
+}
+
+const stats: StatItem[] = [
+  {
+    value: 10,
+    suffix: '+',
+    label: 'Years Experience',
+    description: 'Professional web design and development across every major platform and framework.',
+  },
+  {
+    value: 120,
+    suffix: '+',
+    label: 'Projects Delivered',
+    description: 'Websites, apps, marketing campaigns, and brand identities shipped for clients across Australia.',
+  },
+  {
+    value: 8,
+    suffix: 'M+',
+    label: 'Ad Spend Managed',
+    description: 'Dollars of marketing spend managed across Google, Meta, and programmatic display networks.',
+  },
+  {
+    value: 20,
+    suffix: '+',
+    label: 'Technologies',
+    description: 'From React to Shopify, Python to After Effects -- we pick the right stack for every project.',
+  },
+];
+---
+
+<section class="my-28">
+  <div class="mx-auto px-4 sm:px-6 w-full lg:max-w-7xl lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-8 lg:gap-12">
+
+      <!-- Left column: text -->
+      <div class="flex flex-col justify-center">
+        <div class="flex flex-col gap-4">
+          <h2 class="text-base lg:text-lg uppercase font-thin tracking-widest">
+            By The Numbers
+          </h2>
+          <h3 class="text-2xl sm:text-3xl md:text-4xl xl:text-5xl font-medium tracking-tight">
+            Code Meets Design
+          </h3>
+          <p class="max-w-3xl text-primary-950/80 dark:text-primary-200/80 text-lg xs:text-xl">
+            Web design and marketing, all in one place. Honest and fair pricing structures.
+            Manage your brand and marketing from a single point of contact.
+            Creating a cohesive strategy between your website and marketing.
+          </p>
+          <div class="flex gap-3 mt-4">
+            <a
+              href="/services"
+              class="bg-primary-600 dark:bg-primary-400 hover:bg-primary-700 dark:hover:bg-primary-300 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-400 dark:text-primary-950 inline-flex items-center justify-center rounded-full border border-transparent px-5 py-3 text-base font-medium text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+            >
+              All Services
+            </a>
+            <a
+              href="/enquire"
+              class="inline-flex items-center justify-center rounded-full border border-primary-600 dark:border-primary-400 px-5 py-3 text-base font-medium text-primary-600 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-950 transition"
+            >
+              Get a Quote
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right column: animated stat cards -->
+      <div class="w-full">
+        <dl class="grid gap-4 sm:gap-5 grid-cols-1 xs:grid-cols-2" id="stats-grid">
+          {stats.map((stat, i) => (
+            <div class="border border-primary-900/10 dark:border-primary-300/10 rounded-2xl px-6 py-7 lg:py-10 flex flex-col gap-2 hover:bg-primary-900/5 dark:hover:bg-primary-300/5 transition-colors duration-200">
+              <dd class="flex items-baseline gap-0.5">
+                <span
+                  class="counter-value text-3xl xs:text-4xl lg:text-5xl text-primary-950 dark:text-primary-200 font-medium tracking-tight"
+                  data-target={stat.value}
+                >
+                  0
+                </span>
+                <span class="text-2xl xs:text-3xl lg:text-4xl text-primary-600 dark:text-primary-400 font-medium tracking-tight">
+                  {stat.suffix}
+                </span>
+              </dd>
+              <dt class="text-primary-950 dark:text-primary-200 text-base sm:text-lg font-medium">
+                {stat.label}
+              </dt>
+              <p class="text-primary-950/60 dark:text-primary-200/60 text-sm leading-relaxed mt-1">
+                {stat.description}
+              </p>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function() {
+    let animated = false;
+
+    function animateCounters() {
+      if (animated) return;
+      animated = true;
+
+      document.querySelectorAll('.counter-value').forEach(function(el) {
+        var target = parseInt(el.getAttribute('data-target'), 10);
+        var duration = 1600;
+        var start = 0;
+        var startTime = null;
+
+        function step(timestamp) {
+          if (!startTime) startTime = timestamp;
+          var progress = Math.min((timestamp - startTime) / duration, 1);
+          // Ease out cubic
+          var eased = 1 - Math.pow(1 - progress, 3);
+          el.textContent = Math.floor(eased * target);
+          if (progress < 1) {
+            requestAnimationFrame(step);
+          } else {
+            el.textContent = target;
+          }
+        }
+
+        requestAnimationFrame(step);
+      });
+    }
+
+    var grid = document.getElementById('stats-grid');
+    if (grid) {
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            animateCounters();
+            observer.disconnect();
+          }
+        });
+      }, { threshold: 0.3 });
+      observer.observe(grid);
+    }
+  })();
+</script>
