@@ -1,0 +1,89 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Preview deployments replaced our entire staging workflow. Here's how we use them for client reviews, QA, and content approval without managing extra infrastructure."
+  title="Preview Deployments Changed How We Work with Clients (And You Should Use Them Too) · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        DevOps
+      </Fragment>
+      <Fragment slot="title">
+        Preview Deployments Changed How We Work with Clients (And You Should Use Them Too)
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-fuchsia-500/20 to-purple-600/20 flex items-center justify-center">
+          <span class="text-4xl">&#128065;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Preview Deployments for Client Work
+      </Fragment>
+      <Fragment slot="content">
+        Before preview deployments, our client review process looked like this: finish the work, deploy to a staging subdomain that we maintained separately, send the client a link, wait for feedback, make changes, redeploy to staging, send another link, repeat until approved, then deploy to production and pray nothing was different between staging and production.
+
+        It was slow. It was error-prone. Staging was always slightly out of sync with production. And maintaining a separate staging server or subdomain for every client project was an infrastructure headache that added zero value to the actual work.
+
+        Preview deployments fixed all of this. Here is how.
+
+        What Preview Deployments Actually Are
+
+        When you open a pull request on a project connected to Netlify (or Vercel, or Cloudflare Pages), the platform automatically builds your branch and deploys it to a unique URL. Something like deploy-preview-47--yoursite.netlify.app. That URL is a fully functional version of your site, built from the code in your branch.
+
+        Every PR gets its own URL. Every push to that PR rebuilds the preview. The preview is built using the exact same build process as production. When you merge the PR, the preview disappears and production gets the update. There is no staging server to maintain. There is no sync to worry about. The preview is production, just running different code.
+
+        How This Changed Client Reviews
+
+        Our current workflow: finish a change, push to a feature branch, open a PR, copy the preview URL, send it to the client in an email or Slack message. "Here is the updated hero section. Let me know what you think."
+
+        The client clicks the link and sees the actual site with the actual changes. Not a screenshot. Not a Figma mockup. Not a screen recording. The real, working website running in their browser on their device. They can test it on their phone. They can click through the navigation. They can fill out forms.
+
+        This eliminated an entire category of feedback we used to get: "It looked fine in the screenshot but on my laptop the text overlaps" or "I did not realise the animation was going to be that fast." When the client reviews a preview deployment, they are reviewing the final product. The feedback is specific, actionable, and based on reality rather than imagination.
+
+        Multiple Changes in Parallel
+
+        Preview deployments really shine when you are working on multiple changes simultaneously. Say you are redesigning the about page, updating the pricing, and adding a new blog post. Each change lives in its own branch. Each branch has its own preview URL.
+
+        You can send the client three links: "Here is the new about page, here is the updated pricing, and here is the blog post draft." They can review all three independently, approve some and request changes on others. You merge the approved ones immediately. The work that needs revisions stays in its branch until it is ready.
+
+        Without preview deployments, you would either deploy all three changes to staging together (making it hard to approve some and reject others) or maintain three separate staging environments (which nobody actually does).
+
+        Preview Deployments as QA
+
+        Beyond client reviews, preview deployments are our primary QA tool. Before we merge anything, we check the preview on multiple devices. Does the layout work on mobile? Does the form submit correctly? Do the images load? Does the page speed look reasonable?
+
+        This catches issues that local development misses. Your local dev server is running on localhost with hot module replacement, unbundled modules, and no CDN. The preview deployment is the production build running on the production CDN. Font loading, image optimisation, caching behaviour — they are all different in production, and preview deployments let you catch those differences before they matter.
+
+        We have caught broken open graph images, missing favicons, slow-loading hero images, and misconfigured redirects in preview deployments. All of these would have shipped to production if we were just testing locally.
+
+        Setting Up Deploy Contexts
+
+        The real power comes from combining preview deployments with deploy contexts. In your netlify.toml, you can set different environment variables for deploy previews versus production. We use this to point previews at a staging API, enable debug logging, show a "PREVIEW" banner so nobody confuses a preview with the live site, and disable analytics tracking so preview visits do not pollute production data.
+
+        The preview banner is particularly important. We add a small fixed banner at the top of preview deployments that says "Preview Build — Not Live" with the branch name and deploy ID. This prevents the uncomfortable situation where a client bookmarks a preview URL, shares it with their team, and then wonders why the "live site" stopped working when we merged the PR and the preview URL expired.
+
+        The Process for Content Changes
+
+        For content-heavy sites, preview deployments are invaluable. The client writes their content in a Google Doc. We drop it into the site, push to a branch, and send them the preview. They see their words in the actual design, with the actual typography, on the actual layout. Every time, without exception, they want to change something once they see it in context. "That paragraph is too long for that section." "The heading does not look right in that font." "Can we make that section shorter?"
+
+        These are exactly the right conversations to have before going live, and preview deployments make them happen naturally.
+
+        Cost: Basically Free
+
+        Preview deployments on Netlify are free. They count against your build minutes (300 per month on the free tier, which is more than enough for most agency work) but not against any other limit. Vercel and Cloudflare Pages also include preview deployments at no extra cost.
+
+        You are getting per-branch staging environments, automatic builds, unique URLs, and production-identical builds for zero additional cost. There is no excuse not to use them for every project.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

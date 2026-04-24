@@ -1,0 +1,65 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="A practical guide to the Google Maps API in 2026 — pricing that won't bankrupt you, geocoding patterns, route optimisation, and caching strategies from real projects."
+  title="The Google Maps API in 2026: Pricing, Performance, and Patterns That Won't Bankrupt You · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        APIs &amp; Integrations
+      </Fragment>
+      <Fragment slot="title">
+        The Google Maps API in 2026: Pricing, Performance, and Patterns That Won't Bankrupt You
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-green-500/20 to-emerald-600/20 flex items-center justify-center">
+          <span class="text-4xl">&#127758;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Google Maps Is Powerful, Expensive, and Full of Traps
+      </Fragment>
+      <Fragment slot="content">
+        Google Maps is the default mapping API for a reason. The data is comprehensive, the geocoding is accurate, and the JavaScript SDK is well-documented. But the pricing model has bitten every team we have worked with at least once. We build location-heavy applications — fleet routing, service area mapping, geocoded claims data — and we have learned the hard way which API calls are cheap, which are expensive, and which will generate a surprise invoice that ruins your month.
+
+        The Pricing Model You Need to Understand
+
+        Google gives you a $200 monthly credit. That covers about 28,000 map loads, 40,000 geocoding requests, or 10,000 directions requests per month. Sounds generous until you realise how fast those numbers add up. Every time a user loads a page with a map, that is a map load. Every time you convert an address to coordinates, that is a geocode. Every time you calculate a route, that is a directions request. We built an internal tool that geocoded addresses on form submission. In testing, that was maybe 50 requests a day. In production, field reps were entering 200 addresses daily. Our first real month cost $340 in Maps API fees on what was supposed to be an internal tool. That was the moment we got serious about caching.
+
+        Cache Everything, Geocode Once
+
+        Geocoding the same address twice is burning money. Our pattern is simple — before hitting the Google API, check your database for a cached result. We store the input address, the normalised address Google returns, the latitude, the longitude, and a cached_at timestamp. Cache hit rates above 60 percent are common on applications where users enter addresses in the same geographic area. For our Queensland-based field operations tool, the cache hit rate is over 80 percent because reps visit the same suburbs repeatedly. We invalidate cache entries after 90 days, which is conservative. Addresses do not move.
+
+        The Places API Will Destroy Your Budget
+
+        The Places API — autocomplete, place details, place search — is the most expensive part of the Google Maps ecosystem. Autocomplete alone costs $2.83 per thousand requests. That does not sound like much until you realise autocomplete fires on every keystroke. A user typing a 30-character address generates 30 API calls. At scale, that is terrifying. Our mitigation strategy is aggressive debouncing. We wait 300 milliseconds after the user stops typing before sending a request. We require a minimum of three characters before triggering autocomplete. And we set session tokens on every autocomplete session so Google charges per session instead of per keystroke — this alone can cut costs by 90 percent. If Places Autocomplete is still too expensive, consider switching to a free geocoding service for basic address entry and only using Google for the map rendering.
+
+        Directions and Route Optimisation
+
+        The Directions API calculates routes between points. The Routes API, its newer replacement, adds traffic-aware routing and route optimisation for multiple waypoints. We use these for field rep routing — given 15 jobs for the day, what is the optimal order to minimise drive time? The critical detail is waypoint limits. The standard Directions API supports up to 25 waypoints. The Routes API supports up to 25 intermediate waypoints. For our use case, that is enough. If you need more, you are looking at the Route Optimisation API, which has different pricing and is designed for fleet logistics. We pre-calculate routes nightly and store them in Supabase. Reps see their optimised route when they open the app in the morning. Recalculation only happens if jobs are added or removed during the day.
+
+        Static Maps for Email and PDFs
+
+        The Static Maps API generates map images as PNGs. We use this for embedding maps in emails, PDF reports, and printed documents. It is cheaper than loading the JavaScript SDK and works everywhere — no JavaScript required. Our claims reports include a static map showing the property location with a marker. The cost is about $2 per thousand images, which is negligible compared to the JavaScript map loads.
+
+        Server-Side Only
+
+        Every Google Maps API call in our stack goes through a server-side function. The API key is never exposed to the browser. We use Supabase Edge Functions for geocoding and directions, and only load the JavaScript Maps SDK on pages that actually need an interactive map. This protects our API key from abuse, lets us enforce our caching layer on every request, and keeps our client bundle smaller on pages that do not need maps.
+
+        Alternatives Worth Considering
+
+        Mapbox is a legitimate competitor with better pricing for high-volume use cases and more flexible styling. OpenStreetMap with Leaflet is free and works well for display-only maps where you do not need geocoding or directions. For Australian addresses specifically, the GNAF dataset from Geoscape provides free geocoding data that is surprisingly accurate. We use Google Maps for most client projects because the familiarity and data quality are hard to beat. But for internal tools where cost matters more than polish, Mapbox or free alternatives can save thousands per year.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

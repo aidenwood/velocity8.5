@@ -1,0 +1,91 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Git Flow is overkill for small teams. Here's the branching strategy we actually use for agency work — simple, clear, and battle-tested across dozens of projects."
+  title="The Git Workflow That Actually Works for Small Agency Teams · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        DevOps
+      </Fragment>
+      <Fragment slot="title">
+        The Git Workflow That Actually Works for Small Agency Teams
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-rose-500/20 to-pink-600/20 flex items-center justify-center">
+          <span class="text-4xl">&#128268;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Git for Small Agency Teams
+      </Fragment>
+      <Fragment slot="content">
+        Somewhere around 2015, Git Flow became the "correct" way to use Git. You had main, develop, feature branches, release branches, and hotfix branches. Every change flowed through a carefully orchestrated merge dance. It made beautiful diagrams. It also made simple tasks take five times longer than necessary.
+
+        If you are a team of one to five developers shipping client websites, Git Flow is overkill. Here is the workflow we actually use, why it works, and the two rules that keep everything from falling apart.
+
+        The Setup: Two Branch Types, That Is It
+
+        Main is production. Whatever is on main is what is live. Main is always deployable. If main is broken, everything stops until it is fixed.
+
+        Feature branches come off main and merge back into main. Name them descriptively: feature/hero-redesign, fix/contact-form-validation, update/footer-links. The prefix tells you what kind of change it is. The description tells you what it touches.
+
+        That is the entire branching strategy. No develop branch. No release branches. No hotfix branches that are somehow different from regular fix branches. Two types of branches. Simple.
+
+        Rule One: Never Push Directly to Main
+
+        Every change goes through a pull request. Even small ones. Even "I just fixed a typo" ones. The PR is not about code review (though that is nice if you have someone to review). The PR is about creating a preview deployment.
+
+        When you open a PR on a Netlify or Vercel project, you get an automatic preview URL. That preview URL is how clients review changes. That preview URL is how you verify the build works before it hits production. That preview URL is your staging environment without any staging infrastructure.
+
+        If you push directly to main, you skip the preview. You skip the CI checks. You deploy untested code to production. We did this exactly once — pushed a "quick CSS fix" directly to main at 5pm on a Friday. The CSS fix broke the navigation on mobile. The client's site was broken all weekend because we did not check our email until Monday morning. Never again.
+
+        Rule Two: Keep Branches Short-Lived
+
+        A feature branch should live for hours or days, not weeks. If a branch exists for more than a week, it is too big. Break it into smaller changes. Long-lived branches accumulate merge conflicts, drift from main, and become terrifying to merge.
+
+        We aim for branches that represent a single coherent change: redesign the hero section, add a contact form, update the pricing page. Each branch produces a reviewable preview deployment. Each merge is small enough that if something breaks, you know exactly what caused it.
+
+        The Daily Workflow
+
+        Start of the day: pull main to make sure you are current. Create a feature branch from main. Do your work. Commit frequently with descriptive messages — "add responsive hero layout" is better than "WIP" or "stuff." Push to the remote. Open a PR when the work is ready for review or preview.
+
+        If CI passes and the preview looks good, merge the PR into main. Delete the feature branch. Netlify auto-deploys the updated main. Done. The whole cycle should happen within a day for most agency work.
+
+        Commit Messages That Help Future You
+
+        We follow a simple convention: start with a verb in the present tense. "Add hero section," "Fix mobile nav overlap," "Update pricing table data," "Remove unused components." The commit message should finish the sentence "This commit will..."
+
+        We do not use Conventional Commits (feat:, fix:, chore:) because the overhead is not justified for our team size. If you have automated changelogs or release notes, Conventional Commits make sense. If you are a three-person agency, plain English commit messages are fine.
+
+        What about larger changes? If a commit needs explanation beyond a one-line summary, add a body. The summary says what changed. The body says why. "Fix contact form validation" is the summary. "The email regex was rejecting valid addresses with plus signs, which broke submissions from Gmail users using address aliases" is the body.
+
+        Handling Emergencies
+
+        Your client calls. Their site is down. Something is broken in production. What do you do?
+
+        Create a branch from main called fix/whatever-is-broken. Fix it. Push. Open a PR. Verify the preview. Merge. The process is identical to any other change. You just do it faster. There is no special "hotfix" workflow because the regular workflow is already fast enough for emergencies.
+
+        If the fix is genuinely a one-line change and time is critical, some teams push directly to main in emergencies. We stopped doing this after the Friday CSS incident. The extra two minutes for a PR and preview check are worth it, even in a crisis.
+
+        What We Gave Up
+
+        We do not have a develop branch, which means there is no persistent staging environment. Preview deployments on PRs serve that purpose. We do not have release branches, which means we cannot "stage" a release. We do not need to — merging to main is the release. We do not tag releases, which means we cannot easily roll back to a specific version. Netlify's deploy history handles rollbacks — you click "publish" on any previous deploy.
+
+        These trade-offs work because we are a small team shipping client websites, not a company shipping packaged software with version numbers. If you need semver releases and changelogs, add a release process. But do not start with one just because a blog post told you to.
+
+        The workflow should match the team. For small agency teams, simple wins every time.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

@@ -1,0 +1,79 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Responsive web design in 2026 goes beyond breakpoints — mobile-first design, container queries, fluid typography, and building for every screen."
+  title="Responsive Design Goes Way Beyond Breakpoints Now — Container Queries, Fluid Type, and More · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Web Design
+      </Fragment>
+      <Fragment slot="title">
+        Responsive Design Goes Way Beyond Breakpoints Now — Container Queries, Fluid Type, and More
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-violet-600/20 to-cyan-500/20 flex items-center justify-center">
+          <span class="text-4xl">📱</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        It's Not Just About Breakpoints Anymore
+      </Fragment>
+      <Fragment slot="content">
+        In 2012, responsive web design meant adding a couple of media queries so your two-column layout stacked on phones. In 2026, the landscape is wildly different. We're designing for 4-inch phone screens, 6.7-inch phablets, 10-inch tablets, 13-inch laptops, 27-inch monitors, and ultrawide displays — simultaneously. And the tools we have to do it have evolved just as dramatically.
+
+        If your approach to responsive design is still "desktop first, then make it fit on mobile," you're building backwards. Here's what mobile-first design actually looks like in 2026.
+
+        <strong>Mobile-first design is a constraint, not a compromise</strong>
+
+        Mobile-first design doesn't mean your mobile site is a stripped-down version of desktop. It means you design the constrained experience first — the one where you have the least space, the slowest connection, and the most distracted user. Then you progressively enhance for larger screens.
+
+        This approach forces better decisions. When you only have 390 pixels of width, every element earns its place. Your headline gets tighter. Your CTAs get clearer. Your navigation gets simpler. Then on desktop, you have room to enhance — add a sidebar, show more columns, introduce richer interactions. A mobile web design that works well almost always translates to a better desktop experience. The reverse is rarely true.
+
+        <strong>Container queries changed the game</strong>
+
+        For over a decade, responsive web design relied entirely on viewport-based media queries. Your component responded to the browser width, not its own container. This created absurd situations where a card component worked perfectly in a full-width layout but broke completely when placed in a sidebar.
+
+        Container queries, now supported in all major browsers, let components respond to their parent container's size instead of the viewport. This is a fundamental shift in how we build responsive layouts. A product card can now intelligently reflow whether it's in a three-column grid, a sidebar, or a modal — without any JavaScript hacks or duplicate CSS. If your agency isn't using container queries in 2026, they're building responsive web design with 2018 tools.
+
+        <strong>Fluid typography and spacing</strong>
+
+        Hard-coded font sizes at specific breakpoints create jarring jumps as users resize their browser. Fluid typography uses CSS clamp() to smoothly scale text between a minimum and maximum size based on the viewport width. A heading that's 24px on mobile and 48px on desktop smoothly transitions through every size in between.
+
+        The same principle applies to spacing. Instead of padding: 16px on mobile and padding: 64px on desktop with nothing in between, fluid spacing creates proportional, harmonious layouts at every screen size. Combined with fluid typography, this means your responsive web design looks intentional at 834 pixels — that awkward tablet width where most sites fall apart.
+
+        <strong>Touch targets and interaction design</strong>
+
+        Mobile web design isn't just about layout. It's about interaction. Apple's Human Interface Guidelines recommend a minimum touch target of 44x44 points. Google's Material Design recommends 48x48dp. Most websites ignore both.
+
+        Links that are too close together, tiny form inputs, hamburger menu icons that require surgical precision to tap — these are mobile design failures that directly impact usability and conversions. Every interactive element on a mobile-first design needs to be easily tappable with a thumb, with enough spacing that adjacent targets don't trigger accidentally.
+
+        <strong>Performance is responsive too</strong>
+
+        True responsive web design extends beyond layout to resource loading. A mobile user on a 4G connection shouldn't download the same 2MB hero image that a desktop user on fibre receives. Modern responsive images using srcset and sizes attributes serve appropriately sized images for each device. The picture element lets you serve entirely different image formats or art directions based on screen size.
+
+        The same logic applies to JavaScript. Components that are only visible on desktop — large navigation menus, interactive data visualisations, hover-dependent interfaces — shouldn't ship their JavaScript to mobile users. Code-splitting by viewport capability is responsive design applied to performance.
+
+        <strong>Testing beyond the emulator</strong>
+
+        Chrome DevTools device mode is not a substitute for testing on real devices. Emulators don't capture the reality of fat fingers, variable network speeds, screen glare, and the fact that users hold their phones in wildly inconsistent ways. We test every build on actual phones and tablets because responsive web design that only works in an emulator doesn't actually work.
+
+        <strong>The bigger picture</strong>
+
+        Responsive web design in 2026 is less about making things fit on different screens and more about creating experiences that feel native to every device. Mobile-first design, container queries, fluid scales, proper touch targets, and responsive resource loading are the tools. The goal is a site that feels intentional whether you're on a phone in a queue or a monitor at your desk.
+
+        We build every <a href="/web-design" class="underline">website</a> mobile-first because that's where the majority of your users are. If your current site feels like a desktop experience crammed onto a phone screen, it probably is — and it's costing you conversions.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

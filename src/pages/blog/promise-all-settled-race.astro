@@ -1,0 +1,61 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="A visual guide to Promise.all, Promise.allSettled, Promise.race, and Promise.any — when to use each, how they fail, and real patterns from production code."
+  title="Promise.all vs Promise.allSettled vs Promise.race — A Visual Guide to Picking the Right One · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        JavaScript
+      </Fragment>
+      <Fragment slot="title">
+        Promise.all vs Promise.allSettled vs Promise.race — A Visual Guide to Picking the Right One
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-cyan-500/20 to-teal-600/20 flex items-center justify-center">
+          <span class="text-4xl">&#9889;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Four Combinators, Four Very Different Failure Modes
+      </Fragment>
+      <Fragment slot="content">
+        JavaScript gives you four ways to combine promises, and each one handles failure differently. Pick the wrong one and you either crash when you should degrade gracefully, or you silently ignore errors you should catch. Here is how to think about each one and when to reach for it.
+
+        Promise.all — All or Nothing
+
+        Promise.all takes an array of promises and resolves when every single one resolves. You get back an array of results in the same order as the input promises. If any single promise rejects, the entire Promise.all rejects immediately with that error. The other promises keep running — they are not cancelled — but their results are thrown away. Think of it as an AND gate. All must succeed for the result to succeed. Use this when every operation is required and a partial result is useless. We use it for page loads where we need user data, permissions, and feature flags before rendering anything. If any of those fails, we cannot render the page at all, so failing fast is the correct behavior. The gotcha is that the first rejection wins. If three promises reject, you only see the first error. The other two errors vanish. If you need to know about all failures, Promise.all is the wrong choice.
+
+        Promise.allSettled — Give Me Everything
+
+        Promise.allSettled waits for every promise to either resolve or reject, then returns an array of result objects. Each object has a status property — either "fulfilled" or "rejected". Fulfilled results have a value property. Rejected results have a reason property. Nothing is thrown away. Nothing short-circuits. You always get every result. This is what you want when partial success is acceptable. We use it for dashboard data loading. A dashboard might have five widgets, each loading data from a different source. If the revenue chart fails but the activity feed loads fine, show the feed and display an error state for the chart. Do not crash the entire dashboard because one data source is down. The pattern is to map over the results, check the status of each one, and render accordingly. Fulfilled results get rendered normally. Rejected results get an error state component. The user sees four out of five widgets instead of a full-page error.
+
+        Promise.race — First One Wins
+
+        Promise.race resolves or rejects as soon as any promise in the array settles. The first promise to settle — whether it fulfills or rejects — determines the outcome. All other promises are ignored. Use this for timeouts. Pair a fetch request with a delay promise. If the fetch resolves first, you get your data. If the delay resolves first, the request took too long and you handle the timeout. This is cleaner than the AbortController timeout pattern when you do not need to actually cancel the request. We also use it for racing redundant requests. If you have two API endpoints that return the same data — a primary and a fallback — race them and use whichever responds first. The downside is that Promise.race treats rejections and fulfillments equally. If a fast promise rejects before a slow promise fulfills, Promise.race gives you the rejection. If your timeout promise rejects instead of resolving, that is fine. But if one of your "real" promises rejects quickly, you lose the result from the slower promise that might have succeeded.
+
+        Promise.any — First Success Wins
+
+        Promise.any is like Promise.race but it only cares about fulfillments. It resolves as soon as any promise fulfills, ignoring rejections along the way. It only rejects if every single promise rejects, giving you an AggregateError containing all the rejection reasons. This is perfect for fallback patterns. Try the primary CDN, the backup CDN, and the local cache in parallel. Promise.any gives you whichever source responds successfully first. If all three fail, you get all three errors in the AggregateError and can log each one. We use this for asset loading and API fallback chains. Try the fastest source first, but do not fail if it is down — just use whatever source succeeds first.
+
+        The Decision Matrix
+
+        Here is how we choose. Do you need all results, and a single failure means the whole operation is invalid? Use Promise.all. Do you need all results regardless of individual success or failure? Use Promise.allSettled. Do you want the fastest response and do not care about the rest? Use Promise.race. Do you want the fastest successful response, ignoring failures? Use Promise.any. Most developers default to Promise.all for everything. That is fine for simple cases, but it breaks down when you need graceful degradation. Promise.allSettled is underused and solves the most common real-world scenario: load multiple things, show what you can, handle failures individually.
+
+        Error Handling Patterns
+
+        Each combinator needs different error handling. Promise.all needs a single catch that handles the first failure. Promise.allSettled needs a loop that checks each result's status. Promise.race needs a catch that might be a timeout or an actual error. Promise.any needs a catch that receives an AggregateError with multiple reasons. The error handling is as important as choosing the right combinator. A Promise.allSettled without status checking is just Promise.all with extra steps and no error handling — the worst of both worlds. Check the status. Handle each result individually. That is the whole point.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

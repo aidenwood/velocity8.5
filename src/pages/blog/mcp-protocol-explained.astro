@@ -1,0 +1,55 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="MCP protocol explained simply. Anthropic's Model Context Protocol is becoming the USB-C of AI tools. What it is and why it matters."
+  title="What Is MCP? Anthropic's Protocol Is Becoming the USB-C of AI Tools · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Tech News
+      </Fragment>
+      <Fragment slot="title">
+        What Is MCP? Anthropic's Protocol Is Becoming the USB-C of AI Tools
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-indigo-600/20 to-violet-500/20 flex items-center justify-center">
+          <span class="text-4xl">&#128268;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        One Protocol to Connect Them All
+      </Fragment>
+      <Fragment slot="content">
+        Every AI tool has the same problem. Your LLM is smart but it is trapped in a box. It cannot read your files, query your database, check your calendar, or call your APIs — unless someone builds a custom integration for each specific tool and each specific model. Anthropic's Model Context Protocol, or MCP, is an attempt to solve this once and for all. And it is working.
+
+        The Problem MCP Solves
+        Before MCP, connecting an AI model to external tools meant building bespoke integrations. Want Claude to read your GitHub repos? Build a GitHub integration for Claude. Want GPT-4 to query your Postgres database? Build a Postgres integration for GPT-4. Want Gemini to access your Slack messages? You get the idea. Every combination of AI model and external tool required custom code. This does not scale. If there are 10 AI platforms and 100 tools, that is 1,000 integrations. MCP reduces this to 110 — each AI platform implements the MCP client protocol once, and each tool implements the MCP server protocol once. Any client works with any server. That is the USB-C analogy. Before USB-C, every device had its own charging cable. After USB-C, one cable works with everything. MCP is trying to be that standard for AI tool integration.
+
+        How It Actually Works
+        MCP is a JSON-RPC protocol with three core primitives. Tools — functions the AI can call, like "search_files" or "create_issue." Resources — data the AI can read, like file contents or database schemas. Prompts — reusable prompt templates the server provides. An MCP server exposes these capabilities over a standard transport layer — typically stdio for local tools or HTTP with server-sent events for remote tools. An MCP client connects to servers, discovers their capabilities, and makes them available to the AI model. When Claude Code connects to a Supabase MCP server, it discovers tools like "execute_sql" and "list_tables," and can use them naturally in conversation.
+
+        The Adoption Is Surprisingly Fast
+        MCP launched in late 2024 and within months the ecosystem exploded. There are MCP servers for GitHub, Slack, Supabase, Notion, Linear, Jira, file systems, web browsers, databases, and dozens more. Claude Code, Cursor, Windsurf, and several other AI tools support MCP clients. The spec is open source and community-driven, which means anyone can build a server or client. We run MCP servers for Supabase and Playwright in our development workflow. Claude Code connects to both, which means we can ask Claude to query our database schema, run SQL migrations, or browser-test our applications — all through natural language, all through a standardised protocol.
+
+        Why Developers Should Care
+        MCP changes the economics of AI tool building. Before, if you built a tool integration for Claude, it only worked with Claude. Now, if you build an MCP server, it works with every MCP client — Claude, Cursor, and any future tool that adopts the protocol. This is the network effect that makes protocols valuable. Every new MCP server makes every MCP client more useful, and every new MCP client makes building MCP servers more worthwhile. If you are building developer tools, SaaS products, or internal platforms, shipping an MCP server alongside your API is quickly becoming a competitive advantage. Your tool becomes instantly usable by every AI coding assistant on the market.
+
+        The Rough Edges
+        MCP is not perfect. The authentication story is still evolving — most MCP servers currently rely on API keys stored locally, which is fine for development but not great for team environments. The discovery problem is unsolved — there is no central registry of MCP servers, so finding the right server for your tool requires searching GitHub. Performance can be an issue with servers that maintain long-running connections or large context payloads. And the spec is still changing, which means early adopters are dealing with breaking changes. These are solvable problems, and the community is moving fast on all of them.
+
+        Our Prediction
+        MCP will become the default way AI tools interact with external services within 18 months. The alternatives — proprietary plugin systems like ChatGPT plugins or framework-specific integrations — cannot match the network effects of an open protocol. OpenAI will either adopt MCP or build something compatible. Google will do the same. The protocol wars in AI tooling are going to be short because the incentive to converge on a standard is overwhelming. If you build tools for developers, start building MCP servers now. The early movers will have the best documentation, the most battle-tested implementations, and the strongest community presence when the wave crests.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

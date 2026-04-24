@@ -1,0 +1,59 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="After building 30+ React applications, these are the component architecture patterns we keep coming back to. Practical lessons from real production codebases."
+  title="The Component Architecture Patterns We Use After Building 30+ React Apps · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Frontend Architecture — April 2026
+      </Fragment>
+      <Fragment slot="title">
+        The Component Architecture Patterns We Use After Building 30+ React Apps
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-blue-500/20 to-cyan-600/20 flex items-center justify-center">
+          <span class="text-4xl">&#127959;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Patterns That Survive Production
+      </Fragment>
+      <Fragment slot="content">
+        Patterns are easy to talk about in blog posts. They are much harder to apply consistently across a real codebase with deadlines, multiple developers, and requirements that change halfway through a sprint. After building over 30 React applications — from internal tools to SaaS platforms to marketing sites — we have converged on a small set of patterns that actually survive contact with production. Not because they are theoretically elegant, but because they reduce the number of decisions developers need to make on every new feature.
+
+        Colocation Over Abstraction
+        The strongest pattern we have adopted is aggressive colocation. If a component is only used on one page, it lives next to that page. Not in a global components folder. Not in a shared UI library. Right next to the page that uses it. When a component is used on two pages, it gets promoted to a shared location. This means the components/shared folder is small and every component in it has earned its place by proving it is genuinely reusable. The alternative — dumping everything into a flat components folder — creates a junk drawer that nobody can navigate and where naming collisions become inevitable.
+
+        The Container-Presentation Split Still Works
+        React Server Components and the server-client boundary in Next.js have made the container-presentation pattern more relevant, not less. Server components fetch data and handle business logic. Client components receive data as props and handle interaction. This is the same pattern that existed a decade ago, just with a different enforcement mechanism. We structure it explicitly: a page.tsx server component fetches data and renders a PageClient.tsx client component. The client component owns all the useState, useEffect, and event handler logic. This split makes testing straightforward, keeps server code out of client bundles, and makes it obvious where data comes from.
+
+        Compound Components for Complex UI
+        When a component has multiple related parts that need to share state — think a Tabs component with triggers and panels, or a Combobox with an input, a list, and list items — the compound component pattern is unbeatable. A parent component holds the state and provides it via context. Child components consume that context to coordinate behaviour. This is how Radix UI works internally, and we use the same pattern for our custom components. The API reads naturally: wrap everything in a parent, compose the children however you want, and the state management is invisible.
+
+        Props Drilling Is Fine, Actually
+        The React community has an allergy to passing props through more than two levels, but props drilling is the simplest, most debuggable state management pattern that exists. When you pass data as props, the dependency chain is visible in the code. You can trace exactly where data comes from by reading the component tree. Context and state management libraries hide these dependencies, making debugging harder. We use props drilling as the default and only reach for Context or Zustand when props genuinely need to cross unrelated branches of the component tree. For most components, three levels of prop passing is perfectly fine.
+
+        Custom Hooks as Service Layers
+        Complex logic belongs in custom hooks, not in components. A useBookingForm hook that manages multi-step form state, validation, and submission. A useInfiniteScroll hook that handles intersection observers and pagination. A useAuth hook that wraps the authentication context. These hooks are testable in isolation, reusable across components, and keep the component JSX focused on rendering. The rule is simple: if a useEffect or useState is more than five lines, it probably belongs in a hook.
+
+        Strict TypeScript as Documentation
+        Every component gets an explicit interface for its props. Not a type, an interface — because interfaces produce better error messages and support declaration merging. Optional props have default values defined in the component signature, not buried in the function body. Discriminated unions for variant props — when a component can be a "link" variant or a "button" variant and each has different required props, model that as a union. This catches entire categories of bugs at compile time and serves as living documentation for every component's API.
+
+        File Structure That Scales
+        We use a feature-based folder structure inside the app directory. Each feature gets a folder with its page, its components, its hooks, its types, and its API layer. A booking feature has booking/page.tsx, booking/components/BookingForm.tsx, booking/hooks/useBookingForm.ts, booking/types.ts, and booking/api.ts. Everything related to bookings lives in one place. Cross-cutting concerns — auth, analytics, error handling — live in a shared lib folder. This structure scales because adding a new feature means creating a new folder, not modifying a dozen existing ones.
+
+        These patterns are not revolutionary. That is the point. The best architecture is the one your whole team can follow without thinking about it. Every pattern here optimises for readability and predictability over cleverness. Because clever architectures are only clever until the person who designed them leaves the team.
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

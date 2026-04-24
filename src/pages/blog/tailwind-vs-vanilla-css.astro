@@ -1,0 +1,59 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="The Tailwind vs vanilla CSS debate has raged for years. After shipping dozens of projects with both, here's our honest take on when each approach wins."
+  title="The Tailwind Debate Is Over (And Both Sides Were Right) · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        CSS & Frontend
+      </Fragment>
+      <Fragment slot="title">
+        The Tailwind Debate Is Over (And Both Sides Were Right)
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-sky-600/20 to-violet-500/20 flex items-center justify-center">
+          <span class="text-4xl">🤝</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        The Honest Answer Nobody Wanted
+      </Fragment>
+      <Fragment slot="content">
+        The Tailwind CSS discourse has been one of the most polarizing debates in frontend development. On one side: "utility classes are inline styles with extra steps, this is an abomination." On the other: "I'm shipping features twice as fast, your separation of concerns is a myth." Both camps have been yelling past each other for years.
+
+        After shipping over forty client projects — roughly half with Tailwind, half with vanilla CSS or CSS Modules — here's the conclusion we've landed on: both sides were right about different things. The debate was never really about CSS methodology. It was about what kind of project you're building and who's maintaining it.
+
+        Tailwind wins when you're building component-driven UIs. If your project uses React, Vue, Svelte, or Astro components, your styles are already colocated with your markup in component files. The "separation of concerns" argument breaks down because your .card-title CSS class in a separate file is tightly coupled to your CardTitle component anyway. Putting the styles directly on the element with utility classes isn't violating separation of concerns — it's acknowledging that the separation was always an illusion in component architectures.
+
+        Tailwind wins on velocity. This is the thing critics underestimate. When you're building a landing page for a client, you don't want to name things. You don't want to decide if it's .hero-subtitle or .hero__subtitle or .heroSubtitle. You want to set the font size, color, and spacing and move on. Tailwind eliminates the naming tax entirely. On a five-page marketing site, that naming tax adds up to hours. For an agency shipping multiple sites per month, those hours matter.
+
+        Tailwind wins with design systems. Tailwind's constraint-based approach — spacing-4 is always 1rem, colors are always from the palette — enforces design consistency automatically. Junior developers can't accidentally use 13px instead of 12px or 16px because those values don't exist in the utility system. The design system is the framework. This is genuinely powerful for teams.
+
+        But vanilla CSS wins when your project demands visual uniqueness. Tailwind sites have a look. You can spot them. The spacing scale, the default radius values, the color approach — they create a subtle sameness. For clients who need their site to feel genuinely distinctive, custom CSS gives you full creative control without fighting a framework's defaults. We've had projects where the client's brand required asymmetric spacing, unusual grid structures, and typography that doesn't map cleanly to a utility scale. Vanilla CSS handled those requirements without friction.
+
+        Vanilla CSS wins for long-term maintainability by non-technical teams. If a client's marketing team will occasionally edit the CSS, a well-organized stylesheet with readable class names is dramatically more approachable than a wall of utility classes. .hero-section with defined styles in a stylesheet is self-documenting. A div with twenty Tailwind classes is only readable if you know Tailwind.
+
+        Vanilla CSS wins with the modern CSS feature set. Nesting, container queries, :has(), cascade layers, custom properties with fallbacks — native CSS in 2026 is genuinely powerful. The gap between "I need a preprocessor" and "native CSS handles this" has closed dramatically. If you're writing custom CSS today, you're writing it with tools that didn't exist three years ago.
+
+        The approach we use now: Tailwind for component-driven applications, marketing sites, and projects where development velocity is the priority. Vanilla CSS for brand-heavy creative projects, sites maintained by non-developers, and projects where visual distinctiveness is the deliverable. Sometimes we use both — Tailwind for the layout structure with custom CSS for specific branded components.
+
+        The mistake is treating this as an ideological choice. It's a tooling decision. You don't argue about whether a drill or a screwdriver is "better" — you pick the right tool for the fastener you're working with.
+
+        Tailwind v4 has made the framework significantly better. CSS-first configuration, native container query support, faster builds. And modern CSS has made vanilla CSS significantly better. Nesting, custom properties, new selectors. Both approaches have leveled up. Both are valid. Both produce excellent websites.
+
+        Pick the one that fits your project, your team, and your client. The debate is over.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

@@ -1,0 +1,58 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="GSAP ScrollTrigger vs CSS Scroll-Timeline — a practical comparison of scroll-driven animation techniques for production websites in 2026."
+  title="The Scroll-Triggered Animation Playbook: GSAP ScrollTrigger vs CSS Scroll-Timeline · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Animation &amp; Motion — April 2026
+      </Fragment>
+      <Fragment slot="title">
+        The Scroll-Triggered Animation Playbook: GSAP ScrollTrigger vs CSS Scroll-Timeline
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-sky-500/20 to-indigo-600/20 flex items-center justify-center">
+          <span class="text-4xl">📜</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Two Approaches to Scroll-Driven Motion
+      </Fragment>
+      <Fragment slot="content">
+        Scroll-driven animation is the single most impactful technique for making a marketing site feel premium. Elements that respond to scroll position — fading in, sliding, scaling, revealing — create a sense of intentionality and craft that static pages can't match. In 2026, you have two serious options for implementing this: GSAP ScrollTrigger and the native CSS Scroll-Timeline API. Here's when to use each.
+
+        CSS Scroll-Timeline is the browser-native approach, and it's genuinely impressive. You define an animation with @keyframes, then instead of tying it to a duration, you tie it to scroll progress. The animation-timeline property connects a CSS animation to a scroll container or a specific element's visibility within the viewport. The animation-range property controls when it starts and ends. Zero JavaScript. Zero library downloads. The animation runs on the compositor thread, which means buttery smooth performance that JavaScript literally cannot match.
+
+        The syntax looks like this: you set animation-timeline: view() on an element and animation-range: entry 0% cover 40% to control when the animation triggers relative to the element's visibility. Combine it with standard @keyframes for opacity, transform, or any animatable CSS property. For a simple fade-and-slide entrance, this is about 6 lines of CSS. No build step, no bundle size, no runtime cost.
+
+        Browser support is the caveat. As of early 2026, Scroll-Timeline is fully supported in Chrome, Edge, and Firefox. Safari has partial support with some quirks. For most audiences, that's fine — Chrome alone is 65%+ of web traffic. But if you need pixel-perfect consistency across every browser, including older Safari versions, CSS-only isn't there yet.
+
+        GSAP ScrollTrigger is the JavaScript approach, and it remains the industry standard for good reason. It works everywhere — every browser, every device, every framework. The API is more powerful: you can pin elements, create horizontal scroll sections, scrub timeline animations to scroll position, batch multiple triggers, and coordinate complex multi-element choreography. If CSS Scroll-Timeline is a bicycle, ScrollTrigger is a car.
+
+        The scrub property is ScrollTrigger's killer feature. Set scrub: 1 and the animation's progress is tied to scroll position with one second of smoothing. The result is an animation that follows the user's scroll but with a satisfying, weighted feel — like the content has physical mass. This is the technique behind Apple's product reveal pages, and it's impossible to replicate with CSS Scroll-Timeline because CSS doesn't have the concept of eased scrubbing.
+
+        Pinning is the other thing ScrollTrigger does that CSS can't. A pinned section stays fixed in the viewport while the user scrolls through a defined range. During that pinned duration, you can run an entire timeline of animations — text changes, image transitions, progress bars filling. This is the foundation of long-form storytelling sections and interactive product showcases. CSS position: sticky achieves a similar visual result, but coordinating animations within the sticky duration requires JavaScript.
+
+        So here's the decision framework. Use CSS Scroll-Timeline when: the animation is simple (fade, slide, scale), performance is critical and every millisecond matters, you want zero JavaScript overhead, and you can accept Safari's current limitations. Use GSAP ScrollTrigger when: you need pinning, scrubbed timelines, or complex choreography, you need consistent behaviour across all browsers, you're already using GSAP for other animations, or the project involves coordinating multiple scroll-driven elements.
+
+        In practice, we often use both. CSS Scroll-Timeline for simple entrance animations throughout the page — elements fading in as they scroll into view. GSAP ScrollTrigger for the hero section, the featured project showcase, or the multi-step story section where we need pinning and timeline control. This hybrid approach gives us the best performance where it matters most (dozens of simple animations throughout the page) and the most control where we need it (one or two complex interactive sections).
+
+        The implementation pattern for the hybrid approach: write a base CSS class with scroll-driven entrance animations using animation-timeline: view(). Apply it to content sections throughout the page. Then use GSAP ScrollTrigger explicitly for hero sequences and pinned sections where the complexity warrants JavaScript. Always wrap GSAP code in a check for prefers-reduced-motion and provide a static fallback.
+
+        One more thing: don't animate everything. The temptation with scroll-driven animation is to make every element respond to scroll. Resist it. When everything moves, nothing stands out. Animate the things that matter — headlines, key images, calls to action — and let supporting content simply exist. The best scroll animations are the ones the user doesn't consciously notice but would miss if removed.
+
+        Scroll-driven animation is not a trend. It's a UX pattern that's been refined over a decade and is now being codified into browser standards. Learn both approaches, use the right one for each situation, and your sites will feel a generation ahead of template-based competitors.
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

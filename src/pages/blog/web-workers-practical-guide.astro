@@ -1,0 +1,69 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="A practical guide to Web Workers — how to move heavy JavaScript off the main thread, the messaging pattern, transferable objects, and real use cases from production apps."
+  title="Web Workers: The Performance Tool You Keep Meaning to Learn · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Web Performance
+      </Fragment>
+      <Fragment slot="title">
+        Web Workers: The Performance Tool You Keep Meaning to Learn
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-slate-500/20 to-zinc-600/20 flex items-center justify-center">
+          <span class="text-4xl">&#9881;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Your Main Thread Is Doing Too Much
+      </Fragment>
+      <Fragment slot="content">
+        JavaScript is single-threaded. Everything — your React renders, your event handlers, your data transformations, your animations — runs on one thread. When a heavy computation blocks that thread for 100ms, your UI freezes. Buttons stop responding. Animations stutter. Scroll feels janky. Users think your app is broken. Web Workers let you run JavaScript on a separate thread. The heavy work happens in the background while the main thread stays responsive. Every modern browser has supported them for years. And yet most frontend developers have never used one in production. Here is the practical guide to actually shipping Web Workers.
+
+        What a Web Worker Actually Is
+
+        A Web Worker is a JavaScript file that runs in a separate thread. It has its own global scope — no access to the DOM, no window object, no document. It communicates with the main thread exclusively through message passing. The main thread sends a message to the worker. The worker processes it and sends a message back. That is the entire API. You create a worker by passing a file path or URL to the Worker constructor. The worker file runs in isolation. It listens for messages with onmessage, does work, and posts results back with postMessage. The main thread listens for results with the worker's onmessage handler.
+
+        The Messaging Pattern
+
+        Communication between the main thread and a worker is asynchronous and serialized. When you call postMessage, the data is structured-cloned — essentially deep copied — and sent to the other thread. This means you cannot pass functions, DOM nodes, or class instances. Plain objects, arrays, strings, numbers, and a few special types like ArrayBuffer are fair game. The structured clone has a performance cost. If you are sending a 10MB JSON object to a worker, the cloning itself takes time. For large data, use transferable objects — ArrayBuffers that are moved rather than copied. After transfer, the original reference becomes empty. The data is not duplicated. It is moved to the worker's thread, which is essentially instant regardless of size.
+
+        Real Use Case: Data Processing
+
+        Our most common use case is processing large datasets on the client. We built a claims mapping tool that visualises 6,000+ geocoded insurance claims. Filtering, sorting, and aggregating that data on the main thread caused visible frame drops during user interaction. We moved the data processing to a Web Worker. The main thread sends the full dataset and the current filter criteria. The worker applies the filters, calculates aggregates, and returns the filtered results. The main thread updates the UI with the results. Zero frame drops. The user can interact with the map smoothly while the worker crunches numbers in the background. The key insight is that you do not need to move everything to a worker. Move the expensive operation — the filter, the sort, the aggregation — and keep the rendering on the main thread where it belongs.
+
+        Real Use Case: Image Processing
+
+        Client-side image processing is another natural fit. Resizing images before upload, applying filters, generating thumbnails — all CPU-intensive operations that block the main thread if done inline. We resize profile photos before uploading them to Supabase Storage. The user selects an image, a worker resizes it to the target dimensions using OffscreenCanvas, and the resized image is transferred back to the main thread for upload. The user sees a responsive UI throughout. Without the worker, the browser freezes for a second or two during the resize, which feels broken on mobile devices.
+
+        Real Use Case: JSON Parsing
+
+        Parsing large JSON responses blocks the main thread. If your API returns 5MB of JSON, JSON.parse takes a measurable amount of time. Fetch the response as text, send the text to a worker, parse it there, and send the parsed object back. The main thread stays responsive during parsing. This matters for data-heavy dashboards and admin panels where large datasets are common. We use this pattern when the JSON response is over 1MB. Below that, the overhead of worker communication outweighs the benefit of off-thread parsing.
+
+        Worker Setup in Modern Tooling
+
+        Vite and most modern bundlers support worker imports natively. You create a worker file, import it with a special syntax, and the bundler handles the rest — no manual URL management, no separate build step. In Vite, importing with the query parameter ?worker gives you a worker constructor. Instantiate it and use postMessage as normal. The bundler compiles the worker file separately and generates the correct URL at build time. For shared code between the main thread and the worker, extract it into a utility module that both can import. The bundler duplicates it into both bundles automatically.
+
+        The Comlink Pattern
+
+        Raw postMessage communication gets tedious for complex interactions. Comlink by Google Chrome Labs wraps the messaging API into something that looks like regular function calls. You expose an object from the worker with Comlink.expose, and on the main thread you wrap the worker with Comlink.wrap. The result is a proxy object where every method call is automatically serialized, sent to the worker, executed, and the result is returned as a promise. Your code looks like you are calling functions directly, but everything runs on the worker thread. We use Comlink on projects where the worker API is complex — multiple methods, different data types, bidirectional communication. For simple "send data, get result" patterns, raw postMessage is fine.
+
+        When Not to Use Workers
+
+        Workers have overhead. Creating a worker, serializing messages, deserializing results — there is a cost. For operations that take less than 16ms, the overhead of worker communication is likely greater than the time saved. Do not use a worker to add two numbers. Use workers for operations that take 50ms or more and block user interaction. Profile first. If your operation does not cause visible jank, a worker adds complexity without benefit. The threshold varies by device — a fast desktop might handle 100ms operations without visible stutter, while a budget phone stutters at 30ms. Test on real devices, not your development machine.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

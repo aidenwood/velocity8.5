@@ -1,0 +1,58 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="JavaScript in 2025 year in review. Temporal API, stage 3 decorators, import attributes, and why the language is actually getting good."
+  title="Wait, JavaScript Is Actually Getting Good? Temporal API, Decorators, and What Shipped in 2025 · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Tech News
+      </Fragment>
+      <Fragment slot="title">
+        Wait, JavaScript Is Actually Getting Good? Temporal API, Decorators, and What Shipped in 2025
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-yellow-500/20 to-orange-600/20 flex items-center justify-center">
+          <span class="text-4xl">&#9889;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        The Year JavaScript Stopped Being Embarrassing
+      </Fragment>
+      <Fragment slot="content">
+        For years, complaining about JavaScript was the easiest content on the internet. The type coercion memes. The "0.1 + 0.2" jokes. The Date object that everybody hates. But quietly, through the TC39 proposal process, JavaScript has been accumulating genuinely excellent language features. 2025 was the year it all started landing in browsers. Let's talk about the features that actually matter.
+
+        Temporal API — Dates Are Fixed
+        This is the big one. The Temporal API reached Stage 3 and browser implementations started shipping. If you have ever written new Date() and then spent three hours debugging timezone issues, Temporal is your liberation. Temporal.PlainDate for dates without times. Temporal.ZonedDateTime for dates with timezone awareness. Temporal.Duration for time spans. Arithmetic that actually works. Comparison that actually works. Formatting that does not require Intl.DateTimeFormat gymnastics. We have been using the Temporal polyfill for six months and our date-related bug count dropped to near zero. The API is verbose compared to date-fns or Day.js, but it is correct by default, which turns out to be more important than being concise.
+
+        Decorators at Stage 3
+        TypeScript has had decorators for years but they were always the experimental, legacy kind that did not match the actual TC39 proposal. Now the real decorators are at Stage 3 and TypeScript 5.0+ supports them. The syntax is cleaner, the mental model is simpler, and they compose better than the old version. For the average application developer, decorators are not life-changing. For library authors and framework builders, they are transformative. Angular has already migrated to standard decorators. Ember is built on them. The NestJS ecosystem is preparing migration guides. If you use any decorator-heavy framework, this standardisation means your decorators are no longer a proprietary language extension — they are JavaScript.
+
+        Import Attributes
+        Import attributes let you specify metadata about an import. The most immediate use case is importing JSON files directly — import data from "./config.json" with &#123; type: "json" &#125;. This replaces the fetch-then-parse pattern for JSON modules and the various bundler-specific hacks for importing non-JavaScript files. It also opens the door for importing CSS modules, HTML templates, and other asset types with a standard syntax. Chrome and Firefox ship this today. Safari is close behind.
+
+        Array Grouping
+        Object.groupBy() and Map.groupBy() are small features that eliminate a shocking amount of utility code. Group an array of objects by a key in one line. No more reduce with accumulator patterns, no more lodash.groupBy imports. It is one of those features where you wonder why it took 25 years to add. Browser support hit 95%+ in 2025 and we have been using it in production without polyfills.
+
+        The Iterator Helpers Proposal
+        .map(), .filter(), and .reduce() on iterators — not just arrays. This means you can lazily transform generators, Map entries, Set values, and any iterable without converting to an array first. For data processing pipelines, this is a significant performance improvement. Instead of creating intermediate arrays at every transformation step, you process one element at a time through the entire pipeline. Browsers started shipping this in late 2025 and the ergonomics are excellent.
+
+        Set Methods
+        Set finally got the methods it should have had from day one. intersection(), union(), difference(), symmetricDifference(), isSubsetOf(), isSupersetOf(). Basic set operations that previously required manual iteration or pulling in a library. These shipped in all major browsers in 2025 and they work exactly how you would expect. No surprises. No gotchas. Just set math.
+
+        The Bigger Picture
+        JavaScript is no longer a language you tolerate — it is a language that is genuinely well-designed for modern use cases. The TC39 process is slow, but it produces thoughtful, well-tested features. The Date API was broken for 25 years and Temporal does not just fix it — it is one of the best date APIs in any programming language. The language is catching up to what TypeScript developers expected it to be. 2025 was the tipping point where the baseline JavaScript experience became good enough that you no longer need a utility library for basic operations. That is a milestone worth celebrating.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

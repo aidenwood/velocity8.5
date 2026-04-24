@@ -1,0 +1,71 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Common API integration patterns we use in production — Stripe, Pipedrive, Google Maps, webhooks, and how to build integrations that do not break at 2am."
+  title="The API Integration Patterns That Won't Break at 2am · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        API Development
+      </Fragment>
+      <Fragment slot="title">
+        The API Integration Patterns That Won't Break at 2am
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-emerald-600/20 to-teal-500/20 flex items-center justify-center">
+          <span class="text-4xl">&#128268;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Every Integration Breaks. Plan for It.
+      </Fragment>
+      <Fragment slot="content">
+        We integrate third-party APIs on almost every project we build. Stripe for payments. Pipedrive for CRM. Google Maps for geocoding and routing. Zapier for the weird one-off automations that do not justify custom code. After wiring up dozens of these integrations across production applications, the patterns are clear — and so are the mistakes that cost you weekends.
+
+        Here are the integration patterns we actually use and the lessons behind each one.
+
+        Pattern 1: Webhooks Over Polling
+
+        If the API supports webhooks, use them. Polling is a waste of compute and introduces latency. When Stripe processes a payment, you do not want to find out about it on your next 5-minute poll. You want to know immediately. Our webhook pattern is straightforward. The third-party sends a POST to your endpoint. Your endpoint validates the signature — every serious API signs its webhooks. You process the event and update your database. You return a 200 immediately, even if you need to do async work. That last point matters. Stripe will retry webhook delivery if you do not respond quickly. If your webhook handler is doing heavy processing before responding, you will get duplicate events. Accept the webhook, queue the work, respond with 200.
+
+        Pattern 2: Idempotent Event Processing
+
+        Webhooks will fire more than once. Network hiccups, retries, race conditions — you will receive duplicate events. Every webhook handler we build includes an idempotency check. Store the event ID in your database. Before processing, check if you have already seen it. If yes, return 200 and skip processing. This takes five minutes to implement and saves you from double-charging customers, creating duplicate CRM records, or sending the same email twice. We learned this one the hard way on a Stripe integration that created duplicate subscription records for three days before anyone noticed.
+
+        Pattern 3: The Sync Table Pattern
+
+        When you are syncing data from an external system — say, Pipedrive contacts into your database — do not try to merge directly into your application tables. Create a dedicated sync table that mirrors the external data structure. Your sync table stores the raw data from the API along with a synced_at timestamp and the external ID. A separate process maps that data into your application's schema. This separation means API changes do not break your application logic. When Pipedrive changes their response format — and they will — you update the sync logic without touching your core business tables.
+
+        Pattern 4: API Key Encryption
+
+        If your application stores API keys for users or tenants, encrypt them. We use Supabase Vault for this, but the principle is the same regardless of implementation. Keys are encrypted at rest. They are decrypted only in Edge Functions, never in the browser. The database column stores cipher text, not plain text. We have seen production applications store Stripe secret keys in plain text in a Supabase table with no RLS. That is one SQL injection away from a catastrophic breach. Encrypt your keys.
+
+        Pattern 5: Circuit Breakers
+
+        Third-party APIs go down. Google Maps had three major outages last year. If your application hard-fails when an external API is unavailable, your users suffer for someone else's infrastructure problem. We implement simple circuit breakers for critical integrations. If the API returns errors for N consecutive requests, stop calling it for a cooldown period. Serve cached data or a degraded experience instead. For Google Maps geocoding, we cache results in Supabase. If the API is down, we serve cached coordinates. The user might get slightly stale data, but the app still works.
+
+        Pattern 6: Rate Limiting and Backoff
+
+        Every API has rate limits. Google Maps gives you a generous allowance. Pipedrive is more restrictive. Stripe is somewhere in between. We handle rate limits with exponential backoff and request queuing. When you hit a 429 response, wait and retry with increasing delays. For bulk operations — like syncing 5,000 Pipedrive contacts — we batch requests and add delays between batches. Hitting rate limits in production is embarrassing and avoidable.
+
+        The Integration Stack
+
+        Here is what the actual stack looks like across our projects. Supabase Edge Functions handle all webhook endpoints and outbound API calls. Supabase Vault stores encrypted API keys. Supabase tables store sync data and webhook event logs. Netlify Functions handle anything that needs Node.js — some SDKs do not have Deno-compatible versions yet. The key principle is that no API call ever happens from the browser. Every third-party integration goes through a server-side function. This protects your API keys, lets you add logging and error handling in one place, and keeps your client code clean.
+
+        The Real Cost of Bad Integrations
+
+        We have been hired three times to fix integrations that another team built. Every time, the problems were the same: no webhook validation, no idempotency, API keys in plain text, no error handling. These are not edge cases. They are table stakes. Build your integrations like the API will try to break your app at 2am on a Saturday — because it will.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

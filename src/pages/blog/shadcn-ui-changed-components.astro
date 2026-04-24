@@ -1,0 +1,57 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="shadcn/ui flipped the component library model on its head. Copy-paste beats npm install. Here's why the industry followed."
+  title="How shadcn/ui Flipped Component Libraries on Their Head (Copy-Paste Beats npm install) · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Tech News
+      </Fragment>
+      <Fragment slot="title">
+        How shadcn/ui Flipped Component Libraries on Their Head (Copy-Paste Beats npm install)
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-zinc-600/20 to-slate-500/20 flex items-center justify-center">
+          <span class="text-4xl">&#129513;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Copy-Paste Beats npm Install
+      </Fragment>
+      <Fragment slot="content">
+        For the last decade, the component library model was simple: install a package, import components, customise through props and theme objects, fight the library when it does not do exactly what you want. Material UI, Chakra, Ant Design — they all worked this way. Then shadcn showed up in 2023 with an absurdly simple idea: what if the components just lived in your project? No package to install. No version conflicts. No fighting the abstraction. Just copy the code into your codebase and own it completely. Two years later, this idea has fundamentally changed how the React ecosystem thinks about UI.
+
+        The Problem With Traditional Libraries
+        Every developer has the same story. You install a component library, build your UI in a week, and spend the next three months fighting it. You need a slightly different dropdown behaviour — sorry, that prop does not exist. You want to change the animation timing — override five CSS variables and pray nothing else breaks. You need to upgrade to the next major version — rewrite half your component implementations because the API changed. The abstraction is supposed to save you time, but the time you save building is spent fighting the boundaries of what the library allows.
+
+        Why Copy-Paste Works
+        shadcn/ui components are built on Radix UI primitives, styled with Tailwind CSS, and designed to be copied into your project via a CLI command. Run npx shadcn add button and a fully typed, accessible, styled button component appears in your codebase. You own that code. You can modify it however you want. There is no upstream package to worry about. There are no breaking changes because you control the source. Need a different variant? Add it. Need different animation? Change it. Need to completely restructure the component? Go for it. The code is yours.
+
+        The CLI Is The Secret Weapon
+        The real innovation is not the components — it is the distribution model. The shadcn CLI handles dependency management, file placement, and configuration. It knows your project structure. It installs the right Radix primitives. It sets up your Tailwind config correctly. It even handles theming with CSS variables that work across light and dark modes. This is the part that made the copy-paste model viable at scale. Without the CLI, copying components would be tedious and error-prone. With it, adding a new component takes five seconds.
+
+        The Ecosystem Exploded
+        In 2025, the shadcn ecosystem is massive. There are shadcn-compatible component registries for charts, data tables, complex forms, dashboards, and entire application templates. The community built registries for Vue, Svelte, and even Angular. Vercel hired the creator and integrated the component model into v0, their AI UI generator. The pattern of "components as code you own" is now the default mental model for a huge chunk of the frontend community.
+
+        What This Means For Your Projects
+        If you are starting a new React or Next.js project in 2025 and you are not using shadcn/ui, you need a good reason. The component quality is excellent — accessible by default thanks to Radix, consistently styled thanks to Tailwind, and fully typed thanks to TypeScript. The customisation story is unbeatable because you literally own the source code. And the community is large enough that you can find a shadcn-compatible component for almost anything you need.
+
+        We use shadcn/ui on every React project at this point. Not because it is trendy, but because the developer experience is measurably better than any traditional component library we have used. You spend less time fighting the framework and more time building your actual product. That is the whole point.
+
+        The Bigger Lesson
+        The real takeaway is not about shadcn specifically — it is about ownership. Developers are realising that depending on third-party abstractions for core UI is a liability. When you own the code, you control the upgrade path, the customisation surface, and the debugging experience. npm install gave us convenience at the cost of control. Copy-paste gave us both. That trade-off is not going back.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

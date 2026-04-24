@@ -1,0 +1,67 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Event delegation explained — how it works, why it matters for performance, and the practical patterns we use for lists, tables, and dynamic content."
+  title="Event Delegation: The Performance Pattern You Probably Forgot About · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        JavaScript
+      </Fragment>
+      <Fragment slot="title">
+        Event Delegation: The Performance Pattern You Probably Forgot About
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-purple-500/20 to-violet-600/20 flex items-center justify-center">
+          <span class="text-4xl">&#127919;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        One Listener to Rule Them All
+      </Fragment>
+      <Fragment slot="content">
+        If you work in React or Vue, you might think event delegation is an old-school DOM technique that frameworks handle for you. And partially, you would be right — React's synthetic event system uses delegation under the hood. But understanding event delegation is still critical, because you will encounter vanilla JavaScript in Astro components, web components, embedded widgets, and every third-party integration that does not live inside your framework's component tree. And even within React, knowing how delegation works helps you write better event handling.
+
+        How Event Delegation Works
+
+        When you click a button inside a list item inside a div, the browser does not just fire the event on the button. It fires it on the button first, then the list item, then the div, then the body, then the document. This is called event bubbling. Every click event travels up the entire DOM tree from the target element to the root. Event delegation exploits this. Instead of attaching a click handler to every button in a list, attach a single click handler to the parent container. When any button is clicked, the event bubbles up to the parent, and you check event.target to determine which button was clicked. One listener instead of hundreds.
+
+        Why This Matters for Performance
+
+        Every event listener consumes memory. For a list of 10 items, the difference is negligible. For a list of 1,000 items — a data table, a feed, a search results page — attaching individual listeners to each row adds up. We worked on a dashboard that rendered 2,000 table rows with three event listeners each — click, hover, and context menu. That is 6,000 event listeners. The page took 800ms just to attach them after rendering. Switching to delegation on the table element — three listeners total — dropped that to under 1ms. The rows rendered faster because there was no listener setup phase.
+
+        The Pattern in Vanilla JavaScript
+
+        The implementation is straightforward. Attach a click listener to the parent element. In the handler, use event.target to find which child was clicked. Since event.target might be a nested element — a span inside a button inside a list item — use .closest() to walk up the DOM tree and find the element you care about. The .closest() method takes a CSS selector and returns the first ancestor that matches, or null if none match. This handles the nested element problem elegantly. Click a span inside a button, .closest('button') gives you the button. Click directly on the button, .closest('button') gives you the same button. Click on empty space in the container, .closest('button') returns null and you skip the handler.
+
+        Dynamic Content for Free
+
+        The biggest advantage of delegation is that it handles dynamically added elements automatically. If you add new items to a list after the page loads, they immediately respond to clicks because the listener is on the parent, not the children. Without delegation, you have to manually attach listeners to new elements every time you add them. This is where delegation shines in Astro projects. Astro renders HTML on the server, and interactive elements are progressively enhanced with client-side JavaScript. A delegated listener on a container works regardless of when child elements appear in the DOM.
+
+        Data Attributes for Actions
+
+        We pair delegation with data attributes to create a clean action-routing pattern. Each interactive element gets a data-action attribute describing what it does. The delegated handler reads the data-action value and routes to the appropriate function. This eliminates the need for individual callback functions scattered across your code. One listener, one handler, a switch statement on the action. The handler can also read additional data from the element using other data attributes — data-id for the item ID, data-status for the current state, whatever context the handler needs. Everything the handler needs is encoded in the HTML. No closures, no external state lookups.
+
+        When Delegation Is the Wrong Choice
+
+        Not every event should be delegated. Events that do not bubble — focus, blur, scroll — cannot be delegated without using the capture phase, which adds complexity. Events that fire rapidly — mousemove, scroll, input — add overhead when the handler has to traverse up from event.target on every firing. For these, direct listeners with throttling or debouncing are more appropriate. In React, delegation is usually the wrong choice because React already handles it internally. Adding your own delegation on top of React's creates confusing event ordering. Let React manage events within its tree, and use delegation only for elements outside React's control.
+
+        The Astro Sweet Spot
+
+        Astro's island architecture creates a natural use case for delegation. Your page is mostly static HTML with interactive islands. The static HTML outside of islands does not have a framework managing events. Delegation lets you add interactivity to static content with minimal JavaScript. We use this for navigation menus, tab groups, accordion panels, and any interactive pattern that lives outside of a React island. A single script tag with a delegated listener can make an entire page section interactive without shipping a framework.
+
+        Delegation is not glamorous. It is not new. But it is one of those fundamental patterns that separates developers who understand the browser from developers who just use frameworks. Know how events work, and you will write better code regardless of what framework you are using.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

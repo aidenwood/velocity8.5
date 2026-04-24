@@ -1,0 +1,95 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="The domain migration checklist we built after losing a client's email for 4 hours. DNS, redirects, SSL, email — every step, in order, with the gotchas."
+  title="The Domain Migration Checklist We Built After One Very Expensive Mistake · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        DevOps
+      </Fragment>
+      <Fragment slot="title">
+        The Domain Migration Checklist We Built After One Very Expensive Mistake
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-yellow-500/20 to-amber-600/20 flex items-center justify-center">
+          <span class="text-4xl">&#128203;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        The Domain Migration Checklist
+      </Fragment>
+      <Fragment slot="content">
+        We once migrated a client's website to a new hosting platform. The site came up perfectly on the new host. Beautiful. Fast. Everything worked. Except we forgot to re-add the MX records during the DNS migration. Their business email stopped working for four hours on a Tuesday morning. They missed a contract negotiation email from their biggest client. It cost real money and very nearly cost us the account.
+
+        That afternoon, we wrote a checklist. We have used it for every domain migration since. We are sharing it here because no one should learn this lesson the way we did.
+
+        Two Weeks Before Migration
+
+        Audit the current DNS records. Every single one. Log into the existing DNS provider and screenshot or export every record — A, AAAA, CNAME, MX, TXT, SRV, all of them. Do not assume you know what is there. Clients add records you do not know about. Email providers add records during setup. Marketing tools add verification TXT records. An integration partner may have added a CNAME for a subdomain three years ago. Document everything.
+
+        Check the current TTL on all records. If they are set high (3600 or above), lower them to 300 (five minutes). This needs to happen at least 24 hours before the migration — ideally 48 hours — so the old high-TTL cached records have time to expire. If you skip this step, your DNS changes could take up to 24 hours to propagate instead of five minutes.
+
+        Verify you have access to the domain registrar. Not the DNS host — the registrar where the domain was purchased. If you need to change nameservers, you need registrar access. Many clients cannot tell you the difference between their registrar and their hosting provider, and figuring this out at migration time is stressful.
+
+        Prepare the new DNS zone. Set up all the records on the new DNS provider before you cut over. A records, CNAMEs, MX records, TXT records — everything you documented in the audit. Set them up but do not change the nameservers yet. The new zone should be a complete replica of the old one, with only the hosting-related records (A and CNAME for the website) pointing to the new destination.
+
+        One Day Before Migration
+
+        Verify the new DNS zone matches the old one. Compare record by record. Pay special attention to MX records (email routing), SPF and DKIM TXT records (email authentication), and any CNAME records for subdomains (blog.domain.com, app.domain.com, mail.domain.com).
+
+        Confirm the new hosting is ready. The site should be fully deployed and working on the platform's default URL (e.g., yoursite.netlify.app). Test it thoroughly. If the site is broken on the default URL, fixing it during a live DNS migration is a nightmare.
+
+        Notify the client. Tell them when the migration will happen and that there may be brief interruptions. Set expectations. "Between 2pm and 4pm tomorrow, there may be a few minutes where the site loads slowly or email delivery is delayed." Under-promise and over-deliver.
+
+        Migration Day
+
+        Confirm the TTL was lowered successfully. Check the actual DNS records using a tool like dig or DNS Checker. If the TTL is still high, postpone the migration. Seriously. Do not proceed with high TTLs.
+
+        Add the custom domain to the new hosting platform. On Netlify, this means going to Domain Settings and adding the production domain. Netlify will tell you exactly what DNS records to set. Do not change DNS yet — just note what Netlify needs.
+
+        Update the DNS records (or change nameservers). If you are keeping the same DNS provider, update the A and CNAME records for the website to point to the new host. If you are changing DNS providers entirely (e.g., moving to Cloudflare DNS), change the nameservers at the registrar level. This is the point of no return.
+
+        Verify DNS propagation. Use DNS Checker or What's My DNS to watch the records propagate. With a 300-second TTL, most resolvers should pick up the changes within ten minutes.
+
+        Test everything. Load the site. Click through every page. Test forms. Test the contact page. Send a test email to the domain and verify it arrives. Send a test email from the domain and verify it sends. Check the SSL certificate — it should provision automatically on Netlify within a few minutes of the DNS records pointing correctly.
+
+        After Migration
+
+        Monitor for 48 hours. Watch uptime monitoring. Check email delivery. Look for any error reports in Sentry or your error tracking tool. Some DNS resolvers are stubborn and may take longer to pick up the changes, especially if the old TTL was very high.
+
+        Raise the TTL back to normal. After 48 hours of stability, set the TTL on all records back to 3600 (one hour) or higher. Low TTLs increase DNS lookup overhead — they are useful during migrations but unnecessary during normal operation.
+
+        Set up redirects for the old hosting. If the site was previously hosted somewhere that will keep responding on the old IP (like a VPS or a different hosting platform), set up redirects there to point to the new domain. This catches any cached links, bookmarks, or search engine crawlers that still hit the old host.
+
+        Update third-party services. Google Search Console, Google Analytics, any advertising platforms, any email marketing tools that reference the domain — verify they are still working. Most of them will not be affected by a hosting migration (just a DNS change), but webhook URLs or callback URLs that included the old hosting domain will need updating.
+
+        Test email one more time. Seriously. Send and receive. Check that SPF, DKIM, and DMARC are passing by looking at email headers. Use a tool like Mail Tester to verify email deliverability has not been impacted.
+
+        The Records People Forget
+
+        MX records: the most commonly forgotten and the most damaging when missed. Email stops working immediately.
+
+        SPF TXT records: if you forget to add the SPF record, email from the domain starts getting flagged as spam. This is subtle and may not be noticed for days.
+
+        DKIM TXT records: similar to SPF, missing DKIM records degrade email deliverability.
+
+        Subdomain CNAMEs: blog.domain.com, shop.domain.com, app.domain.com. If the client has services on subdomains, those need to be migrated too.
+
+        CAA records: Certificate Authority Authorisation records restrict which CAs can issue certificates for the domain. If CAA records exist on the old DNS and are not carried over, SSL certificate provisioning on the new host may fail silently.
+
+        This checklist is not glamorous. It will never go viral on Twitter. But it has prevented every domain migration disaster we have had since that email outage, and that is worth more than any amount of developer clout.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

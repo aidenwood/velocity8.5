@@ -1,0 +1,83 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Third-party scripts — analytics, chat widgets, pixels — are silently destroying your website's performance. Here's how to audit, defer, and remove what's costing you."
+  title="That Analytics Script Is Costing You More Than You Think · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Web Performance — April 2026
+      </Fragment>
+      <Fragment slot="title">
+        That Analytics Script Is Costing You More Than You Think
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-red-600/20 to-orange-500/20 flex items-center justify-center">
+          <span class="text-4xl">&#128165;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        The Silent Performance Killers
+      </Fragment>
+      <Fragment slot="content">
+        Last month we audited a Gold Coast business website that scored 34 on Lighthouse mobile. The design was clean. The images were optimised. The hosting was fine. The problem? Eleven third-party scripts. Google Analytics. Google Tag Manager with eight tags inside it. Facebook Pixel. A live chat widget. Hotjar. A cookie consent banner. A review aggregator widget. Together, these scripts added 1.8MB of JavaScript, made 47 additional network requests, and blocked the main thread for over 2 seconds during page load.
+
+        The site's actual content — the HTML, CSS, images, and fonts that constitute the business's web presence — weighed 400KB. The tracking and widget overhead was 4.5x heavier than the website itself.
+
+        This is not unusual. This is normal.
+
+        <strong>Why third-party scripts are uniquely destructive</strong>
+
+        Third-party scripts are different from your own code in several important ways, and none of them are good for performance.
+
+        You don't control their size or behaviour. When a third-party updates their script, your site gets heavier without you changing anything. We've seen chat widget scripts double in size after a vendor update, with no notification to customers.
+
+        They execute on your main thread. Every millisecond a third-party script spends parsing, compiling, and executing is a millisecond your site can't respond to user interactions. This directly impacts INP — the Core Web Vital that measures interaction responsiveness.
+
+        They make additional requests. A single Google Tag Manager container doesn't load one script — it loads every tag configured inside it, each of which may load its own dependencies. A GTM container with 10 tags can trigger 30+ additional network requests.
+
+        They can block rendering. Scripts loaded without async or defer attributes block the HTML parser entirely. The browser stops building the DOM until the script downloads and executes. If that script is hosted on a slow CDN or the user has a poor connection, your entire page waits.
+
+        <strong>The real cost calculation</strong>
+
+        Most businesses evaluate third-party scripts based on their utility — "we need analytics" or "we need live chat." Nobody evaluates them based on their cost to page performance. But here's the math that changes minds.
+
+        A Hotjar session recording script adds approximately 80-100KB of JavaScript and 200-300ms of main thread work. If that delays your page load enough to push Core Web Vitals into the "needs improvement" range, Google reduces your organic visibility. A 15% drop in organic traffic for a site getting 5,000 monthly visits means 750 fewer visitors per month. If your conversion rate is 2% and your average job value is $500, that's $7,500 per month in lost revenue. Is the Hotjar data worth $7,500 a month? Probably not.
+
+        The same calculation applies to every script on your site.
+
+        <strong>The audit process</strong>
+
+        Open Chrome DevTools. Go to the Network tab. Reload the page. Sort by domain. Everything that isn't your domain is a third-party request. Count them. Measure their total size. Then go to the Performance tab, record a page load, and look at the main thread timeline. The coloured blocks from third-party domains are time your site is spending on someone else's code.
+
+        For each script, ask three questions. Is this generating revenue directly? Is there a lighter alternative? Can it be deferred or loaded after the initial page load?
+
+        <strong>Practical fixes that don't require removal</strong>
+
+        Google Tag Manager: Reduce the number of tags. Every tag you add is another script that GTM loads and executes. If you have tags for platforms you stopped using two years ago, remove them. Consider firing non-essential tags on a timer (5 seconds after page load) rather than on page load.
+
+        Analytics: Google Analytics 4 via gtag.js adds about 90KB. If you only need basic traffic data, consider lighter alternatives like Plausible (under 1KB) or Fathom (under 5KB). They're privacy-focused, GDPR-compliant without cookie consent banners, and orders of magnitude lighter.
+
+        Chat widgets: Load them on interaction, not on page load. Show a static "Chat with us" button, and only load the Intercom or Zendesk script when someone clicks it. This defers 200-500KB of JavaScript until someone actually wants to chat.
+
+        Social embeds: Don't embed Instagram feeds or Twitter timelines. They load megabytes of resources. Screenshot the content and link to the source instead.
+
+        Cookie consent banners: These are often 50-100KB and render-blocking. If you're not targeting EU users and your analytics is cookie-free, you may not need one at all. If you do, use a lightweight implementation that loads asynchronously.
+
+        <strong>The hard conversation</strong>
+
+        The hardest part of this process isn't technical — it's convincing stakeholders that less tracking means better business outcomes. Every marketing team wants more data. But data collected on a website that loads in 6 seconds and ranks on page three is worth less than no data on a website that loads in 1.5 seconds and ranks on page one. Performance is the feature that makes every other feature work. Protect it aggressively.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

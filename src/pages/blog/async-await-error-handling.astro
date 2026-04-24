@@ -1,0 +1,71 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="The tuple pattern for async/await error handling that eliminates nested try/catch blocks and makes JavaScript error flows actually readable."
+  title="The async/await Error Handling Pattern Nobody Told You About · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        JavaScript
+      </Fragment>
+      <Fragment slot="title">
+        The async/await Error Handling Pattern Nobody Told You About
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-red-500/20 to-rose-600/20 flex items-center justify-center">
+          <span class="text-4xl">&#128165;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        try/catch Blocks Are a Code Smell at Scale
+      </Fragment>
+      <Fragment slot="content">
+        async/await was supposed to save us from callback hell. And it did. But it introduced a new problem that nobody talks about: try/catch hell. You know the pattern. You have three async operations that depend on each other. Each one can fail in different ways. You either wrap them all in one giant try/catch and lose context about which operation failed, or you nest three separate try/catch blocks and your code looks like a staircase. Neither option is good. Here is the pattern we use on every project that makes async error handling actually readable.
+
+        The Problem with try/catch
+
+        Look at how most developers handle multiple async operations. One big try/catch block wrapping three awaits. If any of them throws, you land in the catch block with a generic error. Which call failed? What was the state when it failed? Did the first two succeed before the third failed? You do not know without inspecting the error object, and even then the answer is often ambiguous. The alternative is worse. Three nested try/catch blocks. Each one handles its specific error, but now your function is 40 lines of boilerplate for three lines of actual logic. The signal-to-noise ratio is terrible.
+
+        The Tuple Pattern
+
+        Here is the fix. Write a utility function that wraps a promise and returns a tuple: the error as the first element, the data as the second. If the promise resolves, the error is null and data contains the result. If the promise rejects, error contains the error and data is null. This is borrowed from Go's error handling pattern, and it works beautifully in TypeScript. The function is five lines of code. It takes a promise as an argument, calls .then() to return a tuple of &#91;null, data&#93;, and calls .catch() to return a tuple of &#91;error, null&#93;.
+
+        Now your async code reads linearly. Call your utility with the first async operation. Check if error exists. If it does, handle it and return. Move on to the next operation. No nesting. No ambiguity about which call failed. Each error is handled right where it occurs.
+
+        Why Tuples Beat try/catch
+
+        The tuple pattern has three advantages that compound over time. First, errors are handled at the call site. You see the error handling right next to the code that might fail. There is no jumping between the try block and a distant catch block. Second, TypeScript narrows the types automatically. After checking that error is null, TypeScript knows data is defined. No null assertions needed. Third, you never accidentally swallow errors. With try/catch, it is easy to write an empty catch block or a catch that logs but does not re-throw. The tuple pattern forces you to explicitly check the error for every operation.
+
+        Typed Errors
+
+        We take this further with typed error objects. Instead of catching a generic Error, our utility function can return typed error objects with a code property, a message, and optional metadata. When a Supabase query fails, the error has the Postgres error code. When a fetch call fails, the error has the HTTP status code. When a Zod validation fails, the error has the field-level issues. This means your error handling can be specific without instanceof checks or string matching on error messages. Check the error code, not the error message.
+
+        The Pattern in Practice
+
+        Here is how this looks in a real function from one of our projects. A user registration flow that creates an account, sends a verification email, and logs the event. Three async operations, each of which can fail independently. Without the tuple pattern, this is either one try/catch that cannot distinguish failures, or three nested try/catch blocks. With the tuple pattern, it is three sequential blocks. Each one calls the async operation, checks for an error, and either handles the failure or proceeds. The function reads top-to-bottom. Every failure path is explicit. A junior developer can understand the flow on their first read.
+
+        When to Keep try/catch
+
+        The tuple pattern is not a universal replacement for try/catch. try/catch is still the right choice when you genuinely do not care which operation failed — you just want to catch anything and show a generic error message. It is also fine for wrapping third-party libraries that throw synchronous exceptions, since the tuple pattern only works with promises. We use try/catch at the top level of API routes and event handlers as a safety net. Everything inside uses the tuple pattern for granular error handling.
+
+        Composing with Promise.all
+
+        The tuple pattern works with parallel operations too. Wrap Promise.all in the utility function. If any promise rejects, you get the error. If they all resolve, you get the array of results. For Promise.allSettled, you do not need the wrapper since allSettled never rejects — but you still need to check each result's status. We combine both approaches depending on whether a partial failure is acceptable.
+
+        Ship It
+
+        This pattern is 5 lines of utility code and it changes how your entire team writes async JavaScript. Every new developer we onboard picks it up in a day. Error handling goes from an afterthought to a natural part of the flow. Your production error logs get specific instead of vague. And you never write a nested try/catch again.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

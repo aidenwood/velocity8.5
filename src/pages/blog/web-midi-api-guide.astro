@@ -1,0 +1,58 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="The Web MIDI API lets you connect hardware controllers to the browser and build real music interfaces. Here's how it works and what you can build with it."
+  title="The Web MIDI API Is Real and You Can Build Actual Music Interfaces With It · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Creative Development — April 2026
+      </Fragment>
+      <Fragment slot="title">
+        The Web MIDI API Is Real and You Can Build Actual Music Interfaces With It
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-fuchsia-600/20 to-rose-500/20 flex items-center justify-center">
+          <span class="text-4xl">🎹</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Your Browser Is a Music Studio (Seriously)
+      </Fragment>
+      <Fragment slot="content">
+        This one surprises people. You can plug a MIDI keyboard, drum pad, or DJ controller into your computer, open a web browser, and have the browser read every key press, knob turn, and fader slide in real time. No plugins. No downloads. No Electron wrapper. Just a web page talking to hardware. The Web MIDI API makes this possible, and almost nobody is using it.
+
+        MIDI (Musical Instrument Digital Interface) is a protocol from 1983. It doesn't transmit audio — it transmits events. "Note C4 was pressed with velocity 87." "Control knob 7 was turned to value 64." "Pitch bend moved to 8192." These events are tiny, fast, and universal. Every music controller in existence speaks MIDI. And since 2015, web browsers can listen.
+
+        The API is straightforward. You call navigator.requestMIDIAccess(), which prompts the user for permission (similar to camera or microphone access). Once granted, you get a MIDIAccess object with a list of connected inputs and outputs. Each input fires a midimessage event containing a data array: three bytes that encode the message type, the note or controller number, and the value. That's the entire API surface. It's beautifully simple.
+
+        Parsing the data array is where you need to understand MIDI's message format. The first byte is the status byte — its upper nibble tells you the message type (note on, note off, control change, pitch bend) and its lower nibble tells you the MIDI channel. The second byte is usually the note number (0-127, where 60 is middle C) or controller number. The third byte is the velocity (for notes) or value (for controllers). A note-on message with velocity 0 is actually a note-off. Yes, it's a 40-year-old protocol. It has quirks.
+
+        What can you actually build? We built an F1 controller interface — a web app that maps a Traktor Kontrol F1's buttons, knobs, and faders to visual parameters. Press a pad and it triggers a visual effect. Turn a knob and it changes the colour palette. Slide a fader and it adjusts the animation speed. This turns a DJ controller into a VJ instrument, all running in the browser with Web Audio and Canvas.
+
+        Music education apps are a natural fit. Connect a MIDI keyboard, display sheet music or a piano roll, and provide real-time feedback on which notes the student played correctly. The latency is low enough for real-time performance — we're talking single-digit milliseconds from key press to JavaScript callback. That's faster than most native desktop apps.
+
+        Synthesisers in the browser are entirely viable. The Web Audio API gives you oscillators, filters, envelopes, and effects. The Web MIDI API gives you the controller input. Combine them and you've got a browser-based synthesiser that responds to hardware. Tone.js is the library that makes Web Audio manageable, and it has built-in MIDI support. You can build a fully functional synth with presets, effects chains, and hardware control in a web app.
+
+        Live visual performance tools — what VJs and video artists use — are another category. Map MIDI controls to p5.js or Three.js parameters. Each knob controls a visual dimension: hue, particle count, noise scale, camera rotation. Perform live visuals at events using nothing but a laptop, a MIDI controller, and a browser. We've experimented with this and the results are genuinely impressive.
+
+        The limitations are honest. Browser support is Chrome, Edge, and Opera. Firefox has it behind a flag. Safari doesn't support it at all. This means Web MIDI apps are not viable for general-audience consumer products. But for creative tools, music apps, and performance interfaces where you control the environment, Chrome is fine. Your users are plugging in MIDI hardware — they can use Chrome.
+
+        Security-wise, MIDI access requires a secure context (HTTPS) and explicit user permission. The browser also requires a user gesture (like a button click) before you can request access. These are reasonable protections that prevent drive-by MIDI scanning.
+
+        For developers curious about creative coding, the Web MIDI API is one of the most underused browser APIs. It bridges the physical and digital in a way that's genuinely magical. You turn a physical knob and something changes on screen. Immediately. No app store, no installation, no proprietary SDK. Just the open web doing what native apps have done for decades.
+
+        Build a simple keyboard visualiser. Connect your MIDI controller, listen for note-on events, and light up a visual piano on screen. It takes maybe 50 lines of JavaScript. Once you feel the responsiveness — the near-zero latency between pressing a key and seeing the result — you'll start thinking about what else you can build. That's the dangerous part. In a good way.
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

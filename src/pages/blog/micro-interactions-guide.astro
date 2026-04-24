@@ -1,0 +1,62 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="The difference between a website that feels cheap and one that feels premium often comes down to micro-interactions. Here's how to add polish without blowing the budget."
+  title="Micro-Interactions That Make Your Website Feel Expensive (Without Being Expensive) · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        UI Design — April 2026
+      </Fragment>
+      <Fragment slot="title">
+        Micro-Interactions That Make Your Website Feel Expensive (Without Being Expensive)
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-rose-500/20 to-pink-600/20 flex items-center justify-center">
+          <span class="text-4xl">&#10024;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Small Details, Big Impact
+      </Fragment>
+      <Fragment slot="content">
+        Open Stripe's website. Click a button. Hover over a navigation link. Scroll through a section. Everything feels considered. Deliberate. Expensive. Now open a random small business website. The same actions feel flat, static, lifeless. The difference is not the budget — Stripe's marketing site does not use any technology that is inaccessible to a solo developer. The difference is attention to micro-interactions: the tiny, often invisible animations and feedback patterns that make an interface feel alive.
+
+        What Makes an Interaction Feel "Premium"
+        Premium feel comes from three things: appropriate timing, meaningful feedback, and spatial consistency. Appropriate timing means animations that are fast enough to feel responsive (150-300ms for most transitions) but not so fast that the eye cannot track them. Meaningful feedback means every user action gets an acknowledgement — a hover state, a click response, a loading indicator. Spatial consistency means elements appear to exist in a physical space with consistent rules — things slide in from the direction they came from, related elements animate in sequence, not simultaneously.
+
+        The Hover State Hierarchy
+        Not every interactive element needs the same hover treatment. Primary CTAs get the most dramatic response — a scale transform, a colour shift, maybe a shadow lift. Secondary actions get subtler treatment — an underline animation, a colour change, a slight opacity shift. Tertiary elements like text links get the lightest touch — a simple colour change or underline. This hierarchy communicates importance without the user consciously thinking about it. When everything has the same hover state, nothing stands out. When hover states are graded, the visual hierarchy reinforces itself.
+
+        Button Feedback That Feels Physical
+        The best button interactions mimic physical feedback. On hover, the button lifts slightly (translateY -1px and a subtle shadow increase). On click, it presses down (translateY 1px and the shadow decreases). This creates a tactile illusion that makes clicking feel satisfying. In CSS, this is three lines of code: a transition on the resting state, a transform on hover, and an active state that reverses the direction. Add a 150ms transition with an ease-out curve and the button feels like a real object. This costs nothing and takes five minutes to implement, but the difference in perceived quality is dramatic.
+
+        Loading States That Communicate Progress
+        A loading spinner says "wait." A skeleton screen says "content is coming and here is roughly what it will look like." A progress bar says "we are 60% done." Each communicates a different amount of information, and more information almost always reduces perceived wait time. For content loading, skeleton screens are the gold standard — grey placeholder shapes that match the layout of the incoming content. For actions like form submissions, a button that transitions from its label to a spinner to a checkmark communicates the full lifecycle: action, processing, success. That three-state transition takes an hour to build with Framer Motion and makes the interface feel dramatically more polished than a static "Submitting..." text swap.
+
+        Scroll-Triggered Entrance Animations
+        Elements fading up into view as the user scrolls adds dynamism without complexity. The key is restraint. Fade and translate up by 20-30 pixels over 400-600ms. Stagger related elements so they animate in sequence, not simultaneously — the heading first, then the body text, then the image. Each element delays by 100ms. This creates a cascade effect that feels choreographed. Use the Intersection Observer API — it is native, performant, and does not require a library. Animate each element once. Not every time it enters the viewport.
+
+        Input Field Micro-Interactions
+        Form inputs are an overlooked canvas for micro-interactions. A border colour transition on focus. A label that floats up when the field is active. A subtle scale on the input container when focused. A green checkmark that fades in when validation passes. A red shake animation when validation fails. Individually, these are trivial. Together, they make a form feel responsive and well-crafted. The shake animation on validation failure is particularly effective — it is a universally understood gesture that communicates "wrong" without requiring the user to read an error message.
+
+        Navigation Transitions
+        Menu items that stagger their entrance when a mobile nav opens. An underline that slides from the previous link to the hovered link instead of appearing and disappearing independently. A dropdown that scales from its origin point rather than popping in. These transitions cost minutes each and cumulatively make navigation feel like a designed experience rather than a collection of styled HTML elements.
+
+        The Performance Guardrail
+        All of this falls apart if it causes jank. Only animate transform and opacity — these properties are handled by the GPU compositor and do not trigger layout recalculations. Avoid animating width, height, margin, padding, or top/left — these cause reflows that will stutter on mid-range devices. Use will-change sparingly and only on elements that are about to animate. Test on a real phone, not a desktop browser throttled to "mobile." The performance gap is real and you need to see it.
+
+        The best micro-interactions are the ones nobody notices consciously. They do not demand attention. They do not slow anything down. They simply make the interface feel like it was built by someone who cares about every pixel. That feeling is what separates a good website from a great one, and it is entirely achievable without a Stripe-sized budget.
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

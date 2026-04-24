@@ -1,0 +1,63 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="The state of CSS in 2024 — container queries, :has(), nesting, and layers are finally real. CSS won the war against CSS-in-JS."
+  title="CSS Won the War Against CSS-in-JS — Here's Everything That Shipped in 2024 · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Tech News
+      </Fragment>
+      <Fragment slot="title">
+        CSS Won the War Against CSS-in-JS — Here's Everything That Shipped in 2024
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-pink-600/20 to-rose-500/20 flex items-center justify-center">
+          <span class="text-4xl">&#127912;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        The Golden Age of Stylesheets
+      </Fragment>
+      <Fragment slot="content">
+        Remember when CSS was the thing everyone complained about? When "CSS is hard" was a meme and half the JavaScript ecosystem existed to avoid writing stylesheets? That era is over. CSS in 2024 is so powerful that it is making entire categories of JavaScript unnecessary. Container queries, :has(), native nesting, cascade layers, subgrid, view transitions — these are not proposals or polyfills. They ship in every major browser right now. CSS did not just catch up. It lapped the competition.
+
+        Container Queries: The Feature We Waited a Decade For
+
+        Media queries ask "how big is the viewport?" Container queries ask "how big is my parent?" That distinction changes everything. A card component can now style itself based on the container it lives in, not the screen width. Put it in a sidebar, it goes compact. Put it in a main content area, it expands. Same component, zero JavaScript, zero props, zero conditional rendering. You define the styles once and the component adapts to its context. This is what responsive design was always supposed to be.
+
+        The :has() Selector Is Witchcraft
+
+        The :has() selector lets you style a parent based on its children. Read that again. You can style a parent based on its children. In CSS. Without JavaScript. A form field container can change its border colour when the input inside it is focused. A card can change its layout when it contains an image. A navigation item can highlight when it contains the currently active link. These are patterns that previously required JavaScript event listeners, state management, and re-renders. Now they are one line of CSS.
+
+        Native Nesting Changes Everything
+
+        CSS nesting is finally here without a preprocessor. You can nest selectors inside selectors using native CSS syntax. This eliminates one of the last reasons to use Sass. Combined with CSS custom properties (which replaced Sass variables years ago) and native @layer support (which replaces Sass partials for organisation), the "we need Sass" argument has essentially zero remaining legs to stand on.
+
+        Cascade Layers: Specificity, Solved
+
+        The @layer rule lets you define explicit priority layers for your styles. Framework styles go in the base layer. Component styles go in the components layer. Utility overrides go in the utilities layer. Styles in higher layers always win regardless of specificity. This solves the "I need !important to override a framework style" problem permanently. Tailwind CSS v4 uses layers internally, which is why Tailwind utilities can always override component styles without specificity hacks.
+
+        View Transitions: SPAs Without the SPA
+
+        The View Transitions API lets you animate between page navigations with CSS. Click a link, the old page cross-fades to the new page. Or the hero image morphs between pages. Or the navigation slides in. All with CSS declarations and zero JavaScript routing. Astro and other MPA frameworks support this natively, which means you can build page transitions that feel like a single-page app without actually being one. The JavaScript framework overhead of client-side routing exists largely to enable smooth transitions — and now CSS handles that natively.
+
+        What This Means For Developers
+
+        If you are still reaching for JavaScript to solve layout problems, conditional styling, or page transitions — stop and check if CSS can do it natively. The answer is increasingly yes. CSS-in-JS libraries like styled-components and Emotion are losing momentum not because they are bad, but because CSS itself absorbed their best ideas. Style encapsulation? CSS layers. Dynamic values? Custom properties. Conditional styling? Container queries and :has(). Nesting? Native.
+
+        The best CSS developers right now are the ones unlearning their workarounds and learning what the platform can do natively. You do not need a library. You do not need a build step. You do not need JavaScript. You just need CSS. And for the first time in twenty years, that is not a consolation prize — it is a superpower.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

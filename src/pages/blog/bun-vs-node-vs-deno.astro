@@ -1,0 +1,65 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Bun vs Node vs Deno — the JavaScript runtime wars explained. Why benchmarks are misleading and ecosystem is the only thing that matters."
+  title="The JavaScript Runtime Wars: Why Bun's Benchmarks Don't Tell the Whole Story · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Tech News
+      </Fragment>
+      <Fragment slot="title">
+        The JavaScript Runtime Wars: Why Bun's Benchmarks Don't Tell the Whole Story
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-yellow-600/20 to-amber-500/20 flex items-center justify-center">
+          <span class="text-4xl">&#9876;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Three Runtimes Enter, One Ecosystem Wins
+      </Fragment>
+      <Fragment slot="content">
+        JavaScript now has three server-side runtimes competing for your attention, and the internet has decided that this is the most important decision you will ever make. It is not. But the runtime wars are genuinely interesting, so let us break down what actually matters and what is just benchmark theatre.
+
+        Node.js: The Incumbent
+
+        Node.js has been the default JavaScript runtime since 2009. It runs on V8, has the largest package ecosystem in the history of programming via npm, and every hosting platform on earth supports it. Its weaknesses are well documented: callback hell gave way to promises gave way to async/await, the module system is a mess of CommonJS versus ESM, and the standard library is deliberately minimal, which is why node_modules weighs more than a small car.
+
+        But here is the thing: Node.js keeps getting better. Version 21 shipped a stable fetch API, a built-in test runner, watch mode, and experimental TypeScript support via type stripping. They are systematically eliminating every reason you might want to switch. The "Node.js is legacy" narrative is wildly overstated.
+
+        Deno: The Do-Over
+
+        Ryan Dahl, who created Node.js, built Deno to fix everything he regretted about Node. TypeScript support out of the box. Web-standard APIs by default. A security sandbox that requires explicit permissions. URL-based imports instead of node_modules. It is technically superior to Node in almost every architectural decision. And almost nobody uses it.
+
+        Deno's problem was never technical — it was practical. When you cannot run Express, you lose 80% of your potential users before they finish reading the landing page. Deno 2.0 finally fixed this by adding full npm compatibility, which is essentially an admission that you cannot out-engineer network effects. Deno with npm support is genuinely excellent, but "Deno that works like Node" is a harder sell than "just use Node."
+
+        Bun: The Speed Demon
+
+        Bun said "what if we made everything fast" and then actually did it. Built on JavaScriptCore instead of V8, written in Zig instead of C++, and designed to be a drop-in Node.js replacement with a built-in bundler, test runner, and package manager. The benchmarks are obscene — 3x to 5x faster HTTP serving, 25x faster package installs, near-instant TypeScript execution.
+
+        Bun's strategy is brilliant: complete Node.js API compatibility so you can switch with zero code changes, then win on speed. And it works. You can literally swap "node" for "bun" in most projects and everything just runs faster. The built-in SQLite driver, the native .env loading, the sub-second test runs — it feels like what Node should have been if it were designed in 2024.
+
+        The Benchmarks Are Meaningless
+
+        I know that sounds provocative, but hear me out. Bun is 3x faster than Node at serving HTTP responses in a hello-world benchmark. But your production application is not a hello-world. It is making database queries, serialising JSON, calling external APIs, and waiting on I/O. The runtime overhead is a rounding error compared to your actual bottleneck, which is almost always the database or the network. Switching runtimes will not fix your slow API. Fixing your N+1 queries will.
+
+        So Which One Should You Use?
+
+        Node.js. There, I said it. Not because it is the best technically — Bun is faster and Deno is more thoughtful — but because it has the ecosystem, the hosting support, the hiring pool, and the battle scars of fifteen years in production. If you are a solo developer or a small team that values speed and does not need exotic npm packages, Bun is a fantastic choice. If you are starting a new Deno 2.0 project today, you will have a great experience.
+
+        But if someone asks me "what should I use for a production API that needs to work reliably for the next five years" — it is Node. Every time. The boring choice is usually the right choice. Runtime speed is a solved problem. Ecosystem depth is not.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

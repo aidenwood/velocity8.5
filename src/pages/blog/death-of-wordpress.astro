@@ -1,0 +1,55 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="WordPress drama continues in 2025. Why agencies are migrating to headless CMS and Astro for better performance and security."
+  title="Let's Talk About the Slow, Messy, Very Public Death of WordPress · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        CMS and Web Development
+      </Fragment>
+      <Fragment slot="title">
+        Let's Talk About the Slow, Messy, Very Public Death of WordPress
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-violet-600/20 to-cyan-500/20 flex items-center justify-center">
+          <span class="text-4xl">&#9760;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        The WordPress Meltdown of 2025
+      </Fragment>
+      <Fragment slot="content">
+        The Matt Mullenweg vs WP Engine saga that started in late 2024 has officially become the longest-running drama in open source history. Lawsuits, plugin takeovers, blocked forks, community splits — it is genuinely wild. But here is the thing most agencies will not say out loud: WordPress was already on life support for modern web development. The drama just gave everyone permission to leave.
+
+        Why Agencies Stuck With WordPress So Long
+        Inertia. That is the honest answer. WordPress powers roughly 40% of the web, which means every agency has clients on it, teams trained on it, and processes built around it. Switching costs are real. But staying costs are worse. The average WordPress site runs 15-30 plugins, each one a potential security vulnerability. Every plugin update is a game of Russian roulette with your production site. We have seen client sites go down because a plugin author pushed a bad update on a Tuesday afternoon. That is not a platform — that is a liability.
+
+        The Security Problem Nobody Talks About
+        WordPress is the most targeted CMS on the internet. Not because it is bad software, but because it is everywhere and most installations are poorly maintained. Brute force attacks, SQL injection through plugins, outdated PHP versions, file permission exploits — we have seen it all. When we migrated a Gold Coast client from WordPress to Astro earlier this year, we eliminated their entire attack surface overnight. Static HTML files cannot be SQL injected. There is no admin panel to brute force. There is no PHP to exploit. The site just serves files.
+
+        The Performance Gap Is Embarrassing
+        A fresh WordPress install with a popular theme and a handful of necessary plugins loads in 3-5 seconds on a good day. A comparable Astro site loads in under one second. That is not a minor difference — that is the difference between a visitor staying and a visitor bouncing. Google knows this. Their Core Web Vitals metrics punish slow sites, and WordPress sites are disproportionately slow. We have watched client rankings improve within weeks of migrating off WordPress, without changing a single word of content.
+
+        The Headless Compromise
+        Some agencies are trying to split the difference with headless WordPress — keep the WordPress admin panel for content editing but serve the front end through a modern framework. It is a reasonable idea in theory, but in practice you are still maintaining a WordPress installation with all its security and maintenance overhead, just to get a content editing interface. At that point, use a purpose-built headless CMS. Sanity, Storyblok, or even a simple markdown setup with Astro gives you better editing experiences without the baggage.
+
+        What We Are Building With Instead
+        Our current stack for most client sites is Astro with content stored in markdown or a headless CMS, deployed to Netlify. The entire site builds in seconds, deploys automatically on git push, and costs roughly five dollars a month to host. Compare that to managed WordPress hosting at thirty to fifty dollars per month with constant maintenance overhead. For clients who need a visual editor, we set up Sanity Studio or use Astro's built-in content collections with a simple git-based workflow. Most clients find this easier than the WordPress admin panel once they get past the initial learning curve.
+
+        Should You Migrate Right Now?
+        If your WordPress site is working fine and you are not experiencing security issues or performance problems, there is no urgency to migrate. But if you are planning a redesign anyway, building a new site, or tired of dealing with plugin conflicts and security patches — now is the time. The tooling has matured, the hosting is cheaper, and the results are measurably better. WordPress had an incredible run. It democratised web publishing and changed the internet. But the web moved on, and so should your business.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

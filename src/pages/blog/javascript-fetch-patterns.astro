@@ -1,0 +1,65 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="A practical guide to the fetch API — cancellation, timeouts, streaming, error handling, and the gotchas that silently break production apps."
+  title="Everything You Need to Know About fetch() (Including the Parts That Will Bite You) · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        JavaScript
+      </Fragment>
+      <Fragment slot="title">
+        Everything You Need to Know About fetch() (Including the Parts That Will Bite You)
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-yellow-500/20 to-amber-600/20 flex items-center justify-center">
+          <span class="text-4xl">&#127758;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        fetch() Is Simple Until It Is Not
+      </Fragment>
+      <Fragment slot="content">
+        Every JavaScript developer learns fetch() in their first week. It looks dead simple. Call fetch with a URL, await the response, call .json(), done. And then six months later you are debugging a production app where requests silently fail, error handling does nothing useful, and nobody can figure out why the loading spinner never stops. Here is everything we have learned about fetch() from shipping it across dozens of client projects.
+
+        The Gotcha That Gets Everyone
+
+        fetch() does not throw on HTTP errors. Read that again. If you hit a 404 or a 500, fetch() resolves the promise successfully. It only rejects on network failures — when the request literally cannot be made. This means your try/catch around a fetch call will not catch a 500 error from your API. The request succeeded from fetch's perspective. You got a response. It just happens to be an error response. The fix is simple but you have to know to do it. Check response.ok before parsing the body. If response.ok is false, throw an error yourself. We wrap this into a utility function on every project so nobody on the team can forget it. The wrapper checks response.ok, parses JSON, and throws a typed error with the status code and response body when something goes wrong.
+
+        Cancellation with AbortController
+
+        Here is a pattern that most tutorials skip entirely. If a user navigates away from a page while a fetch is in-flight, that request keeps going. In React, this causes the infamous "can't perform a state update on an unmounted component" warning. The fix is AbortController. Create a controller, pass its signal to fetch, and call controller.abort() in your cleanup function. In React, that means aborting in the useEffect cleanup. In vanilla JS, abort when the user navigates. We use this on every search input that fetches results as you type. Without cancellation, you get race conditions where a slow response from an earlier keystroke arrives after a fast response from a later one, and the UI shows stale results.
+
+        Timeouts Are Not Built In
+
+        fetch() has no timeout option. If your API hangs, fetch will wait forever. AbortController fixes this too. Create a controller, set a setTimeout that calls abort after your desired duration, and pass the signal to fetch. We default to 10 seconds for most API calls and 30 seconds for file uploads. Clear the timeout when the request completes so you do not abort a successful request that resolved just before the deadline. We have seen production apps where a third-party API went unresponsive and the entire UI froze because nothing ever timed out. Users were staring at a loading spinner that would spin until the heat death of the universe.
+
+        POST Requests and Content-Type
+
+        When sending JSON with fetch, you need to set the Content-Type header to application/json and JSON.stringify the body. Forgetting either one is a common bug. The server receives the request but cannot parse the body, and depending on the server framework, you get anything from a 400 error to silent data loss. For FormData — file uploads, multipart forms — do not set Content-Type at all. Let the browser set it automatically. The browser adds the multipart boundary string to the Content-Type header, and if you override it with your own Content-Type, the server cannot parse the form boundaries. This one catches experienced developers.
+
+        Streaming Responses
+
+        fetch() supports streaming through the ReadableStream API on the response body. Instead of calling response.json() which buffers the entire response, you can read the body in chunks. This matters for large responses, server-sent events, and streaming AI completions. You grab response.body.getReader(), then loop calling reader.read() until done is true. Each iteration gives you a chunk of data. We use this pattern for our AI integrations where Claude streams tokens back to the UI. Without streaming, the user stares at a blank screen for 5 seconds and then gets a wall of text. With streaming, they see tokens appear in real time.
+
+        Retry Logic
+
+        Network requests fail. Mobile connections drop. Servers hiccup. A single failed request should not crash your UI. We implement retries with exponential backoff for idempotent requests — GET and PUT. Never auto-retry POST requests unless you know the endpoint is idempotent, because you will create duplicate records. The pattern is a simple loop. Try the request. If it fails, wait 1 second and retry. Then 2 seconds. Then 4 seconds. After three retries, surface the error to the user. Most transient failures resolve within a few seconds, and the retry logic handles them invisibly.
+
+        The Wrapper We Use on Every Project
+
+        All of these patterns — ok checking, timeouts, cancellation, retries, JSON parsing — compose into a single fetch wrapper that we drop into every project. It is about 50 lines of TypeScript. It accepts a typed generic for the response shape, validates the response status, handles timeouts, and provides structured error objects. Raw fetch() calls never appear in our application code. Every request goes through the wrapper. This is not over-engineering. It is the minimum viable fetch implementation for production applications. The built-in fetch API gives you the building blocks. You still have to assemble them.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

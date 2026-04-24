@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import BrandGrid from '../brand/BrandGrid.jsx';
 
 /**
- * Full-screen AIDXN character roll transition.
- * Each letter rolls in with a staggered animation, then the whole thing fades out.
- * Used as a suspense boundary for page transitions.
+ * Full-screen AIDXN character roll transition with branded grid background.
+ * Each letter rolls in with a staggered animation over the 3D grid, then fades out.
  */
 export function PageTransition({ onComplete }: { onComplete?: () => void }) {
   const [phase, setPhase] = useState<'rolling' | 'out'>('rolling');
 
   useEffect(() => {
-    // Letters finish rolling at ~600ms, hold for 200ms, then fade out
     const holdTimer = setTimeout(() => setPhase('out'), 800);
     const doneTimer = setTimeout(() => onComplete?.(), 1200);
     return () => {
@@ -22,11 +21,16 @@ export function PageTransition({ onComplete }: { onComplete?: () => void }) {
 
   return (
     <div
-      className={`fixed inset-0 z-[300] flex items-center justify-center bg-black transition-opacity duration-400 ${
+      className={`fixed inset-0 z-[300] flex items-center justify-center transition-opacity duration-400 ${
         phase === 'out' ? 'pointer-events-none opacity-0' : 'opacity-100'
       }`}
+      style={{ backgroundColor: '#0A0A12' }}
     >
-      <div className="flex select-none gap-1 sm:gap-2">
+      {/* Branded grid background */}
+      <BrandGrid variant="fullscreen" opacity={0.6} animate />
+
+      {/* AIDXN text */}
+      <div className="relative z-10 flex select-none gap-1 sm:gap-2">
         {letters.map((letter, i) => (
           <span
             key={letter}
@@ -39,19 +43,18 @@ export function PageTransition({ onComplete }: { onComplete?: () => void }) {
             {letter}
           </span>
         ))}
+        {/* Dot accent */}
+        <span
+          className="aidxn-roll-letter text-[18vw] font-bold leading-none sm:text-[14vw] md:text-[12vw]"
+          style={{
+            animationDelay: `${letters.length * 80}ms`,
+            opacity: 0,
+            color: '#8B5CF6',
+          }}
+        >
+          .
+        </span>
       </div>
-
-      {/* Dot accent */}
-      <span
-        className="aidxn-roll-dot absolute text-[18vw] font-bold leading-none text-primary-400 sm:text-[14vw] md:text-[12vw]"
-        style={{
-          animationDelay: `${letters.length * 80}ms`,
-          opacity: 0,
-          marginLeft: `${letters.length * 0.5}em`,
-        }}
-      >
-        .
-      </span>
 
       <style>{`
         @keyframes aidxn-roll-in {
@@ -76,26 +79,16 @@ export function PageTransition({ onComplete }: { onComplete?: () => void }) {
           display: inline-block;
           transform-origin: bottom center;
         }
-        .aidxn-roll-dot {
-          animation: aidxn-roll-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-          display: inline-block;
-          transform-origin: bottom center;
-        }
       `}</style>
     </div>
   );
 }
 
-/**
- * Hook to trigger the AIDXN page transition.
- * Returns [showTransition, triggerTransition, TransitionComponent]
- */
 export function usePageTransition() {
   const [show, setShow] = useState(false);
 
   const trigger = (navigateTo: string) => {
     setShow(true);
-    // Navigate after the animation peaks
     setTimeout(() => {
       window.location.href = navigateTo;
     }, 600);

@@ -1,0 +1,59 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Fixed font sizes create responsive headaches. The clamp() function lets typography scale fluidly between viewport sizes. Here's how to use it properly."
+  title="Stop Using Fixed Font Sizes: A Complete Guide to Fluid Typography with clamp() · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        CSS & Typography
+      </Fragment>
+      <Fragment slot="title">
+        Stop Using Fixed Font Sizes: A Complete Guide to Fluid Typography with clamp()
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-red-600/20 to-amber-500/20 flex items-center justify-center">
+          <span class="text-4xl">🔤</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Typography That Scales With the Viewport
+      </Fragment>
+      <Fragment slot="content">
+        Here's what happens on most websites: a designer creates a beautiful desktop layout with a 64px hero heading. The developer builds it. Then someone checks it on mobile and the heading is either comically large or it's been hardcoded to a smaller size with a media query. Between desktop and mobile, there are about fifteen breakpoints where the typography looks slightly wrong — too big, too small, awkward line breaks.
+
+        Media queries solve this with a blunt instrument. You define font-size: 64px at desktop, font-size: 48px at tablet, font-size: 32px at mobile. You get three fixed sizes with hard jumps between them. At 769px the heading snaps from tablet to desktop size. It works, but it's inelegant, and on the increasingly diverse range of devices your clients' customers use, those jump points are visible.
+
+        The clamp() function solves this completely. font-size: clamp(2rem, 5vw + 1rem, 4rem) creates a font size that's at minimum 2rem, scales fluidly with the viewport width, and maxes out at 4rem. No breakpoints. No jumps. The text smoothly scales between your minimum and maximum values. It's one line of CSS.
+
+        Let's break down the three arguments. The first value is the minimum — the smallest the font will ever be, regardless of viewport width. This protects readability on small screens. The second value is the preferred size — typically a calculation involving viewport units (vw) that creates the fluid scaling. The third value is the maximum — the largest the font will ever be, preventing comically oversized text on ultrawide monitors.
+
+        The preferred value is where the math matters. Using a raw vw value like 5vw works but creates a linear scale that might be too aggressive. Adding a rem offset — 5vw + 1rem — gives you a base size that the viewport-relative portion adds to. This produces a gentler scaling curve. The exact values depend on your design, but here's a reliable starting approach: for body text, clamp(1rem, 0.5vw + 0.875rem, 1.125rem). For h1 headings, clamp(2rem, 4vw + 1rem, 4rem). For h2, clamp(1.5rem, 3vw + 0.75rem, 2.5rem).
+
+        There are calculators like Utopia that generate fluid type scales for you. You input your minimum viewport, maximum viewport, base size at each, and the type scale ratio you want. It generates the clamp() values for every heading level. We use Utopia on most client projects as a starting point and adjust from there. It takes the guesswork out of the math.
+
+        Fluid typography isn't just for headings. Body text benefits from subtle scaling too. A line length of 65-75 characters is optimal for readability. On a wide desktop, 1rem body text in a constrained container achieves this naturally. But in full-width layouts or on different screen sizes, letting the body text scale slightly — from 1rem to 1.125rem — keeps the reading experience comfortable. The scaling is subtle enough that users don't notice it, but the readability improvement is measurable.
+
+        Spacing should scale with your typography. If your heading sizes are fluid, your margins and padding should be too. We use clamp() for vertical spacing between sections: margin-bottom: clamp(2rem, 5vw, 4rem) ensures spacing scales proportionally with the content. This prevents the "too much whitespace on mobile, too little on desktop" problem that plagues fixed-spacing designs.
+
+        The accessibility angle matters. clamp() with rem values respects the user's browser font-size setting. If someone sets their default font size to 20px, your clamp values adjust accordingly because rem is relative to that setting. This is why the minimum value should always use rem, not px. Using px for the minimum creates a floor that ignores user preferences, which is an accessibility failure.
+
+        There's a gotcha with clamp() and zoom. Because the preferred value typically uses viewport units, zooming the page doesn't increase the font size the way users expect — viewport units don't change when you zoom. The minimum value (in rem) catches this: at some zoom level, the minimum value exceeds the preferred value and the rem-based minimum kicks in. But at intermediate zoom levels, the text might not scale. This is a known limitation. Keeping your minimum values reasonable (never below 1rem for body text) mitigates the issue.
+
+        For web design agencies, fluid typography is a quality-of-life improvement that clients notice without understanding why. Their site just "looks right" at every screen size. No awkward jumps. No text that's too big or too small. It's one of those technical details that directly translates to perceived quality — and perceived quality is what clients are actually buying.
+
+        Set up a fluid type scale once, early in the project, and you'll never write a font-size media query again.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

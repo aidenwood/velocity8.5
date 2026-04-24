@@ -1,0 +1,69 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="REST API design patterns we actually use in production — resource naming, error handling, pagination, and the pragmatic shortcuts that keep shipping fast."
+  title="The REST API Design Patterns We Actually Use (Not the Textbook Ones) · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        API Development
+      </Fragment>
+      <Fragment slot="title">
+        The REST API Design Patterns We Actually Use (Not the Textbook Ones)
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-blue-600/20 to-indigo-500/20 flex items-center justify-center">
+          <span class="text-4xl">&#128204;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Pragmatic REST for Teams That Ship
+      </Fragment>
+      <Fragment slot="content">
+        Every REST API tutorial starts with the same thing. Resources are nouns. Use HTTP verbs correctly. Return proper status codes. And that is all true. But the gap between textbook REST and the APIs we actually build in production is wide enough to drive a truck through. After building APIs for SaaS platforms, CRM integrations, and internal tools across dozens of projects, here are the patterns that survived contact with reality.
+
+        Forget HATEOAS, Nobody Uses It
+
+        The Richardson Maturity Model has four levels, and Level 3 — Hypermedia as the Engine of Application State — is the one every blog post tells you to aim for. In practice, we have never built an API that uses it, and we have never consumed one that does either. Your front end already knows the routes. Your mobile app already knows the endpoints. Embedding navigational links in every response adds payload size and complexity for zero practical benefit. We skip it every time and nobody has ever complained.
+
+        Consistent Error Responses Save Lives
+
+        The one pattern we enforce religiously is consistent error responses. Every error from every endpoint returns the same shape. A status field with the HTTP code. An error field with a machine-readable string like VALIDATION_FAILED or NOT_FOUND. A message field with a human-readable explanation. And optionally a details array for field-level validation errors. This sounds basic, but you would be amazed how many APIs return a string for some errors, an object for others, and an HTML error page when the server panics. Your front end needs to parse these errors. Give it a consistent contract.
+
+        Pagination: Cursor Over Offset
+
+        Offset-based pagination — give me page 3 with 20 items — is what most tutorials teach. It works until your dataset changes between requests. A new record gets inserted on page 2, and now page 3 returns a duplicate item. Cursor-based pagination eliminates this. Instead of saying give me page 3, you say give me 20 items after this cursor. The cursor is usually an encoded representation of the last item's sort key. It is slightly more work to implement, but it is stable under concurrent writes and performs better on large datasets because the database does not need to count and skip rows.
+
+        Versioning: URL Path, Every Time
+
+        There are three schools of thought on API versioning. URL path versioning like /api/v1/users. Header versioning where the client sends an Accept header with the version. And query parameter versioning like ?version=1. We use URL path versioning on every project. It is visible, obvious, and easy to route at the infrastructure level. Header versioning is technically purer, but when you are debugging a failing request in production logs, you want to see the version right there in the URL. Pragmatism wins.
+
+        Bulk Operations Are Not Optional
+
+        If your API lets a client create one resource, it will eventually need to create a hundred. Building bulk endpoints from the start saves you from the nightmare of a client sending 500 sequential POST requests. Our pattern is simple. Accept an array of resources in the request body. Validate all of them before creating any. Return a response that includes both successes and failures so the client knows exactly which items failed and why. We learned this on a Pipedrive sync that needed to push thousands of contacts. Without a bulk endpoint, syncs took twenty minutes. With batching, under thirty seconds.
+
+        Use 200 for Everything (Almost)
+
+        The HTTP spec defines over 70 status codes. In practice we use about six. 200 for success. 201 for resource creation. 400 for client errors. 401 for authentication failures. 403 for authorisation failures. 404 for not found. 500 for server errors. That is it. We have never needed 204 No Content or 206 Partial Content or 409 Conflict in production. Using too many status codes means your client needs to handle too many cases. Keep it simple.
+
+        Rate Limiting Headers From Day One
+
+        Even internal APIs should return rate limiting headers. X-RateLimit-Limit for the maximum requests per window. X-RateLimit-Remaining for how many are left. X-RateLimit-Reset for when the window resets. Adding these from day one costs almost nothing and saves you from a runaway script taking down your API later. We have had internal tools accidentally DDoS our own endpoints because someone put an API call inside a React useEffect without a dependency array. Rate limiting headers would have made that obvious immediately.
+
+        The Practical Stack
+
+        Our APIs run on Supabase Edge Functions or Netlify Functions, depending on the project. Zod handles request validation — define the schema once, use it for both validation and TypeScript types. Supabase handles the database layer with RLS policies for multi-tenant data isolation. Responses follow a consistent envelope format with data, error, and meta fields. It is not fancy. But it ships fast, it scales fine, and it is easy for any developer to pick up and extend. That last point matters more than architectural purity.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

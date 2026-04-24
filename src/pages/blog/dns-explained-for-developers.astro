@@ -1,0 +1,81 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="DNS explained in plain English for developers who just want to point a domain at their site. A, CNAME, MX, TTL — all of it, no networking degree required."
+  title="DNS Explained Like You're Setting Up a Client's Domain at 11pm on a Friday · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        DevOps
+      </Fragment>
+      <Fragment slot="title">
+        DNS Explained Like You're Setting Up a Client's Domain at 11pm on a Friday
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-blue-500/20 to-indigo-600/20 flex items-center justify-center">
+          <span class="text-4xl">&#127760;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        DNS Without the Networking Degree
+      </Fragment>
+      <Fragment slot="content">
+        It is 11pm on a Friday. Your client just bought a domain from GoDaddy (of course it is GoDaddy). They want it pointing at the Netlify site you finished two hours ago. They have sent you their registrar login credentials in a plaintext email (we will talk about security another time). You need to set up DNS records and you cannot remember the difference between an A record and a CNAME.
+
+        This post is for that exact moment.
+
+        What DNS Actually Does
+
+        DNS is a phone book. That is the whole metaphor, and it is accurate. When someone types yourdomain.com into a browser, their computer asks a DNS server "what is the IP address for this domain?" The DNS server looks it up and says "it is 104.21.56.78." The browser connects to that IP address and loads the site. Everything in DNS is about mapping human-readable names to machine-readable addresses.
+
+        The Records You Actually Need to Know
+
+        A Record: Points a domain to an IP address. When you type example.com and it loads a website, an A record is making that happen. You set the name (usually @ for the root domain), the value (an IP address like 75.2.60.5), and the TTL (how long the result is cached).
+
+        CNAME Record: Points a domain to another domain. Instead of saying "example.com goes to IP 75.2.60.5," a CNAME says "www.example.com goes to example.netlify.app, and whatever IP that resolves to, use that." This is how most platform-hosted sites work. You CNAME your domain to the platform's domain, and they handle the IP routing.
+
+        Critical rule: you cannot put a CNAME on a root domain (the bare domain without www). This is a DNS specification limitation, not a platform limitation. If Netlify tells you to add a CNAME for your root domain, they either mean use an ALIAS record (if your DNS provider supports it) or point the A record to their load balancer IPs.
+
+        MX Record: Mail exchange. This tells the internet where to deliver email for your domain. If your client uses Google Workspace, you point the MX records to Google's mail servers. If they use Microsoft 365, you point to Microsoft's. Do not touch MX records unless you are specifically setting up or changing email. Deleting them accidentally means your client stops receiving email, and that phone call is never fun.
+
+        TXT Record: A text string attached to your domain. Used for verification ("prove you own this domain by adding this TXT record") and email authentication (SPF, DKIM, DMARC). When Google Workspace asks you to add a verification TXT record, you are just pasting a string into a DNS record so Google can confirm you control the domain.
+
+        NS Record: Nameserver records. These tell the internet which DNS servers are authoritative for your domain. When you "change nameservers" to Cloudflare or Netlify DNS, you are changing these records at the registrar level. Usually you set these once and never touch them again.
+
+        The Setup We Use for Every Client Site
+
+        For a typical Netlify deployment: point the A record for the root domain (@ or the bare domain) to Netlify's load balancer IP (which Netlify provides in their custom domain setup). Add a CNAME for www pointing to the Netlify site URL (something like your-site.netlify.app). Enable HTTPS in Netlify's domain settings — they handle the SSL certificate automatically. Done. That is the whole process.
+
+        If the client uses Cloudflare for DNS (which we recommend), you can use Cloudflare's CNAME flattening feature to put a CNAME-like record on the root domain. This is cleaner than using A records because if Netlify changes their IP addresses, you do not need to update anything.
+
+        TTL: The Setting Everyone Gets Wrong
+
+        TTL stands for Time To Live, and it controls how long DNS resolvers cache a record before checking again. A TTL of 3600 means the record is cached for one hour. A TTL of 86400 means 24 hours.
+
+        Here is the trick that will save you pain during migrations: lower the TTL before you change anything. If the current TTL is 86400 (24 hours), change it to 300 (5 minutes) at least 24 hours before you plan to update the DNS records. That way, when you make the actual change, the old cached records expire in five minutes instead of 24 hours. After the migration is confirmed working, raise the TTL back to something reasonable.
+
+        We have seen developers change DNS records and then panic when the site does not update. The old records were cached with a 24-hour TTL. There is nothing to do except wait. Lower the TTL first.
+
+        Propagation Is Not Magic
+
+        "DNS propagation" is the time it takes for DNS changes to spread across the internet's DNS servers. People treat it like weather — unpredictable and mysterious. It is not. It is directly related to the TTL of the old records. If the old TTL was 3600, most resolvers will have the new records within an hour. If it was 86400, it can take up to 24 hours.
+
+        Tools like DNS Checker or What's My DNS let you see which DNS servers have picked up the new records. Use them. They will tell you exactly what is happening instead of refreshing the browser and hoping.
+
+        The Checklist
+
+        Before touching DNS for a client domain: lower the TTL 24 hours in advance, document the current records (screenshot the whole DNS panel), make the changes, verify with a DNS lookup tool, test the live site, confirm email still works (check MX records are intact), and raise the TTL back after 48 hours of stability. That checklist has saved us from every DNS disaster except the ones where we did not follow it.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

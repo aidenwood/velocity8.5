@@ -1,0 +1,67 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Authentication in 2026 compared — JWTs, sessions, magic links, passkeys, and OAuth. What we actually recommend for web apps after shipping auth on dozens of projects."
+  title="Authentication in 2026: JWTs, Sessions, Magic Links, and What We Actually Recommend · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Security &amp; Auth
+      </Fragment>
+      <Fragment slot="title">
+        Authentication in 2026: JWTs, Sessions, Magic Links, and What We Actually Recommend
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-red-500/20 to-pink-600/20 flex items-center justify-center">
+          <span class="text-4xl">&#128272;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Auth Is Solved Until You Actually Build It
+      </Fragment>
+      <Fragment slot="content">
+        Authentication should be a solved problem by now. It is 2026. We have had decades to figure this out. And yet, auth remains the part of every project where we spend the most time debating trade-offs and the least time writing code. The options have multiplied — JWTs, session cookies, magic links, passkeys, OAuth, SAML — and choosing wrong costs you months of refactoring.
+
+        Here is what we actually use and why.
+
+        JWTs: The Default That Everyone Uses Wrong
+
+        JSON Web Tokens are everywhere. Every tutorial uses them. Supabase uses them. Auth0 uses them. And most implementations get the details wrong. The most common mistake is storing JWTs in localStorage. It is convenient, but any XSS vulnerability on your site means an attacker can steal every token. The second most common mistake is making tokens that live too long. We have seen production apps with JWTs that expire in 30 days. That is not a session — that is a skeleton key. Our JWT pattern uses httpOnly cookies for storage, which are inaccessible to JavaScript. Short-lived access tokens that expire in 15 minutes. Refresh tokens that rotate on every use. And we always validate the token server-side — never trust the client to tell you who a user is.
+
+        Session Cookies: Old School but Bulletproof
+
+        Server-side sessions with cookies are the oldest auth pattern on the web and honestly, they still work great. The server stores session data, the client gets a cookie with a session ID, and every request includes that cookie automatically. No JavaScript needed. No token management on the client. The trade-off is server-side state. You need to store sessions somewhere — Redis, your database, or in-memory if you only have one server. For applications that run on a single server or use sticky sessions, this is often the simplest and most secure option. We use this pattern for internal tools where simplicity matters more than horizontal scalability.
+
+        Magic Links: Passwordless Done Right
+
+        Magic links are our favourite auth pattern for consumer-facing apps. The user enters their email, gets a link, clicks it, and they are logged in. No password to remember, no password to leak. Supabase supports magic links out of the box, which makes implementation trivial. The user experience is excellent. But there are edge cases. Email delivery is not instant — some users click the link after it expires. Some email clients pre-fetch links for security scanning, which can consume one-time tokens before the user clicks. We set magic link expiry to 10 minutes and allow the token to be used once within that window, ignoring pre-fetch requests by checking the request method.
+
+        Passkeys: The Future That Is Finally Here
+
+        Passkeys are the real successor to passwords. They use biometrics or device PINs tied to public-key cryptography. No shared secrets. No phishable credentials. Apple, Google, and Microsoft have all shipped passkey support, and adoption in 2026 is hitting critical mass. We have started offering passkeys as an option on new projects, but we always pair them with a fallback method — usually magic links. Not every user has a device that supports passkeys, and the cross-device experience still has rough edges. But within two years, passkeys will be the default.
+
+        OAuth: Let Someone Else Handle It
+
+        Sign in with Google. Sign in with GitHub. Sign in with Apple. OAuth is not an authentication method per se — it is delegating authentication to a provider your users already trust. We use OAuth on almost every project as an option alongside email-based auth. It reduces friction dramatically. Users who already have a Google session can sign in with two clicks and zero form fields. The implementation through Supabase is almost trivial — enable the provider, add your client ID and secret, and the SDK handles the flow. The catch is that OAuth providers can change their requirements. Apple requires specific privacy disclosures. Google periodically updates their consent screen requirements. Budget time for maintenance.
+
+        What We Actually Recommend
+
+        For most web applications in 2026, our recommendation is Supabase Auth with email magic links as the primary method, Google OAuth as the convenience option, and passkeys as an opt-in enhancement. This covers the widest range of users with the least friction. We enforce RLS policies in Supabase so the database itself validates permissions — your API layer does not need to check auth on every query because the database rejects unauthorised access automatically. This defence-in-depth approach means a bug in your middleware does not expose user data.
+
+        The Mistakes We See Most
+
+        Rolling your own auth from scratch in 2026 is almost never justified. Using localStorage for tokens. Not implementing token refresh. Trusting client-side role checks without server validation. Sending passwords over HTTP. Setting cookie SameSite to None without understanding the implications. Every one of these is a real bug we have found in production applications we were hired to audit. Auth is not the place to cut corners. Use a battle-tested provider, follow their documentation exactly, and spend your engineering time on features that differentiate your product.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

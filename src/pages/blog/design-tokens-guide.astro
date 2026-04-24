@@ -1,0 +1,59 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Design tokens bridge the gap between design and code. Here's how to set them up so your Figma file and your codebase speak the same language."
+  title="Design Tokens: The Bridge Between Your Figma File and Your Codebase · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Design Systems — April 2026
+      </Fragment>
+      <Fragment slot="title">
+        Design Tokens: The Bridge Between Your Figma File and Your Codebase
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-amber-500/20 to-orange-600/20 flex items-center justify-center">
+          <span class="text-4xl">&#127912;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        From Figma to Code Without the Translation Layer
+      </Fragment>
+      <Fragment slot="content">
+        Every design-to-development handoff has the same failure mode. A designer specifies a colour as "Blue 500" in Figma. A developer eyeballs it and writes #3B82F6 in the CSS. Another developer on a different feature uses #2563EB because they pulled the value from a different artboard. Now you have two blues that are supposed to be the same blue and are not. Multiply this across colours, spacing, typography, shadows, and border radii, and you get the slow drift that makes every product feel increasingly inconsistent over time. Design tokens solve this by creating a single source of truth that both design tools and code consume directly.
+
+        What Design Tokens Actually Are
+        A design token is a named value that represents a design decision. Not a CSS variable — that is an implementation detail. A token is platform-agnostic. It is a key-value pair that describes a decision: "the primary brand colour is this value," "the base spacing unit is this value," "the body font size is this value." Tokens can be compiled into CSS custom properties, Tailwind config values, Swift constants, Kotlin values, or any other platform-specific format. The token is the decision. The output is the implementation.
+
+        The Three Layers of Tokens
+        Most mature design systems use three layers. Global tokens are the raw palette — every colour, every spacing value, every font size you might ever use. They have literal names: blue-500, spacing-4, font-size-lg. Alias tokens map those raw values to semantic purposes: primary maps to blue-500, destructive maps to red-500, spacing-section maps to spacing-16. Component tokens are the most specific: button-primary-background maps to primary, card-padding maps to spacing-section. This hierarchy means changing your brand colour from blue to purple requires changing one alias token, not finding and replacing a hex value across 200 files.
+
+        Why Figma Variables Changed Everything
+        Before Figma Variables shipped, the design side of token management was a mess. Designers would define colour styles, spacing would be inconsistent because Figma did not support spacing tokens, and every handoff required a developer to manually translate design values into code. Figma Variables changed this completely. You can now define your entire token hierarchy directly in Figma — primitives, aliases, and component-level tokens — and export them as JSON. That JSON can be transformed into CSS, Tailwind config, or any other format using tools like Style Dictionary or Tokens Studio. The design file and the codebase now share the same source.
+
+        Setting Up the Pipeline
+        The practical setup looks like this. Define tokens in a JSON file following the W3C Design Tokens Community Group format. This is a standardised structure that tooling understands. Use Style Dictionary to compile that JSON into platform-specific outputs. For web projects, the output is a CSS file with custom properties and a Tailwind config extension. For Figma, use Tokens Studio to sync bidirectionally — changes in Figma push to your token file, changes in the token file push to Figma. The entire pipeline should run as part of your build process. Change a token value, run the build, and every platform gets the update.
+
+        Tailwind and Tokens Are Natural Partners
+        Tailwind CSS v4 with its CSS-first configuration makes token integration cleaner than ever. Define your tokens as CSS custom properties using the @theme directive and Tailwind automatically picks them up as utility classes. Your spacing tokens become p-section, m-element. Your colour tokens become bg-primary, text-destructive. Designers define the values, the build pipeline transforms them, and developers consume them through Tailwind utilities they already know. No manual mapping. No translation errors.
+
+        Dark Mode as a Token Layer
+        If you set up your tokens correctly, dark mode becomes trivial. Your component code references semantic tokens: bg-surface, text-foreground, border-default. In light mode, surface maps to white, foreground maps to slate-900. In dark mode, surface maps to zinc-900, foreground maps to zinc-50. You swap the alias layer and every component updates automatically. No conditional classes in your JSX. No dark: prefix on every utility. One swap, and the entire interface adapts. This is only possible when you have committed to semantic tokens from the start. If your code is full of bg-white and text-slate-900, retrofitting dark mode means touching every file.
+
+        Common Mistakes
+        The biggest mistake is creating too many tokens too early. You do not need a token for every possible value. Start with colour, spacing, typography, border radius, and shadows. That covers 90% of decisions. Add tokens for motion, z-index, and breakpoints as the system matures. The second mistake is naming tokens after their value instead of their purpose. A token called blue-500 is useless when you rebrand. A token called primary survives any colour change. Name tokens for what they do, not what they are.
+
+        Design tokens are not glamorous infrastructure. They are plumbing. But like all good plumbing, they make everything built on top of them work reliably and consistently. Get the tokens right first, and the components almost build themselves.
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

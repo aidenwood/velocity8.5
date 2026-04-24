@@ -1,0 +1,69 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Running Supabase in production — Row Level Security, Edge Functions, auth patterns, and the lessons we learned shipping six production apps on the platform."
+  title="Six Apps Deep Into Supabase — Here's What We Wish We'd Known on Day One · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Backend Infrastructure
+      </Fragment>
+      <Fragment slot="title">
+        Six Apps Deep Into Supabase — Here's What We Wish We'd Known on Day One
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-green-600/20 to-emerald-500/20 flex items-center justify-center">
+          <span class="text-4xl">&#9889;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Supabase Is Not Firebase. That Is the Point.
+      </Fragment>
+      <Fragment slot="content">
+        We have shipped six production applications on Supabase. SaaS platforms, booking systems, internal tools, geospatial apps. Real applications handling real data for real businesses. Supabase is the best backend platform we have used, and it is not close. But it has sharp edges that the getting-started tutorials do not mention.
+
+        Here is what we actually learned running Supabase in production.
+
+        Row Level Security Is Not Optional
+
+        This is the single most important thing to understand about Supabase. If you are not using Row Level Security, you do not have a backend — you have a publicly accessible database with a nice API on top. RLS policies are Postgres rules that control who can read, write, and modify each row. Every table in our applications has RLS enabled and at least one policy. The most common pattern is simple. Users can only access rows where the user_id column matches their authenticated ID, enforced via auth.uid(). For multi-tenant applications, we add a tenant_id check. The user's JWT includes their tenant, and the RLS policy verifies it on every query. The critical point is that RLS is enforced at the database level. It does not matter if someone bypasses your API, calls the database directly, or exploits a bug in your application code. The database will not return data they are not authorised to see. We have seen Supabase projects in the wild with RLS disabled on tables containing user data. This is the equivalent of leaving your front door open and hoping nobody walks in. Enable RLS on every table, no exceptions.
+
+        Auth Patterns That Work
+
+        Supabase Auth handles email/password, magic links, OAuth, and phone auth out of the box. We use magic links for most B2B applications because they eliminate password management entirely. The user enters their email, receives a link, clicks it, and they are authenticated. No passwords to forget, no reset flows to build, no credential stuffing attacks to worry about. For applications that need passwords, we always implement email confirmation and use Supabase's built-in password recovery flow. Never build your own password reset system. You will get the token expiry wrong, the email will go to spam, and you will spend three days debugging something Supabase already solved. The auth.users table is managed by Supabase. Do not try to add columns to it. Create a separate profiles table that references auth.users.id and store your application-specific user data there. This is documented, but people still try to modify the auth schema directly.
+
+        Edge Functions for Server-Side Logic
+
+        Supabase Edge Functions run on Deno Deploy. They cold start in under 50ms, scale automatically, and handle everything that should not run in the browser. We use them for webhook handlers — Stripe, Pipedrive, Zapier. Third-party API calls where you need to protect API keys. PDF generation and email sending. Scheduled tasks via Supabase's pg_cron extension. The main limitation is the Deno runtime. Some Node.js packages do not work. Most npm packages have Deno-compatible versions now, but you will occasionally hit one that does not. When that happens, we fall back to Netlify Functions for that specific endpoint. Keep Edge Functions simple. Each function should do one thing — receive a request, validate it, interact with the database, return a response. No frameworks, no middleware chains. TypeScript and the Supabase client library are all you need.
+
+        Database Migrations
+
+        Supabase provides a CLI for database migrations. Use it. Do not make schema changes through the dashboard in production. Every schema change — new table, new column, new RLS policy — should be a migration file that can be version controlled and replayed. We keep migrations in our repository and apply them through the CLI during deployment. This means our database schema is reproducible. If we need to set up a new environment, we run the migrations and get an identical database.
+
+        Real-Time Subscriptions
+
+        Supabase real-time lets you subscribe to database changes over WebSockets. When a row is inserted, updated, or deleted, connected clients receive the change immediately. We use this for live dashboards, notification systems, and collaborative features. The performance is excellent for reasonable subscriber counts. If you have 50 users watching the same table, real-time works great. If you have 50,000, you need to think about channels and filtering. For most business applications, the default broadcast behaviour is fine. The main gotcha is that real-time respects RLS policies. If a user does not have read access to a row via RLS, they will not receive real-time updates for that row. This is correct behaviour but it surprises people who forget that RLS applies to subscriptions too.
+
+        Backup and Recovery
+
+        Supabase Pro plans include daily backups with point-in-time recovery. This is non-negotiable for production applications. We also run pg_dump exports to cloud storage as an additional safety net. The one thing Supabase does not handle well yet is database branching for development. You cannot easily spin up a copy of your production database for testing. We work around this by maintaining seed scripts that populate a development database with realistic test data.
+
+        The Cost Reality
+
+        Supabase Pro is $25 per month per project. For that you get a dedicated Postgres instance, authentication, real-time, storage, edge functions, and daily backups. For most applications, you will not exceed the Pro tier limits. We run multi-tenant SaaS products on a single Supabase Pro instance without performance issues. The platform is legitimately cheap for what it provides, and the pricing is predictable. No surprise bills because a function ran too many times.
+
+        Supabase replaced our entire backend infrastructure. If you are evaluating backend platforms for your next project, we can help you make the right call. Book a discovery call.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

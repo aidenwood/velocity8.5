@@ -1,0 +1,57 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Supabase vs Firebase in 2025 — we migrated from Firebase and never looked back. Here's why Postgres beats NoSQL for web app development."
+  title="So We Ditched Firebase for Supabase — Here's What Happened · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Backend & Infrastructure
+      </Fragment>
+      <Fragment slot="title">
+        So We Ditched Firebase for Supabase — Here's What Happened
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-green-600/20 to-emerald-500/20 flex items-center justify-center">
+          <span class="text-4xl">🗄️</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Postgres Wins. That's The Post.
+      </Fragment>
+      <Fragment slot="content">
+        We used Firebase for about two years. It was fast to set up, the realtime features were solid, and the Google ecosystem integration was convenient. Then we hit the wall that every Firebase team eventually hits: you need to do a query that Firestore simply cannot do efficiently, and you realize your entire data model is optimized for a database paradigm that fights you at every turn.
+
+        We switched to Supabase in 2024 and the only regret is not doing it sooner.
+
+        Let's start with the obvious: Supabase is built on Postgres. That means SQL. Real, actual, battle-tested SQL that's been running production databases since 1996. Joins work. Aggregations work. Complex queries with multiple conditions, subqueries, and window functions — they all just work. After years of denormalizing data into nested Firestore documents and writing cloud functions to keep redundant data in sync, being able to write a JOIN felt like coming home.
+
+        The row-level security (RLS) model is the other game-changer. In Firebase, your security rules are this separate DSL that lives outside your database and gets increasingly unreadable as your app grows. In Supabase, security policies are SQL — they live in the database, they use the same language as everything else, and they're genuinely powerful. You can write policies that reference other tables, use functions, and handle complex multi-tenant authorization patterns without wanting to throw your laptop out the window.
+
+        Auth deserves its own paragraph. Supabase Auth handles email/password, magic links, OAuth providers, and phone auth out of the box. The integration with RLS means your auth context is automatically available in your database policies. No middleware layer. No token parsing. Your Postgres policies can reference auth.uid() directly. It's elegant in a way that Firebase Auth plus Firestore rules never was.
+
+        Edge Functions running on Deno are legitimately fast. We use them for webhook handlers, PDF generation, and API integrations. The cold start times are significantly better than Firebase Cloud Functions, and writing them in TypeScript with Deno's standard library is a pleasant experience. No node_modules folder the size of a small country.
+
+        The developer experience is where Supabase really shines though. The dashboard is excellent — you can browse tables, run SQL queries, manage auth users, view logs, and configure storage all from one interface. The local development setup with the Supabase CLI gives you a full local Postgres instance with all the extensions. Database migrations are just SQL files. It's simple in the way that good developer tools should be.
+
+        Now, in fairness, Firebase still has advantages. The realtime database is more mature and lower-latency for certain use cases. The integration with Google Cloud services is deeper. Firebase Hosting with Cloud Functions is arguably simpler for small projects. And Firestore's offline-first sync is genuinely useful for mobile apps — Supabase doesn't have an equivalent.
+
+        But for web applications — SaaS products, dashboards, CRMs, internal tools, anything that needs complex queries and proper relational data — Supabase is the clear choice in 2025. The combination of Postgres, RLS, built-in auth, and a modern developer experience is hard to beat.
+
+        We now default to Supabase for every new project unless there's a specific reason not to. For most web agencies, the question isn't whether to use Supabase — it's why you haven't switched yet.
+
+        Our stack for new client projects: Astro or Next.js on the frontend, Supabase for the backend, Netlify for deployment. It's fast to build, fast to ship, and fast for end users. That's the whole point.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

@@ -1,0 +1,65 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="The complete 47-point checklist we run through before every website launch. Performance, SEO, security, accessibility, and the things most agencies skip."
+  title="The 47-Point Website Launch Checklist We Use Before Every Single Go-Live · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Web Development
+      </Fragment>
+      <Fragment slot="title">
+        The 47-Point Website Launch Checklist We Use Before Every Single Go-Live
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-blue-500/20 to-cyan-600/20 flex items-center justify-center">
+          <span class="text-4xl">&#9989;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Launching Without a Checklist Is How Things Break
+      </Fragment>
+      <Fragment slot="content">
+        Every website launch is the same quiet terror. Everything worked in staging. The client approved the design. The content is loaded. And then you push it live and discover that the contact form sends emails to the old developer, the favicon is missing, and the site takes nine seconds to load on mobile because someone uploaded uncompressed photos. We built this checklist after learning these lessons the hard way. We run through every point before every launch. No exceptions.
+
+        Content and Copy — 12 Points
+
+        1. All placeholder text is replaced with real content. 2. Spelling and grammar have been checked on every page. 3. Phone numbers and email addresses are correct and clickable on mobile. 4. Physical addresses link to Google Maps. 5. Business hours are accurate. 6. Privacy policy and terms pages exist and are linked in the footer. 7. Copyright year is current and updates automatically. 8. All images have descriptive alt text for accessibility and SEO. 9. Content reads naturally and is free of lorem ipsum or "coming soon" sections. 10. Call-to-action text is specific — "Get a Free Quote" beats "Submit." 11. Team bios and photos are approved and current. 12. Testimonials have attribution and permission.
+
+        Technical Performance — 10 Points
+
+        13. Google PageSpeed Insights scores above 90 on both mobile and desktop. 14. Images are compressed and served in modern formats like WebP or AVIF. 15. Fonts are preloaded or use font-display swap to prevent layout shift. 16. CSS and JavaScript are minified and bundled. 17. No console errors in the browser developer tools. 18. Lazy loading is implemented for below-the-fold images. 19. The site loads in under 3 seconds on a standard mobile connection. 20. No broken links — run a full crawl with a link checker. 21. Redirects are in place for any old URLs that have changed. 22. Caching headers are configured correctly.
+
+        SEO Essentials — 8 Points
+
+        23. Every page has a unique title tag under 60 characters. 24. Every page has a meta description under 155 characters. 25. Heading hierarchy is correct — one H1 per page, logical H2 and H3 structure. 26. An XML sitemap is generated and submitted to Google Search Console. 27. Robots.txt is configured correctly and is not accidentally blocking the site. 28. Open Graph tags are set for social media sharing previews. 29. Canonical URLs are set to prevent duplicate content. 30. Google Analytics and Google Search Console are connected and verified.
+
+        Forms and Functionality — 7 Points
+
+        31. Every form submits successfully and sends to the correct email address. 32. Form confirmation messages or thank-you pages display correctly. 33. Form validation works — required fields are enforced, email fields check format. 34. CAPTCHA or spam protection is active on all public forms. 35. Interactive elements like sliders, accordions, and modals work on all screen sizes. 36. Search functionality returns relevant results if applicable. 37. E-commerce checkout flow works end-to-end with test transactions.
+
+        Security — 5 Points
+
+        38. SSL certificate is installed and the site loads over HTTPS. 39. HTTP to HTTPS redirect is in place. 40. Admin login URLs are secured and default credentials are changed. 41. Backup system is configured and tested. 42. File upload forms have size and type restrictions.
+
+        Cross-Device Testing — 5 Points
+
+        43. Site tested on Chrome, Safari, Firefox, and Edge. 44. Site tested on iOS and Android devices. 45. Site tested at common breakpoints — 375px, 768px, 1024px, 1440px. 46. Touch targets are at least 44 by 44 pixels on mobile. 47. No horizontal scrolling on any screen size.
+
+        Why This Matters
+
+        You do not get a second chance at a first impression. The first 48 hours after launch are when your site gets the most scrutiny — from clients, from Google, from your competitors. A broken form, a slow load time, or a missing page during that window costs real business. We share this checklist with every client before launch so they know exactly what we check. And if you are launching a site yourself or with another agency, steal this list. Print it out. Tape it to your monitor. A checklist is boring. A broken launch is worse.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

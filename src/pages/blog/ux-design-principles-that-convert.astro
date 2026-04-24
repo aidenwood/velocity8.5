@@ -1,0 +1,73 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="7 UX design principles that directly impact conversion rates. Practical user experience design advice from a working web design agency."
+  title="The 7 UX Principles Behind Every High-Converting Page We've Built · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        UX Design
+      </Fragment>
+      <Fragment slot="title">
+        The 7 UX Principles Behind Every High-Converting Page We've Built
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-violet-600/20 to-cyan-500/20 flex items-center justify-center">
+          <span class="text-4xl">🧠</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        UX Design That Pays for Itself
+      </Fragment>
+      <Fragment slot="content">
+        Most UX design advice reads like a university textbook. Heuristic evaluations. Nielsen's 10 usability principles. Gestalt theory. All valid, all useful, and all completely disconnected from the thing business owners actually care about: conversion rate optimization.
+
+        Here are 7 user experience design principles we apply on every project at Aidxn Design — and every single one of them has a measurable impact on whether people buy, book, or enquire.
+
+        <strong>1. One page, one job</strong>
+
+        Every page on your website should have exactly one primary action you want the user to take. Not three. Not "it depends on the user." One. Your homepage converts to a service page. Your service page converts to a contact form. Your contact form converts to a submission. When a page tries to do everything, it achieves nothing. This is the most fundamental UX design principle that separates sites that convert from sites that just exist.
+
+        <strong>2. Reduce cognitive load, not content</strong>
+
+        People mistake "simple design" for "less content." Wrong. Users don't want less information — they want less effort to process it. Use visual hierarchy to guide attention. Break long text into scannable chunks. Use icons, whitespace, and progressive disclosure so users can dig deeper only if they want to. The goal of good user experience design isn't to remove content — it's to remove friction.
+
+        <strong>3. The 3-second rule for forms</strong>
+
+        If a user looks at your form and thinks "this is going to take a while," you've lost them. The perceived effort of filling out a form matters more than the actual effort. Multi-step forms that show progress outperform long single-page forms, even when they have the same number of fields. Show 3-4 fields per step. Use smart defaults. Auto-format phone numbers. Every micro-interaction that reduces perceived effort is a conversion rate optimization win.
+
+        <strong>4. Social proof at the point of decision</strong>
+
+        Testimonials on your homepage are fine. Testimonials next to your pricing table are powerful. Testimonials inline with your checkout flow are conversion gold. The UX design principle here is context: social proof works best when it appears at the exact moment a user is deciding whether to commit. Don't bury your best reviews on a dedicated testimonials page nobody visits.
+
+        <strong>5. Speed is a UX feature</strong>
+
+        A one-second delay in page load reduces conversions by 7%. That's not a rounding error — that's real revenue disappearing because your hero image is 4MB and your WordPress site loads 47 JavaScript files. Performance is user experience design. Users don't consciously think "this site is slow" — they just feel friction and leave. The fastest path to conversion rate optimization is often just making your site faster.
+
+        <strong>6. Predictable navigation beats clever navigation</strong>
+
+        Every creative navigation experiment — hamburger menus on desktop, horizontal scroll, hidden sidebars, scroll-jacking — tests worse than boring, predictable navigation. Users have 20 years of muscle memory telling them where to look for the menu, the logo, and the search bar. Fight that at your own peril. Good UX design respects conventions. Your navigation should feel invisible, not innovative.
+
+        <strong>7. Error states are conversion opportunities</strong>
+
+        Most websites treat errors as dead ends. Form validation fails and you get a red message. A page 404s and you get a generic "not found" page. But every error state is a moment where a user is still engaged and still willing to try. Smart user experience design turns errors into guidance: inline validation that tells users exactly what to fix, 404 pages that suggest popular content, empty states that prompt action. These micro-moments add up to measurable conversion improvements.
+
+        <strong>The compound effect</strong>
+
+        None of these principles will double your conversion rate in isolation. But stacked together, they compound. A site that loads fast, has clear page purposes, uses progressive forms, places social proof contextually, navigates predictably, and handles errors gracefully will dramatically outperform one that ignores these fundamentals — even if the "ignoring" site has a more visually impressive design.
+
+        UX design isn't about making things pretty. It's about removing every possible reason a user might not convert. We apply these conversion rate optimization principles to every <a href="/web-design" class="underline">website we build</a> because they work, and the data proves it.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

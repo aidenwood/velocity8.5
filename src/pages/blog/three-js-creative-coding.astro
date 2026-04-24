@@ -1,0 +1,52 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Creative coding with Three.js and WebGL — why we add 3D to client projects and how it impacts engagement, brand perception, and conversion."
+  title="Let's Make One of Those Fancy 3D Experiences With Three.js · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Creative Development — April 2026
+      </Fragment>
+      <Fragment slot="title">
+        Let's Make One of Those Fancy 3D Experiences With Three.js
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-purple-600/20 to-pink-500/20 flex items-center justify-center">
+          <span class="text-4xl">🧊</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Beyond the Flat Web
+      </Fragment>
+      <Fragment slot="content">
+        Most websites are flat. Text, images, buttons, repeat. They work fine, they communicate information, they get the job done. But "gets the job done" isn't a differentiator. If you want your brand to feel premium, innovative, or genuinely memorable, you need to break the plane. That's where Three.js and creative coding come in.
+
+        Three.js is a JavaScript library that makes WebGL — the browser's 3D rendering API — actually usable. Without it, you'd be writing raw shader code and managing vertex buffers by hand. With it, you can build 3D product visualisations, interactive particle systems, animated backgrounds, and immersive scroll experiences in a fraction of the time. It's the engine behind some of the most awarded websites on the internet.
+
+        We use Three.js and React Three Fiber on select client projects, and the response is consistently the same: visitors stay longer, engagement metrics spike, and clients get feedback like "your website is incredible" instead of "nice website." That emotional response is the whole point. You can't A/B test delight, but you can feel the difference between a forgettable template and a site that makes someone stop scrolling.
+
+        The practical applications are more diverse than people expect. Product configurators let customers rotate, zoom, and customise products in 3D directly in the browser — no app download required. Interactive data visualisations turn dry numbers into explorable landscapes. Animated hero sections replace static images with generative art that's unique on every page load. Even subtle effects like a parallax particle field or a morphing logo add a layer of craft that flat design can't match.
+
+        Performance is always the concern, and it's a legitimate one. A poorly optimised Three.js scene will tank your page speed, destroy your mobile experience, and hurt your SEO. This is why most agencies avoid 3D entirely — they don't know how to do it well. The trick is progressive enhancement. The 3D experience loads asynchronously after the critical content. On slow connections or underpowered devices, users get a beautiful static fallback. On fast connections with capable GPUs, they get the full experience. Nobody gets a broken page.
+
+        We also use p5.js for generative art and procedural design elements. Unlike Three.js, which excels at 3D scenes, p5.js is purpose-built for 2D creative coding — think organic shapes, animated textures, and interactive visual experiments. We've used it to generate unique background patterns for brand identities, where no two page loads look exactly the same but they all feel cohesively on-brand.
+
+        The WebGL ecosystem has matured significantly. GLSL shaders — the programs that run on the GPU to produce visual effects — are now well-documented with communities like Shadertoy providing endless inspiration. Post-processing effects like bloom, depth of field, and colour grading can be added with a few lines of code. The gap between "agency website" and "interactive art installation" has never been smaller.
+
+        Is 3D right for every project? No. A local plumber doesn't need a particle system on their homepage. But a tech startup, a creative agency, an architecture firm, a luxury brand — these are businesses where visual differentiation is a competitive advantage. The investment in creative coding pays off in brand perception, user engagement, and the simple fact that people share remarkable experiences. Nobody shares a template.
+
+        We approach creative coding the same way we approach everything else: performance first, aesthetics second. The most beautiful 3D scene is worthless if it crashes Safari on an iPhone. Build for the constraints, then push the boundaries within them. That's the craft.
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

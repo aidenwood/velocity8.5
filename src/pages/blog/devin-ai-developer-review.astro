@@ -1,0 +1,55 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Devin AI developer honest review after testing on real projects. Overhyped marketing vs actual capabilities. What it can and cannot do."
+  title="We Tested Devin on Real Projects — Here's the Honest, Unglamorous Truth · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Tech News
+      </Fragment>
+      <Fragment slot="title">
+        We Tested Devin on Real Projects — Here's the Honest, Unglamorous Truth
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-rose-600/20 to-pink-500/20 flex items-center justify-center">
+          <span class="text-4xl">&#129302;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        We Tested It So You Don't Have To
+      </Fragment>
+      <Fragment slot="content">
+        When Cognition launched Devin in March 2024, the internet lost its mind. "The first AI software engineer." A demo showing it building and deploying full applications autonomously. Mainstream media ran "AI will replace programmers" headlines for weeks. Then people actually used it and the vibes shifted hard. Now that Devin has been in the wild for almost a year, we tested it on real projects to give you an honest assessment.
+
+        What Devin Actually Is
+        Devin is an autonomous AI coding agent that operates in a sandboxed environment with a browser, code editor, terminal, and planner. You give it a task in natural language, it breaks the task into steps, writes code, runs it, debugs errors, and iterates until the task is complete. Unlike Copilot or Claude Code, which are assistive tools that work alongside you, Devin is designed to work independently. You assign a task and come back to a pull request.
+
+        What We Tested
+        We gave Devin five real tasks from our backlog. Task one: add a date range filter to an existing API endpoint. Task two: create a new React component matching a Figma design. Task three: write a data migration script for a Supabase database. Task four: fix a bug in a webhook handler. Task five: set up a new Astro page with existing component patterns.
+
+        The Results Were Mixed
+        Task one — the API filter — Devin handled well. It read the existing codebase, understood the pattern, added the filter with proper validation and tests. The code was clean and the PR was mergeable with minor comments. About what you would expect from a competent junior developer. Task two — the React component — was rough. Devin can write JSX but matching a specific design requires visual understanding that it does not have. The structure was right but the spacing, typography, and responsive behaviour were all wrong. Task three — the migration script — was a partial success. The script worked but it did not handle edge cases in the data that a developer familiar with the project would have caught. Task four — the bug fix — failed. Devin spent 45 minutes going in circles, trying solutions that did not address the root cause. The bug required understanding the interaction between two services, and Devin could not hold that mental model. Task five — the Astro page — was the best result. Following existing patterns is exactly what Devin excels at, and the output was production-ready.
+
+        The Pattern Is Clear
+        Devin is excellent at well-defined tasks with clear patterns to follow. Add a CRUD endpoint that matches existing endpoints. Set up a new page using existing components. Write tests for existing functions. These are tasks where the "what" is clear and the "how" can be inferred from existing code. Devin struggles with tasks that require judgment, deep context about business logic, debugging complex interactions, or matching visual designs. These are tasks where expertise and context matter more than code generation speed.
+
+        Devin vs Claude Code
+        Here is the comparison nobody wants to make because it is uncomfortable for Cognition. Claude Code with an experienced developer is faster and produces better results than Devin working alone for every task we tested. The key difference is the feedback loop. With Claude Code, you course-correct in real time. "No, the filter should be on the database query, not in the application layer." "The error handling needs to cover the rate limit case." These small corrections take seconds and prevent twenty minutes of wrong-direction autonomous work. Devin's autonomous approach sounds great in a demo but in practice, the lack of human steering means it often commits to a wrong approach and spends time iterating on a fundamentally flawed solution.
+
+        The Honest Verdict
+        Devin is not a replacement for developers. It is not even close. But it is also not useless. It is a semi-autonomous junior developer that can handle routine tasks if you give it clear specifications and existing patterns to follow. The $500 per month price tag is hard to justify unless you have a large volume of well-specified, pattern-matching tasks. For most teams, Claude Code at $20 per month plus a human in the loop will get better results. The hype was wrong, but the underlying technology will improve. The question is whether Devin can improve fast enough to justify its positioning before tools like Claude Code and Copilot Workspace close the gap from the other direction.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

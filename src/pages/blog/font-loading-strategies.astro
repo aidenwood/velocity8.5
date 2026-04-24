@@ -1,0 +1,85 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Web font loading is deceptively complex. Wrong strategies cause invisible text, layout shifts, and slow LCP. Here's how to load fonts without breaking your site."
+  title="The Surprisingly Complicated World of Loading Web Fonts Without Breaking Everything · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Web Performance — April 2026
+      </Fragment>
+      <Fragment slot="title">
+        The Surprisingly Complicated World of Loading Web Fonts Without Breaking Everything
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-rose-600/20 to-red-500/20 flex items-center justify-center">
+          <span class="text-4xl">&#128291;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Fonts Are a Performance Minefield
+      </Fragment>
+      <Fragment slot="content">
+        Typography is foundational to good web design. It's also one of the most common sources of performance problems. A single poorly loaded font can add 300-500ms to your LCP, cause visible text flashes, trigger layout shifts, and create that uncomfortable moment where the entire page re-renders mid-read. Most developers treat font loading as a "set and forget" task. It isn't.
+
+        Here's why it's complicated and how to get it right.
+
+        <strong>The browser's default behaviour is terrible</strong>
+
+        When a browser encounters a web font it hasn't loaded yet, it has two options: show nothing (FOIT — Flash of Invisible Text) or show a fallback font and swap later (FOUT — Flash of Unstyled Text). Chrome and Firefox default to a 3-second FOIT timeout before falling back. Safari will wait indefinitely for the font to load, potentially showing invisible text for the entire page visit. Neither behaviour is acceptable for a production website.
+
+        <strong>font-display: the first thing to get right</strong>
+
+        The font-display CSS descriptor controls this behaviour. Your options are:
+
+        swap — shows fallback text immediately, swaps to the web font when it loads. Best for body text. Users see content instantly, and the font swap is typically imperceptible on fast connections. The risk is a visible layout shift when the swap happens, because the fallback and web font probably have different metrics.
+
+        optional — shows fallback text immediately. If the font loads within a very short window (around 100ms), it swaps. If not, the fallback stays for the entire page visit. The font is still downloaded in the background for subsequent navigations. This is the best option for minimising CLS, because the swap either happens so fast it's invisible or doesn't happen at all.
+
+        block — invisible text for up to 3 seconds, then falls back. Appropriate only when the specific font is absolutely essential to the design — a logo rendered as text, for example. For body copy, this is never the right choice.
+
+        fallback — a compromise between swap and optional. Short invisible period (100ms), then fallback, then swap if the font loads within about 3 seconds.
+
+        For most projects, we use font-display: swap for heading fonts and font-display: optional for body fonts. This prioritises readability while minimising layout shift.
+
+        <strong>Self-hosting beats Google Fonts</strong>
+
+        Google Fonts is convenient but carries a performance penalty. When you link to Google Fonts, the browser has to: resolve the fonts.googleapis.com DNS, connect to the server, download the CSS file, parse it to discover the actual font file URLs on fonts.gstatic.com, resolve that DNS, and then finally download the font files. That's two DNS lookups, two connections, and at least three round trips before a single glyph renders. On a mobile connection, that's easily 300-500ms.
+
+        Self-hosting eliminates all of this. Download the font files, host them on your own domain (or CDN), and reference them directly in your CSS. The browser already has a connection to your domain — the font files load in parallel with your other assets with zero additional connection overhead.
+
+        <strong>Preloading critical fonts</strong>
+
+        For fonts used in your hero section or primary heading, add a preload link in the &lt;head&gt;. This tells the browser to start downloading the font file immediately, before it even parses the CSS and discovers it needs the font. A preload link for a font looks like: link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin. The crossorigin attribute is required for fonts even when self-hosting — it's a quirk of the spec. Omit it and the browser will download the font twice.
+
+        <strong>Variable fonts are a game changer</strong>
+
+        Traditional web fonts require a separate file for each weight and style combination. Regular, bold, italic, bold italic — that's four files, potentially 100-400KB total. A variable font contains all weights and styles in a single file, typically 50-150KB. You set the weight with font-weight and the browser interpolates between any value in the range. Inter, for example, is about 100KB as a variable font versus 400KB+ for four individual weight files.
+
+        <strong>Subsetting reduces file size dramatically</strong>
+
+        Most font files include glyphs for Latin Extended, Cyrillic, Greek, Vietnamese, and other character sets you probably don't need. Subsetting strips out everything you don't use. For an English-language Australian business site, you typically only need Basic Latin and a handful of special characters. Subsetting can reduce a font file from 100KB to 20-30KB. Tools like glyphhanger or the Google Fonts CSS API's text parameter handle this automatically.
+
+        <strong>Matching fallback metrics to prevent CLS</strong>
+
+        The layout shift from a font swap happens because the fallback font (usually Arial or system-ui) has different character widths, line heights, and spacing than your web font. The fix is to adjust the fallback font's metrics to match. The CSS properties size-adjust, ascent-override, descent-override, and line-gap-override let you fine-tune a fallback font to match your web font's metrics almost perfectly. Tools like Fontaine and the Next.js font system generate these values automatically. When the swap happens, the text barely moves.
+
+        <strong>Our font loading checklist</strong>
+
+        Self-host all fonts. Use WOFF2 format exclusively — it has the best compression and universal browser support. Subset to the character sets you actually need. Use a variable font if you need more than two weights. Preload the font used in your hero/heading. Set font-display: swap or optional. Configure fallback font metrics to minimise CLS. Test on a throttled mobile connection to verify the experience. Total font weight target: under 100KB for the entire site.
+
+        Fonts are invisible infrastructure. When they load well, nobody notices. When they load poorly, the entire page experience suffers. Spend thirty minutes getting this right and you'll never think about it again.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

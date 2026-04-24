@@ -1,0 +1,56 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Ad campaign creative that converts — design principles for Facebook ads, Google ads, and paid media. Stop wasting spend on creative that doesn't perform."
+  title="Your Ad Creative Is Why Your Campaign Isn't Converting — Let's Fix That · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Ad Creative — April 2026
+      </Fragment>
+      <Fragment slot="title">
+        Your Ad Creative Is Why Your Campaign Isn't Converting — Let's Fix That
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-green-600/20 to-emerald-500/20 flex items-center justify-center">
+          <span class="text-4xl">📊</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Design Principles for Paid Media
+      </Fragment>
+      <Fragment slot="content">
+        You can have the best targeting, the most optimised bidding strategy, and the most refined audience segments in your ad account — and none of it matters if your creative is bad. Creative is the variable that determines whether someone stops scrolling or keeps going. It's the single highest-leverage element in any paid media campaign, and it's the one most businesses spend the least time on.
+
+        I've managed ad creative for campaigns across Facebook, Instagram, Google Display, and YouTube. Here's what actually works, and what's wasting your spend.
+
+        The first principle is thumb-stopping power. On social platforms, your ad is competing against friends' photos, memes, news, and every other piece of content in the feed. You have roughly half a second to interrupt the scroll. That means high-contrast visuals, bold colour choices, and a clear focal point. The biggest mistake is designing ads that look like ads. Users have developed banner blindness — they've been trained to ignore anything that looks polished and corporate. The best-performing ad creative in 2026 often looks native to the platform. User-generated content style, casual photography, and hand-held video consistently outperform studio-shot creative in feed environments.
+
+        Text on image is a balancing act. Facebook's old 20% text rule is gone, but the principle behind it was sound — too much text on an image reduces engagement. The sweet spot is a single headline of 5-8 words, large enough to read on mobile without zooming. Your primary copy should be in the ad text field, not burned into the image. That said, rules are made to be broken. Static image ads with bold text overlays can crush it if the message is sharp enough. Test both approaches.
+
+        Aspect ratios matter more than most marketers realise. A 1:1 square image takes up more vertical space in a mobile feed than a 16:9 landscape image, which means more screen real estate and more attention. A 9:16 vertical format takes up the entire screen in Stories and Reels placements. Designing a single 16:9 image and running it across all placements is lazy and leaves performance on the table. Build creative for each placement.
+
+        For Google Display ads, the game is completely different. You're not interrupting a social feed — you're competing with the content of the website your ad appears on. Display ads need to be clean, branded, and immediately legible. Heavy imagery gets lost against busy website backgrounds. Strong brand colours, minimal text, and a clear CTA button outperform complex designs every time. Google's responsive display ads will automatically resize your assets, but they do a mediocre job of it. Upload custom-sized creative for the key sizes: 300x250, 728x90, 160x600, and 320x50. These four cover the vast majority of available inventory.
+
+        Video ad creative follows a ruthless structure: hook, value, CTA. The hook is the first 1-3 seconds and it determines whether anyone sees the rest. Start with movement, a provocative question, or a surprising visual. Don't start with your logo. Nobody cares about your logo until you've given them a reason to. The value section delivers your message — the problem you solve, the result you deliver, the transformation you offer. The CTA tells them exactly what to do next. "Shop now," "Book a call," "Get your free quote." Vague CTAs like "Learn more" are for brands that can't articulate their offer.
+
+        Colour psychology in ad creative isn't pseudoscience, but it's not magic either. Red creates urgency — useful for sales and limited-time offers. Blue builds trust — financial services and healthcare lean on it for good reason. Green signals growth and sustainability. Orange drives action without the aggression of red. But the most important colour principle isn't psychological — it's contrast. Your ad needs to visually pop against whatever environment it appears in. If the platform's background is white, don't design a white ad. If the feed is a cascade of blue-toned photos, use warm colours.
+
+        Testing is where most businesses fall down. They design one set of creative, launch it, and let it run until performance declines. Then they complain that "ads don't work." The winning approach is systematic creative testing. Run 3-5 variations simultaneously — different headlines, different images, different formats. Kill the underperformers within 72 hours. Scale the winners. Then design new variations to beat the current champion. This isn't optional optimisation — it's how modern paid media works.
+
+        Creative fatigue is real and measurable. When your frequency exceeds 3-4 on Facebook, performance drops because the same people are seeing the same ad repeatedly. The solution isn't bigger budgets — it's fresh creative on a regular cadence. We typically refresh ad creative every 2-4 weeks for active campaigns. If that sounds like a lot of design work, it is. That's why having a designer who understands performance marketing is worth more than a designer who just makes things look pretty.
+
+        The gap between beautiful creative and effective creative is where money is made. Pretty ads win design awards. Effective ads win customers. The best ad creative is both — visually compelling and strategically designed to drive a specific action. That's the standard.
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

@@ -1,0 +1,54 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Web design trends actually shipping in 2026 — from AI-native interfaces to variable fonts and spatial UI. Cut through the Dribbble noise."
+  title="What's Actually Shipping in Web Design Right Now (And What's Just Dribbble Bait) · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Design Trends — April 2026
+      </Fragment>
+      <Fragment slot="title">
+        What's Actually Shipping in Web Design Right Now (And What's Just Dribbble Bait)
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-violet-600/20 to-cyan-500/20 flex items-center justify-center">
+          <span class="text-4xl">🎨</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Dribbble Bait vs. Production Code
+      </Fragment>
+      <Fragment slot="content">
+        Every January the same thing happens. Design Twitter explodes with trend predictions that look incredible in a Figma mockup and completely fall apart the moment a developer tries to build them for a real client with real content and real users on a 4G connection in regional Queensland. So let's talk about what's actually shipping in 2026 — not what looks good on a mood board.
+
+        The biggest shift this year isn't visual at all. It's architectural. The sites winning in 2026 are the ones that made the jump to partial hydration frameworks like Astro and server components in Next.js. These aren't new technologies anymore — they're table stakes. If your agency is still shipping a 2MB React bundle for a five-page marketing site, you're leaving money on the table. Literally. Google's ranking algorithm punishes slow sites, and your client's bounce rate proves it.
+
+        Variable fonts have finally hit mainstream adoption. Not as a novelty, but as a performance play. One variable font file replacing four or five static weights means fewer network requests, smaller payloads, and smoother typography across breakpoints. We're using Inter Variable and Geist on almost every project now. The days of loading Google Fonts from a CDN and hoping for the best are over.
+
+        Bento grid layouts are everywhere, and I have mixed feelings about them. When done well — like Apple's product pages — they create visual hierarchy that actually guides the eye. When done poorly, which is most of the time, they're just a masonry grid with rounded corners and a gradient. The difference is content density. Bento works when each cell has a clear purpose. It fails when designers fill cells with decorative noise because the grid demands it.
+
+        Micro-interactions and scroll-driven animations are the real winners this year. The CSS scroll-timeline API is now supported across all major browsers, which means you can build parallax effects, progress indicators, and reveal animations without a single line of JavaScript. No GSAP. No Intersection Observer hacks. Pure CSS. This is a genuine game-changer for performance-conscious teams.
+
+        AI-generated design elements are creeping into production, but not the way you'd expect. Nobody serious is shipping full AI-generated layouts. What's actually happening is designers using AI for texture generation, SVG pattern creation, and copywriting first drafts. The tools are assistants, not replacements. If someone tries to sell you a fully AI-generated website, run. The output is generic, the code is bloated, and your brand will look like everyone else's.
+
+        Dark mode is no longer optional — it's expected. But the trend in 2026 is going beyond a simple colour inversion. The best dark modes now use carefully tuned surface elevation, where lighter shades of dark indicate elements closer to the user. Material Design 3 popularised this, and it's become the standard. If your dark mode is just white text on a black background, you're doing it wrong.
+
+        Spatial design is having a moment, largely driven by Apple Vision Pro's influence on web thinking. Even for 2D screens, designers are adding depth through layered glassmorphism, z-axis awareness in scroll interactions, and 3D elements via Three.js and WebGL. We've been doing this for clients for years, and it's satisfying to see the industry catch up. The key is restraint — a subtle depth cue beats a spinning 3D model every time.
+
+        The trend I'm most excited about is the death of the hero slider. Carousels have been conversion killers for a decade, and designers are finally replacing them with static hero sections that load instantly and communicate a single clear message. Your homepage has three seconds to convince someone to stay. Don't waste them on a sliding animation they'll never see.
+
+        Bottom line: the best design trend in 2026 is performance. Fast sites rank higher, convert better, and cost less to host. Everything else is decoration.
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

@@ -1,0 +1,58 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Page speed directly impacts SEO rankings, conversion rates, and revenue. Here's the data and what to do about it in 2026."
+  title="Your Website Is Slow and It's Costing You Money — Here's the Data · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Performance & SEO — April 2026
+      </Fragment>
+      <Fragment slot="title">
+        Your Website Is Slow and It's Costing You Money — Here's the Data
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-emerald-600/20 to-teal-500/20 flex items-center justify-center">
+          <span class="text-4xl">⚡</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        The Numbers Don't Lie
+      </Fragment>
+      <Fragment slot="content">
+        Here's a stat that should make every business owner uncomfortable: 53% of mobile visitors abandon a site that takes longer than 3 seconds to load. Not 10 seconds. Not 5. Three. And that was a Google study from years ago — user patience has only gotten worse since then.
+
+        In 2026, page speed isn't a "nice to have." It's the single most impactful factor in whether your website actually does its job. Let's break down why, and more importantly, what to do about it.
+
+        Google's Core Web Vitals are now fully baked into the ranking algorithm. Three metrics matter: Largest Contentful Paint (LCP) measures how quickly the main content loads. Interaction to Next Paint (INP) replaced First Input Delay and measures how responsive the page is when someone clicks or taps. Cumulative Layout Shift (CLS) measures visual stability — whether elements jump around as the page loads. Fail any of these and Google will quietly push you down the rankings in favour of competitors who pass.
+
+        The SEO impact is measurable and significant. Pages in the top 10 search results have an average LCP under 2.5 seconds. Pages that fail Core Web Vitals see a 15-20% reduction in organic traffic, according to multiple case studies from Ahrefs and Semrush. If you're spending money on SEO content but ignoring page speed, you're pouring water into a bucket with a hole in it.
+
+        Conversion rates tell an even more compelling story. Shopify's internal data shows that a 100ms improvement in load time increases conversions by 1.3% on mobile. Amazon famously calculated that every 100ms of latency costs them 1% of sales. Your business isn't Amazon, but the principle scales. A slow site isn't just annoying — it's actively losing you money.
+
+        So what's actually making your site slow? In our experience, the culprits are almost always the same. Unoptimised images account for 50-70% of most page weights. A single uncompressed hero image can be 3-5MB. Convert to WebP or AVIF, serve responsive sizes via srcset, and lazy-load anything below the fold. This alone can cut load times in half.
+
+        Third-party scripts are the silent killer. That Facebook Pixel, Google Tag Manager container with 15 tags, live chat widget, analytics script, and cookie consent banner? Each one adds network requests, blocks rendering, and competes for the main thread. Audit ruthlessly. If a script isn't directly generating revenue, it probably shouldn't be there.
+
+        CSS and JavaScript bundles matter more than most developers admit. A WordPress site with 20 plugins will ship hundreds of kilobytes of unused CSS. A React SPA might send a full megabyte of JavaScript before a single word renders on screen. This is why we build with Astro — it ships zero JavaScript by default and only hydrates the components that actually need interactivity. The result is a 95+ Lighthouse score out of the box, not as a goal to chase after launch.
+
+        Font loading strategy is another area most agencies ignore. Loading four font weights from Google Fonts is an easy 200-400ms penalty. Self-host your fonts, use font-display: swap, preload your critical font files, and consider variable fonts to reduce the number of requests.
+
+        The infrastructure layer matters too. If you're serving an Australian audience from a server in Virginia, your Time to First Byte is already 200-300ms before anything else happens. Use a CDN. Netlify, Vercel, and Cloudflare all have Australian edge nodes. There's no excuse for geographic latency in 2026.
+
+        Here's what we do on every project: we set a performance budget before writing a single line of code. Total page weight under 500KB. LCP under 2 seconds. INP under 200ms. CLS under 0.1. These aren't aspirational targets — they're hard requirements. If a design decision or feature request would blow the budget, we find a lighter way to achieve the same goal.
+
+        The bottom line is simple. Speed is a feature. It's the first thing your users experience and the last thing most agencies optimise. If your current website scores below 80 on Google PageSpeed Insights, you're leaving rankings, traffic, and revenue on the table. Fix it or let us fix it for you.
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

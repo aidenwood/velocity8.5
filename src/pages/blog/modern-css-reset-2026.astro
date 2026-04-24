@@ -1,0 +1,61 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="The CSS reset debate is older than most frameworks. Here's what actually belongs in a modern reset in 2026, what's unnecessary, and what's actively harmful."
+  title="What Actually Belongs in a CSS Reset in 2026 (And What Doesn't) · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        CSS & Best Practices
+      </Fragment>
+      <Fragment slot="title">
+        What Actually Belongs in a CSS Reset in 2026 (And What Doesn't)
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-gray-600/20 to-stone-500/20 flex items-center justify-center">
+          <span class="text-4xl">🧹</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Rethinking the First Lines of Every Stylesheet
+      </Fragment>
+      <Fragment slot="content">
+        Every CSS file starts with a reset or normalize. This has been true since Eric Meyer published the original CSS Reset in 2007. The reasoning was sound: browsers had wildly inconsistent default styles, so you'd nuke everything and build from scratch. But that was seventeen years ago. Browsers have converged dramatically. The question isn't whether you need a reset — it's whether the reset you're copying from Stack Overflow is still doing useful work in 2026.
+
+        Let's start with what definitely belongs. box-sizing: border-box on everything. This is the single most universally useful reset rule. The default content-box model where padding and border add to the declared width is a footgun that has caused millions of layout bugs. *, *::before, *::after &#123; box-sizing: border-box; &#125; should be in every stylesheet, period. There is no reasonable argument against this.
+
+        Removing default margins on body. Browsers add an 8px margin to the body element by default. This creates a visible gap around your page content that no designer has ever intentionally included in a comp. body &#123; margin: 0; &#125; is essential. Some resets also zero out margins on headings and paragraphs. Whether you want that depends on your project — if you're defining all your typography spacing with a design system, zeroing these makes sense. If you're building a content-heavy blog where browser defaults save you time, keep them.
+
+        Sensible image defaults. Images are inline elements by default, which creates that annoying 4px gap below images in containers. img &#123; display: block; max-width: 100%; &#125; fixes the gap and prevents images from overflowing their containers. This is so universally useful that leaving it out of your reset is basically asking for a bug report.
+
+        Inheriting fonts on form elements. Buttons, inputs, selects, and textareas don't inherit font properties from their parents by default. They use the browser's system font unless you explicitly tell them to inherit. button, input, select, textarea &#123; font: inherit; &#125; ensures your form elements match your site's typography. This catches people constantly — "why does my button text look different from everything else?" Because it's not inheriting your font-family declaration.
+
+        Removing list styles for lists that are used as navigation or UI elements. But here's the nuance: don't remove list styles globally. If you write ul &#123; list-style: none; padding: 0; &#125; in your reset, you've just made every content list — blog posts, documentation, knowledge bases — lose their bullets. Then you have to add them back. Only remove list styles on lists that are used for layout purposes. A common pattern: [role="list"] &#123; list-style: none; &#125; or .nav-list &#123; list-style: none; &#125;.
+
+        Now, what doesn't belong anymore. The nuclear approach of setting margin: 0 and padding: 0 on every element is overkill in 2026. You end up re-declaring spacing on everything. The browser defaults for heading margins and paragraph spacing are actually pretty reasonable for content-heavy pages. Reset what you need to, not everything out of habit.
+
+        Remove the old -webkit- prefixes you've been carrying around. -webkit-font-smoothing, -webkit-text-size-adjust, -webkit-tap-highlight-color — audit whether you still need these. Many were fixes for iOS Safari issues that no longer exist. -webkit-font-smoothing: antialiased is debatable: it makes text thinner on macOS, which some designers prefer and others hate. It's a stylistic choice, not a reset necessity.
+
+        Normalize.css was revolutionary in 2012. In 2026, most of what it does is either unnecessary (browsers have converged) or better handled by a few specific rules. You don't need a 300-line normalize file. You need fifteen thoughtful lines.
+
+        Here's what we actually use in production on client sites. It's about twenty lines. Box-sizing border-box on everything. Zero margin on body. Block display and max-width on images. Font inheritance on form elements. Smooth scroll on html (with a prefers-reduced-motion override). A system font stack as the default. Line-height: 1.5 on body for readable text. And text-wrap: balance on headings so they break nicely across lines — this is a newer addition that makes a real visual difference on responsive sites.
+
+        The text-wrap: balance rule is worth highlighting because it's new and genuinely useful. It distributes text across lines more evenly, preventing the classic "one orphan word on the last line" problem in headings. Browser support is excellent in 2026. It's a small detail that makes typography look intentional rather than accidental.
+
+        A modern CSS reset should be short, intentional, and auditable. If you can't explain why a rule is in your reset, remove it. Every line should solve a specific, current problem — not a browser inconsistency from 2011 that no longer exists.
+
+        Start clean. Add what you need. Ship less CSS.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

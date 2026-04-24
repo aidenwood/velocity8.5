@@ -1,0 +1,59 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Building a design system sounds straightforward until you actually do it. Here's what nobody warns you about — the politics, the tokens, and the versioning nightmares."
+  title="So You Want to Build a Design System (Here's What Nobody Warns You About) · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Design Systems — April 2026
+      </Fragment>
+      <Fragment slot="title">
+        So You Want to Build a Design System (Here's What Nobody Warns You About)
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-indigo-500/20 to-violet-600/20 flex items-center justify-center">
+          <span class="text-4xl">&#128736;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        The Honest Guide to Design Systems
+      </Fragment>
+      <Fragment slot="content">
+        Every agency eventually has the same epiphany: "We keep rebuilding the same button. We should build a design system." This is a correct observation that leads to an enormously underestimated project. After building design systems for multiple clients and maintaining our own internal system across 30+ projects, here is what nobody tells you before you start.
+
+        The Hard Part Is Not The Components
+        Building a button component is easy. Building a button component that handles loading states, icon placement, five size variants, disabled states, link-as-button semantics, dark mode, high contrast mode, and keyboard focus rings — while remaining composable with every other component in your system — is a completely different problem. And the button is the simple one. Wait until you get to data tables or multi-step forms. The actual component code is maybe 20% of the work. The remaining 80% is documentation, naming conventions, versioning strategy, governance, and convincing every developer on the team to actually use the system instead of writing their own version because "it's faster."
+
+        Start With an Audit, Not a Figma File
+        The instinct is to open Figma, design a beautiful component library, hand it to developers, and declare victory. This is backwards. Start by auditing what you already have. Screenshot every button, every form field, every card, every modal in your existing products. You will find fifteen different button styles, eight shades of grey that are supposed to be the same grey, and three completely different approaches to spacing. This audit is uncomfortable because it reveals how inconsistent things actually are. That discomfort is the point. You cannot fix what you have not catalogued.
+
+        Design Tokens Are The Foundation
+        Before you build a single component, define your tokens. Colours, spacing scales, typography scales, border radii, shadows, breakpoints. These are the atomic values that every component consumes. Get these wrong and everything built on top of them will feel slightly off. Get them right and consistency becomes automatic. We define tokens as a JSON file that compiles to CSS custom properties, Tailwind config values, and Figma variables simultaneously. One source of truth, three outputs. If your tokens live in a Figma file that a developer manually translates into CSS, you do not have a design system. You have a suggestion system.
+
+        Naming Is Absurdly Important
+        You will spend more time debating naming conventions than you expect, and that time is not wasted. Is it "primary" or "brand"? Is it "sm" or "small" or "compact"? Is the destructive button variant called "danger" or "destructive" or "error"? These names become the API surface that every developer on every project will use for years. A bad name creates confusion that compounds across every file in every project. We follow a simple convention: semantic names for colours (primary, secondary, destructive, muted), t-shirt sizes for scale (sm, md, lg, xl), and descriptive names for variants (outline, ghost, link). Be boringly consistent.
+
+        Versioning Will Bite You
+        The moment your design system is used by more than one project, you have a versioning problem. Ship a breaking change to the button component and you have just broken every project that imports it. There are two schools of thought here. The first is to version the entire system as a single package — every component shares a version number and ships together. This is simpler to manage but means a change to the tooltip forces a version bump on the data table. The second approach is to version each component independently, which is more granular but exponentially more complex to maintain. We use the first approach for systems under 50 components and consider the second only when the system reaches enterprise scale.
+
+        Documentation Is The Product
+        A design system without documentation is a component folder that nobody can use. Every component needs usage guidelines, do's and don'ts, prop documentation, accessibility notes, and live examples. Storybook is the industry standard here and it is worth the setup cost. A developer should be able to open your docs, understand when to use a component, see it in action, copy the import, and move on. If using a component requires reading the source code, the documentation has failed.
+
+        Adoption Is a People Problem
+        The most technically perfect design system in the world is worthless if nobody uses it. Adoption requires buy-in from designers, developers, and product managers. It requires making the system easier to use than the alternative. It requires gentle enforcement — linting rules that flag custom colours, PR reviews that catch one-off components, and a feedback loop where the team can request changes without feeling like they are fighting bureaucracy. The system serves the team, not the other way around.
+
+        The system will never be finished. Components will be added, tokens will be adjusted, patterns will evolve. Treat it as a living product with its own roadmap, its own backlog, and its own release cycle. That mindset shift — from "project" to "product" — is the single biggest predictor of whether a design system survives its first year.
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

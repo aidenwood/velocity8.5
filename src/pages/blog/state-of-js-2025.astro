@@ -1,0 +1,58 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="State of JS 2025 results are in. React still dominates, Svelte 5 runes divide the community, and HTMX is the dark horse nobody expected."
+  title="The State of JS 2025 Is Wild: React Won't Die, Svelte Runes Are Polarizing, and HTMX Came Out of Nowhere · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Tech News
+      </Fragment>
+      <Fragment slot="title">
+        The State of JS 2025 Is Wild: React Won't Die, Svelte Runes Are Polarizing, and HTMX Came Out of Nowhere
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-yellow-600/20 to-amber-500/20 flex items-center justify-center">
+          <span class="text-4xl">&#128202;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        The Annual JavaScript Census
+      </Fragment>
+      <Fragment slot="content">
+        The State of JS 2025 survey results dropped and the JavaScript ecosystem is somehow both completely predictable and deeply surprising at the same time. Let's break down what 25,000 developers actually think about the state of the language.
+
+        React Is Still the Default — And That's Fine
+        React usage ticked up slightly to 83% awareness and 69% retention. The "React is dead" crowd has been saying this for five years straight and the numbers just keep going up. React Server Components moved from experimental curiosity to production reality in 2025, and the retention rate among developers who actually use RSC is significantly higher than those still writing client-only React. The framework is evolving. It is not dying. You do not have to like it, but you do have to acknowledge reality.
+
+        Svelte 5 Runes Split the Community
+        Svelte was the darling of the "developer satisfaction" metric for three consecutive years. Then Svelte 5 shipped with runes — a fundamentally different reactivity model that replaces the magic compiler approach with explicit $state and $derived declarations. Satisfaction dropped for the first time. The Svelte subreddit is a warzone. Half the community says runes make Svelte more predictable and scalable. The other half says it killed the simplicity that made Svelte special in the first place. Our take? Runes are the right call for large applications but they did sacrifice the "write less code" pitch that got people hooked. Rich Harris made a bet that Svelte needs to scale to enterprise to survive. He is probably right, but the migration pain is real.
+
+        HTMX Is the Dark Horse Nobody Expected
+        HTMX went from meme library to legitimate contender. Interest jumped 40% year over year and — more importantly — satisfaction among actual users is at 88%, higher than every major framework except Solid. The thesis is simple: most web applications do not need a JavaScript framework at all. They need HTML that can make HTTP requests. HTMX lets you add dynamic behavior with HTML attributes instead of building a full single-page application. For content sites, admin panels, and server-rendered applications, it is genuinely excellent. We have used it on a few internal tools and the developer experience is refreshingly simple. No build step, no bundle size anxiety, no hydration bugs. Just HTML doing what HTML should have been able to do in 2015.
+
+        The Meta-Framework Wars Continue
+        Next.js usage is still dominant but satisfaction dipped below 50% for the first time. Vercel's aggressive monetisation strategy and the constant churn of App Router patterns are wearing developers down. Astro satisfaction remains sky-high at 92%, but usage is still relatively niche. SvelteKit and Nuxt both saw steady growth. The interesting trend is that developers are increasingly using multiple meta-frameworks — Astro for content sites, Next.js for apps, and something lighter for internal tools.
+
+        TypeScript Is No Longer Optional
+        TypeScript usage hit 89% among survey respondents. The remaining 11% are either maintaining legacy codebases or writing scripts. The "TypeScript is just a fad" take aged like milk left in the sun. More interesting is the shift toward stricter TypeScript — 62% of respondents now use strict mode, up from 48% last year. Developers are not just adopting TypeScript; they are adopting it properly.
+
+        Build Tools Consolidated
+        Vite won. That is the summary. Vite usage surpassed webpack for the first time and the satisfaction gap is a canyon — 97% vs 34%. Turbopack is still in beta limbo and most developers have stopped waiting. esbuild remains popular for library authors but Vite is the answer for application development. The build tool wars are effectively over.
+
+        What This Means for Your Projects
+        If you are starting a new project today, the safe bet is React with TypeScript on Vite. The interesting bet is Astro for content-heavy sites or HTMX for server-rendered applications. The risky bet is betting everything on a framework with sub-50% satisfaction. The JavaScript ecosystem is maturing, which means the right answer increasingly depends on what you are building rather than which framework has the best marketing.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

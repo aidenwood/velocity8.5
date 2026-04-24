@@ -1,0 +1,60 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Our brand identity design process from discovery to final deliverables. How we build brands that actually work — not just look good in a Behance case study."
+  title="A Complete Walkthrough of How We Actually Build Brand Identities · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Branding — April 2026
+      </Fragment>
+      <Fragment slot="title">
+        A Complete Walkthrough of How We Actually Build Brand Identities
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-amber-600/20 to-rose-500/20 flex items-center justify-center">
+          <span class="text-4xl">🔥</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Discovery to Deliverables
+      </Fragment>
+      <Fragment slot="content">
+        Most brand identity projects fail before a single pixel is placed. Not because the designer lacked talent, but because nobody bothered to figure out what the brand actually needs to communicate. A logo designed in isolation is just decoration. A brand identity built on research is a business tool.
+
+        Here's how we approach brand identity design at Aidxn — and why the process matters more than the final colour palette.
+
+        Phase one is discovery, and it's the part most clients want to skip. They come in with a Pinterest board and say "I want something like this." That's fine as a starting point, but it tells us nothing about their customers, their competitive landscape, or the positioning they need to own. Discovery is where we interview stakeholders, audit competitors, and define the brand's strategic territory. What do you want people to feel when they encounter your brand? What's the one thing that separates you from the other five businesses doing the same thing? If you can't answer that, you're not ready to design anything.
+
+        We document everything in a brand brief. Not a 40-page PDF that nobody reads — a single page that captures the brand's personality, audience, tone of voice, and competitive position. This brief becomes the filter for every design decision that follows. If a concept doesn't align with the brief, it gets killed, no matter how pretty it is.
+
+        Phase two is exploration. This is where we actually start designing, but not logos — not yet. We begin with moodboarding, typography studies, and colour system exploration. We're building the visual language before we build any specific asset. Think of it like architecture: you design the material palette and structural principles before you draw the floor plan.
+
+        Typography selection alone can take days. A typeface carries tone. A geometric sans-serif says "modern and clean." A humanist serif says "established and trustworthy." A monospace says "technical and precise." The wrong typeface undermines everything else you build on top of it. We typically narrow to two or three typeface pairings and test them against real content — not lorem ipsum, actual headlines and body copy from the client's industry.
+
+        Colour comes next, and this is where most DIY brands go wrong. They pick colours they personally like instead of colours that function. A colour system needs to work across digital and print, maintain contrast ratios for accessibility, and differentiate the brand from direct competitors. We build colour systems with a primary, secondary, and neutral palette, plus semantic colours for UI states if the brand will live on the web. Every colour gets tested against WCAG contrast requirements. If your brand purple fails on a white background, it's the wrong purple.
+
+        Phase three is concept development. Now we design logos. Plural. We typically develop three to five distinct directions, each rooted in the brand brief but exploring different visual strategies. Some are typographic. Some are symbolic. Some combine both. We present them in context — on business cards, on a website header, on a storefront — because a logo that looks great at 500px on a white Figma artboard might completely fall apart at 16px in a browser tab.
+
+        Client feedback at this stage is critical, and we structure it carefully. We don't ask "which one do you like?" We ask "which direction best communicates what your brand stands for?" Subjective preference is a trap. The CEO's favourite colour is irrelevant if it doesn't serve the brand strategy.
+
+        Phase four is refinement. We take the selected direction and polish it. Kerning gets adjusted. Proportions get fine-tuned. We test the mark at every scale from favicon to billboard. We build the responsive versions — a full lockup, a stacked version, an icon-only version, a monochrome version. A brand identity that only works in one format is half-finished.
+
+        Phase five is the deliverable package. This is where most freelancers hand over a ZIP file of PNGs and call it done. We deliver a brand guidelines document that covers logo usage rules, clear space, minimum sizes, colour specifications in HEX, RGB, CMYK, and Pantone, typography hierarchy, and tone of voice guidelines. We also deliver every asset in every format the client will need — SVG for web, EPS for print, PNG for social media, and favicon packages for web deployment.
+
+        The entire process takes four to six weeks for a standard brand identity. Could we do it faster? Sure. But rushing discovery means building on assumptions, and assumptions cost more to fix later than they cost to research now.
+
+        The brands that last aren't the ones with the trendiest logo. They're the ones built on a strategy that still makes sense five years from now. That's what process gives you — not just a pretty mark, but a brand that actually works.
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

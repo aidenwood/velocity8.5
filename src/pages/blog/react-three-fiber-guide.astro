@@ -1,0 +1,56 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="React Three Fiber lets you build 3D scenes the React way with JSX, hooks, and component composition. Here's how it works and why it's a game-changer."
+  title="React Three Fiber: How to Build 3D Scenes the React Way (And Why It's Amazing) · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Creative Development — April 2026
+      </Fragment>
+      <Fragment slot="title">
+        React Three Fiber: How to Build 3D Scenes the React Way (And Why It's Amazing)
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-blue-600/20 to-emerald-500/20 flex items-center justify-center">
+          <span class="text-4xl">⚛️</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Three.js Meets JSX (And It Actually Makes Sense)
+      </Fragment>
+      <Fragment slot="content">
+        If you already know React and you want to build 3D experiences on the web, React Three Fiber is the most natural path. It's not a wrapper around Three.js — it IS Three.js, expressed as React components. Every Three.js class becomes a JSX element. Every property becomes a prop. Every frame update is a hook. It's the same engine, but spoken in a language you already understand.
+
+        Here's what a basic scene looks like. You render a &lt;Canvas&gt; component. Inside it, you put &lt;mesh&gt;, &lt;boxGeometry&gt;, &lt;meshStandardMaterial&gt;, and &lt;ambientLight&gt; elements. That's a lit cube in a 3D scene, written in JSX. No imperative setup, no manual render loop, no class instantiation. React Three Fiber handles the renderer, the animation loop, the resize observer, and the pixel ratio automatically. You focus on what's in the scene, not how the scene works.
+
+        The real power is composition. In vanilla Three.js, adding a feature means writing imperative code in the right place in the right order. In R3F, you create a component. Want orbit controls? Drop in &lt;OrbitControls /&gt; from the Drei library. Want post-processing? Wrap your scene in &lt;EffectComposer&gt; and add &lt;Bloom /&gt; as a child. Want a 3D model? Use useGLTF() to load it, destructure the nodes, and render them as JSX. It's components all the way down.
+
+        The useFrame hook is where animation lives. It fires on every frame — 60 times per second on most displays — and gives you access to the Three.js state and a delta clock. Inside useFrame, you can rotate meshes, update positions, respond to mouse position, or drive any time-based behaviour. Because it's a hook, it lives inside your component, scoped to the thing it animates. No global animation manager. No callback soup.
+
+        State management works exactly like React. You can use useState for component-local state, Zustand for shared state, or even React Context for scene-wide configuration. When state changes, React reconciles the scene graph — just like it reconciles the DOM. Objects are added, removed, and updated efficiently. Three.js objects that React Three Fiber creates are automatically disposed when components unmount. Memory management becomes React's problem, not yours.
+
+        Drei is the companion library that makes R3F production-ready. It provides dozens of pre-built components: &lt;Text&gt; for 3D typography, &lt;Environment&gt; for HDR environment maps, &lt;Float&gt; for gentle bobbing animations, &lt;Html&gt; for rendering DOM elements positioned in 3D space, &lt;ContactShadows&gt; for beautiful ground shadows without the cost of real-time shadow maps. Drei is to R3F what shadcn/ui is to React — practical, composable building blocks.
+
+        Performance in R3F follows the same rules as React performance. Avoid re-renders that don't change anything visual. Use useMemo for expensive geometry or material creation. Use useRef instead of useState for values that change every frame (like rotation) — setting state 60 times per second is a React re-render 60 times per second, which is a nightmare. The useFrame hook gives you a ref-first workflow that sidesteps this entirely.
+
+        We use React Three Fiber on client projects where the rest of the stack is already React-based. If we're building in Next.js or a React SPA, R3F is the obvious choice because it integrates with the component tree, shares state with the rest of the app, and follows patterns the team already knows. The 3D isn't a separate world bolted onto the page — it's part of the same application architecture.
+
+        The ecosystem has exploded. React-spring for physics-based animations in 3D. Rapier for real-time physics simulation via @react-three/rapier. Postprocessing for cinematic effects. Leva for debug panels that let you tweak materials and positions in real time during development. Theater.js for keyframe animation editing with a visual timeline. The tooling rivals actual game engines now.
+
+        One legitimate concern: bundle size. Three.js itself is around 150KB gzipped. Add R3F, Drei, and postprocessing, and you're looking at 200KB+ before your own code. This is why we always code-split 3D scenes. The Canvas and its children load asynchronously, wrapped in a Suspense boundary with a static fallback. The critical page content renders instantly. The 3D enhances it once it's ready. Progressive enhancement, not progressive frustration.
+
+        If you know React and you're curious about creative coding, React Three Fiber is where to start. The learning curve isn't "learn 3D graphics programming." It's "learn how 3D concepts map to the React patterns you already know." That's a much shorter climb.
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

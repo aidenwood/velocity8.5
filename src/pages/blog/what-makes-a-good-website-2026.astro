@@ -1,0 +1,71 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="What makes a good website in 2026? The anatomy of website design that actually converts — speed, clarity, trust signals, and intentional UX."
+  title="The Surprisingly Simple Anatomy of a Website That Actually Converts · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Web Design
+      </Fragment>
+      <Fragment slot="title">
+        The Surprisingly Simple Anatomy of a Website That Actually Converts
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-violet-600/20 to-cyan-500/20 flex items-center justify-center">
+          <span class="text-4xl">🏗️</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Good Website Design Has Changed
+      </Fragment>
+      <Fragment slot="content">
+        The definition of good website design shifts every couple of years, and 2026 is no exception. What passed for a solid site in 2022 now feels sluggish, bloated, and vaguely AI-generated. Users are faster, pickier, and more sceptical than ever. Here's what actually matters if you want web design that converts in the current landscape.
+
+        <strong>Speed is table stakes, not a feature</strong>
+
+        If your website takes more than 2 seconds to become interactive, you've already lost a chunk of your visitors. This isn't opinion — it's data. Google's Core Web Vitals are a ranking factor, and users have been trained by apps like Instagram and TikTok to expect instant response. Good website design in 2026 means your Largest Contentful Paint is under 2.5 seconds, your Interaction to Next Paint is under 200ms, and your layout doesn't shift around while the page loads. If those terms mean nothing to you, your developer should be handling them regardless.
+
+        <strong>Clarity over cleverness</strong>
+
+        The best-performing websites we build have one thing in common: you immediately understand what the business does and what action to take. No ambiguous hero text. No stock photo carousels. No "welcome to our website" copy that wastes the most valuable real estate on the page. Good web design communicates your value proposition in under 5 seconds. The headline says what you do. The subheadline says who it's for. The CTA says what happens next. That's it.
+
+        <strong>Trust signals are non-negotiable</strong>
+
+        In 2026, users assume they're being scammed until proven otherwise. Every website needs visible trust signals — and not just a testimonials section buried at the bottom. Google reviews with real names. Case studies with real numbers. Industry certifications. Client logos. Before-and-after examples. Security badges on checkout pages. These aren't nice-to-haves anymore; they're the difference between a bounce and a conversion.
+
+        <strong>Mobile isn't an afterthought, it's the primary experience</strong>
+
+        Over 65% of web traffic is mobile. If your web design process starts with a desktop mockup and then "adapts" it for mobile, you're designing for the minority first. The best approach in 2026 is mobile-first design — build the constrained experience first, then enhance for larger screens. This forces you to prioritise content, simplify navigation, and make tap targets actually usable. Desktop layouts can always be richer; mobile layouts can't afford to be bloated.
+
+        <strong>Intentional information architecture</strong>
+
+        Most websites fail not because they look bad, but because users can't find what they need. Good website design structures information based on how users actually think, not how the business org chart works. Nobody cares about your "About" page as a primary navigation item in 2026. They care about what you do, what it costs, and whether you can prove you're good at it. Structure your navigation around user intent, not internal politics.
+
+        <strong>Performance-focused tech choices</strong>
+
+        The framework you build on matters more than most businesses realise. A WordPress site with 30 plugins will never match the performance of a purpose-built site on Astro or Next.js. In 2026, the gap between modern web frameworks and legacy platforms is massive — not just in speed, but in developer experience, security, and long-term maintainability. Choosing the right tech stack is a design decision, even if it doesn't feel like one.
+
+        <strong>Accessibility is design quality</strong>
+
+        An inaccessible website is a broken website. Full stop. Proper colour contrast, keyboard navigation, screen reader compatibility, and semantic HTML aren't edge cases — they're baseline requirements. Beyond being the right thing to do, accessibility directly impacts SEO, mobile usability, and legal compliance. If your web design agency doesn't talk about accessibility, find one that does.
+
+        <strong>The actual test</strong>
+
+        Here's how we evaluate whether a website is genuinely good: show it to someone who has never seen the business before. Can they tell you what the company does in 5 seconds? Can they find the main CTA in 3 seconds? Does the page load feel instant? If the answer to any of those is no, the design isn't done yet.
+
+        We build <a href="/web-design" class="underline">conversion-focused websites</a> on the Gold Coast because we think web design should be measured by results, not aesthetics. A beautiful site that doesn't convert is just an expensive art project.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

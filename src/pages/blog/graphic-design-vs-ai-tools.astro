@@ -1,0 +1,60 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="AI design tools vs human graphic designers — where Midjourney, DALL-E, and Canva AI actually fall short, and what still requires a human."
+  title="Here's Where Midjourney and AI Design Tools Actually Fall Short · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Graphic Design — April 2026
+      </Fragment>
+      <Fragment slot="title">
+        Here's Where Midjourney and AI Design Tools Actually Fall Short
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-slate-600/20 to-zinc-400/20 flex items-center justify-center">
+          <span class="text-4xl">🤖</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Where Midjourney Falls Short
+      </Fragment>
+      <Fragment slot="content">
+        Let's get the obvious take out of the way: AI design tools are impressive, and they're not going anywhere. Midjourney generates stunning images. DALL-E handles complex prompts. Canva's AI features let non-designers produce passable social graphics in minutes. If you're a graphic designer pretending these tools don't exist, you're already behind.
+
+        But if you're a business owner who thinks these tools replace a graphic designer, you're about to learn an expensive lesson.
+
+        Here's where AI design tools genuinely excel. Concept exploration. Mood boarding. Generating texture and pattern assets. Quick social media graphics for high-volume content calendars. Internal presentations that need to look decent but don't represent your brand externally. Background image generation for web design mockups. These are real, legitimate use cases, and designers who integrate AI tools into their workflow are faster and more productive than those who don't.
+
+        I use AI tools in my own workflow. I use them for initial concept exploration, for generating placeholder imagery during the wireframe phase, and occasionally for texture generation that I then refine in Photoshop or Affinity Designer. They're excellent assistants. They're terrible decision-makers.
+
+        And that's the core problem. Design isn't image generation. Design is problem-solving with visual tools. When a client needs a brand identity, they don't need a pretty picture — they need a system of visual elements that communicates a specific message to a specific audience, works across dozens of applications, and remains consistent as the business scales. AI can't do that. It generates individual outputs. It doesn't think in systems.
+
+        Try asking Midjourney to create a logo that works at 16 pixels, has a clear monochrome version, scales to a building sign, and maintains visual consistency with a typographic system and colour palette that maps to specific Pantone values. It can't. It will give you a beautiful illustration that falls apart the moment you try to use it in the real world. You'll get something that looks like a logo on a Behance mockup and functions like a JPEG when you actually need to apply it.
+
+        Consistency is the other gap. AI tools generate individual images. They don't maintain brand consistency across a campaign. Each generation is a roll of the dice. Even with detailed prompts and style references, you'll get variations in colour, style, composition, and tone that require human correction. For a one-off social post, that's fine. For a 30-piece ad campaign that needs to look cohesive across platforms, it's a nightmare.
+
+        Vector output is a practical limitation that matters enormously. AI image generators produce raster images — pixels. Professional graphic design requires vector formats — SVGs, EPS files, AI files — for logos, icons, illustrations, and any asset that needs to scale infinitely. Converting a raster AI output to a clean vector is often more work than creating the vector from scratch. The auto-trace tools are getting better, but "getting better" and "production-ready" are still far apart.
+
+        Typography is another blind spot. AI tools generate images that include text, and the text is almost always wrong. Kerning is off. Letterforms are inconsistent. Characters don't match real typefaces. For any design where typography is a primary element — which is most professional design — AI output is a starting point at best and unusable at worst. Typography requires precision at the sub-pixel level. AI operates at the "close enough" level.
+
+        Then there's the strategic layer. A graphic designer asks why before they ask what. Why does this brochure exist? Who reads it? What action should they take? What does this piece need to communicate that the website doesn't? AI doesn't ask these questions. It doesn't understand business objectives, audience psychology, or competitive positioning. It generates what you tell it to generate, and if your prompt is wrong, the output is wrong — beautifully, convincingly wrong.
+
+        The legal landscape is still evolving. Copyright ownership of AI-generated imagery remains legally ambiguous in Australia and most jurisdictions. Using AI-generated assets in commercial branding carries risks that simply don't exist with original human-created work. For a social media post, that risk might be acceptable. For a trademark application or a brand identity you're building a business on, it's not.
+
+        So where does this leave us? AI design tools are a productivity multiplier for designers, and a dangerous shortcut for non-designers. The businesses getting the most value from these tools are the ones using them inside a design process led by a human who understands strategy, systems, and production requirements.
+
+        The designer's job hasn't been replaced. It's been elevated. The commodity work — stock-style imagery, basic layouts, template customisation — gets automated. What's left is the high-value work: strategy, systems thinking, and craft. If your designer's entire value proposition was "I can make things look nice in Canva," then yes, AI is coming for that job. If their value is solving communication problems with visual systems, they're more valuable than ever.
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

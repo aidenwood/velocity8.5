@@ -1,0 +1,65 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="2025 year in web development review. The winners, losers, and technologies we are betting on for 2026."
+  title="The Winners, Losers, and Wild Cards of Web Dev in 2025 · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Year in Review
+      </Fragment>
+      <Fragment slot="title">
+        The Winners, Losers, and Wild Cards of Web Dev in 2025
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-violet-600/20 to-cyan-500/20 flex items-center justify-center">
+          <span class="text-4xl">&#127942;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Looking Back to Look Forward
+      </Fragment>
+      <Fragment slot="content">
+        2025 was the year the web development industry stopped chasing shiny objects and started shipping. The hype cycle cooled, the useful stuff survived, and a few darlings quietly died. Here is our opinionated review of what mattered.
+
+        The Winners
+        Astro was the breakout framework of 2025. Version 5 shipped with content layers, server islands, and the best static site developer experience we have ever used. We moved the majority of our client work to Astro this year and have not looked back. The island architecture is not just a clever idea — it produces measurably faster websites than any other React-compatible framework.
+
+        Supabase cemented its position as the Firebase alternative for developers who want a real database. The launch of Supabase Queues, improved edge functions, and better local development made it our default backend for every new project. The fact that you can go from zero to a fully authenticated app with row-level security in an afternoon is remarkable.
+
+        Tailwind CSS 4 dropped and it is genuinely faster. The new engine, the CSS-first configuration, and the improved performance make it even harder to justify any other styling approach. We have been all-in on Tailwind for three years and version 4 validated that bet completely.
+
+        AI coding tools became actually useful. Claude, Cursor, and Copilot all shipped significant improvements. We went from using AI tools for autocomplete to using them for architecture discussions, code review, and generating entire feature branches. More on this in a future post.
+
+        The Losers
+        WordPress had its worst year ever. The Mullenweg vs WP Engine drama fractured the community, and the broader trend toward static sites and headless CMS accelerated. WordPress is not dead, but its mindshare among modern developers collapsed.
+
+        Create React App is officially dead. React finally updated their documentation to stop recommending it, years after everyone else stopped using it. The fact that it took this long is embarrassing.
+
+        The metaverse. Remember when every company needed a metaverse strategy? Nobody is talking about it anymore. The VR headsets are gathering dust and the virtual real estate is worthless. Sometimes the market just gets it wrong.
+
+        Crypto and web3 in general had another rough year for developer adoption. NFT marketplaces shut down, DAOs imploded, and the promise of decentralised everything remains largely unfulfilled. Some blockchain technology is genuinely useful, but the industry's credibility problem is real.
+
+        The Trends We Are Watching
+        React Server Components are maturing but still confusing. The mental model shift from "everything renders on the client" to "some things render on the server" is genuinely difficult, and the ecosystem has not fully caught up. We expect 2026 to be the year RSCs either click for the mainstream or get simplified significantly.
+
+        Edge computing is quietly becoming the default. Netlify, Vercel, and Cloudflare are all pushing execution closer to the user, and the performance benefits are real. We deploy everything to the edge now and the latency improvements for our Australian clients are noticeable.
+
+        AI-generated UI is coming whether designers like it or not. Tools like v0 and Bolt can generate reasonable component code from a description. They are not replacing designers yet, but they are absolutely replacing the first draft. We use them for rapid prototyping and then refine by hand.
+
+        Our Bets for 2026
+        We are going deeper on Astro for content sites and Next.js for applications. We are investing heavily in AI-augmented development workflows. We are building more SaaS products on the Supabase and Stripe stack. And we are betting that performance and Core Web Vitals will matter even more as Google continues to evolve its ranking algorithms. The tools have never been this good. The barrier to shipping has never been this low. 2026 is going to be about execution, not technology choices.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

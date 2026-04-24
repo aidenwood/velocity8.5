@@ -1,0 +1,65 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="A practical comparison of localStorage, sessionStorage, IndexedDB, and cookies — when to use each, storage limits, security tradeoffs, and the mistakes we see on every project."
+  title="localStorage, sessionStorage, IndexedDB, and Cookies — When to Use What · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Web Development
+      </Fragment>
+      <Fragment slot="title">
+        localStorage, sessionStorage, IndexedDB, and Cookies — When to Use What
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-blue-500/20 to-indigo-600/20 flex items-center justify-center">
+          <span class="text-4xl">&#128451;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Four Storage Options, Four Very Different Use Cases
+      </Fragment>
+      <Fragment slot="content">
+        The browser gives you four ways to store data on the client side, and most developers default to localStorage for everything. That works until it does not — until you store a JWT in localStorage and your security audit fails, or you try to cache 50MB of data and hit the 5MB limit, or your multi-tab app has stale state because sessionStorage does not share between tabs. Each storage mechanism exists for a reason. Here is when we use each one.
+
+        localStorage — Persistent, Simple, Limited
+
+        localStorage persists until the user clears it or your code removes it. It survives page refreshes, browser restarts, and device reboots. The API is dead simple: setItem, getItem, removeItem. We use it for user preferences, theme settings, dismissed banners, and non-sensitive UI state that should persist between sessions. The storage limit is roughly 5MB per origin. That sounds like plenty until you try to cache API responses. JSON-stringified data is verbose, and 5MB fills up faster than you think. Everything stored is a string, so you are always JSON.stringify-ing on write and JSON.parse-ing on read. This is synchronous and blocks the main thread. For small values it is instant, but if you are parsing a 2MB JSON blob on page load, your users will feel it.
+
+        The Security Rule
+
+        Never store authentication tokens, API keys, or sensitive data in localStorage. It is accessible to any JavaScript running on your page, which means a single XSS vulnerability exposes everything in localStorage. We have inherited projects that stored JWTs in localStorage. That is a security incident waiting to happen. Auth tokens belong in httpOnly cookies that JavaScript cannot read.
+
+        sessionStorage — Tab-Scoped and Temporary
+
+        sessionStorage has the same API as localStorage but with two critical differences. It is scoped to the browser tab, and it clears when the tab closes. Open two tabs to the same site, and each tab has its own independent sessionStorage. This is perfect for wizard forms. If a user is halfway through a multi-step form and accidentally refreshes the page, sessionStorage preserves their progress. But if they open a new tab, they start fresh. We also use it for temporary search filters. If a user filters a list, navigates to a detail page, and hits back, the filters are still applied. But if they open a fresh tab, they get the default view. That matches user expectations.
+
+        Cookies — The Server Needs to Know
+
+        Cookies are the only client-side storage mechanism that automatically travels with HTTP requests. Every time the browser makes a request to your domain, cookies for that domain are attached to the request headers. This makes them the correct choice for authentication tokens. Set an httpOnly cookie from your server, and it will be sent with every subsequent request without JavaScript ever touching it. httpOnly means JavaScript cannot read or modify the cookie, which eliminates XSS as an attack vector for that token. Add the Secure flag to ensure the cookie only transmits over HTTPS. Add SameSite=Strict or SameSite=Lax to prevent CSRF attacks. The downside of cookies is the size limit — roughly 4KB per cookie. They are not for storing application data. They are for authentication and server-side session management. We use them exclusively for auth in our Supabase projects. Supabase's SSR library handles the cookie management, setting httpOnly cookies with the session token after authentication.
+
+        IndexedDB — The Real Database
+
+        IndexedDB is a full client-side database. It supports structured data, indexes, transactions, and can store hundreds of megabytes. The API is callback-based and notoriously ugly, but wrapper libraries like idb make it pleasant to work with. We use IndexedDB for offline-capable applications, large dataset caching, and any scenario where localStorage's 5MB limit is too small. One project involved caching 6,000 geocoded insurance claims for offline map viewing. That data set was roughly 15MB — three times localStorage's limit. IndexedDB handled it without issue. IndexedDB is also asynchronous, unlike localStorage. Reads and writes do not block the main thread, which matters when you are dealing with large datasets.
+
+        The Decision Framework
+
+        Here is how we decide. If the server needs access to the data on every request, use cookies. If the data is sensitive authentication state, use httpOnly cookies specifically. If the data is a simple user preference that should persist indefinitely, use localStorage. If the data is temporary and should be scoped to the current tab, use sessionStorage. If the data is large, structured, or needs to be queried, use IndexedDB. If you are unsure, start with localStorage for non-sensitive data and upgrade to IndexedDB if you outgrow the 5MB limit. The most common mistake is not choosing wrong initially — it is never migrating when the requirements change. We have seen localStorage holding 4.8MB of cached data, one bad response away from hitting the limit and silently failing. Know the constraints of each option and choose deliberately.
+
+        Cross-Tab Communication
+
+        One bonus pattern. localStorage fires a storage event when data changes, and that event fires in every other tab with the same origin. This means you can use localStorage for basic cross-tab communication. Update a value in one tab, and other tabs can react to the change via the storage event listener. We use this for logout synchronisation. When a user logs out in one tab, the storage event triggers logout in all other tabs. It is a simple pattern that solves a real UX problem without WebSockets or service workers.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

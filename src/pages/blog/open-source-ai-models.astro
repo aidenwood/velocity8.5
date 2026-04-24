@@ -1,0 +1,55 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Open source AI models are catching up to GPT-4 and Claude. Llama 3, Mistral, and Phi are changing the game. When to self-host vs use an API."
+  title="Open Source AI Is Catching Up Fast — Here's When to Self-Host vs Pay for an API · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Tech News
+      </Fragment>
+      <Fragment slot="title">
+        Open Source AI Is Catching Up Fast — Here's When to Self-Host vs Pay for an API
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-green-600/20 to-emerald-500/20 flex items-center justify-center">
+          <span class="text-4xl">&#129523;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        The Gap Is Closing Fast
+      </Fragment>
+      <Fragment slot="content">
+        Two years ago, the gap between open source AI models and proprietary ones like GPT-4 was enormous. Using an open source model meant accepting dramatically worse output quality. In 2025, that gap has shrunk to the point where the decision between self-hosting and using an API is no longer about capability — it is about cost, latency, privacy, and control. Meta's Llama 3, Mistral's models, and Microsoft's Phi family are genuinely competitive for a wide range of tasks. Here is when each option makes sense.
+
+        The State of Open Source Models
+        Llama 3.1 405B was the moment open source models became undeniably competitive with the best proprietary models. Meta released a model with performance rivalling GPT-4 and Claude 3 Opus, with weights anyone can download. The 70B and 8B variants offer excellent performance at sizes that can run on consumer hardware or affordable cloud instances. Mistral took a different approach with smaller, more efficient models — their Mixtral mixture-of-experts architecture delivers strong performance with lower compute requirements. Microsoft's Phi models pushed the boundary of what small models can do, with Phi-3 models under 14B parameters competing with much larger models on many benchmarks.
+
+        When To Self-Host
+        Data privacy is non-negotiable. If you are processing medical records, legal documents, financial data, or anything that cannot leave your infrastructure, self-hosting is the only option. Some industries have regulatory requirements that make sending data to a third-party API a compliance violation. Cost at scale. API pricing is per-token. If you are processing millions of requests per day, self-hosting becomes dramatically cheaper. A single A100 GPU running a quantised Llama 3 70B can handle hundreds of concurrent requests at a fixed monthly cost. At high volume, the math overwhelmingly favours self-hosting. Latency requirements. A self-hosted model on your own infrastructure eliminates the network round-trip to an API provider. For real-time applications where every millisecond matters, local inference wins.
+
+        When To Use an API
+        You are a small team and do not want to manage GPU infrastructure. This is most teams. Running AI models in production means dealing with GPU procurement, driver updates, model loading, request queuing, failover, and monitoring. The managed API providers handle all of this. You need the absolute best model quality. Despite the narrowing gap, Claude 3.5 Sonnet and GPT-4o are still the best general-purpose models available. For complex reasoning, nuanced writing, and sophisticated code generation, the proprietary models maintain an edge. Your usage is bursty. If you need AI capabilities for occasional tasks rather than sustained throughput, paying per-token is more cost-effective than maintaining idle GPU infrastructure.
+
+        The Practical Middle Ground
+        The smartest approach for most companies is a hybrid strategy. Use proprietary APIs for tasks that require maximum quality — customer-facing features, complex analysis, code generation. Use open source models for tasks where good-enough is sufficient — classification, summarisation, data extraction, embedding generation. This gives you the best quality where it matters while controlling costs where it does not. Many teams are running small open source models for pre-processing and filtering, then sending only the complex cases to a proprietary API. The cost savings are significant.
+
+        Running Models Locally in 2025
+        The local AI tooling has matured dramatically. Ollama lets you run open source models on your laptop with a single command. LM Studio provides a GUI for downloading and running models locally. vLLM is the production-grade inference server for deploying models at scale with efficient batching and GPU utilisation. For Apple Silicon users, MLX provides optimised inference that takes advantage of the unified memory architecture. You can run a quantised Llama 3 8B on a MacBook Pro and get reasonable response times for development and testing.
+
+        The Trajectory
+        Open source models are improving faster than proprietary ones, which makes sense — the collective effort of thousands of researchers and companies optimising, fine-tuning, and iterating on open weights will eventually match or exceed any single company's efforts. Whether that happens in 2025 or 2027 is debatable. What is not debatable is the direction. The question is not "will open source models be good enough?" but "when?" For most production use cases that do not require frontier model capability, the answer is already "now."
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

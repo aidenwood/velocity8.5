@@ -1,0 +1,61 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="An honest breakdown of what web design actually costs and why. From someone who sets the prices, not someone who pays them."
+  title="Why Web Design Costs What It Costs: An Honest Breakdown from the Other Side · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Agency Insights
+      </Fragment>
+      <Fragment slot="title">
+        Why Web Design Costs What It Costs: An Honest Breakdown from the Other Side
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-amber-500/20 to-yellow-600/20 flex items-center justify-center">
+          <span class="text-4xl">&#128184;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        The Price Gap Is Confusing for a Reason
+      </Fragment>
+      <Fragment slot="content">
+        You can get a website for $500. You can also get a website for $50,000. From the outside, both look like websites. They both have pages, images, and a contact form. So what are you actually paying for when the price goes up? This is the honest answer from someone who sets the prices.
+
+        The $500 Website
+
+        At this price point, you are getting a template. Someone installs WordPress or Squarespace, picks a pre-made theme, drops in your logo and text, and hands it over. This is not a criticism — for some businesses, this is genuinely all you need. If you are a solo tradesperson who needs a basic online presence with your phone number, a template is fine. But understand what you are not getting. No custom design. No performance optimisation. No conversion strategy. No SEO structure. No accessibility testing. No mobile-specific design work. And usually no ongoing support after launch. You are getting a brochure, not a business tool.
+
+        The $3,000 to $8,000 Website
+
+        This is where most small business websites should sit. At this range, you are paying for actual design work — someone is thinking about your specific business, your customers, and what actions you want visitors to take. You get a custom layout, not just a customised template. You get proper responsive design, not just a template that happens to be responsive. You get basic SEO setup — proper page titles, meta descriptions, heading structure, image optimisation. You get content guidance, even if you are writing the copy yourself. And you get a handover that includes training on how to update the site yourself. The work at this level takes three to six weeks, and most of that time is thinking and planning, not typing code.
+
+        The $15,000 to $50,000 Website
+
+        At this level, you are paying for strategy and engineering on top of design. The site is built around conversion data, user research, and specific business goals. It probably includes custom functionality — booking systems, client portals, interactive calculators, CRM integrations, or e-commerce with complex business logic. The codebase is built for performance and scale. Page load times are measured in milliseconds, not seconds. Accessibility meets WCAG standards. The SEO is not just structural but strategic. The site is a genuine competitive advantage, not just an online presence. This level of work takes two to four months and involves multiple disciplines — strategy, design, development, copywriting, and testing.
+
+        Where the Money Actually Goes
+
+        Here is the rough breakdown for a $10,000 project at our agency. About 20 percent goes to discovery and strategy — understanding your business, researching your competitors, defining the site structure and conversion goals. About 30 percent goes to design — creating mockups, iterating on feedback, designing for mobile and desktop. About 35 percent goes to development — building the actual site, integrating it with your tools, testing across browsers and devices, optimising for speed. About 15 percent goes to launch preparation — content migration, SEO setup, analytics configuration, client training. None of that breakdown includes profit margin, business overhead, software licences, or the years of experience that let someone do this work efficiently. When clients tell us they got a quote for $2,000 from another agency for the same scope, we do not argue. We just explain that either the scope is different or someone is cutting corners that will cost more to fix later.
+
+        The Things That Make Prices Jump
+
+        Certain requests add significant cost, and it is worth knowing which ones. Custom animations and interactive elements — these take three to ten times longer than static content. E-commerce with complex logic — variable pricing, subscriptions, multi-vendor setups. Third-party integrations — connecting to your CRM, accounting software, or booking system. Multilingual support — it is not just translation, it is restructuring the entire site. Ongoing content management systems with custom fields and workflows. None of these are unreasonable requests. But they are the difference between a $5,000 project and a $25,000 project, and you should know that upfront.
+
+        How to Not Overpay
+
+        Get at least three quotes, but compare scope, not just price. Ask what is included in post-launch support. Ask who owns the code and the hosting — some agencies lock you in. Ask what CMS you will use and whether you can update content yourself. Ask what happens if the agency disappears — can another developer pick up your site? The cheapest option is rarely the best value. But neither is the most expensive. The best value is the agency that understands your business goals and builds a site that achieves them, at a price that makes the return on investment obvious within the first year.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

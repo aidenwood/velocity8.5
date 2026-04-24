@@ -1,0 +1,67 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="WebAssembly in 2025 — WASI, component model, and an honest look at why it still has not replaced JavaScript and probably never will."
+  title="WebAssembly Still Hasn't Replaced JavaScript and That's Completely Fine · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Tech News
+      </Fragment>
+      <Fragment slot="title">
+        WebAssembly Still Hasn't Replaced JavaScript and That's Completely Fine
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-violet-600/20 to-fuchsia-500/20 flex items-center justify-center">
+          <span class="text-4xl">&#9889;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        The Perpetual Future Technology
+      </Fragment>
+      <Fragment slot="content">
+        Every year since 2017, someone writes a blog post titled "WebAssembly Will Replace JavaScript" and every year it does not happen. At this point, predicting Wasm will replace JavaScript is up there with predicting the year of the Linux desktop — it is technically possible, eternally imminent, and functionally irrelevant. But WebAssembly in 2025 is genuinely interesting, just not for the reasons the hype cycle suggests.
+
+        What WebAssembly Actually Is
+
+        WebAssembly is a binary instruction format that runs in the browser at near-native speed. You write code in Rust, C, C++, Go, or about a dozen other languages, compile it to Wasm, and it runs alongside JavaScript in the browser. It is fast because it is a compilation target, not an interpreted language — the browser can optimise Wasm code much more aggressively than JavaScript.
+
+        The key word is "alongside." WebAssembly was never designed to replace JavaScript. It was designed to complement it. JavaScript handles the DOM, user interactions, and application logic. Wasm handles computationally intensive tasks where JavaScript's performance ceiling is a problem — things like image processing, video encoding, physics simulations, and cryptographic operations.
+
+        Where Wasm Is Actually Winning
+
+        Figma. That is the headline example everyone uses because it is the best one. Figma's entire rendering engine is written in C++ and compiled to WebAssembly. This is why Figma can handle complex design files with thousands of layers at 60fps in a browser tab. Try doing that with Canvas API and JavaScript — you will hit a performance wall almost immediately.
+
+        Google Earth uses Wasm. Photoshop on the web uses Wasm. AutoCAD in the browser uses Wasm. The pattern is clear: if your application does heavy computation, rendering, or simulation, WebAssembly is the right tool. These are not toy demos. They are production applications used by millions of people.
+
+        Squoosh, Google's image compression tool, uses Wasm to run codec libraries (MozJPEG, WebP, AVIF encoders) directly in the browser. No server required. Your images never leave your machine. That is a use case that simply cannot exist without WebAssembly.
+
+        WASI: Wasm Outside the Browser
+
+        WASI — the WebAssembly System Interface — is where things get genuinely exciting. WASI lets WebAssembly run outside the browser as a universal binary format. Write once, run on any operating system, any architecture, in a sandboxed environment with explicit permissions. Docker's co-founder famously said that if Wasm and WASI existed in 2008, they would not have needed to create Docker.
+
+        The component model is the next evolution: Wasm modules that can be composed together regardless of their source language. A Rust module can call a Python module can call a Go module, all running in Wasm with zero FFI overhead. This is genuinely revolutionary for server-side computing, edge computing, and plugin systems. Fermyon, Fastly, and Cloudflare are all betting heavily on Wasm at the edge.
+
+        Why It Has Not Replaced JavaScript
+
+        Because JavaScript does not need replacing for 95% of web applications. The performance of modern JavaScript engines like V8 is genuinely remarkable. For typical web application workloads — DOM manipulation, API calls, form handling, state management — JavaScript is fast enough, and "fast enough" always beats "theoretically faster but harder to develop."
+
+        Wasm also has a terrible story for DOM access. Every DOM operation from Wasm requires crossing a bridge to JavaScript, which adds overhead that can negate the performance advantage. Until Wasm gets direct DOM access (which is being worked on but is years away), building a typical web UI in Wasm is slower and harder than JavaScript.
+
+        What You Should Do
+
+        If you are a web developer building typical web applications, you do not need to learn WebAssembly. Not today, probably not next year. Keep building with JavaScript and TypeScript. But if you hit a genuine performance wall — real-time audio processing, complex visualisation, computational geometry, game engines — Wasm is not a curiosity. It is the solution. And if you write Rust, C++, or Go, knowing how to compile to Wasm and integrate with a JavaScript application is a skill that will only become more valuable as the WASI ecosystem matures.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

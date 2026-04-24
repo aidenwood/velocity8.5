@@ -1,0 +1,85 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="You don't need Jenkins or a dedicated DevOps engineer. Here's the minimum viable CI/CD pipeline that actually works for solo developers and tiny teams."
+  title="CI/CD for Teams of One: The Minimum Viable Pipeline That Actually Works · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        DevOps
+      </Fragment>
+      <Fragment slot="title">
+        CI/CD for Teams of One: The Minimum Viable Pipeline That Actually Works
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-violet-500/20 to-purple-600/20 flex items-center justify-center">
+          <span class="text-4xl">&#9881;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        The Minimum Viable Pipeline
+      </Fragment>
+      <Fragment slot="content">
+        There is a special kind of guilt that solo developers and small agency teams carry around. You know you should have CI/CD. You have read the blog posts about Jenkins pipelines and multi-stage Docker builds and Kubernetes deployments. You have seen the YAML files that are longer than your actual application code. And you think: "I will set that up next sprint." You never do.
+
+        Here is the thing. You do not need any of that. You need a pipeline that does three things: lint your code, build your project, and deploy it. That is it. Everything else is optimisation you can add later, if you ever actually need it.
+
+        Step One: Git Push Deploys
+
+        If you are using Netlify, Vercel, or Cloudflare Pages, you already have continuous deployment. Push to main, site rebuilds and goes live. Push to a branch, you get a preview URL. That is the deployment part of CI/CD, and it is already solved. You did not even have to write a YAML file.
+
+        The mistake is thinking you need to replace this with GitHub Actions or GitLab CI just because "real" teams use those tools. No. The git-push-deploy model is CI/CD. It just happens to not look like the enterprise diagrams you saw at a conference.
+
+        Step Two: A Linting Step That Blocks Merges
+
+        Create a GitHub Actions workflow file. It does not need to be complicated. On pull request to main, run your linter. If the linter fails, the PR gets a red X and cannot be merged. That is your entire quality gate.
+
+        The workflow file is about fifteen lines long. You specify that it triggers on pull requests to main. It runs on ubuntu-latest. It checks out your code, installs dependencies with npm ci, and runs npm run lint. Done. That is the whole file.
+
+        If you are using TypeScript, add a type-check step: npx tsc --noEmit. Now your pipeline catches type errors before they hit production. You have just eliminated about 60 percent of the bugs that would have made it to your live site.
+
+        Step Three: A Build Check
+
+        Add npm run build to your workflow after the lint step. This catches the silent killers: imports that work in dev but fail in production builds, environment variables that are referenced but not set, and Astro or Next.js pages that have compile-time errors your dev server silently ignored.
+
+        We have had production builds fail because of a missing image import that the dev server resolved fine but the static build could not find. A build check in CI would have caught that before the PR was merged. It takes thirty seconds to add and saves hours of debugging.
+
+        What You Do Not Need (Yet)
+
+        You do not need test coverage reporting. You probably do not have enough tests to make coverage metrics meaningful. Write the tests first, worry about coverage later.
+
+        You do not need Docker. Unless you are deploying to a VPS or Kubernetes (and if you are a solo developer deploying a marketing site to Kubernetes, we need to have a different conversation), containerisation adds complexity without benefit. Your deployment platform handles the runtime.
+
+        You do not need environment-specific pipelines. Use deploy contexts on your hosting platform instead. Netlify and Vercel both let you set different environment variables per branch. That is simpler and more maintainable than having your CI pipeline manage environment promotion.
+
+        You do not need Dependabot or Renovate yet. Automated dependency updates sound great until you are getting twelve pull requests a week for minor version bumps in packages you do not even directly use. Set a calendar reminder to update dependencies monthly and review the changelogs.
+
+        You do not need Slack notifications for every build. You pushed the code. You know it is building. The GitHub PR status check will tell you if it failed. Save the webhook integration for when you have a team large enough that someone else might push a breaking change without you knowing.
+
+        The Pipeline That Scales
+
+        Here is what is beautiful about this minimal setup: it scales. When you hire your second developer, the lint and build checks are already there. When you add tests, you add one line to the workflow. When you need staging environments, you add a deploy context. When you need security scanning, you add a step.
+
+        You never have to tear down and rebuild your pipeline because you started simple. You just add to it. The teams that get stuck are the ones that tried to build the "perfect" pipeline on day one, got overwhelmed, and ended up with nothing.
+
+        Our Actual Pipeline
+
+        Right now, across all our client projects, our pipeline is: GitHub Actions runs lint and type-check on pull requests. Netlify handles the build and deploy on merge to main. Preview deployments go out on every PR automatically. That is the entire thing.
+
+        It catches typos, type errors, and build failures before they hit production. It gives clients preview links to review changes. It deploys automatically when we merge. And it took about twenty minutes to set up across all our projects because we copied the same workflow file.
+
+        Is it the most sophisticated CI/CD pipeline in the world? No. Does it work for a small agency shipping client sites? Absolutely. And that is the only metric that matters.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

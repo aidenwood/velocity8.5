@@ -1,0 +1,62 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Canvas vs SVG vs CSS animations — a decision framework for choosing the right animation technology based on complexity, performance, and use case."
+  title="Canvas vs SVG vs CSS Animations: A Decision Framework for When to Use What · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Creative Development — April 2026
+      </Fragment>
+      <Fragment slot="title">
+        Canvas vs SVG vs CSS Animations: A Decision Framework for When to Use What
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-amber-500/20 to-red-500/20 flex items-center justify-center">
+          <span class="text-4xl">🔀</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Three Technologies, Very Different Jobs
+      </Fragment>
+      <Fragment slot="content">
+        Every time someone asks "should I use Canvas, SVG, or CSS for this animation?" the correct answer is "it depends." But that's not helpful. So here's the actual decision framework we use on client projects, based on years of shipping all three.
+
+        CSS animations are your default. If the animation involves transitioning existing DOM elements — fading, sliding, scaling, rotating, changing colour — CSS is the right tool. It runs on the browser's compositor thread, which means it doesn't block the main thread. It doesn't add to your JavaScript bundle. It works with zero runtime overhead. CSS transitions for state changes (hover, focus, active), CSS keyframe animations for looping or multi-step sequences, and the new CSS scroll-timeline for scroll-driven effects. Start here. Only escalate when CSS can't do what you need.
+
+        CSS can't do: animating along a custom path (offset-path exists but has limits), complex timeline choreography with precise control, physics-based motion, morphing between shapes, or anything that requires per-frame logic. If you need those, keep reading.
+
+        SVG animations are for when you need to animate vector graphics specifically — icons, logos, illustrations, charts, diagrams, maps. SVGs live in the DOM, which means every element is targetable with CSS or JavaScript. You can transition a path's fill colour on hover. You can animate stroke-dashoffset for a drawing effect. You can morph between shapes with GSAP's MorphSVG. And because SVGs scale to any resolution, your animations look crisp on every display.
+
+        The performance ceiling for SVG is lower than Canvas. Each SVG element is a DOM node, and the browser has to manage its layout, painting, and compositing. With a handful of animated elements — say, an icon with 10 paths or a chart with 50 bars — this is fine. With thousands of elements — like a particle system with 5,000 dots — the DOM overhead kills performance. That's where Canvas takes over.
+
+        Canvas is a bitmap drawing surface. You get a 2D or WebGL context, and you draw pixels directly. There's no DOM tree of elements. No layout engine overhead. No per-element event handling. You control everything: what to draw, when to draw it, and how to optimise the drawing. This makes Canvas dramatically faster for high-element-count animations — particle systems, generative art, data visualisations with thousands of points, game-like interactions.
+
+        The trade-off is that Canvas gives you nothing for free. No hover states (you have to do hit detection manually). No accessibility (screen readers can't see Canvas content). No CSS styling. No responsive scaling without manual handling. Every convenience the DOM provides, you have to rebuild. That's why Canvas is the right choice only when you genuinely need the performance — not because it sounds cooler.
+
+        Here's the practical decision tree.
+
+        Is it a UI element transition (hover, focus, page transition)? Use CSS. Is it a simple looping animation (spinner, pulse, bounce)? Use CSS. Is it scroll-driven (fade-in, parallax, progress bar)? Use CSS Scroll-Timeline, with GSAP ScrollTrigger as fallback. Is it an icon or logo animation? Use SVG with CSS transitions or GSAP. Is it an illustration that draws or morphs? Use SVG with GSAP. Is it a data chart with under 500 elements? Use SVG (or a chart library like D3 that renders SVG). Is it a particle system with 1,000+ elements? Use Canvas 2D or WebGL. Is it generative art or a custom visual effect? Use Canvas 2D (p5.js) or WebGL (Three.js). Is it a 3D scene? Use WebGL via Three.js or React Three Fiber.
+
+        The hybrid approach is common and valid. We regularly combine all three on a single page. CSS handles the navigation transitions, hover states, and entrance animations. An SVG logo animates on load with GSAP. A Canvas element in the hero section runs a generative particle field. Each technology does what it does best.
+
+        One pattern we see too often: developers using Canvas for something CSS could handle, because they wanted more "control." This almost always results in worse performance (Canvas redraws every frame, CSS compositor animations don't), worse accessibility (no DOM semantics), and more code to maintain. The most sophisticated choice is often the simplest tool that solves the problem.
+
+        Bundle size matters in this decision. CSS animations add zero JavaScript. SVG animations with CSS transitions add zero JavaScript. GSAP adds around 25KB gzipped (plus plugins). p5.js adds about 80KB. Three.js adds 150KB+. For a marketing site where every kilobyte affects page speed, the progression from CSS to SVG to Canvas to WebGL should mirror a progression from "this is justified" to "this really needs to be justified."
+
+        Test on real devices. Every animation technology performs differently on an M3 MacBook versus a budget Android phone on a 4G connection. CSS compositor animations are the most resilient across the performance spectrum. Canvas 2D is next. WebGL depends heavily on the GPU. Complex SVG DOM trees can stutter on low-end devices. Your development machine is a lie. The $300 phone is the truth.
+
+        The best websites we build use the right tool for each job, not one tool for every job. That's the framework. Match the technology to the requirement, escalate only when needed, and always measure performance on the devices your actual users carry.
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

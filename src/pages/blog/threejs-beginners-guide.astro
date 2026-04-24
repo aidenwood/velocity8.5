@@ -1,0 +1,56 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="A practical Three.js guide for web developers in 2026. Learn to add 3D scenes, lighting, and animation to your sites without drowning in WebGL complexity."
+  title="Three.js in 2026: A Practical Guide for Web Developers Who Want to Add 3D Without Losing Their Minds · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Creative Development — April 2026
+      </Fragment>
+      <Fragment slot="title">
+        Three.js in 2026: A Practical Guide for Web Developers Who Want to Add 3D Without Losing Their Minds
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-violet-600/20 to-cyan-500/20 flex items-center justify-center">
+          <span class="text-4xl">🧊</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Your First 3D Scene (Without the Existential Crisis)
+      </Fragment>
+      <Fragment slot="content">
+        You've seen those jaw-dropping 3D websites on Awwwards. The product that rotates as you scroll. The particle cloud that follows your cursor. The hero section that feels more like a movie trailer than a webpage. And you've thought: "I should learn that." Then you looked at WebGL documentation, saw the words "vertex shader" and "fragment shader" in the first paragraph, and closed the tab. Fair.
+
+        Here's the good news: Three.js exists specifically so you don't have to do that. It's a JavaScript library that wraps WebGL's low-level API in something that actually resembles a developer experience. Instead of manually defining vertex buffers and writing GLSL, you create a scene, add a camera, drop in some geometry, slap on a material, and hit render. It's not "easy" — but it's tractable.
+
+        Let's talk about the mental model first, because this is where most tutorials fail. Three.js has three core concepts: a Scene (the container for everything), a Camera (what the viewer sees), and a Renderer (the thing that draws pixels to a canvas). Everything else — meshes, lights, textures, animations — lives inside the scene. If you've ever used a game engine like Unity, this will feel familiar. If you haven't, think of it like a film set. The scene is the soundstage. The camera is the camera. The renderer is the projectionist.
+
+        A mesh is a 3D object. It's made of two things: a Geometry (the shape — cube, sphere, custom model) and a Material (the surface — colour, shininess, texture). You create both, combine them into a mesh, and add the mesh to the scene. That's the core loop. Everything else is refinement.
+
+        Lighting matters more than you'd expect. A 3D scene without lights looks flat or completely black, depending on the material. Three.js gives you ambient lights (soft, everywhere), directional lights (like the sun), point lights (like a bulb), and spot lights (like a torch). For most web use cases, an ambient light plus one directional light gets you 80% of the way there. Don't overthink it early on.
+
+        Now, the part nobody tells you: the render loop. Three.js doesn't automatically update the screen. You need to call renderer.render(scene, camera) inside a requestAnimationFrame loop. This is where animations happen — you change an object's rotation, position, or scale on each frame, and the renderer draws the new state. It's imperative, not declarative. If you're coming from React, this will feel wrong. (That's why React Three Fiber exists, but we'll get to that in another post.)
+
+        Loading 3D models is where things get genuinely useful for client projects. Most 3D assets come in glTF or GLB format — the "JPEG of 3D." Three.js has a GLTFLoader that handles this. You load the model, add it to the scene, and you've got a photorealistic product floating in the browser. We've used this for product showcases where the client wanted customers to rotate and inspect items before purchasing. The conversion impact was significant — people trust what they can examine from every angle.
+
+        Performance is the thing that separates a portfolio piece from a production deployment. Three.js scenes can absolutely tank your page if you're not careful. The rules are straightforward: keep polygon counts reasonable (under 100K for hero scenes), compress textures with tools like Squoosh or KTX2, use instancing for repeated geometry, and dispose of materials and geometries when components unmount. On mobile, consider reducing resolution with renderer.setPixelRatio(1) instead of matching the device's retina display. Nobody notices on a 6-inch screen. Everybody notices the lag.
+
+        The 2026 ecosystem is mature. Post-processing effects like bloom, depth of field, and screen-space ambient occlusion are available through three/addons. The Drei library (if you're in React Three Fiber land) gives you pre-built components for common patterns — orbit controls, environment maps, text rendering, HTML overlays. The community on GitHub and Discord is active and helpful.
+
+        Here's the honest take on when to use Three.js on a client project: when visual differentiation matters. A SaaS dashboard doesn't need a 3D hero. A luxury brand, a creative agency, an architecture portfolio, a product launch — these benefit from the "wow factor" because their audience expects craft. The ROI isn't in the 3D itself; it's in the perception of quality it creates.
+
+        Start small. A rotating logo. A subtle particle background. A single product model with orbit controls. Get comfortable with the scene-camera-renderer pattern, then layer complexity. The jump from "spinning cube" to "impressive portfolio piece" is smaller than you think. The jump from "no 3D experience" to "spinning cube" is the hard part. You're past it now.
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

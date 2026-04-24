@@ -1,0 +1,57 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="SQLite is having a renaissance. Turso, LiteFS, and Litestream are making the world's most deployed database cloud-native. Here's why it matters."
+  title="The Unexpected SQLite Renaissance: The World's Most Deployed Database Goes Cloud-Native · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Tech News
+      </Fragment>
+      <Fragment slot="title">
+        The Unexpected SQLite Renaissance: The World's Most Deployed Database Goes Cloud-Native
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-sky-600/20 to-indigo-500/20 flex items-center justify-center">
+          <span class="text-4xl">&#128451;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        One Trillion Databases, Zero Servers
+      </Fragment>
+      <Fragment slot="content">
+        SQLite is on literally every device you own. Your phone has hundreds of SQLite databases. Your browser uses it. Your operating system uses it. It is the most widely deployed database engine in history — over one trillion active databases worldwide. But for web development, SQLite was always the "development database." The one you used locally before deploying to "a real database" like Postgres. In 2025, that narrative is being completely rewritten by a wave of tools that make SQLite a legitimate production database for web applications.
+
+        Why SQLite Was "Not For Production"
+        The traditional knock on SQLite for web apps was straightforward: it is an embedded database that lives in a single file. No network access, no concurrent writes from multiple servers, no replication, no backups unless you copy the file. For a web application running on multiple servers behind a load balancer, this was a dealbreaker. You needed Postgres or MySQL — a database that runs as a separate server and handles concurrent connections from multiple application instances. Fair enough. But most web applications are not running on multiple servers. Most are single-server deployments that use Postgres because that is what the tutorial said to use.
+
+        Turso: SQLite At The Edge
+        Turso is the most ambitious project in the SQLite renaissance. Built on libSQL, a fork of SQLite, Turso provides a managed SQLite service with replication to edge locations worldwide. Your primary database lives in one region, and read replicas are automatically distributed to edge locations close to your users. Reads are local and fast. Writes go to the primary and replicate out. The developer experience is excellent — a CLI for management, an HTTP API for queries, and client libraries for every major language. For read-heavy applications with a global audience, Turso's latency numbers are hard to beat.
+
+        Litestream and LiteFS
+        Litestream is a standalone tool that continuously replicates your SQLite database to S3-compatible object storage. It runs alongside your application, watches the SQLite WAL file, and streams changes to a remote backup in real time. If your server dies, you restore from S3 and lose maybe the last few seconds of writes. It turns SQLite into a database with continuous backups for essentially zero cost. LiteFS, built by the same team at Fly.io, takes this further with distributed replication. It uses FUSE to intercept SQLite file operations and replicate them across multiple nodes, giving you read replicas on every instance in your Fly.io deployment.
+
+        When SQLite Makes Sense For Web Apps
+        Single-server deployments where your app and database live on the same machine. Read-heavy applications where write concurrency is not a bottleneck. Applications where latency matters — a query to an in-process SQLite database takes microseconds, not the milliseconds of a network round-trip to Postgres. Small to medium SaaS applications. Personal projects. Prototypes that might become products. The sweet spot is applications that would traditionally use a managed Postgres instance at thirty to fifty dollars per month but do not actually need the concurrent write capabilities that Postgres provides.
+
+        When You Still Need Postgres
+        High-concurrency write workloads. Applications that need advanced Postgres features like JSONB operators, full-text search with custom dictionaries, or PostGIS for geospatial queries. Multi-tenant applications where each tenant's data needs to be queryable together. Applications that need real-time features through something like Supabase Realtime, which sits on top of Postgres replication. The answer is not "always use SQLite" — it is "stop defaulting to Postgres without thinking about it."
+
+        The Performance Story
+        SQLite queries on local storage are absurdly fast. We are talking sub-millisecond for simple queries and single-digit milliseconds for complex joins. Compare that to a Postgres query that has to travel over the network, parse the query, execute it, serialise the results, and send them back — even on a fast connection that is 5-20 milliseconds. For applications that make many small queries per request, the difference is significant. A page that makes 10 database queries loads measurably faster with SQLite than with a network database.
+
+        The SQLite renaissance is not about replacing Postgres. It is about recognising that the simplest solution is often the right one, and for a huge number of web applications, the simplest solution is a single file on disk that handles a trillion queries without breaking a sweat.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

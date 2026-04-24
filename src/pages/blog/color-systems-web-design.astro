@@ -1,0 +1,62 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Building a colour system for the web goes far deeper than picking a nice palette. Contrast ratios, perceptual uniformity, dark mode — here's the full picture."
+  title="The Surprisingly Deep World of Building a Color System for the Web · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Design Systems — April 2026
+      </Fragment>
+      <Fragment slot="title">
+        The Surprisingly Deep World of Building a Color System for the Web
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-fuchsia-500/20 to-purple-600/20 flex items-center justify-center">
+          <span class="text-4xl">&#127752;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Colour Is Harder Than It Looks
+      </Fragment>
+      <Fragment slot="content">
+        Picking colours for a website feels like it should be simple. Choose a brand colour, add a few neutrals, throw in a green for success and a red for errors, done. In practice, building a colour system that works across light mode, dark mode, all interactive states, all component variations, and all accessibility requirements is one of the deepest problems in web design. It touches colour science, accessibility standards, design token architecture, and CSS engineering simultaneously. Let us get into it.
+
+        Why HSL Is Not Enough
+        Most developers think about colour in HSL (hue, saturation, lightness) because CSS makes it convenient. The problem is that HSL is not perceptually uniform. A yellow at 50% lightness looks dramatically brighter to the human eye than a blue at 50% lightness. This means you cannot generate a palette by simply stepping through lightness values and expect consistent visual results. The OKLCH colour space fixes this. OKLCH is perceptually uniform — equal steps in lightness produce equal changes in perceived brightness regardless of hue. CSS now supports oklch() natively, and it is the single best improvement in CSS colour handling in the last decade. If you are building a colour system in 2026 and not using OKLCH, you are working harder than you need to.
+
+        The Scale Structure
+        Every colour in your system needs a scale — typically 10 steps from lightest to darkest. Tailwind uses the 50-950 convention: slate-50 is nearly white, slate-950 is nearly black. Each step serves a purpose. The lightest values (50-100) are for backgrounds and subtle fills. The mid values (400-600) are for borders, icons, and secondary text. The darkest values (700-950) are for primary text and high-contrast elements. In dark mode, this entire scale inverts — backgrounds use the 900-950 range, text uses the 50-200 range. If your scale has been generated with perceptual uniformity in mind, this inversion works naturally. If it was hand-picked from a colour picker, it will feel off.
+
+        Contrast Ratios Are Not Negotiable
+        WCAG 2.1 requires a minimum contrast ratio of 4.5:1 for normal text and 3:1 for large text. WCAG 2.2, which is now the standard, maintains these requirements and adds additional criteria for focus indicators. This is not optional. It is a legal requirement in many jurisdictions and a fundamental accessibility baseline. What this means practically: your light grey text on a white background does not meet contrast requirements, even if it "looks fine" on your high-end display. Use a contrast checker. We check every text-background combination during design review, and you would be surprised how many popular websites fail basic contrast on their body text.
+
+        Semantic Colour Tokens
+        Raw colour values should never appear in component code. Instead, define semantic tokens that describe purpose: foreground, background, muted, border, primary, secondary, destructive, success, warning. Each semantic token maps to a step in your colour scale, and that mapping changes between light and dark mode. Your component code references the semantic token, never the raw colour. This means a button styled with bg-primary works in both light and dark mode without any conditional logic because the primary token resolves to different values in each context.
+
+        The Grey Problem
+        Greys are the most important colours in your system and the easiest to get wrong. Pure grey — equal RGB values — looks lifeless and slightly cold. Most design systems use warm greys (Tailwind's stone scale) or cool greys (Tailwind's slate scale) depending on the brand feel. The critical thing is to use one grey scale consistently. Mixing warm and cool greys in the same interface creates a subtle visual discord that users feel but cannot articulate. Pick one. Commit. Use it everywhere.
+
+        Brand Colour Integration
+        Your brand colour needs to work at every step of the scale, in both light and dark modes, at every contrast ratio. This is harder than it sounds. A vibrant orange that looks great on a white background might need a completely different shade on a dark background to maintain readability. Start by placing your brand colour at the 500-600 mark of your scale, then generate lighter and darker variants using OKLCH by adjusting the lightness channel while keeping hue and chroma consistent. This produces a cohesive scale that feels like a natural extension of the brand colour rather than arbitrary lighter and darker versions.
+
+        State Colours and Interaction Feedback
+        Every interactive element needs at least four colour states: default, hover, active, and disabled. For primary buttons, this typically means default at 600, hover at 700, active at 800, and disabled at a muted variant with reduced opacity. For borders, default at 200, hover at 300, focus at the primary colour. Define these state transitions in your token system so every component handles interactions consistently. Ad hoc state colours are how you end up with fifteen different hover blues across your application.
+
+        Data Visualisation Colours
+        If your application includes charts, dashboards, or any data presentation, you need a set of categorical colours that are visually distinct from each other and from your UI colours. These colours need to remain distinguishable for users with colour vision deficiencies — roughly 8% of men and 0.5% of women. Use a palette checker tool that simulates deuteranopia, protanopia, and tritanopia. If two categories are indistinguishable under any of these simulations, pick different colours.
+
+        A well-built colour system is invisible. Users do not notice that the greys are warm, that the contrast ratios are compliant, or that the dark mode inversion is seamless. They just feel that the interface is professional, readable, and comfortable. That invisible quality is the mark of a colour system that was engineered, not guessed at.
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

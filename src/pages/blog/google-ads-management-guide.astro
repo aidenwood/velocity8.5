@@ -1,0 +1,58 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Google Ads management that actually returns ROI. How we run search campaigns, structure ad groups, and eliminate wasted spend for our clients."
+  title="How We Run Google Ads Campaigns That Actually Make Money Back · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Google Ads and PPC — April 2026
+      </Fragment>
+      <Fragment slot="title">
+        How We Run Google Ads Campaigns That Actually Make Money Back
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-blue-600/20 to-indigo-500/20 flex items-center justify-center">
+          <span class="text-4xl">&#128176;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Most Google Ads Accounts Are Burning Money
+      </Fragment>
+      <Fragment slot="content">
+        Here is a number that should make every business owner uncomfortable: the average Google Ads account wastes 76% of its budget on search terms that will never convert. That is not a typo. Three quarters of your ad spend is going to clicks from people who will never become customers. We know this because we audit Google Ads accounts every week, and the pattern is always the same — broad match keywords with no negative keyword lists, sending traffic to a homepage instead of a dedicated landing page, with conversion tracking that either does not exist or is measuring the wrong things.
+
+        Google Ads management is not complicated. It is just tedious, detail-oriented work that most businesses and even most agencies skip. Let us walk through how we actually run PPC campaigns that return measurable ROI.
+
+        Campaign Structure Is Everything
+        The first thing we do with any new Google Ads account is rebuild the campaign structure from scratch. Google's default recommendation is to throw everything into a single campaign with broad match keywords and let Smart Bidding figure it out. This works great for Google's revenue. It works terribly for yours. We run single keyword ad groups or tightly themed ad groups with exact match and phrase match keywords. Every ad group has its own tailored ad copy and its own dedicated landing page. This is more work to set up, but the quality score improvements alone typically cut cost per click by 20-40%.
+
+        The Landing Page Problem
+        This is where being an agency that builds websites gives us an unfair advantage. Most Google Ads managers are working with whatever landing pages the client gives them, which is usually the homepage or a generic service page. We build custom landing pages for every major campaign — fast-loading, conversion-optimised pages with a single clear call to action. No navigation menu to distract. No competing messages. Just the offer, the proof, and the form. The difference in conversion rates is staggering. We consistently see 3-5x improvements when we move traffic from a homepage to a purpose-built landing page.
+
+        Negative Keywords Are Your Best Friend
+        Every week we review the search terms report — the actual queries people typed before clicking your ad. Without fail, 30-50% of those terms are irrelevant. If you are a commercial electrician, you are paying for clicks from people searching "how to become an electrician," "electrician apprenticeship near me," and "DIY electrical wiring." A negative keyword list stops this bleed. We maintain rolling negative keyword lists for every client and review them weekly. This single habit saves our clients thousands of dollars per month.
+
+        Conversion Tracking That Actually Tracks Conversions
+        You would be shocked how many Google Ads accounts we audit where conversion tracking is either not set up, tracking page views as conversions, or counting every form submission including spam bots. If your data is wrong, every decision you make is wrong. We set up server-side conversion tracking, connect it to the actual CRM so we can track leads through to closed revenue, and exclude bot traffic. This means we can tell you not just how many leads Google Ads generated, but how much revenue those leads produced. That is the only number that matters.
+
+        Budget Allocation and Bid Strategy
+        Start with manual CPC until you have at least 30-50 conversions per month. Then switch to target CPA or maximise conversions. Google's Smart Bidding algorithms need data to work, and if you turn them on with five conversions in your account history, you are letting a machine learning model make decisions based on statistically meaningless data. We see this mistake constantly — businesses switching to automated bidding too early, watching their costs spike, and concluding that Google Ads does not work for their industry. It does. You just gave the algorithm garbage data.
+
+        The Reporting Cadence
+        We report on Google Ads performance weekly, not monthly. Monthly reporting means you can burn through four weeks of budget before catching a problem. Our reports show cost per lead, cost per acquisition, search impression share, and the actual search terms driving clicks. No vanity metrics. No impressions-and-clicks dashboards designed to make the agency look good. Just the numbers that tell you whether your search campaign management is generating profit or burning cash.
+
+        If your current Google Ads management cannot answer the question "how much revenue did we generate per dollar spent last month," it is time for a change.
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

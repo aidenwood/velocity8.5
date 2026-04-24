@@ -1,0 +1,63 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="OpenAI DevDay 2024 recap — GPT-4 Turbo, custom GPTs, Assistants API. What actually matters for web developers building real products."
+  title="We Watched OpenAI DevDay So You Didn't Have To — Here's What Matters · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Tech News
+      </Fragment>
+      <Fragment slot="title">
+        We Watched OpenAI DevDay So You Didn't Have To — Here's What Matters
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-emerald-600/20 to-teal-500/20 flex items-center justify-center">
+          <span class="text-4xl">&#129302;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        The Developer Keynote, Decoded
+      </Fragment>
+      <Fragment slot="content">
+        OpenAI just held DevDay 2024 and dropped roughly fourteen announcements in ninety minutes. Half the internet is calling it revolutionary. The other half is calling it an incremental update with good marketing. The truth, as usual, is somewhere in between — but there are a few things here that genuinely change what web developers can build.
+
+        GPT-4 Turbo: Faster, Cheaper, Actually Useful Now
+
+        The headline upgrade is GPT-4 Turbo. 128K context window, knowledge cutoff of April 2024, 3x cheaper input tokens, 2x cheaper output tokens. That pricing change matters more than any feature announcement. When GPT-4 first launched, building a production app on it was eye-wateringly expensive. A busy SaaS could rack up thousands per month in API costs alone. The new pricing makes GPT-4 viable for features that would have been cost-prohibitive six months ago — things like real-time document analysis, in-app writing assistants, and customer support automation.
+
+        The 128K context window is the other big deal. That is roughly 300 pages of text in a single prompt. You can now feed an entire codebase, a full legal document, or a complete product spec into a single API call and get coherent responses. For web developers, this means smarter RAG pipelines, better document search, and AI features that actually understand context instead of hallucinating because they only saw a snippet.
+
+        Custom GPTs: Cool Demo, Questionable Value
+
+        Custom GPTs let anyone create a specialised ChatGPT with custom instructions, knowledge files, and API integrations — no code required. The demo was impressive. The practical value for professional developers is questionable. If you are building a product, you want the API, not a ChatGPT wrapper. Custom GPTs are interesting for internal tools and prototyping, but they are a consumer play, not a developer tool. Do not build your startup on them.
+
+        The Assistants API: This Is The Real Story
+
+        The Assistants API is what developers should actually care about. It handles conversation threading, file retrieval, code execution, and function calling in a managed service. Before this, building a stateful AI assistant meant managing your own conversation history, implementing RAG from scratch, handling token limits, and writing retry logic. Now you create an assistant, give it instructions and files, and OpenAI handles the rest.
+
+        For web developers specifically, the function calling improvements are massive. You define your API endpoints as functions, the model decides when to call them and with what parameters, and you execute them server-side. This is how you build AI features that actually do things — book appointments, query databases, process payments — instead of just generating text.
+
+        The JSON Mode Fix
+
+        GPT-4 Turbo now has a guaranteed JSON output mode. If you have ever built an AI feature that needed structured data back from the model, you know the pain of parsing free-text responses, handling edge cases where the model wraps JSON in markdown code blocks, or just returns a paragraph instead. JSON mode eliminates all of that. Set the response format to JSON, get JSON back. Every time. This alone saves hours of defensive parsing code.
+
+        What This Means for Your Projects
+
+        If you are building a SaaS, the Assistants API is your fast path to AI features. If you are building content tools, the 128K context window changes what is possible. If you are building anything that needs structured AI output, JSON mode saves you a week of yak-shaving. And if you are thinking about building a "custom GPT" as a product — stop, use the API, build something real.
+
+        The most important takeaway from DevDay is not any single feature. It is the trajectory. AI APIs are getting cheaper, faster, and more developer-friendly at a pace that makes six-month-old integration code look ancient. Build with that in mind. Keep your AI layer thin and swappable, because whatever you ship today will need updating by March.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

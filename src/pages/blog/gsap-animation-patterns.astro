@@ -1,0 +1,58 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="The GSAP animation patterns we use on every client project — ScrollTrigger, staggered reveals, split text, and timelines that actually ship to production."
+  title="The GSAP Animation Patterns We Use on Every Client Project · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Animation &amp; Motion — April 2026
+      </Fragment>
+      <Fragment slot="title">
+        The GSAP Animation Patterns We Use on Every Client Project
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-green-500/20 to-teal-600/20 flex items-center justify-center">
+          <span class="text-4xl">🎬</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Battle-Tested Animation for Production Websites
+      </Fragment>
+      <Fragment slot="content">
+        GSAP (GreenSock Animation Platform) is the library we reach for on every marketing site, portfolio, and landing page we build. Not because it's trendy — it's been around since the Flash era — but because it's the most reliable, performant, and well-documented animation library on the web. It does things CSS animations can't, it does them consistently across browsers, and it does them without making your site feel like a tech demo.
+
+        Here are the patterns we use on virtually every project.
+
+        The staggered entrance reveal. Elements fade in and slide up as they enter the viewport, with a slight delay between each one. This is the bread and butter of modern web animation. We use ScrollTrigger to detect when a section enters the viewport, then gsap.from() with a stagger value to animate child elements sequentially. The stagger is usually 0.08 to 0.12 seconds — fast enough to feel cohesive, slow enough to feel intentional. The key detail: we set once: true on the ScrollTrigger so elements animate in once and stay put. Nobody wants to re-watch an entrance animation when they scroll back up.
+
+        The parallax section. Different layers of content move at different speeds during scroll, creating depth. ScrollTrigger's scrub property ties the animation progress directly to the scroll position. We apply different y-translation values to background images, text blocks, and decorative elements. The scrub value is usually 1 (meaning 1 second of smoothing) rather than true (instant, often jittery). This creates that buttery parallax feel without the performance cost of listening to raw scroll events.
+
+        The pinned hero sequence. A section stays fixed in the viewport while content inside it changes — text swaps, images transition, progress indicators fill. This is the pattern behind Apple's product pages and it's incredibly effective for storytelling. ScrollTrigger's pin property handles the positioning. Inside the pinned duration, we use a GSAP timeline to orchestrate multiple animations in sequence: fade out headline, fade in next headline, change background colour, animate an illustration. The timeline runs as the user scrolls through the pinned region.
+
+        Split text animations. Individual characters or words animate in separately, creating a typewriter, cascade, or wave effect. We use GSAP's SplitText plugin (or the free alternative of wrapping characters in spans) to break text into animatable units. Each character gets a gsap.from() with a stagger and an ease like "power4.out" for that satisfying deceleration. This works beautifully for hero headlines and section titles. A word of caution: don't do this to body copy. Nobody wants to wait for a paragraph to assemble itself letter by letter.
+
+        The smooth state transition. When navigating between pages or changing content, elements morph from one state to another rather than cutting. GSAP's Flip plugin handles this — it records the current state of elements, you make the DOM change, then it animates from the old state to the new state. This is how we build smooth filtering animations for portfolio grids and product galleries. Items don't just appear and disappear; they rearrange themselves elegantly.
+
+        The scroll-progress indicator. A horizontal bar at the top of the page fills as the user scrolls through content. Dead simple with ScrollTrigger: create a bar element, set its scaleX from 0 to 1, and tie it to the page's scroll progress with scrub: true. It takes about four lines of code and it gives users spatial awareness of where they are in long-form content.
+
+        Now, the non-negotiables. Every animation we write is wrapped in a gsap.matchMedia() block that checks prefers-reduced-motion. If the user has requested reduced motion, they get instant state changes with no animation. This isn't optional. It's an accessibility requirement and a sign of professional craft. We also run a gsap.context() scoped to each component or page, and call context.revert() on cleanup. This prevents memory leaks from orphaned ScrollTriggers — the number one cause of buggy animation behaviour in SPAs.
+
+        Performance rules: only animate transform and opacity. These properties run on the GPU compositor thread and don't cause layout reflows. The moment you animate width, height, margin, or padding, you're triggering repaints on every frame. GSAP makes it easy to animate transform properties with shorthand (x, y, scale, rotation) instead of writing full CSS transforms.
+
+        GSAP isn't free for all use cases — the business licence is required for commercial products with paid users — but for client websites and marketing pages, the standard licence covers everything. The investment is worth it. The alternative is spending twice as long building half as much with CSS animations and hoping it works the same in Safari.
+
+        These six patterns cover about 90% of what we animate. The remaining 10% is custom work for specific creative briefs. But even those start from one of these foundations. Master these, and every site you build will feel polished and intentional.
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

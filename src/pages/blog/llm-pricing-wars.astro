@@ -1,0 +1,55 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="LLM pricing dropped 90% in one year. GPT-4o, Claude 3.5, Gemini Pro costs compared and what the race to zero means for developers."
+  title="LLM Costs Dropped 90% in One Year — Here's What the Race to Zero Means for Developers · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Tech News
+      </Fragment>
+      <Fragment slot="title">
+        LLM Costs Dropped 90% in One Year — Here's What the Race to Zero Means for Developers
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-green-600/20 to-emerald-500/20 flex items-center justify-center">
+          <span class="text-4xl">&#128176;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        The Race to the Bottom Has Winners
+      </Fragment>
+      <Fragment slot="content">
+        In January 2024, a million tokens through GPT-4 cost $30 input and $60 output. In January 2026, a million tokens through GPT-4o costs $2.50 input and $10 output. Claude 3.5 Sonnet is $3 and $15. Gemini 1.5 Pro is $1.25 and $5. That is a 90% price collapse in twelve months. If any other industry saw costs drop like this, it would be front-page news for a month. In AI, it is Tuesday.
+
+        What Actually Happened
+        Three forces converged. First, competition. OpenAI had a pricing monopoly in early 2024 and then Anthropic, Google, and a swarm of open-source models forced prices down. When Claude 3 shipped at half the price of GPT-4 with comparable quality, OpenAI had to respond. When Gemini Pro launched with aggressive pricing, both had to respond again. Second, inference optimisation. Techniques like speculative decoding, quantisation, and KV-cache improvements made it cheaper to actually run these models. The same GPU that could serve 10 requests per second in 2024 now serves 50. Third, scale. As usage exploded, providers amortised their massive GPU investments over more customers. Classic economies of scale, just on an unprecedented timeline.
+
+        The Developer Impact Is Enormous
+        A year ago, most developers were rationing API calls. You would batch requests, cache aggressively, use smaller models for simple tasks, and agonise over every prompt token. That calculus has completely changed. At current pricing, you can process a million words through Claude 3.5 Sonnet for under $5. That unlocks use cases that were economically impossible twelve months ago. Full codebase analysis on every commit. Real-time content moderation for user-generated content. AI-powered search across entire document libraries. Personalised email drafting for every customer interaction. We built an internal tool that analyses Pipedrive deal data with Claude and the API cost is about $12 per month for our entire team. A year ago, the same tool would have cost $150 per month. That is the difference between "fun experiment" and "permanent part of the workflow."
+
+        The Quality Did Not Drop
+        This is the part that is genuinely surprising. Usually when prices drop 90%, quality drops with them. But GPT-4o is better than GPT-4 at most tasks. Claude 3.5 Sonnet is better than Claude 3 Opus at coding tasks despite costing a fraction of the price. Google's Gemini models improved dramatically from 1.0 to 1.5 to 2.0. The models are getting simultaneously cheaper and better, which violates every normal economic assumption. The reason is that newer model architectures are more efficient — they achieve the same quality with smaller parameter counts and less compute.
+
+        Open Source Is Applying Pressure
+        Llama 3.1, Mixtral, Qwen 2.5, and DeepSeek are all free to run on your own hardware. For companies with GPU infrastructure, the API pricing wars are irrelevant — they run models for the cost of electricity. This open-source floor forces commercial providers to add value beyond just model access. Anthropic differentiates on safety and tool use. OpenAI differentiates on ecosystem and multimodal capabilities. Google differentiates on context window and integration with their cloud. The model itself is becoming a commodity. The value is in the platform.
+
+        What Happens Next
+        Prices will continue to drop, but the rate will slow. We are approaching the cost floor for current hardware. The next major price reduction will come from custom AI chips — Google's TPUs, Amazon's Trainium, and whatever Nvidia ships next. Our prediction: by the end of 2026, frontier model inference will cost under $1 per million tokens for input. At that point, LLM calls become cheaper than most database queries at scale, and the entire software industry will restructure around that reality.
+
+        What You Should Do Now
+        If you have been avoiding AI features because of cost concerns, revisit your assumptions. The math changed. Build the features you prototyped and shelved. The per-unit economics now support production deployment at scales that were not viable a year ago. The developers who are building AI-integrated products today are going to have a significant head start on those who wait for costs to drop further. They are already low enough. Ship it.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

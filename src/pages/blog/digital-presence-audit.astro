@@ -1,0 +1,61 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="A step-by-step digital presence audit you can do yourself in 15 minutes. Check your website, SEO, Google Business Profile, and social media for free."
+  title="The Free Digital Presence Audit You Can Do Right Now in 15 Minutes · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Business Strategy
+      </Fragment>
+      <Fragment slot="title">
+        The Free Digital Presence Audit You Can Do Right Now in 15 Minutes
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-cyan-500/20 to-blue-600/20 flex items-center justify-center">
+          <span class="text-4xl">&#128269;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        You Might Not Like What You Find
+      </Fragment>
+      <Fragment slot="content">
+        Most business owners have no idea how their business looks online. Not how they think it looks — how it actually looks to a stranger Googling their industry at 10pm on their phone. That gap between perception and reality costs real money every single day. Here is a 15-minute audit you can do right now, for free, with no technical skills required. Grab your phone, set a timer, and be honest with yourself.
+
+        Minutes 1 to 3: The Google Test
+
+        Open an incognito or private browser window on your phone. This is critical — a normal browser remembers your history and personalises results. Incognito shows you what a stranger sees. Search for your business name. What comes up? Is your website the first result? Is your Google Business Profile showing with correct information — address, phone number, hours, photos? Are there reviews, and are they recent? Now search for what you sell plus your location. "Web design Gold Coast." "Plumber Brisbane." "Accountant Surfers Paradise." Where do you appear? If you are not on the first page, most potential customers will never find you.
+
+        Minutes 3 to 6: The Website Speed Test
+
+        Still on your phone, tap through to your website. Count the seconds it takes to load. If you get past three, you have a problem. Over 50 percent of mobile users abandon a site that takes more than three seconds to load. For a more precise measurement, go to pagespeed.web.dev on a desktop computer and enter your URL. Google will score your site from 0 to 100 on both mobile and desktop. Anything under 50 on mobile is actively hurting your business. Between 50 and 90 is acceptable but leaving performance on the table. Above 90 means your site is fast and Google will reward that in search rankings.
+
+        Minutes 6 to 9: The Mobile Experience Check
+
+        Stay on your phone and actually use your website as if you were a potential customer. Can you find your phone number within five seconds? Can you tap it to call? Can you find your main service or product without scrolling through walls of text? Is the contact form easy to fill out on a phone keyboard? Are the buttons big enough to tap with a thumb? Is the text readable without zooming? Check at least three pages. If any of this is frustrating, it is frustrating for every mobile visitor — and mobile visitors are more than half your traffic.
+
+        Minutes 9 to 12: The Google Business Profile Audit
+
+        Go back to Google and look at your Google Business Profile. This is the panel that shows up on the right side of search results on desktop or at the top on mobile. Check these things: Are your business hours correct, including holiday hours? Is the phone number right? Is the address accurate and does the pin drop in the correct location? Do you have at least 10 photos, and were they taken in the last two years? Have you responded to all your reviews — both positive and negative? Is your business category correct? Is the website link correct and working? Your Google Business Profile is often the first thing people see. If it is incomplete, outdated, or has unanswered negative reviews, that is the first impression you are making.
+
+        Minutes 12 to 15: The Social Media Reality Check
+
+        Check your social media profiles — Facebook, Instagram, LinkedIn, whatever you use. When was your last post? If it has been more than a month, your social media is doing more harm than good. An abandoned social profile signals that the business might be inactive. Is the information consistent across platforms? Same phone number, same address, same business name, same website link? Inconsistency confuses both customers and search engines. Do your profiles look professional? Profile photo, cover image, bio — these should match your brand, not be a blurry photo from 2018.
+
+        What to Do With Your Results
+
+        You probably found a few issues. That is normal — almost every business has gaps in their digital presence. The question is which ones to fix first. Here is the priority order: fix anything that is wrong or broken — incorrect phone numbers, dead links, outdated hours. These are free to fix and the damage is immediate. Fix your Google Business Profile. This is free and has the highest impact per minute spent. Fix your website speed if it scored under 50. This might require professional help, but the return is significant. Fix your mobile experience. If your site is painful on a phone, you are losing more than half your potential customers. Update your social media or delete inactive profiles. An empty profile is worse than no profile. You do not need to fix everything today. But now you know where you stand — and that is the first step toward standing somewhere better.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

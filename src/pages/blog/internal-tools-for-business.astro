@@ -1,0 +1,63 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Why building custom internal tools saves more than paying for 10 SaaS subscriptions. Real ROI from businesses that made the switch."
+  title="You're Paying for 10 SaaS Tools When One Custom App Would Do · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Custom Software
+      </Fragment>
+      <Fragment slot="title">
+        You're Paying for 10 SaaS Tools When One Custom App Would Do
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-amber-600/20 to-orange-500/20 flex items-center justify-center">
+          <span class="text-4xl">&#128295;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        The SaaS Tax Is Real
+      </Fragment>
+      <Fragment slot="content">
+        Here is a number that should make you uncomfortable. The average Australian small business spends $3,000 to $8,000 per month on SaaS subscriptions. CRM, project management, invoicing, scheduling, reporting, file storage, form builders, email marketing, analytics, and probably three tools that nobody remembers signing up for. Each tool does one thing reasonably well and nothing exactly the way your business actually works. So your team builds workarounds. Spreadsheets that bridge the gaps. Manual data entry between systems. Export-to-CSV-import-to-next-tool workflows that eat hours every week. The SaaS subscription model is brilliant for SaaS companies. For your business, it is a slow bleed of money and productivity.
+
+        When Custom Software Makes Sense
+
+        Custom internal tools are not always the answer. If you are a five-person company using Xero for accounting, keep using Xero. Do not build accounting software. But there is a clear tipping point, and it usually looks like this. You are paying for multiple tools that do overlapping things. Your team spends significant time moving data between systems. You have modified your business process to fit a tool instead of the other way around. You are paying enterprise pricing for features you will never use. You need reporting that spans multiple systems. If three or more of those describe your situation, you are probably spending more on SaaS subscriptions and the hidden labour costs around them than a custom tool would cost to build and maintain.
+
+        What We Actually Build
+
+        We build internal tools that replace three to five SaaS subscriptions with one application that matches your exact workflow. Here is a real example. A field service company was paying for separate tools for CRM, scheduling, route optimisation, invoice generation, and reporting. Five tools, five logins, five monthly bills, and a full-time admin staff member whose primary job was copying data between them. We built a single application with Supabase, React, and a few API integrations. It handles contact management with Pipedrive sync, staff scheduling with drag-and-drop, route optimisation with Google Maps, job tracking and invoicing, and a reporting dashboard with real-time metrics. Total monthly cost to operate: around $40 for Supabase and hosting. The five SaaS tools it replaced cost over $2,400 per month combined. The admin staff member now spends their time on actual business operations instead of data entry.
+
+        The Stack for Internal Tools
+
+        We have standardised on a stack that makes internal tools fast to build and cheap to run. React with TypeScript for the frontend because your internal tool needs to be fast and reliable, not beautiful. Supabase for the backend — database, auth, real-time subscriptions, and file storage in one platform. Tailwind CSS for styling because consistency matters even in internal tools. Playwright for testing because internal tools break in ways that nobody reports until the damage is done. This stack lets us build a production-quality internal tool in four to eight weeks instead of four to eight months. The key is Supabase. It gives you a full Postgres database, authentication, row-level security, real-time updates, and edge functions without managing any infrastructure. For internal tools, this is transformative.
+
+        The Build vs Buy Framework
+
+        Here is the framework we use when clients ask whether to build or buy. Buy if the tool is commodity software that works the same for every business — accounting, email, version control. Build if the tool encodes your unique business logic — the processes that differentiate you from competitors. Buy if you have fewer than 10 users and the tool costs less than $100 per month. Build if you have more than 10 users and the combined cost of tools and workarounds exceeds $1,000 per month. Buy if you need it this week. Build if you need it to scale over the next two years. The middle ground is integration. Sometimes you keep the SaaS tools but build a custom layer that connects them, automates the data flow, and gives you a unified dashboard. We do a lot of this with Supabase Edge Functions and Zapier webhooks.
+
+        The Hidden Cost Nobody Talks About
+
+        SaaS tools change their pricing, deprecate features, and get acquired. We have had clients lose critical workflow features overnight because their scheduling tool pivoted to a different market. When you build your own tool, you control the roadmap. Nobody is going to deprecate the feature your business depends on because some product manager in San Francisco decided to chase a different market segment. That stability has real value, especially for businesses where operational disruption directly costs money.
+
+        What It Actually Costs
+
+        A custom internal tool built on our stack typically costs $15,000 to $40,000 depending on complexity. It runs for $30 to $100 per month in infrastructure costs. Compare that to $2,000 to $5,000 per month in SaaS subscriptions plus the hidden labour costs of managing multiple systems. The math usually breaks even within six to twelve months. After that, every month is savings.
+
+        If you are drowning in SaaS subscriptions and duct-tape workflows, let's talk about what a custom tool would look like for your business. Book a discovery call and we will scope it together.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

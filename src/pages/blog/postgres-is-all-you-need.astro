@@ -1,0 +1,73 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Postgres is all you need — pgvector, pg_cron, PostgREST. Stop adding databases to your stack when one Postgres instance does everything."
+  title="Seriously, Just Use Postgres — One Database Is Probably All You Need · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Tech News
+      </Fragment>
+      <Fragment slot="title">
+        Seriously, Just Use Postgres — One Database Is Probably All You Need
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-blue-600/20 to-emerald-500/20 flex items-center justify-center">
+          <span class="text-4xl">&#128024;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        One Database to Rule Them All
+      </Fragment>
+      <Fragment slot="content">
+        The modern web application architecture has a database problem, and the problem is that you have too many of them. Postgres for relational data. Redis for caching. Elasticsearch for full-text search. Pinecone for vector embeddings. A message queue for background jobs. MongoDB because someone on the team read a blog post in 2014. Every new database is another connection string to manage, another service to monitor, another thing that can go down at 3am.
+
+        Here is the controversial take: for most applications, you can replace all of those with Postgres. Not as a compromise. As an upgrade.
+
+        Vector Search: pgvector
+
+        The AI boom sent everyone scrambling for a vector database. Pinecone, Weaviate, Qdrant, Chroma — a new vector DB launches roughly every fifteen minutes. But Postgres has pgvector, an extension that adds vector similarity search to your existing database. Store your embeddings in a vector column, create an index, and query with cosine similarity. Same database, same connection, same backups, same monitoring.
+
+        Is pgvector as fast as a dedicated vector database at billions of vectors? No. Does your application have billions of vectors? Almost certainly not. For applications with up to a few million vectors — which covers the vast majority of RAG applications, recommendation engines, and semantic search features — pgvector performs excellently and eliminates an entire service from your architecture.
+
+        Full-Text Search: Built In
+
+        Postgres has had full-text search for over a decade and most developers do not know it exists. tsvector and tsquery give you tokenisation, stemming, ranking, and fuzzy matching out of the box. For most applications, this is more than sufficient. You do not need Elasticsearch unless you are doing complex aggregations across hundreds of millions of documents. And even then, you should try Postgres first and only add Elasticsearch when Postgres actually cannot handle your workload. Not when you imagine it cannot — when you have measured it.
+
+        Background Jobs: pg_cron and LISTEN/NOTIFY
+
+        Need to run a job every hour? pg_cron is a Postgres extension that schedules SQL queries on a cron schedule. Need a task queue? Use a table with a status column and SKIP LOCKED queries — this is a battle-tested pattern used by production systems handling millions of jobs per day. Need real-time notifications? LISTEN/NOTIFY gives you pub/sub built into the database.
+
+        These are not hacks. They are features that Postgres has maintained and optimised for years. Supabase uses pg_cron for scheduled functions and LISTEN/NOTIFY for their real-time subscriptions. If it is good enough for a platform serving millions of applications, it is good enough for your SaaS.
+
+        The API Layer: PostgREST
+
+        PostgREST automatically generates a RESTful API from your Postgres schema. Define your tables, set up Row Level Security policies, and you have a full CRUD API without writing a single endpoint. Supabase is essentially a managed PostgREST with authentication, file storage, and a dashboard bolted on. The fact that you can get from "empty database" to "production API" with only SQL and RLS policies is remarkable.
+
+        We build most of our client APIs this way through Supabase. Define the schema, write the RLS policies, and the API exists. When we need custom logic beyond CRUD, we write Edge Functions. The database is the API. The API is the database. There is no translation layer to maintain.
+
+        JSON: The Document Store You Already Have
+
+        Need to store unstructured data? Postgres has JSONB columns with full indexing, querying, and validation support. You can query nested JSON fields, create indexes on JSON paths, and enforce schemas with check constraints. This covers 90% of the use cases people reach for MongoDB to solve, without running a separate database with a different query language and different operational characteristics.
+
+        The One-Database Architecture
+
+        Here is what a modern one-Postgres architecture looks like: relational data in regular tables, vector embeddings in pgvector columns, full-text search with tsvector indexes, background jobs with pg_cron, real-time subscriptions with LISTEN/NOTIFY, document storage in JSONB columns, and an auto-generated API through PostgREST. One connection string. One backup strategy. One monitoring dashboard. One thing to scale.
+
+        This is not theoretical. We run production applications on this exact architecture through Supabase. The operational simplicity is profound. When something breaks, there is one place to look. When you need to scale, there is one thing to scale. When a new developer joins, there is one database to learn.
+
+        Stop adding databases to your stack. Start with Postgres, and only reach for specialised tools when Postgres demonstrably cannot handle your specific workload. For most of you, that day will never come.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

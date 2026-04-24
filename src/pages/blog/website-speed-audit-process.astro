@@ -1,0 +1,85 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Our real website speed audit process — the tools, the metrics, the order we check things, and how we prioritise fixes for maximum impact."
+  title="How We Audit Website Speed for Clients (Our Actual Process, Not the Blog Post Version) · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Web Performance — April 2026
+      </Fragment>
+      <Fragment slot="title">
+        How We Audit Website Speed for Clients (Our Actual Process, Not the Blog Post Version)
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-slate-600/20 to-zinc-500/20 flex items-center justify-center">
+          <span class="text-4xl">&#128269;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        The Real Audit Process
+      </Fragment>
+      <Fragment slot="content">
+        Most "website speed audit" blog posts give you a list of tools to run and metrics to check. That's fine as far as it goes, but it skips the part that actually matters — how to interpret the results, how to prioritise fixes, and how to tell a client "your site needs a rebuild, not a tune-up" when that's the honest answer.
+
+        Here's our actual process. It's what we do when a Gold Coast business comes to us saying their site feels slow, their rankings are dropping, or their Lighthouse score makes them nervous. No gatekeeping.
+
+        <strong>Step 1: Field data first</strong>
+
+        We never start with Lighthouse. We start with Google Search Console, specifically the Core Web Vitals report under Experience. This shows us real user data — what actual visitors are experiencing on actual devices over the past 28 days. If there's no Search Console access, we use PageSpeed Insights and focus on the CrUX field data section at the top.
+
+        We document three numbers: LCP at the 75th percentile, INP at the 75th percentile, and CLS at the 75th percentile. These tell us whether the site is failing Core Web Vitals where it matters — in Google's ranking algorithm. If all three are green, the site is passing regardless of what Lighthouse says. If any are amber or red, we've identified the problem area before running a single diagnostic tool.
+
+        <strong>Step 2: WebPageTest for the full picture</strong>
+
+        We run a WebPageTest test from Sydney (closest server to the Gold Coast) on a simulated mobile device with a 4G connection. WebPageTest gives us a waterfall chart — a visual timeline of every resource the browser loads, in order, with timing for each. This is where the real story emerges.
+
+        We're looking for: render-blocking resources (CSS and JS files that delay first paint), long chains of dependent requests (a script that loads a script that loads a script), oversized resources (images over 200KB, JS bundles over 100KB), and third-party requests that delay the critical rendering path.
+
+        The filmstrip view shows us exactly what the user sees at each second of the page load. If the screen is blank at 2 seconds, we know the initial render is blocked. If content shifts at 3 seconds, we can see exactly what moved and correlate it with the waterfall to identify the cause.
+
+        <strong>Step 3: Lighthouse for specific diagnostics</strong>
+
+        Now we run Lighthouse — in Chrome DevTools, in an incognito window, with mobile simulation enabled. We don't care about the overall score. We care about the specific opportunities and diagnostics sections.
+
+        "Reduce unused JavaScript" tells us how much JS could be deferred or removed. "Serve images in next-gen formats" identifies images still using JPEG or PNG. "Eliminate render-blocking resources" lists CSS and JS files that delay first paint. "Avoid large layout shifts" pinpoints the exact elements causing CLS problems.
+
+        We screenshot each finding and note the estimated savings. A 500ms LCP improvement from image optimisation is a quick win. A 200ms improvement from code-splitting JavaScript is a development task. The client needs to understand what each fix costs in time and what it delivers in performance.
+
+        <strong>Step 4: Network tab deep dive</strong>
+
+        We open Chrome DevTools Network tab, disable cache, throttle to "Fast 3G," and reload. We sort by size to find the heaviest resources, then sort by time to find the slowest. We filter by type — JS, CSS, Img, Font, Media — to get totals for each category.
+
+        Typical findings on underperforming sites: total page weight over 3MB (target is under 1MB), more than 80 network requests (target is under 40), JavaScript payload over 500KB (target is under 200KB), uncompressed resources (no gzip or brotli), and images served without a CDN.
+
+        <strong>Step 5: Third-party script audit</strong>
+
+        We filter the Network tab by third-party domains. Every external domain is catalogued with its purpose, number of requests, total size, and main thread impact (from the Performance tab). We categorise each as essential (analytics, payment processing), beneficial (CRM tracking that drives revenue), or removable (unused pixels, legacy integrations, redundant tools).
+
+        The output is a spreadsheet with three columns: script, cost in milliseconds, and recommendation (keep, defer, or remove). This is often the most impactful deliverable of the entire audit.
+
+        <strong>Step 6: The infrastructure check</strong>
+
+        We test Time to First Byte from an Australian location. If TTFB is over 200ms, the hosting is the bottleneck. No amount of frontend optimisation can fix a slow server. We check for CDN usage, HTTP/2 or HTTP/3 support, compression headers (Brotli preferred over Gzip), and caching headers. A site serving static pages without edge caching is leaving free performance on the table.
+
+        <strong>Step 7: The honest recommendation</strong>
+
+        This is where we diverge from most agencies. If the site is built on a modern stack and the issues are optimisation gaps — uncompressed images, missing lazy loading, a few unnecessary scripts — we provide a prioritised fix list with estimated time and impact for each item.
+
+        But if the site is built on a bloated WordPress theme with 25 plugins, a page builder generating 400KB of unused CSS, and a shared hosting plan with 800ms TTFB — we say so. Optimising around fundamental architecture problems is like polishing a car with a blown engine. The most cost-effective path is often a rebuild on a performance-first stack, and we'd rather give that honest answer than sell optimisation hours that won't move the needle.
+
+        Every audit ends with a one-page summary: current field metrics, target metrics, top three high-impact fixes, estimated timeline, and an honest assessment of whether optimisation or rebuild is the right path forward. No fluff. No upselling. Just the data and what to do about it.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

@@ -24,6 +24,11 @@ import MarketingSliddy from '../components/home/Sliddy-Sml-Marketing.astro';
 
 import BlogPosts from '../components/home/BlogPosts.astro';
 
+// FleetRoute-ported components (new alternatives to compare)
+import HeroAnimatedGrid from '../components/home/HeroAnimatedGrid.jsx';
+import FeatureCardsAidxn from '../components/home/FeatureCardsAidxn.jsx';
+import ProcessSticky from '../components/home/ProcessSticky.jsx';
+
 ---
 
 <Layout
@@ -33,20 +38,35 @@ import BlogPosts from '../components/home/BlogPosts.astro';
 
   <Hero />
 
-  <FullScreenSliddy />
+   <FullScreenSliddy />
 
-  <NumbersAnimated />
-  <WhatWeBuild />
-  <Integration />
-  <ProcessVisual />
-  <Clients />
+  <!-- New SubHero (animated grid + text roller) -->
+  <HeroAnimatedGrid client:load />
+
+ 
   <TechStack />
+  <Clients />
+
+  <!-- New Feature Cards (Design / Develop / Grow) -->
+  <FeatureCardsAidxn client:load />
+  
+  <NumbersAnimated />
+
+  <!-- New Process Explainer (sticky scroll) -->
+  <ProcessSticky client:load />
+
+  <WhatWeBuild />
+
+  <Integration />
+  
   <RecentWork />
 
   <BlogPosts />
 
   <CtaDiscovery />
 
+
+  
   <WebIntro />
   <PricingWeb />
   <WebSliddy />

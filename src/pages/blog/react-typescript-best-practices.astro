@@ -1,0 +1,75 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="React and TypeScript patterns we use on every project — strict types, Zod validation, component architecture, and the practices that keep codebases maintainable."
+  title="The React + TypeScript Patterns We Use on Literally Every Project · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        React Development
+      </Fragment>
+      <Fragment slot="title">
+        The React + TypeScript Patterns We Use on Literally Every Project
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-sky-600/20 to-blue-500/20 flex items-center justify-center">
+          <span class="text-4xl">&#9874;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        TypeScript Strict Mode or Do Not Bother
+      </Fragment>
+      <Fragment slot="content">
+        We have written React with TypeScript on every project for the last three years. Not because it is trendy — because every time we skip TypeScript on a "quick prototype," we regret it within two weeks when the prototype becomes production code. Which it always does.
+
+        Here are the patterns and practices that survived 36+ projects. These are not theoretical best practices. These are the things we actually enforce on every codebase we ship.
+
+        Strict Mode Is Non-Negotiable
+
+        The first thing we do on any project is set strict: true in tsconfig.json. If you are using TypeScript without strict mode, you are getting maybe 40% of its value. Strict mode catches null reference errors at build time instead of production. It forces you to handle edge cases. It makes refactoring safe instead of terrifying. Yes, it is more annoying to write. That is the point. The friction is the feature.
+
+        Interface Over Type for Object Shapes
+
+        We use interface for all object shapes and type for unions, intersections, and utility types. This is a team convention that keeps the codebase consistent. Interfaces are extendable, give better error messages, and make it clear that you are defining a data shape. Types are for composition — union types, mapped types, conditional types. This distinction is small but it matters at scale. When you have 200 type definitions in a codebase, knowing that interface means "this is a shape of data" and type means "this is a composition or transformation" makes the code self-documenting.
+
+        Zod as the Single Source of Truth
+
+        Here is the pattern that changed how we build forms and APIs. Define your validation schema in Zod. Infer the TypeScript type from that schema. Use the same schema for both form validation and API request validation. One schema, used everywhere. When the shape of your data changes, you update the Zod schema and TypeScript tells you every place in the codebase that needs to change. No more mismatches between what the form sends and what the API expects. We pair this with React Hook Form. The form library uses the Zod schema for validation, the API route uses the same schema for request parsing, and the database types are derived from the same source. Drift between layers becomes impossible.
+
+        Component Architecture
+
+        We follow a few hard rules on component design. Components should do one thing. If a component file is over 150 lines, it is doing too much. Extract the logic, split the UI. Colocate components with their pages when they are only used in one place. Shared components go in a components directory. Page-specific components live next to the page. Prefer composition over configuration. Instead of a component with 15 props that toggle different modes, build three smaller components and compose them. Props interfaces go at the top of the file, right after the imports. Name them ComponentNameProps. Export them if other components need them.
+
+        Custom Hooks for Everything Stateful
+
+        If a component manages state that involves more than a single useState call, extract it into a custom hook. The hook owns the state and the logic. The component owns the rendering. This pattern makes components trivially testable — you can test the hook logic independently from the UI. It also makes refactoring safe. You can completely rewrite the component's rendering without touching the business logic. We name hooks with the use prefix and keep them in the same file as the component if they are single-use, or in a hooks directory if they are shared.
+
+        Server Components by Default
+
+        In Next.js and Astro projects, every component starts as a server component. Client components are opt-in, not the default. If a component does not use useState, useEffect, onClick, or any other client-side API, it stays on the server. This is not premature optimisation. It is the correct mental model. Most components just render data. They do not need to ship JavaScript to the browser. The "use client" directive is a conscious decision that should make you ask: does this really need to be interactive? Often the answer is no.
+
+        Error Boundaries and Suspense
+
+        Every route in our React applications has an error boundary. Not because we expect errors — because production is unpredictable and a white screen is worse than a graceful fallback. We pair error boundaries with Suspense for data loading. The loading state is intentional, not an afterthought. Users see a meaningful skeleton, not a blank page that suddenly pops into existence.
+
+        Testing with Playwright
+
+        We test at the integration level with Playwright. Not because unit tests are bad — they are useful for utility functions and hooks — but because the bugs that actually reach production are interaction bugs. The form submits but the redirect fails. The modal opens but the backdrop does not close. These bugs live at the boundary between components, and only E2E tests catch them reliably. Every project ships with a Playwright suite that covers the critical user journeys. Sign up, log in, perform the core action, log out. If those paths work, the app works.
+
+        The Boring Stack Wins
+
+        We do not chase new React patterns. We still use Zustand for client state, React Hook Form for forms, and Tailwind for styling. These tools are boring, well-documented, and battle-tested. Boring is a feature when you are shipping production software that real businesses depend on.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

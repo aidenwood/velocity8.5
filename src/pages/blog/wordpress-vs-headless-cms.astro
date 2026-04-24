@@ -1,0 +1,73 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="WordPress vs headless CMS — an honest comparison of WordPress development versus headless alternatives like Astro, Next.js, and Sanity."
+  title="The Honest Case for Ditching WordPress and Going Headless · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Web Development
+      </Fragment>
+      <Fragment slot="title">
+        The Honest Case for Ditching WordPress and Going Headless
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-violet-600/20 to-cyan-500/20 flex items-center justify-center">
+          <span class="text-4xl">⚔️</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        The WordPress Question
+      </Fragment>
+      <Fragment slot="content">
+        WordPress powers roughly 43% of the web. That's an incredible number, and it's also the reason every "WordPress is dead" take ages poorly. But here's the more interesting question: just because WordPress can build your site, should it?
+
+        We've built WordPress sites. We've migrated WordPress sites to headless CMS setups. We've also talked clients out of headless when WordPress was genuinely the right call. Here's our honest framework for deciding.
+
+        <strong>When WordPress development makes sense</strong>
+
+        WordPress wins when the person managing the site is non-technical and needs a familiar editing experience. If your marketing coordinator needs to publish blog posts, swap images, and update copy without calling a developer, WordPress's admin panel is battle-tested and intuitive. The plugin ecosystem is massive — need a booking system, a form builder, an SEO toolkit? There's a plugin for it, and it probably works.
+
+        WordPress development also makes sense for sites that need to launch fast on a limited budget. The combination of existing themes, plugins, and the massive pool of WordPress developers means you can get a functional site live quickly. For small businesses, local services, blogs, and content-heavy sites where performance isn't the top priority, WordPress is still a perfectly valid choice.
+
+        <strong>When WordPress becomes a problem</strong>
+
+        The cracks show when you need performance, security, or custom functionality. A typical WordPress site loads 20-50 HTTP requests just for the admin bar, plugins, and theme assets — even on the front end. Security is a constant concern because WordPress's popularity makes it the biggest target for automated attacks. And the "plugin for everything" approach means you're trusting your business-critical functionality to code maintained by strangers with varying commitment levels.
+
+        WordPress development at scale also gets messy. When you need a custom booking flow, a dynamic pricing engine, or a client portal, you're either hacking together plugins that weren't designed to work together or writing custom PHP that fights against WordPress's opinions about how things should work.
+
+        <strong>The headless CMS alternative</strong>
+
+        A headless CMS separates your content management from your front end. You edit content in a dashboard — Sanity, Contentful, Strapi, or even WordPress itself in headless mode — and a modern front-end framework like Astro, Next.js, or Nuxt pulls that content at build time or on request.
+
+        The benefits are significant. Performance is dramatically better because your front end is a static site or server-rendered app with no WordPress overhead. Security improves because there's no public-facing admin panel to attack. Developer experience improves because you're writing modern JavaScript/TypeScript instead of PHP template files. And you get complete design freedom — no theme constraints, no template hierarchy to work around.
+
+        <strong>The honest trade-offs</strong>
+
+        Headless CMS setups cost more to build initially. The editing experience, while improving rapidly, still isn't as plug-and-play as WordPress. You need a developer for more things — adding a new page template isn't as simple as installing a plugin. And the ecosystem, while growing, is smaller than WordPress's decade-plus head start.
+
+        There's also a middle ground that people often overlook: WordPress alternatives that aren't headless. Platforms like Webflow give non-technical users a visual editor with much better performance than WordPress. For agencies like ours, tools like Astro let us build blazing-fast static sites where the client manages content through a simple headless CMS, getting the best of both worlds.
+
+        <strong>Our recommendation</strong>
+
+        For content-heavy sites managed by non-technical teams with moderate budgets: WordPress, set up properly with a lightweight theme and minimal plugins.
+
+        For business sites that need speed, security, and custom functionality: a headless CMS with a modern front end. This is what we build most often at Aidxn Design because the performance and flexibility benefits are worth the upfront investment.
+
+        For sites that need frequent non-technical editing but also need performance: a headless CMS like Sanity paired with a static site generator. The editor gets a clean dashboard, the users get a fast site, and everyone's happy.
+
+        The wrong answer is choosing based on what's trendy. The right answer is choosing based on who will manage the site, what it needs to do, and what your budget allows. We help Gold Coast businesses make this call as part of our <a href="/web-design" class="underline">web design</a> process — no pressure toward one stack over another, just an honest assessment of what fits.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

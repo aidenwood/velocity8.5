@@ -1,0 +1,61 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Why we built a real-time client dashboard for project tracking and what it changed about how we work with clients. Transparency as a competitive advantage."
+  title="Why We Built a Client Dashboard (And Why Your Agency Should Too) · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Agency Insights
+      </Fragment>
+      <Fragment slot="title">
+        Why We Built a Client Dashboard (And Why Your Agency Should Too)
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-violet-500/20 to-purple-600/20 flex items-center justify-center">
+          <span class="text-4xl">&#128202;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        The Status Update Email Is Broken
+      </Fragment>
+      <Fragment slot="content">
+        The most common complaint clients have about agencies is not about the quality of work. It is about communication. Specifically, the feeling of paying thousands of dollars and having no idea what is happening. The traditional agency workflow goes like this: the client sends an email asking for an update. The project manager checks with the designer and the developer. The project manager writes a carefully worded summary. The client reads it, still does not fully understand where things stand, and waits another week to ask again. We got tired of this cycle. So we built a client dashboard.
+
+        What It Actually Does
+
+        Our client dashboard is not a project management tool. We already use those internally. It is a client-facing window into the project. Each client gets a login. When they sign in, they see four things. Current project phase — discovery, design, development, review, or launch prep. A visual progress bar showing completion across each phase. A timeline of recent activity — what was worked on and when. A feedback section where they can leave comments directly on design mockups or staging links. That is it. No Gantt charts. No task-level granularity. No overwhelming detail. Just enough information to answer the question: "Where is my project at?"
+
+        What It Changed for Us
+
+        Three things happened immediately. The status update emails stopped. Clients stopped asking because the answer was always visible. They could check at midnight on a Sunday if they wanted to. Client satisfaction went up noticeably. Not because the work got better, but because the anxiety went away. Most client frustration is not about delays — it is about uncertainty. When you can see that work is happening, delays feel different. Our project timeline accuracy improved. When clients can see the real state of a project, they are more realistic about timelines and more responsive with feedback. The dashboard creates a subtle accountability loop that benefits everyone.
+
+        Why Most Agencies Do Not Do This
+
+        Building a client dashboard costs time and money. We built ours with Supabase for the backend and React for the frontend. It took about three weeks of development time. That is three weeks of building something that generates zero direct revenue. Most agencies look at that math and decide the status update emails are fine. But here is the math they are not running. The average agency spends 5 to 10 hours per month per client on communication overhead — writing updates, answering "where are we at" emails, scheduling check-in calls that exist only because the client is anxious. At agency rates, that is thousands of dollars in time. The dashboard paid for itself within two months.
+
+        The Transparency Advantage
+
+        There is a deeper strategic reason to build a client dashboard, and it is about trust. Agencies operate in an industry with a trust deficit. Clients have been burned before. They have paid for work that was late, over budget, or different from what they expected. A dashboard that shows real-time progress — not curated updates, but actual activity — signals that you have nothing to hide. That trust compounds. Clients who trust you give better feedback, approve faster, refer more confidently, and come back for future work. The dashboard is not just a project management tool. It is a trust-building machine.
+
+        What You Need to Build One
+
+        If you are an agency considering this, you do not need to over-engineer it. Start with the basics: project phase, completion percentage, recent activity log, and a feedback mechanism. You can build this with Supabase for auth and database, a simple React frontend, and deploy it on Netlify for essentially free. The key is making it dead simple for clients. One login, one page, no learning curve. If a client needs a tutorial to use your dashboard, you have built the wrong thing. We are considering open-sourcing a simplified version of ours. If you are interested, reach out and let us know — it might push that project up the priority list.
+
+        The Real Lesson
+
+        The client dashboard taught us something that applies to every service business: most communication problems are information access problems. When people have access to the information they need, they stop asking for it. When they stop asking, everyone is happier and more productive. Your agency might not need a dashboard. But it definitely needs to answer the question "where is my project at" without requiring a phone call.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

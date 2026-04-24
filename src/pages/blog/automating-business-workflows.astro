@@ -1,0 +1,65 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="When to use Zapier vs building custom automation. A practical guide to workflow automation that covers the real trade-offs and saves you from over-engineering."
+  title="Zapier or Custom Code? The Workflow Automation Decision Tree · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Business Automation
+      </Fragment>
+      <Fragment slot="title">
+        Zapier or Custom Code? The Workflow Automation Decision Tree
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-rose-600/20 to-pink-500/20 flex items-center justify-center">
+          <span class="text-4xl">&#9889;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Not Everything Needs Custom Code
+      </Fragment>
+      <Fragment slot="content">
+        Automation is one of those words that makes business owners either excited or terrified. The excited ones picture a future where everything runs itself. The terrified ones picture a developer billing $15,000 to automate something that takes an intern five minutes. Both scenarios happen regularly. The difference is knowing when automation makes sense and choosing the right level of complexity.
+
+        We automate business workflows for a living. Some of those automations are Zapier zaps that took 20 minutes to set up. Some are custom Supabase Edge Functions that took two weeks. Both are correct solutions for their respective problems. Here is how we decide.
+
+        The Zapier Sweet Spot
+
+        Zapier is excellent when the automation is simple, the volume is low, and the stakes are medium. Move a form submission to a spreadsheet. Send a Slack notification when a deal closes in Pipedrive. Create a Trello card when a new support email arrives. Add a CRM contact when someone fills out a web form. These are obvious Zapier use cases. The automation is linear — trigger, action, maybe a filter. It runs a few times per day. If it fails, someone notices and the consequence is a delayed notification, not a lost payment. We use Zapier in production for exactly these kinds of workflows. It costs $20 to $50 per month, takes minutes to set up, and the non-technical people on the team can modify it without calling a developer.
+
+        When Zapier Breaks Down
+
+        Zapier starts failing you in predictable ways. First, the cost scales badly. Zapier charges by task — every trigger, every action, every step counts. A workflow that processes 5,000 events per month can easily cost $200 or more on Zapier. The same workflow as a custom function costs pennies in compute. Second, the logic gets complicated. The moment you need conditional branching, data transformation, error handling with retries, or multi-step transactions that need to roll back on failure, Zapier's visual builder becomes a liability. You end up with a 15-step zap that nobody can debug and everyone is afraid to touch. Third, latency matters. Zapier runs on polling intervals for many triggers. If you need something to happen within seconds of a trigger event, Zapier's multi-minute delays are not acceptable. Webhook-triggered zaps are faster, but you are still adding an intermediary between your systems for no good reason.
+
+        The Custom Automation Stack
+
+        When we build custom automations, the stack is simple. Supabase Edge Functions for the automation logic. They receive webhooks, process data, call APIs, and update the database. pg_cron for scheduled automations. Supabase includes PostgreSQL's cron extension, so you can schedule database functions to run on intervals without any external scheduler. Supabase database triggers for event-driven automations. When a row is inserted or updated, a trigger fires a function. No external service needed. This stack costs almost nothing to run. Edge Functions are included in the Supabase plan. pg_cron is a Postgres extension. Database triggers are free. The only cost is development time.
+
+        Real Automation Examples
+
+        Here are automations running in our production applications right now. New lead notification — when a form submission hits Supabase, a database trigger fires an Edge Function that sends a formatted Slack message with the lead details and creates a Pipedrive contact. This replaced a 5-step Zapier zap. Daily report generation — pg_cron runs a function every morning that aggregates the previous day's metrics, generates a summary, and emails it to the team via Resend. No external scheduler needed. Subscription lifecycle — when Stripe fires a webhook for subscription changes, an Edge Function updates the user's access level, sends appropriate emails, and logs the event. This cannot be a Zapier zap because the error handling is critical — a missed webhook could lock a paying customer out of their account. Stale lead follow-up — pg_cron identifies leads in Pipedrive that have not been contacted in 7 days and creates follow-up tasks for the sales team. Simple but it eliminated a manual weekly review process.
+
+        The Decision Framework
+
+        Here is the actual framework we use. Use Zapier if the workflow is linear with no branching, it runs fewer than 500 times per month, failure is inconvenient but not catastrophic, non-technical team members need to modify it, and you need it running today. Build custom if the workflow involves complex logic or data transformation, it runs more than 1,000 times per month, failure has financial or data integrity consequences, the workflow needs to evolve with your business logic, or latency matters. The grey area is where most businesses live. A workflow that starts as a Zapier zap and grows in complexity over time. We see this constantly. The solution is to recognise when a zap has become unmaintainable and migrate it to custom code before it breaks in a way that matters.
+
+        The Hidden Cost of Not Automating
+
+        The biggest cost is not the tools or the development — it is the human time spent on repetitive tasks that should not require human judgment. If someone on your team spends an hour a day on data entry, copy-pasting between systems, or manually sending notifications, that is 250 hours per year. At any reasonable hourly rate, the custom automation pays for itself in the first quarter.
+
+        We build both kinds of automations. If you are not sure which approach fits your workflow, let's figure it out together.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

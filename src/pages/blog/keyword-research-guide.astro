@@ -1,0 +1,58 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Keyword research in 2026 — why search intent matters more than volume. A practical SEO keyword research guide for businesses and agencies."
+  title="Here's What Nobody Tells You About Keyword Research: Intent Beats Volume Every Time · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        SEO Strategy — April 2026
+      </Fragment>
+      <Fragment slot="title">
+        Here's What Nobody Tells You About Keyword Research: Intent Beats Volume Every Time
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-amber-600/20 to-orange-500/20 flex items-center justify-center">
+          <span class="text-4xl">&#128273;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Volume Is a Vanity Metric
+      </Fragment>
+      <Fragment slot="content">
+        There is a keyword research process that goes something like this: open Ahrefs or SEMrush, type in your main service, sort by volume, pick the biggest numbers, sprinkle them into your page titles, and call it a day. This process is how agencies have done SEO keyword research for a decade, and it is why most SEO campaigns produce traffic that never converts. In 2026, the businesses winning at search understand something the volume-chasers do not: intent is everything.
+
+        Google has spent the last five years rebuilding its ranking system around search intent. The Helpful Content updates, the spam updates, the core updates — all of them are refining the same idea. Google wants to match queries with pages that satisfy the reason behind the search, not just pages that contain the right words. If someone searches "best CRM for small business," they want a comparison guide. If someone searches "HubSpot pricing," they want a pricing page. Rank for the wrong intent and your bounce rate will tell the story.
+
+        The Four Types of Search Intent
+        Every query falls into one of four buckets, and your keyword research needs to classify them before you build anything. Informational — the searcher wants to learn something. "How does solar power work." Navigational — they want a specific website. "Xero login." Commercial investigation — they are comparing options. "Plumber near me reviews." Transactional — they are ready to buy. "Book pest inspection Brisbane." Your service pages should target transactional and commercial keywords. Your blog content should target informational keywords. Getting this wrong is the number one reason businesses write blog posts that generate traffic but zero leads.
+
+        Long-Tail Keywords Are Where the Money Is
+        "Electrician" gets 90,000 searches per month in Australia. You will never rank for it, and even if you did, most of those searches are informational — people looking up what electricians do, salary info, apprenticeship pathways. "Emergency electrician Southport Gold Coast" gets 40 searches per month. But every single one of those searches is someone with a problem and a credit card. This is the long-tail advantage. Lower volume, higher intent, less competition, cheaper to rank for, and dramatically higher conversion rates.
+
+        We build keyword strategies around clusters of long-tail terms grouped by intent. A single well-optimised service page can rank for dozens of long-tail variations. "Emergency electrician Gold Coast," "24 hour electrician near me Gold Coast," "after hours electrical repairs Southport" — these all land on the same page because they share the same intent. One page, many keywords, all converting.
+
+        How We Actually Do Keyword Research
+        Our process starts with the business, not the tool. We interview the client and document every question their customers ask, every service variation they offer, and every suburb or region they serve. Then we go to the tools — Ahrefs, Google Search Console, and Google's own autocomplete suggestions — to validate demand and find gaps.
+
+        The most underrated keyword research tool in 2026 is still Google Search Console. It shows you the actual queries your site already appears for, including ones you did not target. We regularly find that clients are ranking position 15-30 for valuable terms they have never optimised for. Moving from position 20 to position 5 is far easier than ranking for a brand new keyword from scratch. This low-hanging fruit analysis is where we start every SEO engagement.
+
+        The AI Overview Problem
+        Google's AI Overviews are now appearing for roughly 30% of informational queries, and they are crushing click-through rates for the pages they summarise. If your entire content strategy targets informational keywords that trigger AI Overviews, you are building on rented land. Our approach is to focus content on queries where AI Overviews are less likely — specific comparisons, local queries, opinion-based content, and anything requiring recent data that the AI cannot reliably generate.
+
+        For transactional and commercial keywords, AI Overviews are less of a threat because Google still sends buyers to business websites. This is another reason to prioritise intent over volume. A thousand visits from informational browsers who get their answer from an AI Overview are worth less than ten visits from someone searching "hire web developer Gold Coast."
+
+        Stop chasing volume. Start chasing intent. The traffic will be smaller, but the revenue will be larger. That is the entire point.
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

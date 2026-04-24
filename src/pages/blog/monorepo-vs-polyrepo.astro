@@ -1,0 +1,85 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Monorepo vs polyrepo for web agencies — we've tried both. Here's what we actually use and why the answer isn't what Twitter thinks it is."
+  title="Monorepo vs Polyrepo: What We Actually Use and Why · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        DevOps
+      </Fragment>
+      <Fragment slot="title">
+        Monorepo vs Polyrepo: What We Actually Use and Why
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-sky-500/20 to-cyan-600/20 flex items-center justify-center">
+          <span class="text-4xl">&#128230;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Monorepo vs Polyrepo for Agency Work
+      </Fragment>
+      <Fragment slot="content">
+        The monorepo debate generates more heat than light on developer Twitter. Google uses a monorepo. Facebook uses a monorepo. Therefore you should use a monorepo. This logic also applies to building your own data centres and hiring ten thousand engineers, but nobody seems to mention that part.
+
+        Here is the honest answer from a small agency that has tried both approaches across dozens of client projects: we use polyrepo for client work and a monorepo for our internal tools. And the reasons have nothing to do with technical superiority.
+
+        Polyrepo for Client Work: The Practical Choice
+
+        Every client site gets its own repository. Client A's marketing site is one repo. Client B's e-commerce platform is another. Client C's landing page is another. They never share code directly. Here is why.
+
+        Client projects have different lifecycles. Client A might be in active development while Client B's site has been in maintenance mode for six months. Client C might be finished and handed off entirely. With separate repos, each project has its own deployment pipeline, its own dependency versions, its own CI configuration. Nothing bleeds across.
+
+        Billing and access control are simpler. When a client relationship ends, you archive their repo. You do not have to untangle their code from a shared monorepo, worry about removing their environment variables from a shared config, or ensure their data does not accidentally appear in another client's build.
+
+        Onboarding is trivial. When someone new joins a project, they clone one repo, run npm install, and they are up. They do not need to understand the monorepo tooling, figure out which workspace contains the project they need, or wait for a full monorepo install that pulls down dependencies for fifteen unrelated projects.
+
+        Different clients use different stacks. One site is Astro. Another is Next.js. A third is a static HTML site with no framework at all. Forcing these into a monorepo creates artificial coupling. They do not share code, they do not share deployments, and they do not benefit from being in the same repository.
+
+        Monorepo for Internal Tools: Where It Makes Sense
+
+        Our internal tooling lives in a monorepo. This includes our shared component library, our project starter templates, our utility functions, and our documentation site. These packages are genuinely related — the starter template uses the component library, which uses the utility functions.
+
+        In this context, a monorepo provides real benefits. Change a component in the shared library and immediately see how it affects the starter template. Run tests across all packages with one command. Ensure version compatibility because everything is tested together.
+
+        We use npm workspaces for this (not Turborepo, not Nx, not Lerna). npm workspaces are built into npm, require zero additional tooling, and handle the dependency linking between packages. For our scale — maybe five internal packages — the simplicity of npm workspaces outweighs the features of dedicated monorepo tools.
+
+        Why We Stopped Using Turborepo
+
+        We tried Turborepo for about three months. It is a good tool. The remote caching is clever. The task pipeline configuration is powerful. And for our team size, it was massive overkill.
+
+        The configuration files were more complex than the projects they managed. The caching occasionally produced stale builds that took longer to debug than the time saved by caching. And when something went wrong, the error messages pointed to Turborepo internals rather than our code.
+
+        We ripped it out and replaced it with npm workspaces and a few npm scripts. Build time went from "usually fast because of cache, occasionally broken because of cache" to "consistently moderate and always correct." We will take predictable over fast every time.
+
+        The Shared Code Problem
+
+        The main argument for monorepos is code sharing. If multiple projects use the same components, put them in a monorepo and share them directly. This is compelling in theory and messy in practice for agency work.
+
+        Shared code between client projects creates invisible dependencies. You update the shared button component for Client A's redesign, and it subtly breaks Client B's layout. Now you are debugging two projects instead of one, and Client B's change was not even intentional.
+
+        Instead of sharing code at the repo level, we share code at the template level. Our starter templates include common components and utilities. When we start a new project, we copy these in. Yes, this means the code is duplicated across projects. Yes, this means a bug fix in a shared component does not automatically propagate. And that is exactly what we want — each client project is independent and changes to one never affect another.
+
+        When to Actually Consider a Monorepo
+
+        Use a monorepo when multiple packages are genuinely coupled — they are versioned together, tested together, and deployed together. A design system and the applications that consume it. A backend API and the frontend that calls it. A shared SDK and the services that use it.
+
+        Do not use a monorepo just because multiple projects exist at the same company. Proximity in a file system is not the same as coupling in architecture. If two projects can be deployed independently, tested independently, and maintained independently, they should probably live independently.
+
+        The TLDR
+
+        Separate repos for client projects. A monorepo (with npm workspaces, not Turborepo) for tightly coupled internal packages. Copy shared code into new projects instead of linking it across repos. This is not the most elegant architecture. It is the most practical one for a small agency that values predictability over cleverness.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

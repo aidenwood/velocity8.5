@@ -1,0 +1,55 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Signals are everywhere in 2025. Angular, Solid, Preact, Vue, and now React are all converging on the same reactive primitive. Here's why signals won."
+  title="Every Framework Converged on Signals — Here's Why This Reactive Primitive Won · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Tech News
+      </Fragment>
+      <Fragment slot="title">
+        Every Framework Converged on Signals — Here's Why This Reactive Primitive Won
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-yellow-600/20 to-pink-500/20 flex items-center justify-center">
+          <span class="text-4xl">&#128225;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Fine-Grained Reactivity Takes Over
+      </Fragment>
+      <Fragment slot="content">
+        If you have been paying attention to the JavaScript framework space in 2025, you have noticed something unusual: everyone agrees on something. Angular has signals. Solid has signals. Preact has signals. Vue has always had signals, they just called them refs. Svelte 5 has runes, which are signals with a different hat. And React — the framework that famously does everything its own way — is finally exploring signal-like primitives. After a decade of framework wars, the industry converged on a single reactive primitive. Let's talk about why.
+
+        What Signals Actually Are
+        A signal is a reactive container for a value. When the value changes, anything that depends on it automatically updates. That is it. No diffing a virtual DOM. No re-rendering an entire component tree. No dependency arrays. The framework tracks which parts of the UI read which signals and updates only those parts when the signal changes. If you have a counter signal and a paragraph that displays its value, changing the counter updates that paragraph and nothing else. Everything around it stays untouched.
+
+        Why React's Model Has Problems
+        React's model re-renders entire components when state changes. Your component function runs again from top to bottom, produces a new virtual DOM tree, diffs it against the previous tree, and patches the real DOM with the changes. This works, but it is inherently wasteful. Even with React.memo, useMemo, and useCallback, you are still running functions and diffing trees that did not change. The hooks model also creates a category of bugs that signals simply cannot produce — stale closures, infinite re-render loops from bad dependency arrays, and the ever-present question of "should I memoize this?"
+
+        Angular's Signal Transformation
+        Angular's adoption of signals is the most dramatic shift. Angular went from a framework built entirely around RxJS observables and zone.js change detection to one that is systematically replacing both with signals. Angular 17 and 18 made signals the primary state primitive, and zone.js is on its way out. The result is dramatically simpler code. No more async pipes. No more manual subscription management. No more zone.js monkey-patching every browser API to detect changes. Just declare a signal, use it in your template, and Angular handles the rest.
+
+        Solid Started This
+        It is worth acknowledging that SolidJS was doing signals before it was cool. Ryan Carniato built Solid around fine-grained reactivity from day one, and the framework's performance benchmarks embarrassed virtual DOM frameworks for years. Solid proved that you could have a React-like developer experience with dramatically better performance by using signals instead of a virtual DOM. The rest of the ecosystem took notice. When Angular, Preact, and even the React team started exploring signals, Solid's influence was obvious.
+
+        What About React?
+        React's relationship with signals is complicated. The React team has historically resisted signals because they conflict with React's mental model of "UI as a function of state." But React 19's compiler — the React Compiler, formerly React Forget — is essentially trying to achieve signal-like performance within React's existing model. It automatically memoizes components and expressions so that re-renders skip unchanged work. It is signals with extra steps. Whether React eventually adopts actual signals or continues to approximate them through compiler magic is one of the most interesting questions in frontend development right now.
+
+        What This Means For You
+        If you are choosing a framework in 2025, signals support is a good indicator of a framework that is aligned with where the ecosystem is heading. Solid and Angular have the most mature signal implementations. Vue and Svelte have their own flavours that achieve the same result. React will get there eventually, one way or another. The practical benefit is simpler code — fewer memoization hooks, fewer re-render bugs, better performance by default. The era of manually optimising React renders with useMemo and useCallback is ending. Fine-grained reactivity is the future, and signals are how we get there.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

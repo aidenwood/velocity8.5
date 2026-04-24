@@ -1,0 +1,55 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Vibe coding went from meme to mainstream. Here's how Claude Code and Cursor changed our entire development workflow in 2025."
+  title="Vibe Coding Went From Meme to Mainstream and I'm Not Even Mad · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        AI & Development
+      </Fragment>
+      <Fragment slot="title">
+        Vibe Coding Went From Meme to Mainstream and I'm Not Even Mad
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-fuchsia-600/20 to-violet-500/20 flex items-center justify-center">
+          <span class="text-4xl">🎸</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        From Meme to Methodology
+      </Fragment>
+      <Fragment slot="content">
+        Andrej Karpathy coined the term "vibe coding" in February 2025 and the internet had a field day. Half of Twitter called it the future. The other half called it reckless. Three months later, I can tell you from lived experience: vibe coding is real, it works, and it fundamentally changed how we build software. But probably not in the way you think.
+
+        First, let's define it properly. Vibe coding isn't "let AI write all your code while you eat chips." It's a development approach where you describe intent at a high level and let AI handle implementation details. You think in systems, features, and user flows rather than syntax, loops, and variable names. You steer. The AI drives. You review everything. The AI writes it.
+
+        The tool that made this real for us is Claude Code. Not the web chat — the CLI tool that runs in your terminal, has access to your entire codebase, and can read, write, and execute code. You describe what you want built, Claude reads your project structure, understands your patterns, and implements the feature across multiple files. It runs the dev server. It fixes its own errors. It writes tests. You review the diff, approve it or course-correct, and move on.
+
+        This isn't hypothetical productivity improvement. We tracked our output over the last three months. Features that used to take a full day are shipping in 2-3 hours. Not because the code is sloppier — it's often cleaner, because Claude is annoyingly consistent about code patterns in a way humans aren't. The speed gain comes from eliminating the translation step between "I know what this feature should do" and "I've written the 47 lines of TypeScript that make it happen."
+
+        Cursor is the other half of the equation. For day-to-day file editing, refactoring, and quick changes, Cursor's inline AI is incredibly fast. Highlight a function, say "add error handling and retry logic," accept the diff. It's like having a pair programmer who types at the speed of light and never argues about tabs vs spaces.
+
+        Here's the controversial take: vibe coding works better for experienced developers. If you don't understand architecture, you can't steer effectively. If you can't read the diff and spot issues, you'll ship bugs. If you don't know what good code looks like, you can't evaluate whether the AI output is good. The developers getting the best results from vibe coding are the ones who could have written the code themselves — they just don't have to anymore.
+
+        We've developed a workflow around this. Step one: plan the feature in plain English, including edge cases and data flow. Step two: feed that plan to Claude Code with your project context. Step three: review every file change, test the feature, iterate on issues. Step four: commit. The planning and review steps are where human expertise is essential. The implementation step is where AI shines.
+
+        The quality concern is valid but overblown. Yes, AI-generated code needs review. So does human-generated code. That's what pull requests are for. The difference is that AI-generated code tends to be more consistent, better documented, and more thoroughly error-handled than the average human first draft. It's also more verbose than necessary sometimes, but that's a minor issue compared to the speed gain.
+
+        The developers who resist vibe coding remind me of the developers who resisted IDE autocomplete, or type-checking, or linters. Every productivity tool in the history of software development was met with "but what if developers stop understanding the fundamentals?" They didn't. They just shipped faster.
+
+        We're not going back. The combination of Claude Code for feature development and Cursor for inline editing is the most productive development environment we've ever used. If you're still writing every line by hand in 2025, you're not a purist — you're just slow.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

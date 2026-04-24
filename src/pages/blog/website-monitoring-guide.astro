@@ -1,0 +1,87 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="The uptime, speed, and error monitoring setup we use for every client site. Simple, cheap, and it actually catches problems before clients notice."
+  title="The Website Monitoring Setup We Use for Every Client (Uptime, Speed, Errors) · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        DevOps
+      </Fragment>
+      <Fragment slot="title">
+        The Website Monitoring Setup We Use for Every Client (Uptime, Speed, Errors)
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-red-500/20 to-orange-600/20 flex items-center justify-center">
+          <span class="text-4xl">&#128225;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Website Monitoring for Client Sites
+      </Fragment>
+      <Fragment slot="content">
+        Here is a scenario that will happen to you if it has not already: a client calls and says "our website is down." You check. It is indeed down. You have no idea when it went down, what caused it, or how many customers it affected. You scramble to fix it, apologise profusely, and quietly set up monitoring that same afternoon.
+
+        We had this exact experience with a client whose site went down for six hours on a Saturday because of a DNS issue at their registrar. Six hours. On a Saturday. Nobody noticed because nobody was monitoring the site. The client found out because a customer told them. That is not a good look for the agency that built and maintains the site.
+
+        Here is the monitoring setup we now use for every client. It costs under ten dollars a month total for all our sites, and it has paid for itself dozens of times over.
+
+        Layer One: Uptime Monitoring
+
+        We use UptimeRobot for uptime monitoring. The free tier gives you 50 monitors with 5-minute check intervals. The paid tier at $7 per month gives you 1-minute intervals and more monitors. For agency use, the free tier is usually sufficient.
+
+        For each client site, we monitor three things: the homepage (obvious), the most important conversion page (contact form, pricing page, booking page), and any critical API endpoints the site depends on. If any of these fail two consecutive checks, we get an email and a push notification.
+
+        Five-minute check intervals mean worst case, we know about downtime within five minutes of it starting. That is early enough to fix most issues before clients notice. We also get monthly uptime reports that we include in client maintenance summaries — "your site was available 99.98 percent of the time this month" is a nice line item that justifies the maintenance retainer.
+
+        Layer Two: Performance Monitoring
+
+        Uptime tells you whether the site is alive. Performance monitoring tells you whether it is fast. A site can be "up" but taking twelve seconds to load the homepage, which is functionally the same as being down for most visitors.
+
+        We run scheduled Lighthouse audits using either PageSpeed Insights API or Calibre. Once a week, an automated check runs against the five most important pages and records Performance, Accessibility, Best Practices, and SEO scores. If any score drops below our threshold (usually 85 for Performance), we investigate.
+
+        Common causes of performance regressions: the client added a massive unoptimised image through their CMS. A third-party script (chat widget, analytics, cookie banner) started loading synchronously and blocking render. A dependency update introduced a larger bundle. A CDN edge went down and assets are being served from a farther location.
+
+        Without performance monitoring, these regressions are invisible until someone notices the site "feels slow." With monitoring, we catch them within a week and fix them before they affect conversions.
+
+        Layer Three: Error Tracking
+
+        For sites with any dynamic functionality — forms, API calls, client-side interactivity — we add basic error tracking. We use Sentry's free tier, which gives you 5,000 events per month. For most client sites, that is more than enough.
+
+        The Sentry snippet goes into the site layout so it captures errors across all pages. When a JavaScript error occurs in a user's browser, Sentry captures the error message, stack trace, browser and device information, and the URL where it happened. We get notified for new errors (not repeat occurrences of known errors, which would be noisy).
+
+        This has caught some remarkable issues. A contact form that silently failed on Safari because of a date input format difference. A pricing calculator that returned NaN for users with certain locale settings. An image gallery that crashed on iOS 16 because of a WebKit bug in the intersection observer. None of these would have been reported by the affected users — they would have just left.
+
+        Layer Four: SSL and Domain Expiry Monitoring
+
+        This one is easy to overlook and catastrophic to miss. SSL certificates expire. Domains expire. When they do, your client's site either shows a scary security warning or disappears entirely.
+
+        UptimeRobot can monitor SSL certificate expiry. We set alerts for 30 days and 7 days before expiry. For domains, we use a simple calendar reminder — when we set up a client project, we add a calendar event for 60 days before the domain renewal date.
+
+        Netlify auto-renews SSL certificates, so this is mostly a safety net. But for clients who manage their own hosting or use platforms with manual certificate management, these alerts have literally saved us from sites going dark because a certificate expired on a weekend.
+
+        The Dashboard
+
+        All of this feeds into a single UptimeRobot dashboard that we check once a day. Green means everything is fine. Yellow means a check failed once but recovered. Red means something needs attention. The daily check takes about thirty seconds for all client sites combined.
+
+        We also have a shared email address that receives all monitoring alerts, so whoever is on call sees them regardless of individual notification settings.
+
+        What We Do Not Monitor (And Why)
+
+        We do not monitor server-side logs for most client sites because most of our sites are static or serverless — there are no servers to log. We do not monitor database performance because our client sites typically use third-party services (Supabase, Airtable) that handle their own monitoring. We do not monitor SEO rankings because that is a marketing function, not an operations function, and there are better tools for it.
+
+        Keep monitoring focused on things you can act on immediately. If an alert fires, you should be able to do something about it within the hour. If the answer is always "we will look into it next week," it is not a monitoring alert — it is a report.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

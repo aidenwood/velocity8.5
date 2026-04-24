@@ -1,0 +1,61 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="A practical guide to writing a design brief that actually communicates what you want. Includes the exact questions your designer needs answered."
+  title="How to Write a Design Brief That Gets You the Website You Actually Want · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Business Strategy
+      </Fragment>
+      <Fragment slot="title">
+        How to Write a Design Brief That Gets You the Website You Actually Want
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-teal-500/20 to-emerald-600/20 flex items-center justify-center">
+          <span class="text-4xl">&#128221;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Bad Briefs Build Bad Websites
+      </Fragment>
+      <Fragment slot="content">
+        Here is a secret from the agency side: the quality of a website is largely determined before a single pixel is designed. It is determined by the brief. A clear brief gets you a website that matches your vision on the first round. A vague brief gets you a website that sort of matches what your designer imagined your vision might be, followed by four rounds of revisions where nobody is happy. You do not need to be a designer to write a good brief. You just need to answer the right questions.
+
+        Start With the Why
+
+        Before you describe what you want the site to look like, describe what you need it to do. What is the primary goal? Generate leads, sell products, book appointments, build credibility, educate visitors? Most websites have one primary goal and two or three secondary goals. Be specific. "Get more customers" is not a goal. "Get 20 qualified enquiries per month from Gold Coast business owners looking for web design" is a goal. This distinction matters because it changes everything — the layout, the copy, the calls to action, even the colour palette. A site designed to build trust looks different from a site designed to drive impulse purchases.
+
+        Describe Your Customers, Not Your Preferences
+
+        The most common mistake in design briefs is describing what you like instead of who your customers are. Your designer does not need to know your favourite colour. They need to know who visits your site, what those people care about, and what objections they have before buying. Tell your designer things like: our customers are property managers aged 35 to 55 who value reliability over price. They usually find us through Google search after a specific problem occurs. Their biggest concern is response time. That paragraph is worth more than ten pages of colour swatches and font preferences. It lets the designer make informed decisions instead of guessing.
+
+        Give Examples, But Explain Why
+
+        Including reference websites is useful, but only if you explain what you like about them. "I like this website" is not helpful. "I like how this website uses large photography to show their work in context, and how the navigation is simple with only four main pages" is extremely helpful. Include three to five reference sites. For each one, note specifically what appeals to you. Is it the layout? The colour palette? The typography? The way content is organised? The overall feeling? And equally important — include one or two examples of what you do not want, with the same specificity.
+
+        The Questions Your Designer Needs Answered
+
+        Here is the exact list of questions we send to every new client. What does your business do, explained as if to someone who has never heard of your industry? Who is your ideal customer? Describe them as a real person. What are the top three things a visitor should do on your site? Who are your top three competitors, and what do they do better or worse than you? What existing brand assets do you have — logo, colours, fonts, photography? What is your timeline and budget? Do you have existing content, or does it need to be written? What platforms or tools does the site need to integrate with? What do you hate about your current website? What is the single most important message a visitor should take away? You do not need a twenty-page document. Just answer those ten questions honestly and specifically, and your designer has everything they need to start well.
+
+        What to Skip
+
+        Do not specify pixel dimensions, font sizes, or exact colour codes unless you have a brand guide that requires them. Do not prescribe the layout — "I want the logo top-left and a slider with five images" is designing the solution before understanding the problem. Do not write the copy in the brief. Include key messages and points you want to make, but leave the actual writing for later when the structure is defined. And do not try to make the brief perfect. A rough, honest brief is infinitely more useful than a polished one that avoids the hard questions. Tell your designer what is actually going on with your business. If sales are down, say so. If your current brand feels outdated, say so. The more honest the brief, the better the result.
+
+        The Feedback Loop
+
+        A good brief is not a one-way document. It is the start of a conversation. Your designer should read it, ask clarifying questions, and confirm their understanding before starting work. If your designer reads your brief and jumps straight into mockups without asking a single question, that is a red flag. Either the brief was so comprehensive that there was nothing to clarify — unlikely — or the designer is making assumptions that will surface later as revision requests. The brief sets the direction. The conversation refines it. Together, they are the difference between a website that nails it and a website that almost nails it, which in practice is the difference between a website that converts and one that does not.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

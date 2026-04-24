@@ -1,0 +1,55 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="A 3-month review of Claude Code by Anthropic. How AI-assisted development changed our agency workflow and output."
+  title="3 Months With Claude Code: Here's How It Actually Changed Our Workflow · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        AI and Development Tools
+      </Fragment>
+      <Fragment slot="title">
+        3 Months With Claude Code: Here's How It Actually Changed Our Workflow
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-violet-600/20 to-cyan-500/20 flex items-center justify-center">
+          <span class="text-4xl">&#129504;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        From Skeptic to True Believer
+      </Fragment>
+      <Fragment slot="content">
+        We started using Claude Code in November 2025. Three months later, it has fundamentally changed how we build software. This is not a sponsored post and nobody asked us to write it — we just think more developers need to know about this tool.
+
+        What Claude Code Actually Is
+        Claude Code is Anthropic's command-line AI coding agent. Unlike Copilot, which autocompletes your current line, or ChatGPT, which you paste code into and hope for the best, Claude Code operates directly in your terminal with full context of your codebase. It reads your files, understands your project structure, runs commands, writes code, creates commits, and even opens pull requests. It is not an autocomplete tool — it is a collaborator that happens to live in your terminal.
+
+        What Changed Immediately
+        The first thing that changed was boilerplate. Setting up new projects, writing configuration files, creating component scaffolding — all the boring setup work that used to eat the first hour of a new feature now takes minutes. We describe what we want, Claude Code generates the structure, and we refine from there. The second thing that changed was debugging. Instead of staring at a stack trace and mentally tracing execution paths, we paste the error and let Claude Code read the relevant files, identify the issue, and suggest a fix. It is right about 80% of the time, and even when it is wrong, its reasoning usually points us in the right direction.
+
+        Where It Genuinely Excels
+        Refactoring. Claude Code is absurdly good at refactoring. "Convert this class component to a functional component with hooks." "Extract this logic into a custom hook." "Add TypeScript types to this entire file." These tasks used to take twenty to thirty minutes of careful, boring work. Now they take seconds, and the output is consistently high quality. Writing tests is another strength. Describe the component behaviour and Claude Code generates comprehensive test cases that cover edge cases you would not have thought of. We have shipped more tests in the last three months than in the previous year, purely because the friction dropped to almost zero.
+
+        Where It Struggles
+        Complex architectural decisions still need a human brain. Claude Code can implement a pattern beautifully, but choosing which pattern to use requires context about your team, your users, your timeline, and your technical debt — context that an AI does not have. Highly creative UI work is also still firmly in human territory. Claude Code can build a component to spec, but it cannot look at a design and feel that something is off about the spacing or that the animation timing needs to be slightly different. The taste layer is human.
+
+        The Workflow We Settled On
+        We plan features and architecture ourselves. We use Claude Code to generate the initial implementation. We review, refine, and adjust. Then we use Claude Code again for tests, documentation, and cleanup. It is like pair programming with a very fast junior developer who never gets tired, never gets distracted, and has read every documentation page on the internet. The key insight is that Claude Code amplifies your existing skills. A senior developer using Claude Code is dramatically more productive. A junior developer using Claude Code still needs to understand what good code looks like, or they will ship confidently written garbage.
+
+        The Productivity Impact
+        We are shipping features roughly 40% faster. That is not a scientific measurement — it is a gut feel backed by our project timelines. More importantly, the quality has not dropped. If anything, it has improved because we have more time for code review and testing. We went from viewing AI coding tools as toys to viewing them as infrastructure. Claude Code is now as essential to our workflow as git or our IDE. That is not a statement we make lightly.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

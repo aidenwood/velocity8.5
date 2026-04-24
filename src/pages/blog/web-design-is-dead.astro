@@ -1,0 +1,57 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Everyone says AI killed web design. They're wrong. Here's why good design matters more than ever in the age of AI-generated everything."
+  title="Everyone Says Web Design Is Dead — They're Wrong, and Here's Why · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Design & Strategy
+      </Fragment>
+      <Fragment slot="title">
+        Everyone Says Web Design Is Dead — They're Wrong, and Here's Why
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-rose-600/20 to-orange-500/20 flex items-center justify-center">
+          <span class="text-4xl">🎨</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        AI Makes Good Design More Important, Not Less
+      </Fragment>
+      <Fragment slot="content">
+        Every six months, someone publishes a "web design is dead" article and it goes viral. The argument goes something like this: AI can generate websites now, Squarespace and Wix exist, templates are free, therefore nobody needs a web designer. It's a compelling narrative. It's also completely wrong.
+
+        Here's what's actually happening. AI lowered the floor for web design. Anyone can generate a decent-looking website in minutes. Wix's AI builder will ask you three questions and spit out a site. ChatGPT will write your copy. Midjourney will generate your hero images. The barrier to having "a website" has never been lower.
+
+        But — and this is the part the hot-take artists miss — the ceiling hasn't moved. A great website isn't great because it exists. It's great because someone thought deeply about who visits it, what they need, and how to guide them toward a specific action. That's design. And no AI tool on the market can do that well.
+
+        Let me give you a concrete example. We recently redesigned a site for a client whose old site was perfectly functional. Clean template, decent copy, mobile responsive. It looked fine. The problem? Their conversion rate was 1.2%. After our redesign — same content, same offering, but with intentional information architecture, strategic CTA placement, and a user flow designed around their specific customer journey — conversions hit 4.8%. That's a 4x improvement from design decisions, not content changes.
+
+        AI can't make those decisions because AI doesn't understand your customer. It doesn't know that your target audience is time-poor tradies who need a quote in 30 seconds, not a marketing manager who'll read your case studies. It doesn't know that your form should have three fields, not twelve, because your sales team converts better from phone calls than from detailed form submissions. That contextual understanding is the entire job.
+
+        What AI actually did is make mediocre design more abundant. The internet is now flooded with sites that look "pretty good" — clean layouts, nice gradients, trendy typography. They all look the same because they're all generated from the same training data. They use the same design patterns, the same component structures, the same visual language. It's a sea of sameness.
+
+        And that's exactly why distinctive, intentional design is now a competitive advantage. When every competitor has an AI-generated site that looks identical to every other AI-generated site, the business that invested in real design thinking stands out. Differentiation used to be nice-to-have. Now it's essential.
+
+        The designers who are genuinely at risk are the ones who were already operating at template-level quality. If your design process was "pick a template, change the colors, swap the logo," then yes, AI does your job faster and cheaper. That's not a web design problem. That's a skills problem.
+
+        For designers who think about user psychology, conversion optimization, brand strategy, and information architecture — AI is the best thing that ever happened. It handles the grunt work so you can focus on the thinking. Need a set of icon variations? AI. Need 15 color palette options? AI. Need to test three different hero layouts? Build all three in an hour instead of a day.
+
+        The future of web design isn't less design. It's more design, applied faster, with AI handling the execution and humans handling the strategy. The agencies that understand this will build better websites in less time. The ones that don't will get replaced — not by AI, but by agencies that use AI better.
+
+        So no, web design isn't dead. Lazy web design is dead. And honestly, it should have died a long time ago.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

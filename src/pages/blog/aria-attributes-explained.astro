@@ -1,0 +1,73 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="ARIA attributes can make or break your website's accessibility. Here's which ones actually matter, which ones you're misusing, and when to skip them entirely."
+  title="ARIA Attributes: The Ones That Matter and the Ones You're Probably Misusing · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Accessibility — April 2026
+      </Fragment>
+      <Fragment slot="title">
+        ARIA Attributes: The Ones That Matter and the Ones You're Probably Misusing
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-purple-600/20 to-pink-500/20 flex items-center justify-center">
+          <span class="text-4xl">&#128301;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        The First Rule of ARIA
+      </Fragment>
+      <Fragment slot="content">
+        The first rule of ARIA is: don't use ARIA. That's not a joke — it's literally the first rule in the W3C's "Using ARIA" specification. If you can accomplish something with native HTML, do that instead. ARIA is a patch for situations where HTML semantics fall short. The problem is that most developers reach for ARIA first and native HTML never, which creates websites that are technically "accessible" on paper and completely broken in practice.
+
+        Let's walk through the ARIA attributes that actually matter, the ones that cause more harm than good, and the patterns that work in the real world.
+
+        <strong>The attributes you should actually use</strong>
+
+        aria-label is for when an element needs a text label but doesn't have visible text. The classic example is an icon button — a close button that's just an X icon needs aria-label="Close" so screen readers announce "Close button" instead of nothing. But if your button already has visible text like "Close menu," adding aria-label is redundant and can actually override the visible text, confusing sighted screen reader users.
+
+        aria-describedby links an element to additional descriptive text. The best use case is form validation. When an input has an error, you add aria-describedby="email-error" pointing to the element that contains "Please enter a valid email address." The screen reader then announces both the label and the error message. This is genuinely useful and hard to replicate with native HTML alone.
+
+        aria-hidden="true" removes an element from the accessibility tree while keeping it visually present. Use it for decorative icons, duplicate content, or visual flourishes that would be noise for screen reader users. The opposite — making something visually hidden but accessible — is handled with CSS (the sr-only utility class in Tailwind), not ARIA.
+
+        aria-live creates live regions that announce dynamic content changes. When your form submits successfully and shows a "Message sent" confirmation, aria-live="polite" ensures screen readers announce it without interrupting the current task. Use "polite" for most cases and "assertive" only for critical alerts like session timeouts. Getting this right transforms the experience for screen reader users interacting with dynamic content.
+
+        aria-expanded communicates toggle states — is this accordion panel open or closed? Is the dropdown menu showing? Toggle it between "true" and "false" as the state changes, and screen readers will announce "expanded" or "collapsed." This one is essential for any custom disclosure widget.
+
+        <strong>The attributes you're probably misusing</strong>
+
+        role is the most over-applied ARIA attribute. Adding role="button" to a &lt;div&gt; tells screen readers it's a button, but it doesn't make it focusable or keyboard-activatable. You've given it a costume without the functionality. Just use a &lt;button&gt; element. Similarly, role="navigation" on a &lt;div&gt; is just a worse version of using the &lt;nav&gt; element. If you find yourself adding a role attribute, ask whether you should be using a different HTML element instead.
+
+        aria-label on non-interactive elements is a common mistake. Adding aria-label to a &lt;div&gt; or &lt;span&gt; does nothing in most screen readers because those elements aren't in the accessibility tree by default (unless they have a role). It's like putting a name tag on an invisible person.
+
+        Multiple aria-label values on the same element — you can't stack them. The last one wins, or the behaviour is unpredictable. If you need multiple descriptions, use aria-describedby and point to multiple IDs separated by spaces.
+
+        <strong>The patterns that actually work</strong>
+
+        Modals: When a modal opens, set aria-modal="true" on the dialog, move focus to the first focusable element inside it, trap Tab navigation within the modal, and return focus to the trigger element when it closes. This is a lot of JavaScript work, which is why using the native &lt;dialog&gt; element in 2026 is the smarter choice — it handles most of this behaviour for free.
+
+        Tabs: Use role="tablist" on the container, role="tab" on each tab button, and role="tabpanel" on each panel. Connect them with aria-controls and aria-labelledby. Manage focus with arrow keys, not Tab. This is one of the few patterns where ARIA roles genuinely earn their place because HTML doesn't have native tab elements.
+
+        Navigation menus: The &lt;nav&gt; element with an aria-label like "Main navigation" or "Footer navigation" is all you need. If you have multiple nav elements on a page, the aria-label distinguishes them for screen reader users navigating by landmarks.
+
+        <strong>The testing reality</strong>
+
+        The worst thing about ARIA misuse is that it's invisible to sighted developers. Your site looks fine. It passes automated tests. But a screen reader user encounters a navigation landmark labelled "undefined," a button that announces as "button button," or a modal that traps them with no escape. Test with VoiceOver, NVDA, or JAWS. Listen to how your page sounds, not just how it looks. The gap between those two experiences is where ARIA problems live.
+
+        The bottom line: use native HTML first. Reach for ARIA only when HTML runs out of semantics. And test with actual assistive technology, not just automated checkers that can't hear what they're approving.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

@@ -1,0 +1,83 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="The 2026 full-stack developer toolkit — every tool, framework, and service we actually use daily. No sponsored picks, no hype, just what ships production code."
+  title="Every Tool, Framework, and Service in Our Full-Stack Toolkit Right Now · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Developer Tools
+      </Fragment>
+      <Fragment slot="title">
+        Every Tool, Framework, and Service in Our Full-Stack Toolkit Right Now
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-purple-600/20 to-fuchsia-500/20 flex items-center justify-center">
+          <span class="text-4xl">&#128187;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        No Sponsors, No Hype — Just the Real Stack
+      </Fragment>
+      <Fragment slot="content">
+        Every year, someone publishes a "developer toolkit" article that is basically a list of whatever tools are paying for sponsorships that month. This is not that article. These are the tools and services we actually use every day across 36+ projects. If something is on this list, it is running in production right now.
+
+        Frameworks
+
+        Astro 5 is our default for content-heavy sites — marketing pages, blogs, portfolios, documentation. It ships zero JavaScript by default and scores 95+ on Lighthouse without trying. Every client site we build in 2026 starts with Astro unless it needs application-level interactivity. Next.js 16 handles everything that is primarily an application — dashboards, SaaS products, tools with heavy client-side state. The App Router with React Server Components is mature now and the developer experience is excellent. React 19 is the component layer regardless of which meta-framework we use. Server components changed how we think about data fetching and the new hooks API is genuinely better. We do not use Vue, Svelte, or Angular in production. Not because they are bad — because standardising on one component framework means deeper expertise and faster delivery.
+
+        Language and Styling
+
+        TypeScript strict mode on everything. No exceptions. We covered why in our React TypeScript best practices post, but the short version is that strict mode catches real bugs at build time that would otherwise appear in production. Tailwind CSS 4 for all styling. No CSS modules, no styled-components, no CSS-in-JS. Tailwind gives us consistent design tokens, responsive utilities, and dark mode support with zero config overhead. The utility-first approach looked ugly five years ago. Now it is obviously correct.
+
+        Backend and Database
+
+        Supabase is the entire backend. PostgreSQL database, authentication, Row Level Security, real-time subscriptions, file storage, edge functions, and cron jobs. One platform, one bill, one set of documentation. We wrote a full guide on running Supabase in production if you want the details. Netlify Functions for anything that needs Node.js specifically — some third-party SDKs do not have Deno-compatible versions yet. These are thin wrappers that usually just proxy a request to an external API.
+
+        Deployment
+
+        Netlify for everything. Preview deployments on every pull request, automatic SSL, edge caching, and form handling. We deploy our Astro sites and Next.js applications through Netlify and the workflow is identical for both. The deployment pipeline is git push to main, Netlify builds automatically, preview URL for review, merge to deploy. No Docker, no Kubernetes, no CI/CD configuration beyond what Netlify provides out of the box.
+
+        APIs and Integrations
+
+        Stripe for payments and subscriptions. Pipedrive for CRM. Google Maps for geocoding and route optimisation. Google Ads API and BigQuery for marketing analytics. AssemblyAI for audio transcription. Zapier for low-code integrations that do not justify custom development. Each of these is battle-tested in our production applications. We have written webhook handlers, built sync pipelines, and handled rate limiting for all of them.
+
+        State Management and Forms
+
+        Zustand for client-side state. It is tiny, has no boilerplate, and works with React Server Components without wrapping your entire app in a provider. We use it for UI state — modal visibility, sidebar toggles, form wizard progress. React Hook Form with Zod for forms. The Zod schema is the single source of truth for validation, shared between the form and the API. This pattern eliminated an entire category of bugs from our applications — the kind where the form accepts data that the API rejects.
+
+        UI Components
+
+        Radix UI primitives for accessible, unstyled components. Dialogs, dropdowns, tooltips, tabs — things that are deceptively hard to build correctly with proper keyboard navigation and screen reader support. We style them with Tailwind. shadcn/ui for pre-built component patterns when speed matters more than uniqueness. It is not a library — it is a collection of copy-paste components built on Radix and Tailwind that you own and modify. No version lock-in.
+
+        Testing
+
+        Playwright for end-to-end testing. Every project ships with tests covering the critical user journeys — signup, login, core action, logout. Jest for unit tests on utility functions and custom hooks. ESLint and Prettier run on pre-commit hooks via Husky. Code that does not pass linting does not get committed.
+
+        Creative and 3D
+
+        Three.js and React Three Fiber for 3D experiences. GSAP and Framer Motion for animation. p5.js for generative art and creative coding. OGL for lightweight WebGL. These are project-specific — not every site needs 3D — but when a project calls for something visually striking, this is the toolkit.
+
+        AI-Assisted Development
+
+        Claude Code for code generation, refactoring, and architecture decisions. It is integrated into our daily workflow for boilerplate generation, code review, and documentation. The key is using it as an accelerator, not a replacement. You still need to understand what the code does and why.
+
+        What Is Not on the List
+
+        Docker in production — Netlify and Supabase eliminate the need. GraphQL — REST with TypeScript types gives us the same safety with less complexity. Kubernetes — we are an agency, not a hyperscaler. WordPress — Astro is better in every measurable way for the sites we build.
+
+        This toolkit ships production software every week. If you want it applied to your project, book a call.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

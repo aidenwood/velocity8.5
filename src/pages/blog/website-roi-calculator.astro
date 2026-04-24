@@ -1,0 +1,61 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="A practical framework for calculating whether your website is generating revenue or just costing you money. Real numbers, no fluff."
+  title="Here's How to Calculate Whether Your Website Is Actually Making You Money · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Business Strategy
+      </Fragment>
+      <Fragment slot="title">
+        Here's How to Calculate Whether Your Website Is Actually Making You Money
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-emerald-500/20 to-green-600/20 flex items-center justify-center">
+          <span class="text-4xl">&#128176;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Your Website Is Either an Asset or a Liability
+      </Fragment>
+      <Fragment slot="content">
+        Most business owners treat their website like a business card. You pay for it once, put it up, and hope for the best. But your website is not a business card. It is either actively generating revenue or it is actively costing you money. There is no neutral. The hosting fees, the domain renewal, the occasional update — those are the obvious costs. The invisible cost is every potential customer who lands on your site, gets confused or unimpressed, and leaves without doing anything. That invisible cost is almost always the bigger number.
+
+        The Simple Formula
+
+        Here is the basic calculation. Take the total number of visitors your site gets per month. Multiply that by your conversion rate — the percentage of visitors who actually do the thing you want them to do, whether that is filling out a contact form, making a purchase, or booking a call. That gives you the number of leads or sales per month. Now multiply that by the average value of a customer. That is your website revenue. If your site gets 2,000 visitors per month and converts at 2 percent, that is 40 leads. If one in four of those leads becomes a customer worth $2,000, your website generates roughly $20,000 per month. Suddenly the $5,000 you spent building it looks very different. If those same 2,000 visitors convert at 0.5 percent instead of 2 percent, you are getting 10 leads and roughly $5,000 per month. Same traffic, same business, $15,000 per month difference — just because of how the site is built.
+
+        Where to Find Your Numbers
+
+        You need three numbers to run this calculation, and you probably already have all of them. Monthly visitors — check Google Analytics or whatever analytics tool is installed. If you do not have analytics on your site, that is problem number one. You are flying blind. Conversion rate — in Google Analytics, set up goals or events for your key actions. If you have a contact form, track submissions. If you sell products, track purchases. If you have a phone number on your site, use a tracking number. Average customer value — this one you already know. How much does a typical customer spend with you over the first year? Include repeat business if you have a recurring model. Multiply those three numbers together and you have a rough website revenue figure. It will not be perfectly accurate, but it will be accurate enough to make decisions.
+
+        The Benchmarks That Actually Matter
+
+        Conversion rates vary wildly by industry, but here are some rough benchmarks for Australian small business websites. A service business like a plumber, accountant, or consultant should expect 2 to 5 percent of visitors to submit an enquiry form. An ecommerce store should expect 1 to 3 percent of visitors to make a purchase. A SaaS product should expect 2 to 7 percent of visitors to start a free trial. If you are below these ranges, your website is underperforming. That does not necessarily mean you need a redesign — sometimes it means your messaging is wrong, your call-to-action is buried, or your site is just slow. But it means something needs to change.
+
+        The Cost Side of the Equation
+
+        Now add up what your website costs. Annual hosting and domain fees. Any SaaS tools connected to it — form builders, chat widgets, analytics platforms, SEO tools. Maintenance costs if you pay someone to update it. Time costs if someone on your team spends hours each month wrestling with WordPress updates. And the big one that most people forget — the opportunity cost of the traffic that does not convert. If you are getting 2,000 visitors and converting 1 percent instead of the 3 percent your competitor gets, those extra 40 lost leads per month have a dollar value. Subtract your total costs from your revenue figure. If the number is positive, your website is an asset. If it is negative or uncomfortably close to zero, you have work to do.
+
+        What Moves the Needle
+
+        The three highest-impact changes for most small business websites are these. First, page speed. A site that loads in 1 second converts at double the rate of a site that loads in 5 seconds. This is not an opinion. Google has published the data. If your site is slow, fix that before you change anything else. Second, clear calls to action. Every page should answer the question — what do I want the visitor to do next? If the answer is not obvious within three seconds, you are losing people. Third, mobile experience. Over 60 percent of Australian web traffic is mobile. If your site is technically responsive but practically unusable on a phone — tiny buttons, slow loading, awkward layout — you are losing the majority of your audience.
+
+        Run the Numbers First
+
+        Before you spend money on a redesign, run this calculation. Know your baseline. A good web design agency will help you improve these numbers, but you need to know where you are starting from. We do this analysis as part of every discovery call with new clients. Not because it is a sales tactic, but because it determines whether a new website is actually the right investment for your business right now. Sometimes it is. Sometimes you are better off spending that money on SEO or advertising to increase your traffic first. The honest answer depends on your numbers — so go find them.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

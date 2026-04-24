@@ -1,0 +1,59 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Container queries let components respond to their own size instead of the viewport. Here's what that actually changes about how we build layouts for client sites."
+  title="Here's What Container Queries Actually Change About How We Build Layouts · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        CSS & Layout
+      </Fragment>
+      <Fragment slot="title">
+        Here's What Container Queries Actually Change About How We Build Layouts
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-emerald-600/20 to-teal-500/20 flex items-center justify-center">
+          <span class="text-4xl">📦</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        The Layout Primitive We've Been Missing
+      </Fragment>
+      <Fragment slot="content">
+        For over a decade, responsive web design has meant one thing: media queries tied to the viewport. Your component doesn't know where it lives on the page. It only knows how wide the browser window is. And we've been building entire design systems around that limitation without really questioning it.
+
+        Container queries change the fundamental unit of responsive design. Instead of asking "how wide is the viewport?", a component asks "how wide is my parent?" That sounds like a subtle distinction. It is not. It rewrites the mental model for how we build reusable components on every client project we ship.
+
+        Here's the core syntax. You define a containment context on the parent element using container-type: inline-size. Then the child elements can use @container queries instead of @media queries. The syntax looks almost identical — @container (min-width: 400px) instead of @media (min-width: 768px) — but the behavior is fundamentally different. You're querying the container, not the screen.
+
+        Why does this matter for real projects? Consider a card component. On a marketing site, that card might appear in a three-column grid on the homepage, a two-column grid on the blog listing page, and full-width in a sidebar widget. With media queries, you'd need three different implementations or a mess of modifier classes. The card can't adapt because it doesn't know its own context. With container queries, the card adapts itself. One component. It just works wherever you put it.
+
+        We started using container queries in production on client sites about eight months ago. The browser support crossed the threshold — every modern browser supports them now, including Safari 16+. The first project where we went all-in was a Gold Coast property services company that needed a component library that worked across their main site, their landing pages, and an embedded widget on partner sites. Container queries were the obvious solution. Same components, radically different containers.
+
+        Named containers are worth understanding. You can give your container a name with container-name: sidebar and then target that specific container in your query: @container sidebar (min-width: 300px). This matters when you have nested containers. Without names, a @container query targets the nearest ancestor with containment. With names, you get explicit control. On complex layouts — dashboards, multi-panel interfaces, email templates — named containers prevent ambiguity.
+
+        Container query units are the hidden gem that most people overlook. You get cqi (container query inline size), cqb (block size), cqmin, and cqmax. These work like viewport units (vw, vh) but relative to the container. So 50cqi is 50% of the container's inline size. This is incredibly useful for fluid typography and spacing within components. A heading that scales with its container rather than the viewport? That's what cqi gives you.
+
+        There are real constraints to know about. Container queries only work on the inline axis (width) and block axis (height) — you can't query other properties like color or font-size. The container itself can't participate in its own query result, which means you need that parent-child relationship. And containment has layout implications: a container with inline-size containment can't have its width determined by its content. The container needs an explicit or context-derived size.
+
+        For web design agencies, container queries eliminate an entire category of client revision requests. "Can you move this component to the sidebar?" used to mean rebuilding responsive breakpoints. Now the component just adapts. "Can we use this on our other microsite?" Same answer. Components become truly portable because they respond to their own context, not global assumptions about viewport width.
+
+        The practical migration path is straightforward. Don't rewrite your entire codebase. Start with your most reused components — cards, testimonial blocks, feature sections, pricing tables. Add containment to their wrappers. Replace the media queries inside those components with container queries. Keep your page-level layout using media queries or CSS Grid — that's still viewport-dependent and should be. Container queries are for components, not pages.
+
+        If you're using Tailwind, v4 has @container variants built in. You can write @container/sidebar classes directly in your markup. If you're writing vanilla CSS, the syntax is clean and readable. Either way, container queries are production-ready and they solve a problem we've been working around since 2010.
+
+        This is the biggest mental model shift in CSS layout since flexbox. It's not flashy. It doesn't animate. But it fundamentally changes how components relate to their environment, and that changes everything about how we architect design systems for our clients.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

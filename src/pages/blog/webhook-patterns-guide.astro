@@ -1,0 +1,69 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="A complete guide to webhook patterns that actually work — signature validation, idempotency, retry handling, and the dead letter queue that saves your weekends."
+  title="Webhooks: The Complete Guide to Not Losing Data When Services Talk to Each Other · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Backend Engineering
+      </Fragment>
+      <Fragment slot="title">
+        Webhooks: The Complete Guide to Not Losing Data When Services Talk to Each Other
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-amber-500/20 to-orange-600/20 flex items-center justify-center">
+          <span class="text-4xl">&#128233;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Webhooks Are Simple Until They Are Not
+      </Fragment>
+      <Fragment slot="content">
+        A webhook is just an HTTP POST. Some service sends data to your endpoint when something happens. It should be the simplest pattern in web development. And yet, webhooks are responsible for more production incidents we have debugged than almost any other pattern. The problem is not receiving the webhook. The problem is everything that happens after.
+
+        Step One: Validate the Signature
+
+        Every serious API signs its webhook payloads. Stripe sends a Stripe-Signature header. GitHub sends X-Hub-Signature-256. Pipedrive sends a signature in the request body. If you are not validating these signatures, anyone who discovers your webhook URL can send fake events and your system will happily process them. We have seen applications where the webhook endpoint accepted any POST body without validation. An attacker could have sent a fake payment.succeeded event and granted themselves a free subscription. Validating signatures takes five lines of code. Use the official SDK — every provider has a helper function for this.
+
+        Step Two: Respond Fast, Process Later
+
+        When Stripe sends you a webhook, it expects a 2xx response within a few seconds. If your handler takes too long, Stripe assumes delivery failed and retries. Now you have duplicate events. The pattern is simple. Receive the webhook. Validate the signature. Store the raw event in your database with a status of pending. Return 200 immediately. A separate background process picks up pending events and processes them. This decoupling means your webhook endpoint never times out, you have a complete audit trail of every event received, and you can replay failed events without asking the provider to resend them.
+
+        Step Three: Idempotency Is Not Optional
+
+        Webhook providers will send the same event more than once. Stripe explicitly documents this. So does every other provider. Your handler must be idempotent — processing the same event twice should have the same result as processing it once. The implementation is straightforward. Every webhook event has a unique ID. Before processing, check if that ID exists in your events table. If it does, skip processing and return 200. If it does not, insert it and process the event. We store the event ID, the event type, the raw payload, the processing status, and a processed_at timestamp. This gives us a complete log and makes debugging trivial.
+
+        Step Four: Handle Ordering Problems
+
+        Webhook events can arrive out of order. A customer.subscription.updated event might arrive before the customer.subscription.created event that logically precedes it. If your handler assumes events arrive in order, you will have bugs. The solution depends on the provider. Stripe includes a created timestamp on every event, so you can check if you have already processed a more recent event of the same type. For other providers, we use a simple rule — if the related resource does not exist yet, queue the event for retry instead of failing.
+
+        Step Five: Dead Letter Queues
+
+        Some events will fail processing. Maybe the payload format changed. Maybe a downstream service is down. Maybe there is a bug in your handler. Without a dead letter queue, these events disappear into your error logs and nobody notices until a customer complains. Our pattern tags failed events with an error message and a retry count. Events get retried up to three times with exponential backoff. After three failures, they move to a dead letter status. We have a simple dashboard that shows dead letter events so we can investigate and manually replay them. This has caught real issues — like when Stripe added a new field to their webhook payload that our Zod schema rejected.
+
+        Step Six: Webhook Event Logging
+
+        Log everything. The full request headers, the raw body, the processing result, and the processing duration. When something goes wrong — and it will — you need to be able to reconstruct exactly what happened. We store webhook logs in a dedicated Supabase table with automatic cleanup of events older than 90 days. Storage is cheap. Debugging production issues without logs is not.
+
+        The Testing Problem
+
+        Testing webhooks locally is annoying because the provider needs to reach your machine. We use Stripe CLI for Stripe webhooks — it forwards events to localhost. For other providers, ngrok or Cloudflare Tunnel works. But the real testing happens in staging. We maintain a staging environment with its own webhook endpoints and API keys for every provider. Every webhook handler gets tested with real events from the real provider before it touches production.
+
+        Common Webhook Providers We Integrate
+
+        Stripe for payment events — the best webhook implementation we have worked with. Pipedrive for CRM events — decent but the documentation is sparse. GitHub for repository events — well documented and reliable. Zapier for custom automations — useful for connecting services that do not have native webhooks. Each one has quirks, but the patterns above work universally. Validate, store, respond, process, and always assume the event will arrive more than once.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

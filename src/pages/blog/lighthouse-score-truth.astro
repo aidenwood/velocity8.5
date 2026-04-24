@@ -1,0 +1,91 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Your Lighthouse score doesn't mean what you think it means. Here's why lab data lies, what field data reveals, and the metrics that actually affect your rankings."
+  title="Your Lighthouse Score Is Lying to You — Here's What Actually Matters · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Web Performance & SEO — April 2026
+      </Fragment>
+      <Fragment slot="title">
+        Your Lighthouse Score Is Lying to You — Here's What Actually Matters
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-yellow-600/20 to-amber-500/20 flex items-center justify-center">
+          <span class="text-4xl">&#128683;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Lab Data vs. Real Users
+      </Fragment>
+      <Fragment slot="content">
+        I've seen agencies celebrate a Lighthouse score of 98 while their client's site fails Core Web Vitals in the real world. I've seen developers dismiss a score of 72 on a site that passes every field metric with flying colours. The disconnect between what Lighthouse reports and what actually matters for SEO rankings and user experience is one of the most misunderstood topics in web performance.
+
+        Let's clear it up.
+
+        <strong>Lighthouse is lab data</strong>
+
+        When you run Lighthouse in Chrome DevTools, it simulates a mid-tier mobile device on a throttled 4G connection. It tests your site exactly once, in a controlled environment, from your machine, on your network. The results are useful for identifying specific issues — render-blocking resources, missing alt text, accessibility violations — but the score itself is a synthetic benchmark that can vary by 5-10 points between runs on the exact same page.
+
+        This is lab data. It tells you what could happen under simulated conditions. It does not tell you what is happening for real users.
+
+        <strong>Google ranks you on field data</strong>
+
+        The Core Web Vitals that affect your search rankings come from the Chrome User Experience Report (CrUX). This is field data — real performance measurements collected from actual Chrome users visiting your site over a rolling 28-day window. CrUX measures LCP, INP, and CLS from real devices, real networks, real geographic locations, and real user behaviour.
+
+        You can score 100 in Lighthouse and still fail Core Web Vitals in CrUX. How? Because Lighthouse runs on your developer machine with a fibre internet connection, while your actual users are on 4G in regional areas, using three-year-old Android phones with limited memory. The performance gap between those two environments is enormous.
+
+        <strong>Where to find your real performance data</strong>
+
+        Google Search Console: Navigate to Experience &gt; Core Web Vitals. This shows your CrUX data segmented by mobile and desktop, with each URL categorised as Good, Needs Improvement, or Poor. This is the single most important performance dashboard for SEO.
+
+        PageSpeed Insights: Enter your URL and look at the "Discover what your real users are experiencing" section at the top. This is CrUX data. The Lighthouse section below it is lab data. Most people focus on the wrong section.
+
+        CrUX Dashboard: Google provides a free Looker Studio dashboard connected to the CrUX BigQuery dataset. This gives you historical trends and more granular data than Search Console.
+
+        web.dev/measure: Quick lab test with actionable recommendations, but remember — it's still lab data.
+
+        <strong>The metrics that actually matter</strong>
+
+        For SEO ranking purposes, three metrics matter and everything else is noise:
+
+        LCP under 2.5 seconds (at the 75th percentile of your users). Not the median. Not the average. The 75th percentile — meaning 75% of your users need to experience an LCP under 2.5 seconds for Google to consider it "good."
+
+        INP under 200ms at the 75th percentile. This is the interaction responsiveness metric that replaced FID. If your site has any JavaScript-heavy interactivity, this is probably your weakest metric.
+
+        CLS under 0.1 at the 75th percentile. Layout stability during the entire page lifecycle, not just initial load.
+
+        Lighthouse rolls these up with other metrics into a single score out of 100, which obscures what's actually passing and failing. A site with a Lighthouse score of 85 might have a perfect CLS, a good LCP, and a terrible INP — but the blended score hides the failing metric.
+
+        <strong>Common Lighthouse traps</strong>
+
+        Running Lighthouse with extensions enabled: browser extensions inject scripts that slow down the page and lower your score. Always run Lighthouse in an incognito window with extensions disabled.
+
+        Testing only the homepage: your homepage might be fast because it's simple. Your product pages, blog posts, and landing pages might be significantly slower. Test representative pages from each template.
+
+        Treating the score as the goal: chasing a number leads to gaming. I've seen developers add lazy loading to LCP images to reduce Total Blocking Time at the cost of slower LCP. The score went up. The user experience got worse.
+
+        Ignoring mobile: Lighthouse defaults to desktop simulation in DevTools. Mobile is what Google uses for ranking. Always test with mobile simulation enabled, and remember that even Lighthouse's mobile throttling is generous compared to real-world mobile conditions.
+
+        <strong>What we actually track</strong>
+
+        On every project, we set performance budgets based on field metrics, not Lighthouse scores. LCP under 2 seconds. INP under 150ms. CLS under 0.05. These are tighter than Google's "good" thresholds because we want headroom — real-world conditions fluctuate, and building to the exact threshold means you'll frequently dip into "needs improvement."
+
+        We check CrUX data in Search Console weekly for the first month after launch, then monthly. If any metric trends upward, we investigate before it crosses the threshold. We run Lighthouse as a diagnostic tool to identify specific issues, not as a scorecard.
+
+        The bottom line: stop screenshot-sharing your Lighthouse 100 and start monitoring your real users' experience. The score your developer sees is not the score Google uses to rank your site. Build for the 75th percentile user on a mediocre phone with a mediocre connection, and your Lighthouse score will take care of itself.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

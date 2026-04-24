@@ -2,34 +2,60 @@
 interface TechItem {
   name: string;
   category: string;
+  accent?: string;
 }
 
-const techStack: TechItem[] = [
-  { name: 'React', category: 'Frontend' },
-  { name: 'Astro', category: 'Frontend' },
-  { name: 'Next.js', category: 'Frontend' },
-  { name: 'TypeScript', category: 'Language' },
-  { name: 'Tailwind CSS', category: 'Styling' },
-  { name: 'GSAP', category: 'Animation' },
-  { name: 'Three.js', category: '3D / WebGL' },
-  { name: 'Supabase', category: 'Backend' },
-  { name: 'Stripe', category: 'Payments' },
-  { name: 'Shopify', category: 'Commerce' },
-  { name: 'Wordpress', category: 'CMS' },
-  { name: 'Node.js', category: 'Runtime' },
-  { name: 'Google Ads', category: 'Marketing' },
-  { name: 'Google Maps', category: 'API' },
-  { name: 'Figma', category: 'Design' },
-  { name: 'Framer', category: 'Design' },
-  { name: 'Netlify', category: 'Deploy' },
-  { name: 'Python', category: 'Data' },
-  { name: 'After Effects', category: 'Video' },
-  { name: 'Affinity', category: 'Design' },
+const row1: TechItem[] = [
+  { name: 'React', category: 'Frontend', accent: '#61DAFB' },
+  { name: 'Astro', category: 'Framework', accent: '#FF5D01' },
+  { name: 'Next.js', category: 'Framework', accent: '#000' },
+  { name: 'TypeScript', category: 'Language', accent: '#3178C6' },
+  { name: 'Tailwind CSS', category: 'Styling', accent: '#06B6D4' },
+  { name: 'GSAP', category: 'Animation', accent: '#88CE02' },
+  { name: 'Three.js', category: '3D / WebGL', accent: '#000' },
+  { name: 'Framer Motion', category: 'Animation', accent: '#0055FF' },
+  { name: 'Radix UI', category: 'Components', accent: '#1C1C1E' },
+  { name: 'shadcn/ui', category: 'Components', accent: '#000' },
 ];
 
-// Double the array for seamless marquee loop
-const marqueeRow1 = techStack.slice(0, 10);
-const marqueeRow2 = techStack.slice(10, 20);
+const row2: TechItem[] = [
+  { name: 'Supabase', category: 'Backend', accent: '#3ECF8E' },
+  { name: 'PostgreSQL', category: 'Database', accent: '#336791' },
+  { name: 'Stripe', category: 'Payments', accent: '#635BFF' },
+  { name: 'Node.js', category: 'Runtime', accent: '#339933' },
+  { name: 'Zustand', category: 'State', accent: '#453F39' },
+  { name: 'Zod', category: 'Validation', accent: '#3068B7' },
+  { name: 'React Hook Form', category: 'Forms', accent: '#EC5990' },
+  { name: 'Netlify', category: 'Deploy', accent: '#00C7B7' },
+  { name: 'Vercel', category: 'Deploy', accent: '#000' },
+  { name: 'Cloudflare', category: 'CDN', accent: '#F38020' },
+];
+
+const row3: TechItem[] = [
+  { name: 'Google Ads', category: 'Marketing', accent: '#4285F4' },
+  { name: 'Google Maps', category: 'API', accent: '#34A853' },
+  { name: 'BigQuery', category: 'Data', accent: '#4285F4' },
+  { name: 'Pipedrive', category: 'CRM', accent: '#017737' },
+  { name: 'Shopify', category: 'Commerce', accent: '#96BF48' },
+  { name: 'WordPress', category: 'CMS', accent: '#21759B' },
+  { name: 'Python', category: 'Data', accent: '#3776AB' },
+  { name: 'Playwright', category: 'Testing', accent: '#2EAD33' },
+  { name: 'Docker', category: 'Infra', accent: '#2496ED' },
+  { name: 'FFmpeg', category: 'Media', accent: '#007808' },
+];
+
+const row4: TechItem[] = [
+  { name: 'Figma', category: 'Design', accent: '#F24E1E' },
+  { name: 'Affinity', category: 'Design', accent: '#4DC9F6' },
+  { name: 'After Effects', category: 'Video', accent: '#9999FF' },
+  { name: 'Canva', category: 'Design', accent: '#00C4CC' },
+  { name: 'Claude AI', category: 'AI', accent: '#D4A574' },
+  { name: 'Cursor', category: 'AI Dev', accent: '#000' },
+  { name: 'p5.js', category: 'Creative', accent: '#ED225D' },
+  { name: 'Web MIDI', category: 'Creative', accent: '#8B5CF6' },
+  { name: 'AssemblyAI', category: 'AI', accent: '#0000FF' },
+  { name: 'Zapier', category: 'Automation', accent: '#FF4A00' },
+];
 ---
 
 <style>
@@ -41,63 +67,98 @@ const marqueeRow2 = techStack.slice(10, 20);
     0% { transform: translateX(-50%); }
     100% { transform: translateX(0); }
   }
-  .marquee-track-left {
-    animation: marquee-left 90s linear infinite;
+  .marquee-left {
+    animation: marquee-left 80s linear infinite;
   }
-  .marquee-track-right {
-    animation: marquee-right 90s linear infinite;
+  .marquee-right {
+    animation: marquee-right 80s linear infinite;
   }
-  .marquee-perspective {
-    perspective: 800px;
+  .marquee-left-slow {
+    animation: marquee-left 120s linear infinite;
   }
-  .marquee-skew {
-    transform: rotateX(8deg) rotateY(-4deg);
-    transform-origin: center center;
+  .marquee-right-slow {
+    animation: marquee-right 120s linear infinite;
   }
-  .marquee-fade-mask {
-    mask-image: linear-gradient(to top right, rgba(0,0,0,1) 40%, rgba(0,0,0,0.3) 75%, rgba(0,0,0,0) 100%);
-    -webkit-mask-image: linear-gradient(to top right, rgba(0,0,0,1) 40%, rgba(0,0,0,0.3) 75%, rgba(0,0,0,0) 100%);
+  .stack-3d-container {
+    perspective: 900px;
+  }
+  .stack-3d-skew {
+    transform: rotateX(48deg) rotateY(-12deg) rotateZ(24deg);
+    transform-origin: 50% 50%;
+  }
+  .stack-fade-mask {
+    mask-image: radial-gradient(ellipse at 15% 80%, rgba(0,0,0,1) 15%, rgba(0,0,0,0.7) 40%, rgba(0,0,0,0.2) 65%, rgba(0,0,0,0) 90%);
+    -webkit-mask-image: radial-gradient(ellipse at 15% 80%, rgba(0,0,0,1) 15%, rgba(0,0,0,0.7) 40%, rgba(0,0,0,0.2) 65%, rgba(0,0,0,0) 90%);
   }
 </style>
 
-<section class="my-28 overflow-hidden">
-  <div class="mx-auto px-4 sm:px-6 w-full lg:max-w-7xl lg:px-8 mb-8">
-    <div class="flex flex-col gap-4 max-w-3xl">
-      <h2 class="text-base lg:text-lg uppercase font-thin tracking-widest">
-        Built With
-      </h2>
-      <h3 class="text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight">
-        Modern tools. Serious results.
+<section class="relative my-28 overflow-hidden">
+  <!-- Content overlay (left-aligned, on top of 3D grid) -->
+  <div class="relative z-10 mx-auto px-4 sm:px-6 w-full lg:max-w-7xl lg:px-8 mb-8">
+    <div class="flex flex-col gap-4 max-w-xl">
+      <p class="text-xs font-semibold uppercase tracking-[0.2em] text-violet-600 dark:text-violet-400">
+        Built with
+      </p>
+      <h3 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-primary-950 dark:text-white">
+        Modern tools.<br />Serious results.
       </h3>
-      <p class="text-primary-950/80 dark:text-primary-200/80 text-lg xs:text-xl">
-        We pick the right tool for the job -- not the trendiest one. Every project gets a stack tailored to its goals, from static sites to full-stack SaaS.
+      <p class="text-primary-600 dark:text-primary-300/70 text-base sm:text-lg max-w-md">
+        We pick the right tool for the job — not the trendiest one. Every project gets a stack tailored to its goals.
       </p>
     </div>
   </div>
 
-  <!-- Marquee with 3D perspective and fade to top-right -->
-  <div class="marquee-perspective marquee-fade-mask">
-    <div class="marquee-skew flex flex-col gap-4">
+  <!-- 3D Marquee Grid (matching hero perspective) -->
+  <div class="stack-3d-container stack-fade-mask" style="margin-top: -2rem;">
+    <div class="stack-3d-skew flex flex-col gap-3 py-8">
 
-      <!-- Row 1 (scrolls left, slow) -->
-      <div class="relative w-full overflow-hidden py-2">
-        <div class="marquee-track-left flex gap-4 w-max">
-          {[...marqueeRow1, ...marqueeRow1, ...marqueeRow1, ...marqueeRow1].map((tech) => (
-            <div class="flex-shrink-0 flex items-center gap-3 border border-primary-900/10 dark:border-primary-300/10 rounded-xl px-5 py-3 bg-white/50 dark:bg-primary-950/50">
-              <span class="text-base font-medium text-primary-950 dark:text-primary-100 whitespace-nowrap">{tech.name}</span>
-              <span class="text-xs text-primary-500 dark:text-primary-400 whitespace-nowrap">{tech.category}</span>
+      <!-- Row 1 (left, normal speed) -->
+      <div class="relative w-full overflow-hidden">
+        <div class="marquee-left flex gap-3 w-max">
+          {[...row1, ...row1, ...row1, ...row1].map((tech) => (
+            <div class="flex-shrink-0 flex items-center gap-2.5 border border-primary-900/[0.06] dark:border-primary-300/[0.08] rounded-xl px-4 py-2.5 bg-white/70 dark:bg-primary-950/50 backdrop-blur-sm">
+              <span class="w-2 h-2 rounded-full flex-shrink-0" style={`background-color: ${tech.accent}`}></span>
+              <span class="text-sm font-medium text-primary-950 dark:text-primary-100 whitespace-nowrap">{tech.name}</span>
+              <span class="text-[10px] text-primary-400 dark:text-primary-500 whitespace-nowrap">{tech.category}</span>
             </div>
           ))}
         </div>
       </div>
 
-      <!-- Row 2 (scrolls right, slow) -->
-      <div class="relative w-full overflow-hidden py-2">
-        <div class="marquee-track-right flex gap-4 w-max">
-          {[...marqueeRow2, ...marqueeRow2, ...marqueeRow2, ...marqueeRow2].map((tech) => (
-            <div class="flex-shrink-0 flex items-center gap-3 border border-primary-900/10 dark:border-primary-300/10 rounded-xl px-5 py-3 bg-white/50 dark:bg-primary-950/50">
-              <span class="text-base font-medium text-primary-950 dark:text-primary-100 whitespace-nowrap">{tech.name}</span>
-              <span class="text-xs text-primary-500 dark:text-primary-400 whitespace-nowrap">{tech.category}</span>
+      <!-- Row 2 (right, normal speed) -->
+      <div class="relative w-full overflow-hidden">
+        <div class="marquee-right flex gap-3 w-max">
+          {[...row2, ...row2, ...row2, ...row2].map((tech) => (
+            <div class="flex-shrink-0 flex items-center gap-2.5 border border-primary-900/[0.06] dark:border-primary-300/[0.08] rounded-xl px-4 py-2.5 bg-white/70 dark:bg-primary-950/50 backdrop-blur-sm">
+              <span class="w-2 h-2 rounded-full flex-shrink-0" style={`background-color: ${tech.accent}`}></span>
+              <span class="text-sm font-medium text-primary-950 dark:text-primary-100 whitespace-nowrap">{tech.name}</span>
+              <span class="text-[10px] text-primary-400 dark:text-primary-500 whitespace-nowrap">{tech.category}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Row 3 (left, slow) -->
+      <div class="relative w-full overflow-hidden">
+        <div class="marquee-left-slow flex gap-3 w-max">
+          {[...row3, ...row3, ...row3, ...row3].map((tech) => (
+            <div class="flex-shrink-0 flex items-center gap-2.5 border border-primary-900/[0.06] dark:border-primary-300/[0.08] rounded-xl px-4 py-2.5 bg-white/70 dark:bg-primary-950/50 backdrop-blur-sm">
+              <span class="w-2 h-2 rounded-full flex-shrink-0" style={`background-color: ${tech.accent}`}></span>
+              <span class="text-sm font-medium text-primary-950 dark:text-primary-100 whitespace-nowrap">{tech.name}</span>
+              <span class="text-[10px] text-primary-400 dark:text-primary-500 whitespace-nowrap">{tech.category}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Row 4 (right, slow) -->
+      <div class="relative w-full overflow-hidden">
+        <div class="marquee-right-slow flex gap-3 w-max">
+          {[...row4, ...row4, ...row4, ...row4].map((tech) => (
+            <div class="flex-shrink-0 flex items-center gap-2.5 border border-primary-900/[0.06] dark:border-primary-300/[0.08] rounded-xl px-4 py-2.5 bg-white/70 dark:bg-primary-950/50 backdrop-blur-sm">
+              <span class="w-2 h-2 rounded-full flex-shrink-0" style={`background-color: ${tech.accent}`}></span>
+              <span class="text-sm font-medium text-primary-950 dark:text-primary-100 whitespace-nowrap">{tech.name}</span>
+              <span class="text-[10px] text-primary-400 dark:text-primary-500 whitespace-nowrap">{tech.category}</span>
             </div>
           ))}
         </div>

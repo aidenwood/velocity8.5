@@ -1,0 +1,55 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Google I/O 2025 dropped Gemini into everything, launched Android XR, and quietly threatened every SEO strategy on the planet. Here's what matters."
+  title="Google I/O 2025: Gemini Is Everywhere and SEO Might Be Nowhere · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Tech News
+      </Fragment>
+      <Fragment slot="title">
+        Google I/O 2025: Gemini Is Everywhere and SEO Might Be Nowhere
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-blue-600/20 to-green-500/20 flex items-center justify-center">
+          <span class="text-4xl">&#127758;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        The AI Search Apocalypse Is Here
+      </Fragment>
+      <Fragment slot="content">
+        Google I/O 2025 happened and the word "Gemini" was said approximately four hundred times in two hours. If you did not watch the keynote, here is the summary: Google put AI in everything. Search, Android, Chrome, Workspace, Photos, Maps, the kitchen sink. Sundar Pichai walked on stage and essentially said "we are an AI company now" without a hint of irony from the company that has been an AI company for a decade but only recently decided to tell everyone about it.
+
+        Gemini 2.5 Is The Real Story
+        The headline feature is Gemini 2.5, which Google is positioning as their most capable model yet. It handles multimodal input natively — text, images, video, audio, code — in a single context window. The demos were impressive in the way Google demos always are, which means real-world performance will be somewhere between "mind-blowing" and "it works most of the time." The interesting bit is the 1 million token context window becoming standard across Gemini models. That is enough to feed it an entire codebase, a full book, or hours of video and get coherent responses. Context length used to be a competitive advantage. Now it is table stakes.
+
+        Android XR: Google's Spatial Play
+        Google officially unveiled Android XR, their answer to Apple Vision Pro. Built in partnership with Samsung, it is a full spatial computing platform running on Android with Gemini baked into the experience. The pitch is that you can talk to Gemini while wearing the headset and it can see what you see. Practical? Eventually. Available to consumers? Not for a while. But the signal is clear — Google is not conceding the spatial computing market to Apple. They are doing what they always do: building the platform, letting hardware partners handle the devices, and betting on ecosystem scale over premium hardware.
+
+        Firebase Genkit: AI For The Rest Of Us
+        For developers, the most immediately useful announcement was Firebase Genkit going production-ready. Genkit is an open-source framework for building AI-powered features into your apps — think structured output, retrieval-augmented generation, tool calling, and evaluation pipelines — all with a clean TypeScript-first API. It plugs into Firebase hosting and Cloud Functions, which means you can go from prototype to production without stitching together five different services. We have been experimenting with it for client projects and the developer experience is genuinely good. It does not try to be a framework for everything. It just makes the common AI patterns easy.
+
+        The AI Search Problem
+        Now for the part nobody in SEO wants to hear. Google AI Overviews are expanding to every search market globally. That is the feature where Google answers your query directly at the top of the results page using AI-generated summaries. For users, it is convenient. For every website that depends on search traffic, it is an existential threat. Why would someone click through to your blog post when Google already summarised the answer? We are already seeing click-through rates drop for informational queries. The websites that will survive are the ones offering something Google cannot summarise — original research, interactive tools, personalised services, genuine expertise that requires context an AI overview cannot provide.
+
+        Project Astra and Real-Time AI
+        Project Astra got another demo and it is getting closer to a shipping product. The idea is a real-time AI assistant that can see through your phone camera, understand your environment, and help you in context. Point your phone at a broken appliance and ask how to fix it. Walk through a grocery store and ask for recipe suggestions based on what is on sale. It is the kind of thing that sounds gimmicky until you actually use it, and then you wonder how you lived without it.
+
+        What This Means For Web Developers
+        Three things. First, AI integration is no longer optional for modern web applications. Users expect intelligent features. Second, the tools for building AI-powered features are finally mature enough for production use — Genkit, Vertex AI, and the Gemini API are all solid. Third, and most critically, if your business model depends on Google search traffic, you need a diversification strategy yesterday. AI Overviews are not going away. They are expanding. The golden age of "write a blog post, rank on Google, collect traffic" is ending. Build products, not just content.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

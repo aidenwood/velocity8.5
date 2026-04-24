@@ -1,0 +1,79 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="A complete guide to image optimisation for the web in 2026 — formats, compression, responsive images, lazy loading, CDNs, and the mistakes costing you load time."
+  title="Everything I Know About Optimising Images for the Web in 2026 · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Web Performance — April 2026
+      </Fragment>
+      <Fragment slot="title">
+        Everything I Know About Optimising Images for the Web in 2026
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-amber-600/20 to-orange-500/20 flex items-center justify-center">
+          <span class="text-4xl">&#128248;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Images Are Still the Biggest Problem
+      </Fragment>
+      <Fragment slot="content">
+        Images account for roughly 50% of the total weight of an average web page. On a poorly optimised site, that number is closer to 80%. I've audited business websites where a single hero image was 4.5MB — larger than the entire JavaScript bundle, CSS, fonts, and HTML combined. This is the lowest-hanging fruit in web performance, and most sites still get it wrong.
+
+        Here's everything I've learned about image optimisation from building and auditing websites over the past several years.
+
+        <strong>Format selection: the 2026 landscape</strong>
+
+        JPEG is the legacy default and it's showing its age. It doesn't support transparency, its compression artifacts are visible at lower quality settings, and it can't compete with modern alternatives on file size. Use it only as a fallback for ancient browsers you'll probably never encounter.
+
+        WebP is the practical standard in 2026. It supports lossy and lossless compression, transparency, and animation. At equivalent visual quality, WebP files are 25-35% smaller than JPEG. Browser support is effectively universal — 97%+ global coverage. If you're doing one thing to optimise images, convert everything to WebP.
+
+        AVIF is the next step. It offers 30-50% smaller files than WebP at equivalent quality, with excellent colour depth and HDR support. Browser support has matured significantly — Chrome, Firefox, Safari, and Edge all support it now. The downside is encoding speed — AVIF takes significantly longer to compress than WebP, which matters for build pipelines and dynamic image processing. We use AVIF for hero images and key visuals where the size savings justify the processing time, and WebP for everything else.
+
+        SVG remains the correct choice for logos, icons, and any graphic that's fundamentally vector-based. An SVG icon is typically 1-3KB and scales to any resolution without quality loss. Rasterising a logo as a PNG when it could be an SVG is a mistake I still see on most business websites.
+
+        <strong>Responsive images are not optional</strong>
+
+        Serving a 2400px-wide image to a mobile phone on a 390px screen is one of the most common performance failures on the web. The fix is the srcset attribute combined with the sizes attribute. This tells the browser: "Here are multiple versions of this image at different widths. Pick the one that best fits your current viewport and pixel density."
+
+        A practical srcset looks like this: provide versions at 400w, 800w, 1200w, and 1600w. The browser does the math. A phone on a 2x display will grab the 800w version. A desktop on a 1x display might grab the 1200w. Nobody downloads the 1600w unless they're on a high-DPI desktop at full width.
+
+        The &lt;picture&gt; element lets you go further with art direction — serving different crops or entirely different images for different viewports. We use this for hero sections where the mobile composition needs to be fundamentally different from desktop, not just smaller.
+
+        <strong>Lazy loading: the right way</strong>
+
+        Add loading="lazy" to every image that's not in the initial viewport. This is native browser-level lazy loading — no JavaScript library needed. But here's the critical mistake people make: don't lazy-load your LCP image. Your hero image, or whatever element is your Largest Contentful Paint, needs to load immediately. Lazy-loading it will tank your LCP score. Mark your above-the-fold images with loading="eager" (or just omit the attribute) and add fetchpriority="high" to the most important one.
+
+        <strong>Explicit dimensions prevent layout shift</strong>
+
+        Always set width and height attributes on your &lt;img&gt; elements. This lets the browser calculate the aspect ratio and reserve the correct space before the image loads. Without them, the page content jumps around as images pop in — that's CLS (Cumulative Layout Shift) and it's a Core Web Vital. The CSS aspect-ratio property is another option for responsive containers, but explicit HTML attributes remain the most reliable approach.
+
+        <strong>CDN-based image processing</strong>
+
+        In 2026, you shouldn't be manually generating five sizes of every image. CDN-based image processing handles this automatically. Netlify Image CDN, Cloudflare Images, and Imgix all accept your original high-resolution image and serve optimised, resized, format-converted versions on the fly based on the requesting device. Upload once, serve perfectly everywhere. We use Netlify Image CDN on most projects — it handles format negotiation (serving AVIF to browsers that support it, WebP to the rest), resizing, and quality optimisation with zero build-time overhead.
+
+        <strong>Compression quality settings</strong>
+
+        Don't default to quality 100. For WebP, quality 75-80 is visually indistinguishable from the original for photographs. For AVIF, quality 60-70 achieves similar results. The difference between quality 80 and quality 100 in WebP is often 3-4x the file size for improvements no human eye can detect on a screen. Run your images through Squoosh (squoosh.app) to compare quality settings side-by-side before deciding on your project defaults.
+
+        <strong>The checklist we use on every project</strong>
+
+        Every image is WebP or AVIF. Every image has explicit width and height. Every image uses srcset with at least three breakpoints. Above-the-fold images are eager-loaded with fetchpriority="high". Below-the-fold images are lazy-loaded. Decorative images use empty alt text. Informational images have descriptive alt text. Total image weight per page stays under 200KB on mobile viewports. We validate all of this before launch with Lighthouse and WebPageTest.
+
+        Images are the easiest performance win and the one most sites still fumble. Get this right and you'll cut your page weight in half without changing a single line of code.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

@@ -1,0 +1,69 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Building data pipelines with BigQuery and Python — real patterns from processing 6,000+ insurance claims. ETL, data warehousing, and automated reporting."
+  title="What We Learned Building Data Pipelines That Process 6,000+ Insurance Claims · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Data Engineering
+      </Fragment>
+      <Fragment slot="title">
+        What We Learned Building Data Pipelines That Process 6,000+ Insurance Claims
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-cyan-600/20 to-blue-500/20 flex items-center justify-center">
+          <span class="text-4xl">&#128202;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Your Data Is Useless If It Lives in 12 Spreadsheets
+      </Fragment>
+      <Fragment slot="content">
+        We built a data pipeline that processes 6,000+ insurance claims across multiple regions in Queensland. Before the pipeline, this data lived in CSV exports, email attachments, and a CRM that nobody queried directly. Marketing spend attribution was a guess. Regional performance comparisons took a full day of manual spreadsheet work. Cost-per-acquisition was calculated monthly — if someone remembered.
+
+        Now it runs automatically, every day, and the entire team has real-time dashboards. Here is how we built it and what we learned.
+
+        The Problem with Raw Data
+
+        Most businesses do not have a data problem. They have a data organisation problem. The data exists — in your CRM, your ad platforms, your invoicing tool, your spreadsheets. The problem is that it lives in twelve different places with twelve different schemas and no way to ask questions across all of them. BigQuery solves this by being the single warehouse that everything flows into. It handles massive datasets — we are talking terabytes — without any infrastructure management. You write SQL against it. That is the entire experience.
+
+        The ETL Pipeline
+
+        ETL stands for Extract, Transform, Load. It sounds fancy but the concept is simple. Extract data from source systems — APIs, CSVs, databases. Transform it into a consistent schema — normalise dates, clean addresses, map status codes. Load it into BigQuery for querying and reporting. Our pipeline is Python. Not because Python is the best language for this — it is not particularly fast — but because every data library you need already exists. Pandas for data manipulation, the Google Cloud BigQuery client for loading, and requests for API calls. A typical pipeline script is under 200 lines.
+
+        The Architecture
+
+        Here is the actual architecture for our insurance claims pipeline. Source systems feed into Python scripts — Pipedrive API exports contact and deal data, Google Ads API exports campaign spend and conversion data, CSV uploads handle historical claim records, and a Supabase database holds application data. Each source has its own extraction script. The scripts pull raw data, apply transformations, and load into BigQuery staging tables. A second layer of SQL transforms in BigQuery create the production tables that dashboards query. The separation between staging and production tables is critical. Staging tables hold the raw data exactly as it came from the source. Production tables join, aggregate, and clean that data into queryable views. When something goes wrong — and it will — you can always trace back to the raw staging data to understand what happened.
+
+        Scheduling and Automation
+
+        Our pipelines run on Cloud Scheduler triggering Cloud Functions. Every morning at 6am, the pipeline extracts yesterday's data from all sources, transforms it, and loads it into BigQuery. By the time the team opens their dashboards, the data is fresh. For simpler pipelines, a cron job on any server works fine. We have some pipelines that are literally a Python script running on a $5/month server via crontab. Do not over-engineer the scheduling layer.
+
+        The Dashboard Layer
+
+        Data in BigQuery is useless if nobody looks at it. We use two approaches for dashboards depending on the audience. Looker Studio for business users who need self-service reporting. It connects directly to BigQuery, handles permissions, and lets non-technical users build their own charts. React with Recharts for custom dashboards embedded in applications. When the dashboard needs to live inside an existing tool or needs interactivity that Looker cannot provide, we build it in React. The marketing dashboard we built reads from BigQuery via a Netlify Function, aggregates cost-per-acquisition across Google Ads and Facebook, and displays real-time trends. It replaced a weekly manual report that took someone four hours to produce.
+
+        Data Quality Is the Hard Part
+
+        The technical work of building a pipeline is not difficult. The hard part is data quality. Source systems have inconsistent formatting — dates in three different formats, addresses with and without postcodes, status fields that mean different things in different contexts. We handle this with a validation layer in the transform step. Every record gets checked against a schema before loading. Records that fail validation go into a quarantine table for manual review. This catches problems at ingestion time instead of three months later when someone notices the dashboard numbers do not add up.
+
+        What This Actually Costs
+
+        BigQuery pricing is consumption-based. For the data volumes most businesses deal with — millions of rows, not billions — the cost is negligible. We are talking $10 to $50 per month for storage and queries combined. The Python scripts run on Cloud Functions or simple servers. The total infrastructure cost for a complete data pipeline with daily automation and dashboards is typically under $100 per month. Compare that to paying a data analyst $80,000 per year to manually compile reports from spreadsheets. The pipeline does not call in sick, does not make copy-paste errors, and does not forget to run the report on public holidays.
+
+        If your business decisions are based on data that lives in scattered spreadsheets and CRM exports, it is time to build a pipeline. We will help you centralise it, automate it, and actually make it useful.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

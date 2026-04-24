@@ -1,0 +1,69 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="A developer's guide to integrating the Pipedrive CRM API — authentication, deals pipeline, custom fields, webhooks, sync patterns, and the gotchas the docs don't mention."
+  title="Integrating Pipedrive CRM: A Developer's Guide to the API That Powers Our Sales Pipeline · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        CRM &amp; Integrations
+      </Fragment>
+      <Fragment slot="title">
+        Integrating Pipedrive CRM: A Developer's Guide to the API That Powers Our Sales Pipeline
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-emerald-500/20 to-green-600/20 flex items-center justify-center">
+          <span class="text-4xl">&#128200;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Pipedrive's API Is Powerful but Full of Surprises
+      </Fragment>
+      <Fragment slot="content">
+        Pipedrive is our primary CRM. Every lead, every deal, every customer interaction flows through it. And over the past two years, we have built deep integrations between Pipedrive and our internal tools — lead routing, automated deal creation, field rep assignment, and reporting dashboards that pull real-time data from the Pipedrive API. The API itself is capable, but the documentation has gaps, and there are patterns you only discover after things break in production.
+
+        Authentication: OAuth2 or API Token
+
+        Pipedrive offers two authentication methods. API tokens for simple integrations and OAuth2 for marketplace apps that access other companies' Pipedrive accounts. For internal integrations where you are accessing your own Pipedrive data, API tokens are simpler and work fine. The token goes in a query parameter or header on every request. For anything production-facing, we store the API token in Supabase Vault and access it only from server-side functions. Never expose a Pipedrive API token to the browser — it grants full access to your CRM data.
+
+        Custom Fields Are Your Best Friend and Worst Enemy
+
+        Pipedrive supports custom fields on every entity — deals, persons, organisations, activities. This is incredibly useful for mapping your business data into the CRM. But custom fields have randomly generated hash keys like abc123_custom_field instead of human-readable names. When you query a deal, the response includes these hash keys with no indication of what they represent. Our approach is to maintain a field mapping configuration that maps hash keys to readable names. We fetch the field definitions from the /dealFields endpoint on deployment and cache them. This way, our application code references readable names like property_address while the API layer translates to the hash key automatically. When someone adds or renames a custom field in the Pipedrive UI, we re-fetch the field definitions. Without this mapping layer, custom field code is unreadable and breaks silently when fields are renamed.
+
+        The Rate Limiting Situation
+
+        Pipedrive rate limits are tighter than you might expect. The standard plan allows 100 requests per 10-second window. That sounds reasonable until you need to sync thousands of deals or update hundreds of contacts. We hit rate limits during our first bulk sync and had to rewrite the entire sync process with request queuing and backoff logic. Our sync pattern now batches requests in groups of 80 — leaving headroom below the 100 request limit — with a 10-second pause between batches. For bulk operations, we use Pipedrive's batch endpoints where available. The /deals endpoint supports fetching up to 500 deals per request with pagination, which is much more efficient than fetching one at a time.
+
+        Webhook Gotchas
+
+        Pipedrive webhooks work differently from Stripe or GitHub webhooks. The payload structure varies significantly by event type. Deal update webhooks include the full deal object. Person update webhooks include a previous and current state. Activity webhooks sometimes include related entities and sometimes do not. We built our webhook handler with explicit parsing for each event type rather than trying to write a generic handler. This is more code, but it is reliable. The bigger gotcha is that Pipedrive webhook payloads can include sensitive data — phone numbers, email addresses, deal values. Make sure your webhook endpoint is secured and your logging does not store personally identifiable information in plain text.
+
+        The Sync Table Pattern
+
+        We do not write Pipedrive data directly into our application tables. We maintain a sync layer — dedicated tables that mirror Pipedrive's data structure. A pipedrive_deals table, a pipedrive_persons table, and a pipedrive_activities table. Each has a pipedrive_id column, a synced_at timestamp, and columns that match Pipedrive's response fields. A separate process maps this synced data into our application's domain models. When Pipedrive changes their API response format — which has happened twice in the past year — we update the sync layer without touching our core business logic. This separation has saved us hours of debugging.
+
+        Building a Deal Pipeline Dashboard
+
+        One of our most-used internal tools is a real-time dashboard that visualises Pipedrive deal stages. It shows deals grouped by pipeline stage with monetary values, expected close dates, and assigned rep. The data flows from Pipedrive via webhooks into our sync tables, through a materialised view that aggregates by stage, and into a React dashboard with Supabase Realtime subscriptions. When a rep moves a deal to a new stage in Pipedrive, the dashboard updates within seconds. Building this required understanding Pipedrive's pipeline and stage structure. Deals belong to pipelines. Pipelines have stages. Each stage has an order_nr that determines its position. We query the /pipelines endpoint to get stage definitions and use the stage order for display sorting.
+
+        Automating Deal Creation
+
+        Our web forms create Pipedrive deals automatically. When a potential customer submits a lead form, a Supabase Edge Function creates a person in Pipedrive, creates a deal associated with that person, adds an activity for follow-up, and populates custom fields with the form data. This happens synchronously during form submission — the user sees a confirmation page within two seconds. The key is error handling. If the person creation succeeds but the deal creation fails, you need to handle partial success gracefully. We wrap the entire flow in a transaction-like pattern — if any step fails, we log the error and the partial state so it can be completed manually.
+
+        What We Wish We Had Known
+
+        Pipedrive's API documentation is adequate but not comprehensive. Some endpoints have undocumented query parameters that you only find in community forums. The search endpoint is surprisingly powerful but slow on large datasets — we cache search results aggressively. Activity types are fixed and cannot be customised via the API. And the most important lesson — Pipedrive's API is not a real-time data source. Build your integrations around webhooks for real-time updates and scheduled syncs for catching anything webhooks missed.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

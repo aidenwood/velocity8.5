@@ -1,0 +1,69 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="The JavaScript array methods that replaced our for loops — map, filter, reduce, find, and the newer ones you should be using in 2026."
+  title="Stop Writing For Loops: The Array Methods That Make JavaScript Actually Readable · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        JavaScript
+      </Fragment>
+      <Fragment slot="title">
+        Stop Writing For Loops: The Array Methods That Make JavaScript Actually Readable
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-green-500/20 to-emerald-600/20 flex items-center justify-center">
+          <span class="text-4xl">&#128640;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Your Code Should Read Like a Sentence
+      </Fragment>
+      <Fragment slot="content">
+        We review a lot of code from client projects we inherit. And the single most common pattern we refactor is unnecessary for loops. A 15-line for loop that filters an array and transforms the results into a new shape, when the same logic is three lines with .filter().map(). The for loop is not wrong. It works. But it forces the reader to mentally execute the loop to understand what it does. Array methods tell you what the code does in the method name. Here are the ones we use constantly and the patterns that make them sing.
+
+        .map() — Transform Everything
+
+        .map() takes an array and returns a new array of the same length with each element transformed. That is it. When you see .map(), you know immediately: same number of items, different shape. We use it for rendering lists in React, transforming API responses into component props, and converting between data formats. The key rule is that .map() should be pure. No side effects. Do not mutate external state inside a .map() callback. If you need side effects, use .forEach(). But honestly, if you need .forEach(), you probably need to rethink the approach.
+
+        .filter() — Keep What Matters
+
+        .filter() returns a new array with only the elements that pass a test. The callback returns true or false for each element. True means keep, false means discard. We use it for search results, permission checks, and removing invalid data. Chain it with .map() and you have the most common data transformation in frontend development: filter the array to relevant items, then transform each item for display. This replaces the classic for loop where you push to a results array inside an if statement. That pattern works, but .filter().map() tells you what is happening without reading the implementation.
+
+        .reduce() — The Swiss Army Knife
+
+        .reduce() can do anything the other methods can do and more. It takes an accumulator and a current value, and returns the next accumulator. But just because .reduce() can do anything does not mean it should. We have a rule: if you can accomplish the same thing with .map() or .filter(), use those instead. .reduce() is for when you need to transform an array into a completely different shape — an object, a number, a nested structure. Grouping items by category. Summing values. Building a lookup map from an array of objects. These are reduce's sweet spots. If your .reduce() callback is more than 5 lines, extract it into a named function or consider whether a for loop is actually more readable.
+
+        .find() and .findIndex() — Stop Looping to Find One Thing
+
+        .find() returns the first element that matches a condition. .findIndex() returns its index. Both stop iterating as soon as they find a match, unlike .filter() which always traverses the entire array. Use .find() when you want a single item. Use .filter() when you want all matches. We see developers use .filter()&#91;0&#93; to get a single item, which works but traverses the entire array unnecessarily. .find() is more efficient and communicates intent more clearly.
+
+        .some() and .every() — Boolean Questions
+
+        .some() returns true if at least one element passes the test. .every() returns true only if all elements pass. These replace the pattern of filtering an array and checking if the result has length greater than zero. Instead of writing items.filter(item =&gt; item.isActive).length &gt; 0, write items.some(item =&gt; item.isActive). It is more readable and more efficient since .some() short-circuits after the first match.
+
+        .flatMap() — Map and Flatten in One Pass
+
+        .flatMap() is .map() followed by .flat(1). It is perfect when your map callback returns arrays and you want a single flat result. We use it when transforming a list of objects that each contain an array. If you have an array of orders and each order has an array of items, .flatMap(order =&gt; order.items) gives you a flat array of all items across all orders. Without .flatMap(), you would .map() and then .flat(), which is two passes over the data.
+
+        .at() — Negative Indexing Finally
+
+        .at() is newer and still underused. It lets you use negative indices to access elements from the end of an array. array.at(-1) gives you the last element. array.at(-2) gives you the second-to-last. This replaces the clunky array&#91;array.length - 1&#93; pattern. It is a small improvement but it comes up surprisingly often, especially when working with sorted arrays where you need the most recent item.
+
+        Chaining — Where It All Comes Together
+
+        The real power is chaining. .filter().map().sort() reads like a pipeline: keep the relevant items, transform them, order them. Each step is a single line. The intent is obvious. The data flows left to right, top to bottom. Compare that to a for loop that intermixes filtering, transformation, and sorting logic in a single block. The chained version is longer in terms of lines, but each line is trivially understandable. The for loop is shorter but requires mental execution to understand. We optimise for reading speed, not writing speed. Code is read ten times more often than it is written. Make it readable.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

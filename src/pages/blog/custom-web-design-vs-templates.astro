@@ -1,0 +1,75 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Custom web design vs templates — why customised web design delivers better ROI for businesses that actually want conversions, not just a pretty homepage."
+  title="The Template Trap: Why Your Squarespace Site Looks Like Everyone Else's · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Web Design
+      </Fragment>
+      <Fragment slot="title">
+        The Template Trap: Why Your Squarespace Site Looks Like Everyone Else's
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-violet-600/20 to-cyan-500/20 flex items-center justify-center">
+          <span class="text-4xl">🎨</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        The Template Trap
+      </Fragment>
+      <Fragment slot="content">
+        Every week, someone asks us whether they should just grab a Squarespace template or invest in custom web design. It's a fair question. Templates are cheap, fast, and look decent in the preview. But here's the thing — your competitors are asking the same question, picking the same templates, and wondering why their conversion rates are identical to everyone else in their industry.
+
+        Let's cut through the noise and talk about when templates actually make sense, when they don't, and why customised web design consistently outperforms for businesses that care about results.
+
+        <strong>The honest comparison</strong>
+
+        Templates win on one thing: speed to launch. If you need a website live by Friday and your entire budget is $500, a template is the right call. No shame in that. But beyond that single advantage, custom web design pulls ahead in nearly every metric that matters to a business.
+
+        Here's how they stack up:
+
+        <strong>Branding:</strong> Templates give you someone else's design language with your logo dropped in. Custom web design builds your visual identity from the ground up — typography, spacing, colour systems, interactions — all tailored to your brand. Your site looks like you, not like every other business using the same theme.
+
+        <strong>Performance:</strong> Templates ship with code for features you'll never use. Sliders you disabled. Animations you turned off. WooCommerce hooks on a site that doesn't sell anything. Custom builds include exactly what you need and nothing else. The result is faster pageloads, better Core Web Vitals, and higher Google rankings.
+
+        <strong>SEO:</strong> Template markup is generic. Custom sites get semantic HTML structured for your specific content strategy. We can build schema markup, optimise heading hierarchy, and structure internal linking in ways a template simply can't accommodate.
+
+        <strong>Conversion Rate:</strong> This is the big one. A template puts your content into someone else's user flow. A customised web design builds the user flow around your content, your audience, and your conversion goals. The layout, the CTA placement, the information hierarchy — all of it is intentional.
+
+        <strong>Scalability:</strong> Templates break when you outgrow them. Need a custom booking flow? A dynamic pricing calculator? A client portal? You're either hacking the template apart or starting over. Custom builds are architected for where your business is going, not just where it is.
+
+        <strong>Maintenance:</strong> Templates depend on theme updates, plugin compatibility, and third-party developers who may or may not still be maintaining their code. Custom sites have fewer dependencies and cleaner upgrade paths.
+
+        <strong>Why "customise a template" is usually the worst option</strong>
+
+        The most expensive approach is usually the middle ground — buying a template and then paying a developer to heavily customise it. You're fighting against someone else's architecture, working around opinionated CSS, and debugging code you didn't write. We've rescued dozens of these projects. The client paid for a template, paid a freelancer to customise it, then paid us to rebuild what the freelancer broke. Three budgets for one website.
+
+        If your customisation needs go beyond changing colours and swapping images, you're almost certainly better off with a custom build from the start.
+
+        <strong>When templates genuinely make sense</strong>
+
+        We're not anti-template. They're the right tool in specific situations: personal blogs, MVPs that need market validation before real investment, internal tools that nobody outside your team will see, or businesses with genuinely no budget who need something — anything — live. In those cases, pick a clean template, don't over-customise it, and move on.
+
+        <strong>The ROI argument</strong>
+
+        Custom web design costs more upfront. That's a fact. But the real question is cost per conversion over the lifetime of the site. A $15,000 custom site that converts at 4% will massively outperform a $2,000 template site converting at 1.5% — even before you factor in the ongoing costs of fighting template limitations.
+
+        We build <a href="/web-design" class="underline">custom websites</a> for Gold Coast businesses because the math works. Not because we enjoy making things harder for ourselves, but because the results are measurably better.
+
+        If you're evaluating whether custom web design is worth the investment for your business, the answer usually comes down to one question: do you need your website to actively generate revenue, or do you just need it to exist? If it's the former, let's talk.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

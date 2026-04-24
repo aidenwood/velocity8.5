@@ -1,0 +1,61 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="CSS scroll-driven animations let you build parallax effects, progress bars, and reveal animations with zero JavaScript. Here's how they work in practice."
+  title="Let's Build Those Fancy Scroll-Driven Animations Without a Single Line of JavaScript · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        CSS & Animation
+      </Fragment>
+      <Fragment slot="title">
+        Let's Build Those Fancy Scroll-Driven Animations Without a Single Line of JavaScript
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-purple-600/20 to-indigo-500/20 flex items-center justify-center">
+          <span class="text-4xl">🎞️</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Scroll Animations, No JS Required
+      </Fragment>
+      <Fragment slot="content">
+        Every creative brief includes "scroll animations" now. Fade-in on scroll. Parallax backgrounds. Progress indicators that fill as you read. Sticky headers that shrink. For years, these required JavaScript libraries — Intersection Observer wrappers, scroll event listeners, or heavyweight libraries like GSAP ScrollTrigger. They worked, but they added JavaScript weight, main thread work, and a dependency to maintain.
+
+        CSS scroll-driven animations change that equation entirely. Shipped in Chrome and Edge, with Firefox following, this spec lets you link any CSS animation to scroll progress using pure CSS. No JavaScript. No libraries. No requestAnimationFrame loops. The browser handles everything on the compositor thread, which means these animations are buttery smooth by default.
+
+        There are two types of scroll timelines. The first is scroll(), which tracks the scroll position of a scroll container. Think of it as "how far has the user scrolled through this page or element?" The animation progresses from 0% to 100% as the scroll position moves from start to end. This is perfect for reading progress bars, parallax backgrounds, and sticky header transformations.
+
+        The second type is view(), which tracks an element's visibility within a scroll container. Think of it as "where is this element relative to the viewport?" The animation progresses as the element enters, crosses, and exits the visible area. This is perfect for reveal animations — fade in when visible, slide up on entry, scale on approach.
+
+        Here's how the basic syntax works. You define a standard CSS @keyframes animation. Then instead of giving it a duration and timing function, you connect it to a scroll timeline. The property animation-timeline: scroll() replaces the time-based progression with scroll-based progression. That's genuinely it. Your existing @keyframes knowledge transfers directly.
+
+        For a reading progress bar, the implementation is about five lines of CSS. Create a fixed bar at the top. Set its transform: scaleX(0) as the starting state. Define a keyframe that goes to scaleX(1). Attach animation-timeline: scroll() to track the page scroll. The bar fills as the user scrolls. No JavaScript. No scroll event listener. No performance concerns.
+
+        View-driven animations are where this gets really useful for client work. Consider a "fade in from below" effect on content sections. You define a keyframe from opacity: 0 and translateY(20px) to opacity: 1 and translateY(0). Attach animation-timeline: view() to the element. Add animation-range: entry 0% entry 100% to specify that the animation should play as the element enters the viewport. Elements reveal themselves as they scroll into view. Silky smooth. Zero JavaScript.
+
+        The animation-range property is critical to understand. It controls which portion of the scroll timeline drives the animation. For view timelines, the ranges include entry (element entering the viewport), exit (element leaving), contain (element fully visible), and cover (from first visible pixel to last). You can specify start and end percentages within each range. animation-range: entry 10% cover 30% means the animation starts when the element is 10% into the entry phase and completes when it reaches 30% of the cover phase.
+
+        For parallax effects, you combine scroll timelines with translateY transforms. A background image with animation-timeline: scroll() and a keyframe that translates it vertically creates parallax without the jank that JavaScript parallax implementations are famous for. The browser handles this on the GPU. No layout recalculation. No paint. Just compositing.
+
+        Browser support is the honest conversation to have. Chrome and Edge have full support. Firefox supports it behind a flag and is shipping it stable. Safari is in development. For production client sites, we use these animations as progressive enhancement — the scroll animations enhance the experience in supporting browsers, and the content appears normally in others. A simple @supports (animation-timeline: scroll()) check lets you gate the animation styles cleanly.
+
+        The performance story is the real selling point for agencies. JavaScript scroll listeners run on the main thread. They compete with your framework's rendering, your analytics scripts, and everything else fighting for CPU time. CSS scroll animations run on the compositor thread, completely separated from main thread congestion. On mobile devices — where clients always ask "why does the animation feel janky on my phone?" — this separation is the difference between smooth and stuttery.
+
+        For projects that need broader browser support right now, the scroll-timeline polyfill works well and can be removed once Safari ships native support. But for new builds targeting modern browsers, CSS scroll-driven animations are production-ready and they eliminate an entire JavaScript dependency from your stack.
+
+        The future of web animation is declarative. CSS tells the browser what to animate and when. The browser figures out how to make it smooth. That's the right separation of concerns.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

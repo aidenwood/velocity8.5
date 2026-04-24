@@ -1,0 +1,65 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="A practical guide to edge functions — what they are actually good for, where they fall short, and the use cases where we choose them over traditional serverless every time."
+  title="Edge Functions: What They're Actually Good For (And What They're Not) · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Infrastructure
+      </Fragment>
+      <Fragment slot="title">
+        Edge Functions: What They're Actually Good For (And What They're Not)
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-sky-500/20 to-blue-600/20 flex items-center justify-center">
+          <span class="text-4xl">&#127759;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        The Edge Is Not a Silver Bullet
+      </Fragment>
+      <Fragment slot="content">
+        Edge functions run your code close to your users, distributed across data centres worldwide. Every cloud platform has them now — Supabase Edge Functions, Cloudflare Workers, Netlify Edge Functions, Vercel Edge Middleware. The pitch is always the same: lower latency, no cold starts, global distribution. And that pitch is accurate. But edge functions have real limitations that nobody mentions in the launch blog posts.
+
+        What Edge Functions Actually Are
+
+        An edge function is a small piece of server-side code that runs in a lightweight runtime — usually V8 isolates or Deno — at the CDN edge closest to the user making the request. Instead of your code running in a single region, it runs in whichever data centre is nearest. For a user in Brisbane, that might be Sydney. For a user in London, that might be Amsterdam. The latency improvement is real. A traditional serverless function in us-east-1 adds 200 to 300 milliseconds of round-trip latency for Australian users. An edge function in Sydney adds maybe 20 milliseconds. For user-facing API calls, that difference is noticeable.
+
+        Where Edge Functions Shine
+
+        Webhook handlers are our number one use case. When Stripe sends a webhook, you want to validate the signature and return 200 as fast as possible. An edge function does this in single-digit milliseconds with no cold start. We run all our webhook endpoints on Supabase Edge Functions and they are rock solid. Authentication middleware is another great fit. Checking a JWT, looking up a session, and either forwarding the request or returning 401 — this is a fast, stateless operation that benefits from being close to the user. API proxying and transformation is ideal for edge. Fetching data from a third-party API, transforming the response, and forwarding it to the client. The edge function handles the API key securely and the response is fast. Redirects and A/B testing based on geographic location, device type, or cookies. These decisions need to be fast and do not require database queries.
+
+        Where Edge Functions Fail
+
+        Database queries are the big one. Your edge function runs in Sydney, but your database is in us-east-1. Every query crosses the Pacific Ocean and back. The latency you saved by running at the edge, you just lost on the database round trip. This is the fundamental tension with edge computing — compute is global but data usually is not. We learned this the hard way. We moved an API endpoint to Supabase Edge Functions expecting faster response times. The endpoint queried Postgres for user data. Response times actually got worse because the function was now further from the database. The fix was to only use edge functions for operations that do not require database access, or to use a globally distributed database — but those come with their own complexity and cost.
+
+        Heavy computation does not belong on the edge either. Edge runtimes have strict CPU time limits — Supabase gives you 150 milliseconds of CPU time per invocation. Cloudflare Workers gives you 10 milliseconds on the free plan. If you need to process a CSV file, generate a PDF, or run complex business logic, use a traditional serverless function with higher limits.
+
+        NPM package compatibility is another limitation. Supabase Edge Functions run on Deno, which means not every NPM package works. Most do via npm: specifiers, but we have hit issues with packages that rely on Node-specific APIs like the filesystem or child processes. Cloudflare Workers have similar compatibility gaps with their workerd runtime.
+
+        Our Decision Framework
+
+        We use edge functions for stateless, fast operations — webhooks, auth checks, API proxying, redirects, and response transformation. We use traditional serverless functions — Netlify Functions or Supabase Database Functions — for anything that needs database access, heavy computation, or full Node.js compatibility. The split is usually clean. About 30 percent of our server-side functions run at the edge and 70 percent run in traditional serverless. The 30 percent at the edge handles the highest-traffic, most latency-sensitive endpoints.
+
+        Supabase Edge Functions Specifically
+
+        We use Supabase Edge Functions more than any other edge platform because they integrate directly with our existing Supabase stack. They can access Supabase Auth, call the Supabase client library, and use Supabase Vault for secrets management. Deployment is a single CLI command. The Deno runtime is well-suited for TypeScript-first development, which matches our stack. The main limitation is the 150 millisecond CPU time limit, which is generous enough for most API operations but will bite you on anything computationally intensive.
+
+        The Honest Assessment
+
+        Edge functions are a genuinely useful tool that has been overhyped. They are not a replacement for serverless functions — they are a complement to them. Use edge for the fast, stateless stuff. Use traditional serverless for everything else. And always remember that your data has a location, even if your compute does not.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

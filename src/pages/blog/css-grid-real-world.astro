@@ -1,0 +1,57 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="CSS Grid is incredibly powerful but most teams only use a fraction of it. Here's a practical guide to the patterns that actually matter for production websites."
+  title="A Practical Guide to CSS Grid for Websites That Need to Actually Ship · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        CSS & Layout
+      </Fragment>
+      <Fragment slot="title">
+        A Practical Guide to CSS Grid for Websites That Need to Actually Ship
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-blue-600/20 to-cyan-500/20 flex items-center justify-center">
+          <span class="text-4xl">🏗️</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Grid Patterns That Survive Client Revisions
+      </Fragment>
+      <Fragment slot="content">
+        CSS Grid has been fully supported in browsers since 2017. It's been almost nine years. And yet, most of the production websites we audit still use Grid like it's a slightly fancier flexbox — grid-template-columns: repeat(3, 1fr) and that's about it. There's an enormous gap between what Grid can do and what teams actually use it for.
+
+        This isn't a "learn CSS Grid from scratch" article. This is a field guide to the Grid patterns that survive real client projects — the layouts that need to handle dynamic content, CMS-driven pages, and the inevitable "can we add one more section here?" email.
+
+        Pattern one: the full-bleed layout. This is the most useful Grid pattern for marketing and business websites. You define a page-level grid with three columns: 1fr min(65ch, 100% - 4rem) 1fr. Content sits in the middle column by default. When you need a full-width section — a hero image, a colored band, a testimonial carousel — that element spans all three columns with grid-column: 1 / -1. Named lines make this even cleaner. This eliminates the container/break-out pattern that plagues most CSS architectures.
+
+        Pattern two: auto-fill vs auto-fit. These two keywords look similar but behave very differently, and picking the wrong one causes layout bugs that are hard to diagnose. auto-fill creates as many tracks as can fit, even if they're empty. auto-fit collapses empty tracks. For a card grid where you want items to stretch and fill the row, use auto-fit. For a grid where you want consistent column widths regardless of item count, use auto-fill. We default to repeat(auto-fit, minmax(300px, 1fr)) for most card grids on client sites. It's responsive without a single media query.
+
+        Pattern three: subgrid. This is the Grid feature that took the longest to ship but might be the most impactful for real projects. Subgrid lets a child grid inherit track sizing from its parent. The classic use case: a row of cards where the title, description, and CTA button all align across cards — even when the titles are different lengths. Without subgrid, you'd set fixed heights or use JavaScript. With subgrid, the child elements participate in the parent's grid tracks. It's now supported in all major browsers and it eliminates an entire class of alignment hacks.
+
+        Pattern four: grid-template-areas for page layout. Named grid areas are underrated for page-level layouts. Defining your layout as a readable ASCII art map — "header header" "sidebar main" "footer footer" — makes the layout intention immediately clear. We use this on dashboard-style projects and internal tools where the layout has distinct semantic regions. It's also excellent for responsive layouts: redefine the grid-template-areas at different breakpoints and the layout completely reconfigures without touching the markup.
+
+        Pattern five: minmax() and the fr unit for flexible constraints. The fr unit distributes remaining space. minmax() sets boundaries. Together they handle the "I want this column to be at least 200px but grow proportionally" requirement that comes up on literally every project. minmax(200px, 1fr) is a pattern you'll use weekly. minmax(0, 1fr) instead of just 1fr prevents content from overflowing the grid track — an edge case that bites you with long URLs, code blocks, or German translations.
+
+        Pattern six: alignment utilities that Flexbox can't match. Grid gives you justify-items, align-items, justify-content, and align-content — all operating on two axes simultaneously. place-items: center is the modern "center anything" solution that works without the flexbox single-axis limitation. For overlapping elements, grid items can occupy the same grid cell, creating layered layouts without position: absolute. We use this for hero sections where text overlays an image — both sit in the same grid cell, stacked with z-index.
+
+        The mistake we see most often: reaching for Grid when Flexbox is the right tool. Grid is for two-dimensional layouts. If you're only working in one axis — a row of buttons, a vertical stack of elements — Flexbox is simpler and more appropriate. Grid and Flexbox aren't competitors. They're complementary. Use Grid for page structure and card grids. Use Flexbox for component internals and single-axis alignment.
+
+        For client projects, we've found that Grid dramatically reduces the CSS needed for complex layouts. A recent Gold Coast hospitality site used eight Grid patterns to handle their entire page structure — hero, feature grid, menu layout, gallery, team section, testimonials, contact, and footer. The total layout CSS was under 60 lines. No framework grid classes. No twelve-column abstractions. Just Grid doing what Grid does.
+
+        Grid is the layout engine CSS always needed. Learn the six patterns above, and you'll handle 90% of the layouts clients throw at you.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

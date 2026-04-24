@@ -1,0 +1,52 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Shopify vs custom e-commerce — when to use each, the real cost breakdown, and why most agencies recommend the wrong one."
+  title="Shopify or Custom? The E-Commerce Decision Most Agencies Get Wrong · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        E-Commerce — April 2026
+      </Fragment>
+      <Fragment slot="title">
+        Shopify or Custom? The E-Commerce Decision Most Agencies Get Wrong
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-green-600/20 to-emerald-500/20 flex items-center justify-center">
+          <span class="text-4xl">🛒</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        The Answer Depends on the Question
+      </Fragment>
+      <Fragment slot="content">
+        The e-commerce conversation in most agencies goes like this: client says "I need an online store," agency says "we'll build it on Shopify." Meeting over. And honestly, for a lot of businesses, that's the right call. But not for the reasons agencies give, and not for every situation. Let's actually break this down.
+
+        Shopify is excellent when you need to sell physical products with standard shipping, your catalogue is under a few thousand SKUs, you want a proven checkout experience, and you don't have unique business logic that requires custom backend work. Shopify handles inventory, payments, taxes, shipping calculations, and a checkout flow that's been optimised by a billion-dollar company across millions of transactions. You cannot build a better checkout than Shopify's. Full stop.
+
+        The monthly cost of Shopify starts at $39 AUD for Basic and goes up to $399+ for Advanced. Add a premium theme ($350 one-time), a few paid apps for reviews, email marketing, and loyalty programs ($50-200/month), and you're looking at $100-600/month in platform costs before you've paid anyone to customise it. That's fine for a business doing $10K+ per month in online sales. It's a terrible ROI for a business doing $500.
+
+        Here's where agencies get it wrong: they recommend Shopify for everything. Need a service booking system? Shopify with a booking plugin. Need a membership site? Shopify with a membership plugin. Need a marketplace? Shopify with a marketplace plugin. The result is a Frankenstein of third-party apps held together with Liquid template hacks, each one adding its own JavaScript, its own CSS, and its own monthly fee. The site gets slow, the codebase becomes unmaintainable, and the client is paying $300/month in app subscriptions for functionality that could have been built custom for less than the annual cost of those apps.
+
+        Custom e-commerce makes sense when your business model doesn't fit the standard product-cart-checkout flow. Subscription boxes with complex customisation logic. B2B wholesale with tiered pricing and account approval workflows. Service-based businesses that sell time slots, not physical goods. Marketplaces where multiple vendors list products. Digital products with licence key generation and download management. These scenarios fight against Shopify's assumptions about how commerce works.
+
+        Our approach to custom e-commerce uses Stripe as the payment layer, Supabase as the database and auth layer, and a React or Astro frontend. Stripe handles the hard parts — PCI compliance, payment processing, subscription billing, tax calculation — while we build the business logic layer to match exactly how the client operates. No monthly app fees. No plugin conflicts. No workarounds.
+
+        The cost comparison isn't as clear-cut as people assume. A custom e-commerce build costs more upfront — typically $5,000-15,000 depending on complexity. But the ongoing costs are dramatically lower. Hosting on Netlify is free to $19/month. Stripe charges a flat 1.75% + 30c per transaction with no monthly platform fee. No app subscriptions. No theme licence renewals. Over two to three years, custom often ends up cheaper than Shopify, especially when you factor in the agency hours spent wrestling with plugin limitations.
+
+        The decision framework is simple. If you're selling standard products and want to launch fast, use Shopify. If your business model is non-standard, your margins are tight enough that platform fees hurt, or you need deep integration with other systems, go custom. Don't let an agency steer you toward their preferred platform without understanding your specific situation.
+
+        And if you're currently on Shopify paying hundreds in monthly app fees for functionality that doesn't work well — there's a better way. Let's talk about it.
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

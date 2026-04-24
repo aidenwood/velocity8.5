@@ -1,0 +1,55 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Docker vs serverless in 2025. Containers aren't dead but do you actually need them? A pragmatic take on when to use what."
+  title="Do You Actually Need Docker? A Pragmatic Take on Containers vs Serverless · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Tech News
+      </Fragment>
+      <Fragment slot="title">
+        Do You Actually Need Docker? A Pragmatic Take on Containers vs Serverless
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-blue-600/20 to-cyan-500/20 flex items-center justify-center">
+          <span class="text-4xl">&#128051;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        The Infrastructure Question Nobody Answers Honestly
+      </Fragment>
+      <Fragment slot="content">
+        Every time someone asks "should I use Docker or serverless?" the answer from the internet is "it depends." Technically correct, practically useless. So here is an actual opinion based on shipping production software in 2025.
+
+        The State of Docker in 2025
+        Docker is not dead. It is not dying. But it is increasingly a solution in search of a problem for a huge percentage of web developers. Docker shines when you need reproducible environments, complex multi-service architectures, or you are deploying to your own infrastructure. If you are running Kubernetes clusters, managing microservices, or building something that needs to run identically on three different cloud providers — Docker is the right tool and nothing else comes close. But here is the thing most DevOps Twitter will not say: most web applications are not microservice architectures. Most web applications are a frontend, an API, a database, and maybe a queue. You do not need container orchestration for that. You need a deploy button.
+
+        Serverless Actually Grew Up
+        Two years ago, serverless had legitimate pain points. Cold starts were brutal. Local development was painful. Vendor lock-in was real. Debugging was a nightmare. In 2025, most of these are solved or dramatically improved. Netlify Functions, Vercel Edge Functions, AWS Lambda with provisioned concurrency, and Supabase Edge Functions all work reliably in production. Cold starts for Node.js functions are under 200ms on most platforms. Local development tools actually work now. We run our entire backend on Supabase Edge Functions and Netlify Functions. Deployment is a git push. Scaling is automatic. Our infrastructure bill for handling thousands of daily requests is under $50 per month. Try doing that with a Docker setup on AWS — you are looking at $200 minimum just for the EC2 instances, plus your time managing them.
+
+        The Real Decision Framework
+        Here is how we actually decide. Use serverless when: your app is request-response based, your functions run under 30 seconds, you want zero infrastructure management, and you are a small to medium team. Use Docker when: you have long-running processes, you need specific system dependencies, you are running ML models or heavy computation, or your compliance requirements mandate specific infrastructure control. Use both when: you have a serverless API for your web app but containerised workers for background jobs, data pipelines, or ML inference. This is actually the most common pattern we see in production — serverless for the request path, containers for the heavy lifting.
+
+        The Cost Myth
+        People love to say serverless gets expensive at scale. This is technically true and practically irrelevant for 95% of applications. If you are getting enough traffic for serverless costs to exceed dedicated infrastructure costs, congratulations — you have a successful product and can afford to hire a DevOps engineer to optimise your architecture. Premature infrastructure optimisation is worse than premature code optimisation because the blast radius is your entire deployment pipeline.
+
+        What About Edge Computing?
+        Edge functions are the wildcard that makes this conversation more interesting. Cloudflare Workers, Deno Deploy, and Netlify Edge Functions run your code at the edge — meaning sub-50ms response times globally without managing CDN configuration. For API routes, middleware, authentication checks, and personalisation logic, edge functions are often better than both traditional serverless and containers. We use edge functions for geolocation-based routing in one of our apps and the latency improvement over a centralised serverless function was dramatic.
+
+        Our Stack in Practice
+        For most client projects, we use Astro deployed to Netlify with serverless functions for any API routes. For our SaaS products, it is React with Supabase Edge Functions and Postgres. Docker only comes out when we need Python data pipelines or ML inference. That covers probably 90% of web application use cases without ever touching a Dockerfile. If that makes Docker purists angry, consider that your job is to ship software, not to build elaborate infrastructure that you enjoy maintaining.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

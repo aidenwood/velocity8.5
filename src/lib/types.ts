@@ -5,7 +5,7 @@ export interface Profile {
   full_name: string | null;
   company_name: string | null;
   avatar_url: string | null;
-  role: 'client' | 'admin';
+  role: 'reader' | 'client' | 'admin';
   created_at: string;
 }
 

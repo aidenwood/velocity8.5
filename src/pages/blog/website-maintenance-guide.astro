@@ -1,0 +1,61 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="What website maintenance actually includes, what it should cost, and which agencies are charging you for work they are not doing."
+  title="What Website Maintenance Actually Means (And What You're Overpaying For) · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Business Strategy
+      </Fragment>
+      <Fragment slot="title">
+        What Website Maintenance Actually Means (And What You're Overpaying For)
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-slate-500/20 to-gray-600/20 flex items-center justify-center">
+          <span class="text-4xl">&#128527;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        $300 Per Month for What Exactly?
+      </Fragment>
+      <Fragment slot="content">
+        If you are paying a monthly website maintenance fee, I have a question for you: do you know what you are getting? Not what you were told you were getting when you signed the contract. What you are actually getting. Because there is a significant gap between what most maintenance plans promise and what most maintenance plans deliver. Let me walk you through what maintenance actually involves, what it should cost, and where you are probably being overcharged.
+
+        What Maintenance Actually Includes
+
+        Real website maintenance has four components. Security updates — this is the non-negotiable. If your site runs on WordPress, plugins and the core software need regular updates to patch security vulnerabilities. Outdated plugins are the number one way websites get hacked. This takes about 30 minutes per month for a typical WordPress site. Performance monitoring — checking that your site loads quickly, uptime is stable, and nothing has degraded. This is mostly automated with monitoring tools. A human should review the reports, but the actual time investment is about 15 minutes per month. Backups — your site should be backed up automatically, and those backups should be tested periodically to make sure they actually work. Setting this up takes an hour. Maintaining it takes almost zero time. Bug fixes and minor updates — fixing things that break, updating business hours for holidays, swapping out a team photo, updating a price. This is the variable component and the one that actually requires human time.
+
+        What Most Maintenance Plans Charge
+
+        The typical agency maintenance plan costs $150 to $500 per month. At the low end, you are getting the basics — security updates, backups, and maybe an hour of minor changes. At the high end, you are supposedly getting priority support, monthly performance reports, SEO monitoring, content updates, and strategic recommendations. Here is the uncomfortable truth: most agencies on the higher-end plans are running security updates automatically with a plugin, generating reports from Google Analytics with zero analysis, and doing almost nothing else unless you specifically ask. The $300 per month plan and the $150 per month plan often deliver identical value. The difference is in the sales pitch, not the service.
+
+        What It Should Actually Cost
+
+        If your site is built on WordPress and needs regular plugin updates, security monitoring, and basic backups, a reasonable maintenance fee is $50 to $150 per month. That covers the automated tooling plus a small amount of human oversight. If your site is built on a modern static-site framework like Astro or a managed platform like Webflow, your maintenance needs are dramatically lower. There are no plugins to update. The attack surface is smaller. Hosting platforms like Netlify handle SSL, CDN, and deployment automatically. Maintenance for these sites should cost $0 to $50 per month unless you need regular content updates.
+
+        The Maintenance Plan Red Flags
+
+        You are being overcharged if any of these apply. You are paying for monthly reports that are just screenshots of Google Analytics with no analysis or recommendations. You are paying for "security monitoring" on a site that is a static HTML or Jamstack build with no database or admin panel to secure. You are paying for "SEO monitoring" that consists of checking your Google ranking once a month without doing anything to improve it. Your maintenance plan includes hosting at a markup — you are paying $100 per month for hosting that costs $10 on the open market. You have never received a maintenance report, update notification, or any evidence that work was performed.
+
+        How to Audit Your Current Plan
+
+        Do this right now. Pull up your maintenance contract and list every service that is included. Then ask your agency for a log of what was actually done last month. Not a summary — a specific log. What plugins were updated, what backups were taken, what changes were made. If they cannot provide this, you are paying for a service that may not be happening. Compare the contract price to what the same services would cost if you hired someone on an hourly basis. Security updates take 30 minutes. A content update takes 15 to 30 minutes. If you are paying $300 per month for an hour of actual work, the math does not add up.
+
+        What Good Maintenance Looks Like
+
+        A good maintenance arrangement is transparent, fairly priced, and proactive. You should receive a monthly summary of what was done — not a PDF report generated by software, but a human note explaining what was updated, what was checked, and whether anything needs attention. Your provider should flag issues before they become problems — a plugin with a known vulnerability, a page that has slowed down, a backup that failed. Good maintenance is not just about keeping the lights on. It is about keeping the site healthy. And it should cost what it is worth — no more, no less.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

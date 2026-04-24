@@ -30,6 +30,7 @@
     "astro-compress": "^2.4.1",
     "astro-icon": "^0.8.1",
     "gsap": "^3.12.2",
+    "lucide-react": "^1.11.0",
     "mouse-follower": "^1.1.2",
     "prettier": "3.0.2",
     "prettier-plugin-astro": "0.12.0",

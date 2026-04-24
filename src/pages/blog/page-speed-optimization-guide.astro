@@ -1,0 +1,73 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="A practical page speed optimization guide covering Core Web Vitals, Lighthouse scores, and real techniques to make your website load faster."
+  title="The Unreasonable Effectiveness of Making Your Website Fast · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Web Performance
+      </Fragment>
+      <Fragment slot="title">
+        The Unreasonable Effectiveness of Making Your Website Fast
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-violet-600/20 to-cyan-500/20 flex items-center justify-center">
+          <span class="text-4xl">⚡</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Why Website Speed Actually Matters
+      </Fragment>
+      <Fragment slot="content">
+        Run a Lighthouse audit on most business websites and you'll see scores in the 30-50 range on mobile. That's not a website — that's a loading screen with a logo. Page speed optimization isn't a nice-to-have. It's a ranking factor, a conversion factor, and increasingly a survival factor.
+
+        Google's Core Web Vitals are the metrics that matter in 2026. There are three of them, and they each measure something different about how your pageload actually feels to real users.
+
+        <strong>LCP — Largest Contentful Paint</strong>
+
+        This measures when the biggest visible element finishes loading. Usually your hero image or heading text. Target: under 2.5 seconds. If your LCP is over 4 seconds, Google considers your page to have a poor user experience and will rank you accordingly. The fix is almost always image-related — serve modern formats like WebP or AVIF, specify width and height attributes, and use responsive srcset so mobile users aren't downloading a 2400px image on a 390px screen.
+
+        <strong>INP — Interaction to Next Paint</strong>
+
+        This replaced First Input Delay in 2024. INP measures the worst-case delay between a user interaction (click, tap, keypress) and the browser visually responding. Target: under 200ms. If your site freezes for half a second when someone clicks a button, that's a failed INP. The culprits are usually heavy JavaScript frameworks, synchronous API calls in event handlers, or layout thrashing from poorly optimised animations. The fix: defer non-critical JS, use requestAnimationFrame for visual updates, and break up long tasks.
+
+        <strong>CLS — Cumulative Layout Shift</strong>
+
+        This measures how much your page layout jumps around during load. Those moments when you're about to click a link and an ad pushes it down? That's CLS. Target: under 0.1. The fixes are straightforward: always set explicit dimensions on images and videos, reserve space for dynamic content like ads or embeds, and avoid inserting content above existing content after initial load.
+
+        <strong>The practical page speed optimization checklist</strong>
+
+        Beyond Core Web Vitals, here's what we do on every build to maximise website speed:
+
+        Images: Convert to WebP/AVIF. Lazy-load anything below the fold. Use CDN-served responsive images. This alone often cuts page weight by 60-70%.
+
+        JavaScript: Ship less of it. Every KB of JS has to be downloaded, parsed, compiled, and executed. A static site built with Astro ships zero JS by default — interactive components only hydrate when needed. Compare that to a React SPA that ships 200KB+ of framework code before a single line of your logic runs.
+
+        CSS: Purge unused styles. A typical WordPress theme ships 300-500KB of CSS, of which you might use 30KB. Tailwind CSS with purging produces only the classes you actually reference in your markup.
+
+        Fonts: Self-host your fonts. Google Fonts adds an extra DNS lookup and render-blocking request. Subset your fonts to include only the characters you need. Use font-display: swap so text renders immediately with a fallback.
+
+        Third-party scripts: Every analytics tool, chat widget, heatmap tracker, and social pixel you add to your site costs pageload time. Audit them quarterly. If a script isn't directly contributing to revenue, remove it. We've seen sites drop from 4-second load times to under 1 second just by removing unused tracking scripts.
+
+        Hosting and CDN: Your server response time matters. If your hosting returns a 200ms Time to First Byte, you're starting every pageload 200ms behind. Use a CDN. Use edge caching. Use static site generation where possible so there's no server-side rendering delay at all.
+
+        <strong>The Lighthouse score trap</strong>
+
+        A Lighthouse score of 100 in your dev tools doesn't mean your site is fast in the real world. Lighthouse runs on your machine, with your internet connection, on your hardware. What matters is field data — real user metrics from the Chrome User Experience Report. Check your Core Web Vitals in Google Search Console under the "Experience" tab. That's the data Google actually uses for rankings.
+
+        Website speed is one of the few areas where the technical work directly translates to business results. Faster sites rank higher, convert better, and cost less to serve. We build every <a href="/web-design" class="underline">website</a> with performance as a foundational requirement, not an afterthought. If your current site is struggling with page speed optimization, it might be time for a rebuild rather than a band-aid.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

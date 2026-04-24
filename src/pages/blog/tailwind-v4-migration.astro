@@ -1,0 +1,59 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Tailwind CSS v4 just dropped with a new engine, CSS-first config, and zero-config content detection. Here's our migration experience."
+  title="Tailwind v4 Just Dropped and Everything About Config Changed · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        CSS & Frontend
+      </Fragment>
+      <Fragment slot="title">
+        Tailwind v4 Just Dropped and Everything About Config Changed
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-sky-600/20 to-indigo-500/20 flex items-center justify-center">
+          <span class="text-4xl">🎐</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        What Changed and How We Migrated
+      </Fragment>
+      <Fragment slot="content">
+        Tailwind CSS v4 shipped, and it's not just a version bump — it's a ground-up rewrite. New engine. New configuration paradigm. Significantly faster builds. If you're running a production Tailwind project, here's what you need to know and how we handled the migration across multiple client sites.
+
+        The headline change is the move from JavaScript config to CSS-first configuration. Your tailwind.config.js file? Mostly gone. In v4, you configure Tailwind using CSS with the @theme directive. Colors, spacing, fonts, breakpoints — they're all defined in your CSS file using CSS custom properties under @theme. It sounds weird if you've been writing tailwind.config.js for years, but in practice it's actually cleaner. Your design tokens live where they belong: in CSS.
+
+        The new engine — codenamed Oxide — is written in Rust and it's fast. We're talking 10x faster full builds and 100x faster incremental builds in some cases. On our larger Astro projects with hundreds of components, the difference is noticeable. Hot module replacement during development feels genuinely instant now. No more waiting 200ms for your utility class change to show up.
+
+        Content detection is now automatic. No more configuring content paths in your config. Tailwind v4 uses automatic source detection to find your template files. It just works. One less thing to configure, one less thing that can go wrong.
+
+        Here's what the migration actually looked like for us. First, the good news: the Tailwind team shipped an upgrade tool. Running npx @tailwindcss/upgrade does about 80% of the work. It converts your config to CSS, updates your imports, and handles most of the breaking changes. We ran it on five projects and it worked cleanly on three of them.
+
+        The two that needed manual work? Custom plugin issues. If you wrote custom Tailwind plugins using the JavaScript API, those need to be reworked. The plugin API changed significantly. For most agencies, this means checking any third-party Tailwind plugins you're using for v4 compatibility. Several popular ones lagged behind on v4 support in the early days.
+
+        Breaking changes worth knowing about: the default border color changed from gray-200 to currentColor, which meant some of our components looked slightly different after migration. The ring utility defaults changed. Some deprecated utilities were removed. The rename from bg-opacity-* to bg-*/opacity was already coming in v3 but is now enforced. None of these were hard to fix, but they required a visual review of every page.
+
+        The @import syntax changed too. Instead of the old @tailwind directives, you now import Tailwind as a standard CSS import. It's cleaner and more consistent with how CSS actually works. Your main CSS file goes from three @tailwind directives to a single @import "tailwindcss".
+
+        New features worth getting excited about: container queries are now built-in with the @container variant. The new 3D transform utilities are useful for creative work. The field-sizing utility for auto-growing textareas is a small but welcome addition. And the not-* variant for negating conditions is something we've wanted for years.
+
+        Our migration advice: don't rush it. Run the upgrade tool on a branch, do a visual diff of your entire site, fix any regressions, and test on mobile. The migration is straightforward but not zero-effort. Budget half a day per project for a thorough migration.
+
+        Was it worth it? Absolutely. The build speed improvement alone justifies the migration time. CSS-first config is genuinely better once you get used to it. And the new features fill gaps we've been working around for years. Tailwind v4 is a confident, well-executed evolution of the best CSS framework in the game.
+
+        If you're starting a new project, use v4. If you're on v3, migrate when you have a spare afternoon. There's no reason to stay on v3 long-term.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

@@ -1,0 +1,69 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="A practical guide to rate limiting — token buckets, sliding windows, per-user limits, and the boring infrastructure that keeps your production API from falling over."
+  title="Rate Limiting: The Boring Infrastructure That Keeps Your API From Falling Over · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Infrastructure
+      </Fragment>
+      <Fragment slot="title">
+        Rate Limiting: The Boring Infrastructure That Keeps Your API From Falling Over
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-slate-500/20 to-gray-600/20 flex items-center justify-center">
+          <span class="text-4xl">&#128694;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        The Feature Nobody Asks For Until Everything Breaks
+      </Fragment>
+      <Fragment slot="content">
+        Nobody puts rate limiting on the product roadmap. No client has ever asked us to build it. It is the quintessential infrastructure feature — invisible when it works, catastrophic when it is missing. We have had production APIs go down three times because of missing or insufficient rate limiting. Each incident was caused by something different. Each one was entirely preventable.
+
+        Incident One: The Runaway useEffect
+
+        A junior developer put a Supabase API call inside a React useEffect with no dependency array. Every re-render triggered a database query. On a page with frequent state updates, this meant hundreds of requests per second from a single browser tab. Multiply that by 40 users who had the page open simultaneously, and our Supabase project was hitting its rate limits across the board. The fix was obvious — add the dependency array. But the real fix was adding per-user rate limiting so one broken component could never take down the API for everyone.
+
+        Incident Two: The Enthusiastic Scraper
+
+        We built an API for a client that served public property data. Someone found the API, liked the data, and wrote a scraper that hammered the endpoint at 50 requests per second for three hours. Our Netlify Functions usage spiked, the database connection pool was exhausted, and legitimate users got timeout errors. We had no rate limiting. We had no abuse detection. We had no way to block the scraper's IP without deploying a code change. That afternoon we added rate limiting. It took about two hours and should have been there from day one.
+
+        Incident Three: The Webhook Storm
+
+        A Stripe webhook handler had a bug that returned a 500 error on certain event types. Stripe's retry logic kicked in, sending the same events over and over with exponential backoff — except we had thousands of failed events stacking up. Our webhook endpoint was processing retries instead of new events, creating a backlog that took hours to clear. Rate limiting on the webhook endpoint, combined with proper error handling, would have contained this immediately.
+
+        Fixed Window vs Sliding Window vs Token Bucket
+
+        Fixed window rate limiting divides time into fixed intervals — say, one minute — and counts requests per interval. Simple to implement but has the burst problem. If a user sends 100 requests at the end of one window and 100 at the start of the next, they effectively get 200 requests in a two-second span. Sliding window rate limiting uses a rolling time window, which eliminates the burst problem. It is slightly more complex to implement because you need to track individual request timestamps, but it provides smoother rate enforcement. Token bucket is our preferred algorithm. Users have a bucket that fills with tokens at a steady rate. Each request consumes a token. If the bucket is empty, the request is rejected. This naturally allows short bursts — if a user has been idle, their bucket is full — while enforcing a sustained rate over time. It is how most production APIs work, including AWS and Google Cloud.
+
+        Per-User vs Per-IP vs Per-API-Key
+
+        The question of what to rate limit on matters more than the algorithm. Per-IP limiting is the simplest but breaks for corporate networks where hundreds of users share one IP. Per-user limiting is better but requires authentication — unauthenticated endpoints can only use IP-based limiting. Per-API-key limiting is ideal for developer-facing APIs where each consumer has a unique key. We typically implement two layers. IP-based limiting on all endpoints as a safety net — 100 requests per minute per IP. Per-user limiting on authenticated endpoints with higher limits — 300 requests per minute per user. This combination catches both unauthenticated abuse and authenticated over-usage.
+
+        The Response Headers
+
+        When you rate limit a request, return useful information. A 429 Too Many Requests status code. A Retry-After header telling the client how long to wait. X-RateLimit-Limit showing the maximum requests allowed. X-RateLimit-Remaining showing how many requests are left in the current window. X-RateLimit-Reset showing when the window resets. Good clients will read these headers and back off automatically. Bad clients will keep hammering, but at least they are getting rejected with clear information about why.
+
+        Implementation in Practice
+
+        For Supabase Edge Functions, we implement rate limiting using Supabase's own database — a simple table that tracks requests per user per time window. The overhead of one database query per request is negligible compared to the cost of an unprotected endpoint getting hammered. For Netlify Functions, Netlify's platform provides basic rate limiting at the infrastructure level, but we add application-level limiting for finer control. For APIs behind Cloudflare, their Rate Limiting product handles this at the CDN level, which is the most performant option.
+
+        The Minimum Viable Rate Limit
+
+        If you build nothing else, build this: a middleware that counts requests per IP in a one-minute sliding window and returns 429 if the count exceeds 200. That single check would have prevented all three of our production incidents. It takes less than an hour to build and deploy. Do it before your first user signs up.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

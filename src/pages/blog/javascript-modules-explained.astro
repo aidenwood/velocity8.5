@@ -1,0 +1,65 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="ES Modules in 2026 — import and export patterns, dynamic imports, tree shaking, barrel files, and the module gotchas that still trip up experienced developers."
+  title="ES Modules in 2026: import, export, and the Stuff That Still Confuses Everyone · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        JavaScript
+      </Fragment>
+      <Fragment slot="title">
+        ES Modules in 2026: import, export, and the Stuff That Still Confuses Everyone
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-orange-500/20 to-yellow-600/20 flex items-center justify-center">
+          <span class="text-4xl">&#128230;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Modules Are Settled. The Confusion Is Not.
+      </Fragment>
+      <Fragment slot="content">
+        ES Modules have been the standard for years now. Every modern browser supports them. Node.js supports them. Every bundler and framework uses them. And yet, developers still get tripped up by the same module patterns — circular dependencies, barrel file performance, the difference between default and named exports, and when to use dynamic imports. Here is the practical guide we wish existed when we started.
+
+        Named Exports Are Almost Always Better
+
+        We use named exports on every project. The reasons are practical. Named exports force consistent naming across your codebase. When you import a named export, you use the exact name it was exported with. Typos are caught by your editor immediately. Refactoring tools can rename across files automatically. Default exports allow the importer to choose any name. That means the same component can be imported as Button, Btn, MyButton, or PrimaryButton in different files. Your codebase becomes inconsistent, and searching for usages of a component by name becomes unreliable. The one exception is page components in Next.js and Astro, where the framework requires a default export. For everything else — components, utilities, hooks, types — use named exports.
+
+        Barrel Files: Convenient but Dangerous
+
+        A barrel file is an index.ts that re-exports everything from a directory. They are convenient for imports — import everything from one path instead of deep-linking into the directory structure. They are also a tree shaking trap. When you import one function from a barrel file, the bundler has to evaluate the entire barrel file and every module it re-exports to determine what can be tree-shaken. In development mode, this means loading every module in the directory even if you only need one. We have seen barrel files add 200ms to hot module replacement in Vite because importing one component pulled in 40 siblings. Our rule is simple. Barrel files are fine for small directories with fewer than 10 exports. For large directories — component libraries, utility collections — import directly from the source file. The import path is longer, but the build and development performance difference is measurable.
+
+        Dynamic Imports for Code Splitting
+
+        The import() function — with parentheses, not the declaration syntax — returns a promise that resolves to the module. This is how you code-split. Instead of importing a heavy component at the top of the file, import it dynamically when the user needs it. In React, wrap it with lazy() and Suspense. In Astro, use client:visible or client:idle to defer island hydration. We use dynamic imports for modals, charts, rich text editors, and any component that is not visible on initial page load. A dashboard page might statically import the layout and navigation, then dynamically import each widget. The initial bundle is tiny. Widgets load as the user scrolls or interacts.
+
+        Circular Dependencies
+
+        Two modules that import each other create a circular dependency. JavaScript handles this without crashing — one of the modules gets an incomplete version of the other at import time. But the behavior is subtle and debugging it is miserable. You get undefined where you expected a function, and the error might only appear in certain import orders or bundler configurations. We avoid circular dependencies by following a dependency direction rule. Utilities never import from components. Components can import from utilities but not from pages. Pages import from components. Data flows down. If two modules need to share logic, extract that logic into a third module that both import. Bundlers like Vite will warn you about circular dependencies in development. Do not ignore those warnings.
+
+        Module Side Effects
+
+        A module with side effects executes code when it is imported, not just when its exports are called. A CSS import is a side effect. A module that registers a global event listener on import is a side effect. A polyfill that patches built-in prototypes is a side effect. Marking your package.json with sideEffects: false tells the bundler that your modules are safe to tree-shake. If a module is imported but none of its exports are used, the bundler can remove it entirely. But if that module has side effects — like registering a global — removing it breaks things. We are explicit about side effects. Modules that only export functions and values are side-effect-free. Modules that register globals, modify prototypes, or import CSS are marked in the sideEffects array. This small configuration detail can reduce bundle size significantly.
+
+        Top-Level Await
+
+        ES Modules support top-level await — you can use await at the module level without wrapping it in an async function. This is useful for modules that need to fetch configuration or connect to a database before exporting their API. But use it carefully. A module that awaits at the top level blocks every module that imports it from executing until the await resolves. If your database connection takes 2 seconds, every dependent module waits 2 seconds. We use top-level await only in entry points and server configuration modules, never in shared utilities or components.
+
+        The Module System Is Solved
+
+        ES Modules are the answer. CommonJS require() is legacy. AMD is dead. The module system is solved. But the patterns around modules — how you structure exports, manage dependencies, split code, and handle side effects — still require judgment. The syntax is simple. The architecture is where the decisions live.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

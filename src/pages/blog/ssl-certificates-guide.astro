@@ -1,0 +1,91 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="SSL certificates in 2026 are simpler than ever. Here's what you actually need to know — automatic HTTPS, certificate types, and when to pay for one."
+  title="Here's Everything You Need to Know About SSL Certificates in 2026 (It's Less Than You Think) · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        DevOps
+      </Fragment>
+      <Fragment slot="title">
+        Here's Everything You Need to Know About SSL Certificates in 2026 (It's Less Than You Think)
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-green-500/20 to-emerald-600/20 flex items-center justify-center">
+          <span class="text-4xl">&#128274;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        SSL Certificates in 2026
+      </Fragment>
+      <Fragment slot="content">
+        Ten years ago, SSL certificates were a genuine headache. You had to buy them from a certificate authority, install them on your server, configure your web server to use them, set up auto-renewal so they did not expire and take your site down, and troubleshoot the mixed content warnings that inevitably appeared. It was a whole thing.
+
+        In 2026, if you are manually managing SSL certificates for a standard website, something has gone wrong. Here is the current state of affairs and the very short list of things you actually need to know.
+
+        Automatic HTTPS Is the Default Now
+
+        If you deploy to Netlify, Vercel, Cloudflare Pages, or any modern hosting platform, you get HTTPS automatically. They provision a certificate from Let's Encrypt (or their own certificate authority, in Cloudflare's case), install it, configure it, and renew it before it expires. You do not have to do anything.
+
+        When you add a custom domain to your Netlify site, they automatically provision an SSL certificate for it. The certificate covers both the root domain and the www subdomain. It renews automatically. The entire process takes about thirty seconds and requires zero configuration from you.
+
+        This is the correct experience. If your hosting provider makes SSL setup complicated in 2026, that is a red flag about their infrastructure.
+
+        What SSL Actually Does
+
+        SSL (technically TLS — Transport Layer Security — but everyone still calls it SSL) encrypts the connection between a user's browser and your server. This means that data transmitted between them — form submissions, login credentials, payment information — cannot be intercepted and read by someone sitting on the same network.
+
+        Without SSL, everything is transmitted in plain text. On a coffee shop WiFi network, anyone with basic tools could read the data your users are sending. With SSL, the data is encrypted and useless to an interceptor. That is the whole value proposition.
+
+        Browsers enforce this aggressively now. Chrome, Firefox, and Safari all show warnings for sites without HTTPS. Google uses HTTPS as a ranking signal. There is no legitimate reason to serve a website over plain HTTP in 2026.
+
+        Certificate Types: What Matters and What Does Not
+
+        There are three types of SSL certificates, differentiated by the level of validation the certificate authority performs.
+
+        Domain Validated (DV) certificates verify that you control the domain. This is what Let's Encrypt issues and what Netlify provisions automatically. The validation is automated — you prove ownership by adding a DNS record or responding to an HTTP challenge. DV certificates are free, issued in seconds, and perfectly adequate for virtually every website.
+
+        Organisation Validated (OV) certificates verify that the organisation behind the domain actually exists. The certificate authority checks business registration documents. These cost money and take days to issue. They provide slightly more trust but the average user never checks certificate details.
+
+        Extended Validation (EV) certificates involve thorough vetting of the organisation. They used to display the company name in a green bar in the browser address bar, which was their main selling point. Browsers removed the green bar years ago. Now EV certificates look identical to DV certificates in the browser. Their value proposition has largely evaporated.
+
+        Our recommendation: use the free DV certificate your hosting platform provides. Unless you are a bank or a government agency with specific compliance requirements, you do not need to pay for a certificate.
+
+        When You Might Still Need to Think About SSL
+
+        Custom domains on SaaS products: If you are building a platform where customers use their own domains (like a website builder or email service), you need programmatic certificate provisioning. Cloudflare for SaaS handles this well. So does Caddy server if you are self-hosting.
+
+        API servers on custom infrastructure: If you are running your own API server on a VPS, you need to set up certificate management. Caddy does this automatically. For Nginx or Apache, use Certbot with Let's Encrypt. Set up the auto-renewal cron job and forget about it.
+
+        Internal tools and staging environments: These need HTTPS too, especially if they handle authentication. Let's Encrypt works on any publicly accessible domain. For truly internal tools on private networks, you can use self-signed certificates or a tool like mkcert for local development.
+
+        The Mixed Content Problem
+
+        The most common SSL issue we encounter is mixed content. Your site loads over HTTPS, but some resource — an image, a script, a font — is loaded over plain HTTP. The browser blocks it (for scripts) or shows a warning (for images).
+
+        The fix is straightforward: ensure all resource URLs use HTTPS or protocol-relative paths. If you are hardcoding http://example.com/image.jpg somewhere, change it to https://example.com/image.jpg. If you are loading resources from a CDN that does not support HTTPS, find a different CDN — it is 2026.
+
+        WordPress migrations are the worst offenders here. The database is full of hardcoded HTTP URLs in post content, widget settings, and theme options. A search-and-replace in the database from http:// to https:// for your domain fixes most of it, but check image URLs in post content manually.
+
+        The HSTS Header
+
+        Once you are confident your site works entirely over HTTPS, add the Strict-Transport-Security header. This tells browsers to always use HTTPS for your domain, even if the user types http:// in the address bar. The browser will upgrade the request to HTTPS automatically without making an insecure request first.
+
+        Set it with a max-age of at least 31536000 (one year) and include includeSubDomains if all your subdomains also support HTTPS. Add this to your Netlify headers configuration and forget about it.
+
+        The bottom line: SSL in 2026 is a solved problem for most websites. Use a modern hosting platform and you will never think about certificates. The era of paying $200 a year for a certificate and manually installing it on your Apache server is mercifully over.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

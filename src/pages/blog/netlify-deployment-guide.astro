@@ -1,0 +1,85 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Everything we've learned deploying 40+ client sites to Netlify. Build configs, redirects, environment variables, and the mistakes that cost us hours."
+  title="Everything We've Learned About Deploying to Netlify After 40+ Client Sites · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        DevOps
+      </Fragment>
+      <Fragment slot="title">
+        Everything We've Learned About Deploying to Netlify After 40+ Client Sites
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-teal-500/20 to-emerald-600/20 flex items-center justify-center">
+          <span class="text-4xl">&#9889;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Netlify Deployment Lessons From 40+ Sites
+      </Fragment>
+      <Fragment slot="content">
+        We have deployed over 40 client sites on Netlify. Some were single-page marketing sites. Some were full Astro builds with server-side rendering, form handling, and edge functions. A few were inherited WordPress migrations that made us question our career choices. Here is what we actually learned, stripped of the marketing fluff.
+
+        The netlify.toml File Is Your Best Friend
+
+        Stop configuring builds in the Netlify dashboard. Put everything in a netlify.toml at the root of your repo. Build command, publish directory, environment variables, redirects, headers — all of it. The dashboard settings are convenient until you need to replicate a site, debug a failed deploy at 2am, or hand a project to another developer. If the config lives in the repo, it travels with the code.
+
+        Here is the skeleton we start every project with. The build command points to your framework's build step. The publish directory is wherever your static output lands. The redirects section handles SPA routing or domain forwarding. The headers section sets cache control and security headers. Every new project gets this file before we write a single line of application code.
+
+        A basic structure looks like: a build section with your command and publish directory, a redirects block for SPA fallback routing (send everything to /index.html with a 200 status), and a headers block that sets X-Frame-Options to DENY and X-Content-Type-Options to nosniff on all paths. That baseline has saved us from at least a dozen "why is my page 404ing" conversations.
+
+        Environment Variables: The Two-Layer System
+
+        Netlify has two layers of environment variables: site-level (set in the dashboard or CLI) and build-level (set in netlify.toml). The critical thing to understand is that netlify.toml variables are committed to your repo. Never put secrets there. API keys, database URLs, authentication tokens — those go in the dashboard under Site Settings, then Environment Variables. The toml file is for non-sensitive build config like NODE_VERSION or BUILD_ENV flags.
+
+        We learned this the hard way when a junior developer committed a Supabase service role key in netlify.toml. The key was rotated within minutes, but the commit history still had it. Use the dashboard for secrets. Always.
+
+        Deploy Contexts Save Relationships
+
+        Netlify lets you set different environment variables and build commands per deploy context — production, deploy-preview, and branch-deploy. We use this constantly. The production context points to the live API. Deploy previews point to a staging API. Branch deploys can have their own overrides.
+
+        This means when a client reviews a preview deployment link, they are looking at staging data, not live customer data. When we push to main, it hits the real API. No manual switching. No "oops I forgot to change the API URL back." The deploy context system handles it automatically.
+
+        Redirects and Rewrites: The Order Matters
+
+        Netlify processes redirects from top to bottom in your netlify.toml and stops at the first match. This trips people up constantly. If you have a catch-all SPA redirect before your API proxy rules, the API proxy never fires. Order your redirects from most specific to least specific, always.
+
+        Proxy rewrites are especially powerful. You can route /api/* to an external service and Netlify will proxy the request, hiding the origin from the client. We use this to avoid CORS issues when calling third-party APIs from the browser. The client calls /api/maps and Netlify proxies it to the Google Maps endpoint. No CORS headers needed.
+
+        Build Plugins We Actually Use
+
+        Out of the hundreds of Netlify build plugins available, we use exactly three consistently. The cache plugin speeds up builds by persisting node_modules and framework caches between deploys. The Lighthouse plugin runs a performance audit on every deploy preview, so we catch regressions before they hit production. And the sitemap plugin generates a sitemap.xml from your routes automatically.
+
+        Everything else we have tried has been either unnecessary, fragile, or both. Keep your build pipeline simple.
+
+        The Deploy Lock Pattern
+
+        When a client site is live and stable, we lock the production deploy. This means pushes to main still create deployments, but they do not auto-publish. We review the deploy preview, verify everything looks right, then manually publish. This adds about thirty seconds to the workflow and has prevented at least five catastrophic "I pushed a broken build to production" moments.
+
+        For active development, auto-publish is fine. For stable client sites that generate revenue? Lock the deploy. Every time.
+
+        Monorepo Support Has Gotten Good
+
+        If you run multiple sites in a monorepo, Netlify's base directory setting lets you point each site at a specific subfolder. Combined with their ignore command (which skips builds when the relevant subfolder has not changed), you avoid unnecessary deploys when you push changes to an unrelated package. It works. It is not as elegant as Vercel's monorepo support, but it gets the job done without drama.
+
+        The Actual Cost
+
+        For most client sites, we never leave the free tier. A typical Astro marketing site uses almost no bandwidth, needs zero serverless functions, and builds in under a minute. The Pro tier at $19 per member per month is worth it for the team features and priority support, but the free tier is genuinely generous for static and SSG sites.
+
+        After 40-plus deployments, Netlify remains our default. Not because it is perfect — the build times could be faster, the function logs could be better, and the dashboard UX has some rough edges. But the reliability is there, the pricing is predictable, and the deployment model is simple enough that even our non-technical clients can understand what a preview link is.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

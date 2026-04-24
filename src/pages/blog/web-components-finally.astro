@@ -1,0 +1,55 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Web Components finally make sense in 2025. Lit, Shoelace, and the interop story that actually works now for framework-agnostic UI."
+  title="After Years of False Starts, Web Components Actually Make Sense Now · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Tech News
+      </Fragment>
+      <Fragment slot="title">
+        After Years of False Starts, Web Components Actually Make Sense Now
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-orange-600/20 to-red-500/20 flex items-center justify-center">
+          <span class="text-4xl">&#129513;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        The Standard Nobody Used Is Actually Good Now
+      </Fragment>
+      <Fragment slot="content">
+        Web Components have been "the future" since 2013. For over a decade they have been the punchline of frontend development — a browser standard that nobody used because the developer experience was terrible, the tooling was nonexistent, and React existed. But something changed in 2025. Web Components are actually good now. And the use cases where they shine are exactly the ones frameworks are bad at.
+
+        What Changed
+        Three things converged. First, browser support is finally universal and consistent. Shadow DOM, custom elements, and HTML templates work the same way in Chrome, Firefox, Safari, and Edge. No more polyfills. No more "works in Chrome, breaks in Safari" surprises. Second, Lit 3.0 made the authoring experience genuinely pleasant. Writing a Lit component feels like writing a modern framework component — reactive properties, declarative templates, TypeScript support out of the box. Third, and most importantly, design systems like Shoelace proved that Web Components can deliver a polished, accessible, production-quality component library that works with any framework. Or no framework at all.
+
+        Shoelace Changed the Conversation
+        Shoelace — now rebranded as Web Awesome — is a component library built entirely on Web Components. Buttons, modals, dropdowns, form controls, data tables — all of it. Drop a script tag in your HTML and you have a complete UI library. Use it in React, Vue, Svelte, Angular, or plain HTML. It works everywhere because it is built on browser standards, not framework abstractions. The API surface is HTML attributes and DOM events. No special bindings needed. We used Shoelace components in an Astro project recently and the experience was seamless. Import the component, use the HTML tag, style with CSS variables. That is it. No React wrapper, no Vue adapter, no framework-specific version that is always two releases behind.
+
+        The Real Use Case Is Design Systems
+        Here is where Web Components actually win. If you are a company with multiple teams using different frameworks — and this is every large company — Web Components let you build one design system that works everywhere. Adobe did this with Spectrum Web Components. SAP did it with UI5. GitHub did it with their Primer components. The pattern is clear: Web Components are not a replacement for React or Svelte. They are the interop layer that lets your design system survive framework migrations.
+
+        The Developer Experience Gap Closed
+        The old criticism was valid — writing raw Web Components with the vanilla API was painful. Shadow DOM styling was confusing. Lifecycle callbacks were verbose. Server-side rendering was a mess. Lit fixed the authoring story. Declarative Shadow DOM fixed the SSR story. CSS custom properties and the ::part pseudo-element fixed the styling story. The developer experience is not quite as smooth as Svelte, but it is better than you think if you have not tried it since 2020.
+
+        When You Should Actually Use Them
+        Use Web Components when: you need framework-agnostic components, you are building a design system for multiple teams, you want components that work in CMS environments where you do not control the framework, or you need embeddable widgets. Do not use Web Components when: your entire app is React and you have no plans to change, you need complex state management across components, or you are building a single-page application where framework conventions help you move faster. The sweet spot is reusable, self-contained UI elements that need to work everywhere.
+
+        The Framework Authors Noticed
+        React 19 finally ships proper Web Component support — custom elements can receive complex props and events work correctly. This was a long-standing gap that made Web Components second-class citizens in React apps. Vue and Angular have had good Web Component interop for years. Svelte treats them as first-class citizens. The framework ecosystem is no longer hostile to Web Components, which means the practical barriers to adoption are gone. Web Components are not replacing frameworks. They are filling the gap between frameworks. And that gap turns out to be really, really important.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

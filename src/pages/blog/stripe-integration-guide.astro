@@ -1,0 +1,69 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Everything we have learned integrating Stripe across SaaS apps — Checkout, webhooks, subscription gotchas, test mode traps, and the invoice bug that cost us a weekend."
+  title="Everything We've Learned About Integrating Stripe (After Breaking It Several Times) · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Payments &amp; SaaS
+      </Fragment>
+      <Fragment slot="title">
+        Everything We've Learned About Integrating Stripe (After Breaking It Several Times)
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-violet-600/20 to-purple-500/20 flex items-center justify-center">
+          <span class="text-4xl">&#128179;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Stripe Is Excellent Until You Hit the Edge Cases
+      </Fragment>
+      <Fragment slot="content">
+        Stripe is the best payments platform for developers. That is not a controversial opinion — their API design, documentation, and developer experience are legitimately best-in-class. But best-in-class does not mean foolproof. We have integrated Stripe on five production applications and broken things in creative ways every single time. Here are the lessons.
+
+        Use Checkout, Not Custom Payment Forms
+
+        Stripe gives you two options. Build your own payment form with Stripe Elements, or use Stripe Checkout — their hosted payment page. Unless you have a very specific reason to build custom, use Checkout. Stripe Checkout handles card validation, 3D Secure challenges, Apple Pay, Google Pay, multiple currencies, and dozens of edge cases you do not want to think about. It is optimised for conversion across millions of transactions. Your hand-rolled form is not. We used to build custom payment forms because it felt more professional. Then we compared conversion rates and switched everything to Checkout. Our clients' payment completion rates went up immediately.
+
+        The Webhook Event You Are Probably Missing
+
+        Everyone handles checkout.session.completed. Most people handle customer.subscription.deleted. But there is a critical event that catches teams off guard — invoice.payment_failed. When a subscription renewal fails — expired card, insufficient funds, whatever — Stripe does not immediately cancel the subscription. It retries the payment according to your retry settings. During this retry window, the subscription status changes to past_due. If your application only checks for active versus canceled, past_due users keep full access while Stripe retries their failed payment for up to a month. Handle past_due status explicitly. We show a gentle banner asking users to update their payment method.
+
+        Test Mode Is Not Production
+
+        Stripe's test mode is excellent for development, but it has blind spots. Test mode does not enforce 3D Secure challenges the same way. Test mode webhook delivery is less reliable — events sometimes arrive late or out of order in ways that do not happen in production. And the biggest gotcha — test mode and production mode have completely separate webhook endpoints. We have deployed to production and forgotten to update the webhook URL from test to production. No events came through. No payments were recorded. We did not notice until a customer asked why their subscription was not activating. Our deployment checklist now includes verifying the production webhook endpoint on every release.
+
+        Handling Currency Correctly
+
+        Stripe represents amounts in the smallest currency unit. For Australian dollars, that means cents. A one hundred dollar charge is 10000, not 100. Getting this wrong means you either charge one hundred times too much or one hundred times too little. Both are bad, but one is significantly worse from a customer relations perspective. We once shipped a staging build to production that displayed prices in cents instead of dollars. The UI showed $2999 instead of $29.99. We caught it in minutes, but those were stressful minutes. Always divide by 100 for display. Always multiply by 100 for charges. Never trust yourself to remember this — write a utility function and use it everywhere.
+
+        Subscription Lifecycle Management
+
+        A subscription is not just active or canceled. The full lifecycle includes trialing, active, past_due, unpaid, canceled, and incomplete. Each status has different implications for access. Trialing users get full access but are not paying yet. Past_due users should see a warning but probably retain access. Unpaid users after all retries have failed should lose access. Canceled users should retain access until the end of their billing period. We maintain a Supabase table that tracks subscription status, the current period end date, and whether the user has been notified. A webhook handler updates this table on every subscription event. The application reads from this table — it never calls Stripe's API to check subscription status in real time because that would be slow and would hit rate limits.
+
+        The Proration Trap
+
+        When a user upgrades or downgrades their plan mid-billing cycle, Stripe prorates the charge by default. This is usually what you want, but the invoice it generates can confuse users. They see a charge for a seemingly random amount — it is the difference between their old plan and new plan for the remaining days in the cycle. We add a clear explanation in the upgrade flow about what the prorated charge will be. Stripe's API lets you preview the proration amount before confirming the change, and we always show this to the user first.
+
+        Idempotency Keys Matter
+
+        Every mutating Stripe API call should include an idempotency key. If your server sends a charge request and the network drops before you receive the response, you do not know if the charge went through. Without an idempotency key, retrying the request might double-charge the customer. With an idempotency key, Stripe returns the same response as the original request. We generate idempotency keys by hashing the user ID, the action, and a timestamp. This ensures retries are safe without accidentally reusing keys across different operations.
+
+        The Stack That Works
+
+        Stripe Checkout for payment collection. Supabase Edge Functions for webhook handlers. A subscriptions table in Supabase synced via webhooks. Stripe Customer Portal for self-service billing management — plan changes, payment method updates, and invoice history. This setup handles 95 percent of subscription billing needs with minimal custom code. The remaining 5 percent is the part where you learn the hard lessons that end up in blog posts like this one.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

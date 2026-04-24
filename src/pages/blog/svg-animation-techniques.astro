@@ -1,0 +1,56 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="SVG animation techniques that make websites feel alive — path drawing, morphing, stroke animation, and GSAP-driven SVG choreography for production sites."
+  title="SVG Animation Techniques That Make Websites Feel Alive · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Animation &amp; Motion — April 2026
+      </Fragment>
+      <Fragment slot="title">
+        SVG Animation Techniques That Make Websites Feel Alive
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-emerald-500/20 to-lime-500/20 flex items-center justify-center">
+          <span class="text-4xl">✏️</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        The Vector Playground Hiding in Your Browser
+      </Fragment>
+      <Fragment slot="content">
+        SVGs are already everywhere on the web — icons, logos, illustrations, diagrams. But most of them just sit there. Static. Inert. Which is a shame, because SVGs are the most animatable format on the web. Every shape, every path, every gradient is a DOM element with properties you can target, transition, and choreograph. And unlike canvas or WebGL, animated SVGs are accessible, scalable, and indexable.
+
+        The path drawing effect is probably the most satisfying SVG animation technique. You know the one — a line appears to draw itself, like an invisible pen tracing the path in real time. The trick is embarrassingly simple. Every SVG path has two properties: stroke-dasharray (the length of dashes) and stroke-dashoffset (where the dash pattern starts). Set the dasharray to the total path length. Set the dashoffset to the same value — the entire path is "gap." Then animate the dashoffset to 0, and the path appears to draw itself. CSS transitions or GSAP can drive this. The effect never gets old.
+
+        To get the total path length, you call getTotalLength() on the path element in JavaScript. This gives you the exact number to use for dasharray and the initial dashoffset. For CSS-only implementations, you can eyeball a large value (like 1000) and it usually works, but the precise method prevents visual glitches on complex paths.
+
+        Morphing is the next level — one shape smoothly transforms into another. An icon that transitions from a hamburger menu to an X. A logo mark that morphs between states. A decorative blob that shifts shape on hover. The technical requirement is that both shapes need the same number of path points. If they don't, you need a library like Flubber or GSAP's MorphSVG plugin to interpolate between different path structures. MorphSVG is the cleanest solution — it handles mismatched point counts, finds the shortest transformation path, and supports morphing between any two SVG shapes.
+
+        Staggered stroke animation brings illustrations to life. Export an illustration from Figma or Illustrator as SVG, ensure each visual element is a separate path, then apply the draw-on effect to each path with a slight delay. The illustration assembles itself piece by piece, like watching an artist work in fast-forward. This is the technique behind those viral "watch me draw this logo" animations, and it's incredibly effective for hero sections and about pages.
+
+        SVG filters are the underappreciated powerhouse. The &lt;feTurbulence&gt; filter generates Perlin noise directly in SVG — you can create organic textures, water ripple effects, and glitch distortions without JavaScript. Combine it with &lt;feDisplacementMap&gt; and you can warp SVG content based on the noise pattern. Animate the seed attribute or the baseFrequency and the distortion shifts over time. This runs on the GPU and performs surprisingly well.
+
+        CSS custom properties (variables) supercharge SVG animation. Define colours, sizes, and positions as CSS variables, then use them in your SVG's fill, stroke, and transform attributes. Now you can theme SVGs dynamically, animate colours with CSS transitions, and create interactive SVGs that respond to hover states, dark mode, or user preferences — all without JavaScript.
+
+        For icon animation, the key is restraint. An icon that bounces, spins, and glows on every page load is exhausting. An icon that subtly transitions from one state to another when the user interacts with it — that's design craft. The classic example: a notification bell that gives a slight swing when a new notification arrives. One animation, one purpose, immediate understanding. That's the standard.
+
+        GSAP's DrawSVG plugin is the professional tool for path animation. It handles the dasharray/dashoffset calculation automatically, supports animating specific portions of a path (draw from 20% to 80%), and integrates with ScrollTrigger for scroll-driven path drawing. We use it for roadmap timelines, process diagrams, and decorative elements that reveal as the user scrolls. The combination of DrawSVG and ScrollTrigger is one of our most-used patterns.
+
+        Accessibility note: animated SVGs should include appropriate ARIA attributes. Use role="img" and aria-label for decorative animations. Use role="graphics-document" and internal &lt;title&gt; and &lt;desc&gt; elements for informational SVGs. Ensure animations respect prefers-reduced-motion. An animated icon should still convey its meaning when the animation is disabled.
+
+        The beauty of SVG animation is that it scales with complexity. You can start with a CSS transition on a hover state — 3 lines of code. Or you can build a full cinematic illustration reveal with GSAP timelines, morphing, and scroll-driven choreography. The format supports both extremes and everything in between. Most websites are leaving SVG animation on the table. Don't be most websites.
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

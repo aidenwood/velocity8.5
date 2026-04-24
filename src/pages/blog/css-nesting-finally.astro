@@ -1,0 +1,61 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Native CSS nesting is finally here in all browsers. It works like Sass nesting but with a few key differences you need to know about."
+  title="CSS Nesting Is Here and Yes It Works Like You Think It Does · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        CSS & Frontend
+      </Fragment>
+      <Fragment slot="title">
+        CSS Nesting Is Here and Yes It Works Like You Think It Does
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-pink-600/20 to-rose-500/20 flex items-center justify-center">
+          <span class="text-4xl">🪆</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        One Less Reason to Need a Preprocessor
+      </Fragment>
+      <Fragment slot="content">
+        The number one reason people reached for Sass was nesting. Being able to write .card and then nest .card__title, .card__image, and .card__body inside it was so much more readable than repeating .card at the start of every selector. It was the feature that made preprocessors feel essential.
+
+        Native CSS nesting shipped in all major browsers in late 2023, and the relaxed syntax that removed the last major limitation landed in early 2024. You can now nest selectors in plain CSS files. No build step. No Sass. No PostCSS plugin. Just CSS.
+
+        The basic syntax will feel immediately familiar if you've used Sass. You write your parent selector, open a block, and nest child selectors inside. .card &#123; color: gray; .title &#123; font-weight: bold; &#125; &#125; compiles to .card &#123; color: gray; &#125; .card .title &#123; font-weight: bold; &#125;. It works exactly how you'd expect.
+
+        The ampersand (&amp;) works like it does in Sass — it represents the parent selector. &amp;:hover, &amp;.is-active, &amp;::before all work as expected. You can use it to compose compound selectors: .card &#123; &amp;.featured &#123; border-color: gold; &#125; &#125; targets .card.featured.
+
+        Here's where it gets interesting. The relaxed nesting spec removed the original restriction that nested selectors had to start with a symbol. In the initial spec, you couldn't write .card &#123; p &#123; ... &#125; &#125; because p starts with a letter. You had to write &amp; p or :is(p). That limitation is gone. Element selectors nest directly now. This was the last thing preventing CSS nesting from being a true Sass replacement for this feature.
+
+        Media queries nest inside selectors too. This is arguably more useful than selector nesting. Instead of writing your component styles at the top level and then repeating the selector inside a @media block at the bottom of the file, you can nest the media query right where the styles are. .sidebar &#123; width: 100%; @media (min-width: 768px) &#123; width: 300px; &#125; &#125;. Component styles and their responsive variations live together. This is a massive improvement for code organization.
+
+        Nesting also works with @container queries, @layer, and @supports. You can nest feature queries right inside the component that uses them. This colocation of styles with their conditions makes CSS files dramatically easier to read and maintain.
+
+        There are specificity differences from Sass that matter. In native CSS, the browser evaluates nested selectors differently than Sass does. .card &#123; .title &#123; ... &#125; &#125; is equivalent to :is(.card) .title in terms of how the browser processes it. In most cases this doesn't change the specificity outcome, but if you're nesting with complex selectors or :is()/:where(), the specificity calculation can surprise you. Test your specificity assumptions if you're migrating from Sass.
+
+        How deep should you nest? The same advice from the Sass era applies: keep nesting shallow. Two or three levels maximum. Deep nesting creates overly specific selectors that are hard to override and hard to read. If you're nesting more than three levels, that's usually a signal that your component structure needs simplifying, not more nesting.
+
+        For agencies, this changes the tooling conversation. We've dropped Sass from three client projects this year, replacing it with native CSS plus a few custom properties. The Sass features we still occasionally miss — mixins, extends, and math functions — are either available natively (calc(), custom properties, container queries handle most mixin use cases) or not worth the build step overhead. If your Sass usage is primarily nesting plus variables, you can switch to native CSS today with zero feature loss.
+
+        The migration path is clean. Take your .scss files, rename them to .css, and most of the nesting works as-is. Fix any element selectors that need the relaxed syntax support (which is already shipped everywhere). Replace Sass variables with custom properties. Remove the Sass build step. Done. We've done this migration on production sites in under two hours.
+
+        Is there still a case for Sass? Yes, if you're using its programmatic features heavily — loops, maps, complex functions, mixins that generate lots of utility classes. But for the 80% of projects where Sass was just nesting plus variables? Native CSS has you covered.
+
+        CSS keeps absorbing the best ideas from the preprocessor ecosystem. Nesting was the big one. It's here, it's stable, and it works like you think it does.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

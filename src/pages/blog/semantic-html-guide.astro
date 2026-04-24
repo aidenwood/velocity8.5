@@ -1,0 +1,79 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Semantic HTML improves SEO, accessibility, and performance for free. Here's why most websites are still a sea of divs and how to fix it."
+  title="Semantic HTML Is the Easiest Performance and SEO Win You're Ignoring · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        HTML & SEO — April 2026
+      </Fragment>
+      <Fragment slot="title">
+        Semantic HTML Is the Easiest Performance and SEO Win You're Ignoring
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-teal-600/20 to-green-500/20 flex items-center justify-center">
+          <span class="text-4xl">&#128220;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Stop Building With Divs
+      </Fragment>
+      <Fragment slot="content">
+        View source on most business websites and you'll find a sea of &lt;div&gt; elements. Div for the header. Div for the navigation. Div for the main content. Div for each section. Div for the footer. Sprinkle in some &lt;span&gt; elements and you've got a website that a browser can render but neither a search engine nor a screen reader can properly understand.
+
+        Semantic HTML is the practice of using HTML elements that describe their content and purpose, not just their visual appearance. It's also the easiest win in web development — free performance improvements, free SEO benefits, free accessibility gains. No build tools. No libraries. No configuration. Just better markup.
+
+        <strong>What semantic HTML actually means</strong>
+
+        HTML5 introduced elements that carry meaning: &lt;header&gt;, &lt;nav&gt;, &lt;main&gt;, &lt;article&gt;, &lt;section&gt;, &lt;aside&gt;, &lt;footer&gt;, &lt;figure&gt;, &lt;figcaption&gt;, &lt;time&gt;, &lt;address&gt;, and more. Each one tells browsers, search engines, and assistive technologies something specific about the content it contains.
+
+        A &lt;nav&gt; element tells a screen reader "this is a navigation region — the user can jump here directly." A &lt;main&gt; element says "this is the primary content of the page." An &lt;article&gt; element says "this is a self-contained piece of content that could stand alone." A &lt;div&gt; says nothing. It's a generic container with zero semantic meaning.
+
+        <strong>The SEO advantage is real</strong>
+
+        Google's crawler parses your HTML to understand your content hierarchy. When you use &lt;main&gt;, Google knows where your primary content lives. When you use &lt;article&gt;, it can identify distinct content blocks. When you use proper heading hierarchy — a single &lt;h1&gt; followed by &lt;h2&gt;, &lt;h3&gt;, and so on — it understands the structure and relative importance of your content sections.
+
+        This isn't theoretical. Google's own documentation explicitly recommends semantic HTML for better content understanding. Pages with proper heading structure consistently outperform pages with flat or broken heading hierarchies for relevant search queries. Rich snippets, FAQ schema, and featured snippets all depend on Google being able to parse your content structure correctly — and semantic HTML is the foundation of that parsing.
+
+        <strong>The accessibility win is massive</strong>
+
+        Screen readers use semantic elements as navigation landmarks. A VoiceOver user can press a key to jump directly to the &lt;nav&gt;, the &lt;main&gt;, or any &lt;h2&gt; on the page. On a div-based site, they have to Tab through every single element sequentially — imagine trying to find the contact section on a 3,000-word page by pressing Tab 200 times.
+
+        Proper heading hierarchy is the foundation of screen reader navigation. Headings must follow a logical order — &lt;h1&gt; then &lt;h2&gt; then &lt;h3&gt;. Skipping levels (jumping from &lt;h1&gt; to &lt;h4&gt;) confuses assistive technology. Using headings for visual styling (making something an &lt;h3&gt; because you want smaller bold text) instead of hierarchy breaks the navigation model entirely. Use CSS for visual styling. Use headings for document structure.
+
+        <strong>The performance angle</strong>
+
+        Semantic HTML is inherently lighter than the alternatives. A &lt;button&gt; element is focusable, keyboard-activatable, and correctly announced by screen readers with zero JavaScript. Recreating that behaviour with a &lt;div&gt; requires tabindex, a click handler, a keydown handler for Enter and Space, an ARIA role, and focus management code. That's 20+ lines of JavaScript to replicate what the browser gives you for free with the correct element.
+
+        Multiply this across an entire site — custom divs for buttons, spans for links, divs for form controls — and you accumulate significant unnecessary JavaScript. We've seen sites drop 10-15KB of JS simply by replacing custom div-based components with native HTML elements.
+
+        <strong>The elements most sites get wrong</strong>
+
+        &lt;button&gt; vs &lt;a&gt;: If it navigates to a URL, it's an &lt;a&gt; element. If it triggers an action (open a modal, submit a form, toggle a menu), it's a &lt;button&gt;. Divs and spans with click handlers are neither.
+
+        &lt;section&gt; vs &lt;div&gt;: A &lt;section&gt; represents a thematic grouping of content with a heading. If the content doesn't have a heading or isn't a distinct thematic section, use a &lt;div&gt;. Don't replace every &lt;div&gt; with &lt;section&gt; — that's just as unsemantic.
+
+        &lt;figure&gt; and &lt;figcaption&gt;: For images with captions, diagrams, code snippets, and quotes that are referenced from the main content. Most sites put images in plain &lt;div&gt; wrappers when &lt;figure&gt; with &lt;figcaption&gt; would give search engines and screen readers the relationship between the image and its description.
+
+        &lt;time&gt;: For dates and times. Adding a datetime attribute with a machine-readable format helps search engines understand when content was published, when events occur, and when business hours apply.
+
+        <strong>A practical audit</strong>
+
+        Right-click your homepage and hit "View Source." Search for &lt;main&gt;. If it doesn't exist, your page has no declared primary content region. Count your heading elements — is there exactly one &lt;h1&gt;? Do the &lt;h2&gt; and &lt;h3&gt; elements follow a logical hierarchy? Search for div onclick — every instance is a semantic and accessibility failure. Check your navigation — is it inside a &lt;nav&gt; element? Does your site footer use &lt;footer&gt;?
+
+        If the answers are discouraging, the good news is that fixing semantic HTML is one of the fastest, cheapest improvements you can make. No redesign required. No framework migration. Just replacing generic elements with meaningful ones. It takes a few hours and the benefits are permanent.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

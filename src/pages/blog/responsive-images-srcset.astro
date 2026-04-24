@@ -1,0 +1,59 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Responsive images are the single biggest performance lever on most websites. Here's how srcset and sizes actually work, and how to use them correctly."
+  title="srcset and sizes: A Complete Guide to Responsive Images That Actually Load Fast · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Performance — April 2026
+      </Fragment>
+      <Fragment slot="title">
+        srcset and sizes: A Complete Guide to Responsive Images That Actually Load Fast
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-sky-500/20 to-blue-600/20 flex items-center justify-center">
+          <span class="text-4xl">&#128248;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Images That Do Not Destroy Your Page Speed
+      </Fragment>
+      <Fragment slot="content">
+        Images account for roughly 50% of the total byte weight of the average web page. On image-heavy sites — portfolios, e-commerce, real estate, news — that number climbs to 70-80%. You can optimise your JavaScript, tree-shake your CSS, lazy-load your third-party scripts, and still fail every Core Web Vitals metric because you are serving a 2400px wide hero image to a phone with a 390px screen. Responsive images are not an optimisation. They are the optimisation. And most websites get them wrong because the syntax is confusing and the mental model is unintuitive.
+
+        The Problem With a Single Image Source
+        A standard &lt;img&gt; tag with a single src attribute serves the same image file to every device. A 1200px wide JPEG at reasonable quality is about 200-400KB. On a desktop with a broadband connection, this loads quickly. On a mobile phone on a 4G connection in regional Australia, this is a noticeable delay on every single image. Multiply by the 10-20 images on a typical page and you have added 2-4MB of unnecessary data transfer. The user's device downloads a 1200px image and then shrinks it to 390px for display. Every pixel beyond what the screen can show is wasted bandwidth, wasted battery, and wasted time.
+
+        How srcset Works
+        The srcset attribute lets you provide multiple versions of the same image at different sizes. The browser then chooses the most appropriate version based on the device's screen size and pixel density. The syntax looks like this: srcset="image-400.jpg 400w, image-800.jpg 800w, image-1200.jpg 1200w". Each entry specifies an image file and its intrinsic width using the w descriptor. The browser now knows that three versions of this image exist at 400, 800, and 1200 pixels wide. But srcset alone is not enough — the browser also needs to know how wide the image will be displayed on the page, which is what the sizes attribute provides.
+
+        The sizes Attribute Is Where Everyone Gets Lost
+        The sizes attribute tells the browser how wide the image will be in the layout, using media conditions. For example: sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw". This tells the browser: on screens up to 640px wide, the image fills the full viewport width. On screens up to 1024px, the image is half the viewport. On wider screens, it is a third. The browser combines this information with the device pixel ratio to select the right source from srcset. A phone with a 390px screen at 2x density needs an image that is 780px wide — so it selects the 800w version. A desktop at 1440px showing the image at 33vw needs a 475px image — so it selects the 400w version. This math is why serving a single 2400px image is wasteful. Most devices need far less.
+
+        The picture Element for Art Direction
+        Sometimes you do not just want different sizes — you want different crops. A panoramic hero image on desktop might need to become a square crop on mobile to fit the composition. The &lt;picture&gt; element handles this. You define &lt;source&gt; elements with media queries that point to different image files, and the browser selects the first matching source. This is art direction, not just resolution switching. Use &lt;picture&gt; when the composition changes between breakpoints. Use srcset when you just need the same image at different resolutions.
+
+        Modern Image Formats
+        Serving images as JPEG in 2026 is leaving performance on the table. WebP provides 25-35% smaller files than JPEG at equivalent quality. AVIF provides 40-50% smaller files. Both are supported by all modern browsers. The &lt;picture&gt; element with &lt;source&gt; tags lets you serve AVIF to browsers that support it, WebP as a fallback, and JPEG as the final fallback. Alternatively, if you are using a CDN like Cloudflare, Netlify, or Vercel, they can handle format negotiation automatically via the Accept header — the browser requests the image, the CDN detects format support, and serves the optimal format without any markup changes.
+
+        Lazy Loading
+        Add loading="lazy" to every image that is not in the initial viewport. This is native browser lazy loading — no JavaScript library required. The browser will defer loading the image until the user scrolls near it. For LCP images — typically the hero image or the first visible content image — do not lazy load. These should load as soon as possible. Add fetchpriority="high" to your LCP image to tell the browser it is critical. This combination — eager loading with high priority for above-the-fold images, lazy loading for everything else — is the optimal default.
+
+        The Build Pipeline
+        Generating multiple image sizes manually is not sustainable. Use a build-time image pipeline. Astro's built-in Image component handles this automatically — point it at a source image and it generates optimised, responsive variants at build time. Sharp (the library Astro uses under the hood) can also be used directly in a Node.js script to batch-process images. Define your breakpoints (400, 800, 1200, 1600), your formats (AVIF, WebP, JPEG), and let the pipeline generate every combination. This is a one-time setup that pays dividends on every page load for the lifetime of the project.
+
+        Responsive images are boring infrastructure work. Nobody has ever looked at a website and said "wow, great srcset implementation." But they have looked at a website that loads instantly on their phone and thought "this feels fast." That feeling is worth the thirty minutes it takes to set up the pipeline correctly.
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

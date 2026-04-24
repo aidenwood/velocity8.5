@@ -1,0 +1,69 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="How we build SaaS platforms from scratch — multi-tenant architecture, auth, billing, and the decisions that matter before you write a single line of code."
+  title="So You Want to Build a SaaS Product — Here's Everything We Decide Before Writing Code · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        SaaS Development
+      </Fragment>
+      <Fragment slot="title">
+        So You Want to Build a SaaS Product — Here's Everything We Decide Before Writing Code
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-blue-600/20 to-indigo-500/20 flex items-center justify-center">
+          <span class="text-4xl">&#9881;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Multi-Tenant Architecture Is Not Optional
+      </Fragment>
+      <Fragment slot="content">
+        Building a SaaS platform is not the same as building a web app and slapping a login page on it. We have shipped six production SaaS products and the pattern is always the same: the architecture decisions you make in week one determine whether the product scales or collapses at 100 users.
+
+        Here is the playbook we use on every SaaS build. No theory, no "it depends" hand-waving. These are the actual decisions and the actual stack.
+
+        Multi-Tenancy: Pick Your Model Early
+
+        There are three multi-tenancy models and you need to pick one before you write a single line of code. Shared database with tenant column — cheapest to run, hardest to secure. Schema-per-tenant — decent isolation, annoying migrations. Database-per-tenant — best isolation, most expensive. We use shared database with tenant column for 90% of builds, because Supabase Row Level Security makes it genuinely safe. Every table gets a tenant_id column and an RLS policy that filters on it. The user never sees another tenant's data because the database literally will not return it. This is not application-level filtering that some junior dev forgets to add to one query. It is enforced at the database layer. Every query, every time.
+
+        Authentication: Do Not Build Your Own
+
+        We use Supabase Auth for everything. Email/password, magic links, OAuth providers — it handles all of it and integrates directly with RLS policies via auth.uid(). The auth.users table is the source of truth and your RLS policies reference it directly. Here is what the flow looks like in practice. User signs up and gets assigned to a tenant. Their JWT includes custom claims with their tenant_id and role. Every database query automatically filters by that tenant_id through RLS. The application code never has to think about data isolation — the database handles it. We spent years building custom auth before Supabase existed. It was a nightmare of JWT rotation, session management, password hashing, and security patches. Do not do this to yourself in 2026.
+
+        Billing: Stripe Is the Only Answer
+
+        We have tried four different billing integrations. Stripe is the only one that does not make you want to quit software engineering. Here is how we wire it up. Stripe Checkout for the payment flow — never build a custom card form. Stripe webhooks to Supabase Edge Functions for subscription lifecycle events. A subscriptions table in Supabase that mirrors Stripe's state. RLS policies that check subscription status before allowing access to premium features. The webhook handler is the critical piece. When Stripe fires a customer.subscription.updated event, your Edge Function updates the local subscription record. When it fires customer.subscription.deleted, you downgrade or lock the account. Keep Stripe as the source of truth for billing state and sync it one-way to your database. Do not try to manage subscription state yourself.
+
+        The Database Schema Pattern
+
+        Every SaaS product we build starts with the same four tables: tenants, profiles, subscriptions, and whatever the core domain entity is. Tenants hold organisation-level settings. Profiles link auth.users to tenants with a role column. Subscriptions mirror Stripe state. Everything else references tenant_id. We use Supabase's foreign key relationships and cascade deletes. When a tenant is deleted, everything goes with it. No orphaned data, no cleanup scripts.
+
+        Edge Functions for Business Logic
+
+        Supabase Edge Functions handle everything that should not run in the browser — webhook processing, email notifications, PDF generation, third-party API calls. They run on Deno Deploy, cold start in under 50ms, and scale automatically. We use them for Stripe webhook handlers, Pipedrive CRM sync, scheduled tasks like usage aggregation, and email via Resend. The key insight is to keep Edge Functions thin. They receive a request, validate it, call the database, and return. No business logic frameworks, no ORMs. Just TypeScript and SQL.
+
+        Deployment and Infrastructure
+
+        Frontend deploys to Netlify. Supabase handles the entire backend. That is it. No Kubernetes, no Docker in production, no DevOps team. For a typical SaaS product, hosting costs are under $50/month until you hit thousands of active users. Netlify handles the CDN, SSL, and preview deployments. Supabase handles the database, auth, real-time subscriptions, and file storage. This stack lets a solo developer or small team ship and operate a production SaaS product without an infrastructure engineer.
+
+        What We Actually Ship
+
+        FleetRoute — our field service scheduling platform — runs on exactly this architecture. Multi-tenant with subdomain isolation, Stripe subscriptions, Pipedrive CRM sync, Google Maps routing. It handles real businesses with real money flowing through it, and it was built by a team of one. That is the power of picking the right architecture on day one. You spend your time building features that matter instead of fighting infrastructure that does not.
+
+        If you are planning a SaaS build and want to skip the six months of wrong decisions we already made, book a discovery call. We will scope the architecture in a single session.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

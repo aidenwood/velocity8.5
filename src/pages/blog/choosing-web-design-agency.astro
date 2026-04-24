@@ -1,0 +1,57 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="How to choose a web design agency that delivers, from someone who runs one. Red flags, green flags, and the questions most people forget to ask."
+  title="How to Choose a Web Design Agency Without Getting Burned · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Agency Insights
+      </Fragment>
+      <Fragment slot="title">
+        How to Choose a Web Design Agency Without Getting Burned (From Someone Who Runs One)
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-red-500/20 to-orange-600/20 flex items-center justify-center">
+          <span class="text-4xl">&#128293;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Most Agency Horror Stories Are Preventable
+      </Fragment>
+      <Fragment slot="content">
+        I have heard every agency horror story. The one that took the deposit and ghosted. The one that delivered a site that looked nothing like the mockup. The one that built on a platform the client could never leave. The one that took eight months to deliver a five-page website. Most of these stories have a common thread — the client did not know what questions to ask before signing. Here are the questions, the red flags, and the green flags, from someone on the other side.
+
+        The Questions Most People Forget to Ask
+
+        Who will actually do the work? In many agencies, the person you meet in the sales pitch is not the person who builds your site. Your project might be handed to a junior developer or outsourced entirely. Ask directly: who is building this, and can I talk to them? What platform will my site be built on, and do I own the code? Some agencies build on proprietary platforms. If you leave, you leave the website behind. Make sure you own the code, the design files, and the content. Can you show me sites you have built that are still live? A portfolio of beautiful mockups means nothing. Ask for live URLs. Check them on your phone. Check how fast they load. Look at them with a critical eye. What does your process look like after I sign? A good agency has a documented process — discovery, design, development, review, launch. If the answer is vague, the process is vague. What happens when I want changes after launch? Get the maintenance and support terms in writing. Some agencies include a support period. Others charge from day one. Know before you commit.
+
+        Red Flags That Should Stop You
+
+        They cannot show you live work. A portfolio full of screenshots and mockups with no live links means the work either does not exist or does not hold up in the real world. They guarantee first-page Google rankings. No one can guarantee Google rankings. Anyone who does is either lying or using black-hat techniques that will get your site penalised. They want to lock you into a long-term hosting contract. Website hosting should cost $10 to $50 per month, and you should be able to leave whenever you want. If an agency wants to charge you $200 per month for hosting and lock you in for two years, that is not a hosting plan. That is a financing scheme. They cannot explain their pricing. If an agency cannot break down where your money goes, they either do not know or do not want you to know. Both are bad. They pressure you to sign today. Good work does not require urgency tactics. If the offer expires at midnight, the agency is selling like a used car lot, not like a professional service.
+
+        Green Flags That Build Confidence
+
+        They ask about your business before they talk about design. The first conversation should be about your goals, your customers, and your problems — not about colour palettes and fonts. They have a clear, documented process. You should know exactly what happens in week one, week two, week three. No surprises. They show you work that is still live and still performing. Bonus points if they can share before-and-after metrics from a previous client. They are honest about what you do and do not need. An agency that talks you out of unnecessary features is an agency that prioritises your results over their invoice. They have clear terms around ownership, hosting, and ongoing support. Everything should be in writing, and nothing should feel like it is designed to trap you.
+
+        The Portfolio Test
+
+        Here is a practical exercise. Take the agency's portfolio, open three of their live sites on your phone, and answer these questions. Does the site load in under three seconds? Is it easy to find the main call to action? Does the design feel modern and professional? Can you navigate without confusion? If the answer to any of these is no, that is the quality of work you will receive. An agency's portfolio is the best work they have ever done. If the best is not good enough, the average will be worse.
+
+        The Gut Check
+
+        After all the rational evaluation, trust your gut. Does this agency communicate clearly? Do they respond promptly? Do they seem genuinely interested in your business, or are you just the next project in the pipeline? The agency-client relationship lasts months, sometimes years. You need to actually enjoy working with these people. The best agency for your business is not the biggest, the cheapest, or the one with the flashiest website. It is the one that understands your goals, communicates clearly, delivers quality work, and treats your budget like it matters. Because it does.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

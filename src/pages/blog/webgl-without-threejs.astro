@@ -1,0 +1,60 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="A walkthrough of raw WebGL fundamentals — shaders, buffers, and the rendering pipeline — so you understand what Three.js abstracts away and why that matters."
+  title="Let's Write Some Raw WebGL (And Understand Why Three.js Exists) · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Creative Development — April 2026
+      </Fragment>
+      <Fragment slot="title">
+        Let's Write Some Raw WebGL (And Understand Why Three.js Exists)
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-red-600/20 to-orange-500/20 flex items-center justify-center">
+          <span class="text-4xl">🔺</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Down to the Metal (Sort Of)
+      </Fragment>
+      <Fragment slot="content">
+        Every Three.js developer should write raw WebGL at least once. Not because you'll use it in production — you almost certainly won't — but because understanding what's happening underneath transforms you from someone who uses Three.js into someone who understands Three.js. And that understanding is what separates "I followed a tutorial" from "I can debug why my scene is rendering black."
+
+        WebGL is a JavaScript API that talks to your GPU. That's it. It doesn't know what a "cube" is. It doesn't have a concept of a "scene" or a "camera" or a "material." It knows two things: vertices (points in space) and fragments (pixels on screen). Everything else — every 3D object, every lighting effect, every texture — is math you write in small programs called shaders.
+
+        There are two types of shaders. The vertex shader runs once for every vertex in your geometry. Its job is to take a 3D coordinate and transform it into a 2D position on screen. This is where model transformations (moving the object), view transformations (positioning the camera), and projection transformations (perspective vs orthographic) happen. It's linear algebra — matrix multiplication, specifically. If you remember mat4 from university maths, this is where it lives.
+
+        The fragment shader (sometimes called a pixel shader) runs once for every pixel that your geometry covers on screen. Its job is to determine the colour of that pixel. This is where lighting calculations, texture sampling, and visual effects happen. If you want a surface to look shiny, the fragment shader calculates how light bounces off it. If you want a texture, the fragment shader samples colour from an image.
+
+        Between these two shaders sits the rasteriser — a fixed-function part of the GPU pipeline that takes the vertex shader's output and figures out which pixels on screen are covered by each triangle. You don't write the rasteriser. The GPU does that for you. But understanding that it exists explains why everything in 3D graphics is made of triangles: the rasteriser only understands triangles.
+
+        To draw a single coloured triangle in raw WebGL, you need to: create a canvas and get a WebGL context, write a vertex shader in GLSL (a C-like language), write a fragment shader, compile both shaders and link them into a program, create a buffer to hold your triangle's vertex positions, bind the buffer and tell WebGL how to read it, set uniforms (global variables for the shaders), and finally call gl.drawArrays() to render. That's roughly 60-80 lines of boilerplate to draw three coloured points on a screen.
+
+        In Three.js, the equivalent is about 8 lines. You create a scene, a camera, a renderer, a geometry, a material, a mesh, add the mesh to the scene, and render. Three.js writes all those shaders for you. It creates all those buffers. It handles the matrix math. It manages the draw calls. The abstraction is enormous — and enormously valuable.
+
+        So why bother learning the raw version? Three reasons.
+
+        First, custom shaders. The most visually impressive effects on the web — glowing edges, liquid distortions, procedural textures, gradient noise, shader-based particles — are written in GLSL, running directly on the GPU. Three.js gives you the ShaderMaterial to write custom vertex and fragment shaders while it handles the boilerplate. But you need to understand GLSL to use it. You need to know what varyings, uniforms, and attributes are. You need to understand the coordinate systems. Raw WebGL teaches you all of this.
+
+        Second, debugging. When a Three.js scene renders black, or a texture appears flipped, or a model's normals are inverted, understanding the pipeline tells you where to look. Is it the vertex shader output? The fragment shader? A missing light? A wrong matrix? Without mental model of the pipeline, debugging 3D is just guessing.
+
+        Third, performance optimisation. When you know that every draw call has overhead, that every shader switch costs cycles, that every texture upload blocks the pipeline, you make better architectural decisions. You batch geometry. You use instancing. You atlas textures. You minimise state changes. This knowledge comes from understanding the GPU pipeline, not from reading Three.js documentation.
+
+        The modern WebGL ecosystem includes WebGPU, which is the successor API with a more modern design and better performance characteristics. It's available in Chrome and Edge, with Safari support progressing. WebGPU uses WGSL instead of GLSL and has a completely different API structure. But the concepts — vertex processing, fragment processing, buffers, pipelines — are the same. Learn WebGL's mental model, and you'll understand WebGPU faster.
+
+        Our recommendation: spend a weekend writing raw WebGL. Draw a triangle. Add a uniform to change its colour. Add a texture. Add a rotation matrix. Then close that file and go back to Three.js with a much deeper understanding of what every line is doing. It's the best investment you'll make in your creative coding career.
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

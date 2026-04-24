@@ -1,0 +1,59 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Rust is rewriting JavaScript tooling — SWC, Turbopack, Biome, Lightning CSS. The toolchain revolution explained for web developers."
+  title="Rust Is Quietly Rewriting Every JavaScript Tool You Use · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Tech News
+      </Fragment>
+      <Fragment slot="title">
+        Rust Is Quietly Rewriting Every JavaScript Tool You Use
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-orange-600/20 to-red-500/20 flex items-center justify-center">
+          <span class="text-4xl">&#129408;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        The Great Toolchain Rewrite
+      </Fragment>
+      <Fragment slot="content">
+        Here is a fun pattern to notice: every JavaScript tool you rely on is being rewritten in Rust. Your bundler? Rust. Your transpiler? Rust. Your linter? Rust. Your CSS processor? Believe it or not, also Rust. And the speed improvements are not marginal. They are 10x to 100x faster. This is the biggest shift in frontend tooling since webpack won the bundler wars, and most developers are not paying attention.
+
+        Let us start with the body count. Babel, the JavaScript transpiler that has been the backbone of modern development since 2014, is being replaced by SWC. SWC does the same thing — transforms modern JavaScript and TypeScript into browser-compatible code — but it does it 20x faster because it is written in Rust instead of JavaScript. Next.js already uses SWC by default. If you are on Next.js 12 or later, you are already running Rust in your build pipeline. You just did not notice because it was faster.
+
+        Turbopack is the next domino. Vercel hired Tobias Koppers, the creator of webpack, and said "rebuild it in Rust." The result is a bundler that is 700x faster than webpack on large projects in certain benchmarks. Those benchmarks are cherry-picked and unrealistic, obviously, but even the conservative real-world numbers show 5-10x improvements. When your hot module replacement goes from two seconds to two hundred milliseconds, you feel it in your bones.
+
+        Biome, formerly Rome, took a different approach. Instead of replacing one tool, it replaces all of them. Linter, formatter, and import sorter in a single Rust binary. It is 25x faster than ESLint and Prettier combined, and it does not need a node_modules folder full of plugins to work. One tool. One config file. One install. The dream of a unified JavaScript toolchain is finally real, and it is written in Rust.
+
+        Lightning CSS is doing the same thing to PostCSS that SWC did to Babel. It handles CSS parsing, transformation, prefixing, minification, and bundling in a single Rust-powered tool. It is 100x faster than PostCSS and cssnano combined. Tailwind CSS v4 uses it under the hood, which is part of why Tailwind v4 builds are noticeably faster.
+
+        So Why Rust?
+
+        JavaScript is a terrible language for writing developer tools. It is single-threaded, garbage-collected, dynamically typed, and interpreted. None of those properties are what you want when you need to parse millions of lines of code as fast as possible. Rust is everything JavaScript is not: compiled, zero-cost abstractions, no garbage collector, real multithreading, and a type system that prevents entire categories of bugs at compile time. The performance difference is not a language preference — it is physics.
+
+        But Here Is The Thing
+
+        You probably do not need to care. And I mean that sincerely. The whole point of these Rust rewrites is that they are drop-in replacements. SWC has Babel-compatible configuration. Biome follows ESLint rule naming. Turbopack works with your existing Next.js project. You get the speed for free without changing how you write code.
+
+        The developers who should care are the ones building tools, not using them. If you are writing a webpack plugin, a Babel transform, or a PostCSS plugin, your extension point is being deprecated by a Rust binary that does not have a JavaScript plugin API. That is the real disruption — not that builds are faster, but that the customisation layer is disappearing.
+
+        What Should You Actually Do?
+
+        If you are on Next.js, you are already on SWC. Congrats, you are done. If you are still running ESLint and Prettier separately, try Biome — the migration takes about twenty minutes and you will never go back. If you are starting a new project, pick a framework that uses Rust tooling by default. Vite, Next.js, and Astro all do. And if you are a tools author, learn Rust. Not because JavaScript is dying — it absolutely is not — but because the next generation of developer tools will be built in a language that can parse a million lines of code before JavaScript finishes booting up.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

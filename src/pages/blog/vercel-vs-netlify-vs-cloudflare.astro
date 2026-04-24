@@ -1,0 +1,67 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Vercel vs Netlify vs Cloudflare Pages — the deployment platform wars. Honest pricing breakdowns and where your money actually goes."
+  title="The Deployment Platform Wars: An Honest Pricing Breakdown of Vercel, Netlify, and Cloudflare · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Tech News
+      </Fragment>
+      <Fragment slot="title">
+        The Deployment Platform Wars: An Honest Pricing Breakdown of Vercel, Netlify, and Cloudflare
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-cyan-600/20 to-blue-500/20 flex items-center justify-center">
+          <span class="text-4xl">&#9729;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        The Deployment Platform Wars
+      </Fragment>
+      <Fragment slot="content">
+        Every web developer needs to deploy somewhere, and in 2025 the three platforms fighting for your money are Vercel, Netlify, and Cloudflare Pages. The internet loves to argue about which is "best," but the real question is which one will not surprise you with a $5,000 invoice because your site went viral on Hacker News. Let us talk about what actually matters: pricing, performance, and lock-in.
+
+        Vercel: The Premium Choice
+
+        Vercel is the company behind Next.js, and they have built a deployment platform that makes Next.js development feel effortless. Deploy on git push, automatic preview deployments for every branch, edge functions, image optimisation, analytics — it is a genuinely excellent developer experience. The free tier is generous enough for personal projects and small sites.
+
+        The problem is pricing at scale. Vercel's Pro plan is $20 per team member per month, but the real costs are in bandwidth and serverless function invocations. Bandwidth is $40 per 100GB beyond the included amount. If you are running a SaaS with server-rendered pages, those serverless function costs add up fast. The horror stories of surprise bills are real and well-documented. Vercel has improved their spending controls, but the fundamental pricing model rewards low-traffic sites and punishes success.
+
+        The other concern is lock-in. Vercel-specific features like Edge Config, KV storage, and Vercel Postgres tie you to their platform. Even Next.js itself has features that work best (or only) on Vercel. The middleware, the caching layer, the ISR behaviour — the gap between "Next.js deployed on Vercel" and "Next.js deployed elsewhere" keeps growing. That is not an accident.
+
+        Netlify: The Balanced Option
+
+        Netlify was the original JAMstack platform, and they have evolved into a solid general-purpose deployment solution. The developer experience is comparable to Vercel — git-based deployments, preview branches, serverless functions, edge functions. The pricing is similar at the surface level: free tier for hobby projects, Pro at $19 per member per month.
+
+        Where Netlify differentiates is predictability. Their bandwidth pricing is more transparent, and they were early to implement spending caps that actually prevent runaway bills. Netlify Functions, Netlify Forms, and Netlify Identity are useful built-in features that save you from wiring up third-party services for common needs.
+
+        Netlify's weakness is that they are not the "default" for any major framework. Vercel has Next.js. Cloudflare has Workers. Netlify supports everything but is not the canonical home for anything. That said, their Astro, Remix, and SvelteKit support is excellent, and the lack of framework lock-in is arguably a feature.
+
+        Cloudflare Pages: The Price Disruptor
+
+        Cloudflare Pages entered the deployment platform market and essentially said "what if hosting was nearly free?" The free tier includes unlimited bandwidth. Read that again. Unlimited bandwidth on the free tier. The paid plan is $5 per month and includes unlimited requests to Workers (their serverless functions, with some fair-use limits). If your primary concern is cost, Cloudflare wins so decisively it is almost unfair.
+
+        The trade-off is developer experience. Cloudflare Pages is less polished than Vercel or Netlify. The build system is more limited. The function runtime is Workers, which is V8 isolates rather than Node.js — meaning some npm packages do not work. The dashboard is functional but not beautiful. Preview deployments work but the integration is not as seamless.
+
+        However, Cloudflare's edge network is arguably the best in the world. Your site runs on over 300 points of presence globally. Response times are consistently excellent. And because Workers run on V8 isolates rather than containers, cold starts are effectively zero.
+
+        Our Recommendation
+
+        We deploy client sites on Netlify. Not because it is the cheapest (Cloudflare wins) or the most polished (Vercel wins), but because it hits the sweet spot of developer experience, pricing predictability, and framework flexibility. For a typical Astro site, Netlify's free or Pro tier covers everything we need without surprises.
+
+        If you are a solo developer building a Next.js project, Vercel's free tier is hard to beat. If you are cost-conscious and comfortable with a less polished experience, Cloudflare Pages is absurdly good value. And if you are an agency deploying dozens of client sites, Netlify's team features and predictable pricing make it the pragmatic choice. There is no wrong answer here — just different trade-offs for different situations.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

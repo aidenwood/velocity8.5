@@ -1,0 +1,59 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Astro 5 shipped with content collections, server islands, and major DX improvements. Here's our full review after 6 months of production use."
+  title="We Shipped 6 Months of Production Sites on Astro 5 — Here's Our Full Review · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Framework Review
+      </Fragment>
+      <Fragment slot="title">
+        We Shipped 6 Months of Production Sites on Astro 5 — Here's Our Full Review
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-orange-600/20 to-red-500/20 flex items-center justify-center">
+          <span class="text-4xl">🚀</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Six Months of Production Use
+      </Fragment>
+      <Fragment slot="content">
+        Astro 5 shipped in December 2024 and we've been running it in production across multiple client sites for six months now. This isn't a first-impressions review. This is a "we've built real things with it and here's what we actually think" review.
+
+        The short version: Astro 5 is the best framework for content-driven websites, and it's not particularly close.
+
+        Content Collections got a complete overhaul and it's the feature that impacts daily development the most. The Content Layer API is the new foundation — it's a flexible, pluggable system for loading content from any source. Markdown files, CMS APIs, databases, JSON feeds — they all go through the same pipeline with full type safety. You define your collection schema with Zod, and Astro gives you typed queries and validation at build time. No more runtime surprises from malformed frontmatter. We've used this to pull content from headless CMS setups and it's clean as anything.
+
+        Server Islands are the headline architectural feature, and they deliver on the promise. The concept is simple: most of your page renders statically at build time for maximum performance, but specific components can opt into server-side rendering on each request. Think of a product page where the layout, images, and description are static, but the pricing and availability are dynamic. The static parts are cached at the edge, the dynamic parts render on the server, and the user gets a fast page with fresh data.
+
+        In practice, Server Islands solve the problem that previously required you to choose between full SSG and full SSR. We have client sites with 95% static content and one or two dynamic widgets per page. Before Server Islands, we either made the whole page SSR (slower, more expensive) or built a client-side fetch solution (loading spinners, CLS issues). Now we mark the dynamic components as server islands and everything else is static HTML served from the CDN. Performance is excellent.
+
+        The developer experience in Astro 5 is mature and polished in a way that earlier versions weren't. The dev server is fast and stable. Error messages are clear and actionable. The VS Code extension handles .astro files well — syntax highlighting, IntelliSense, and go-to-definition all work. Hot module replacement is reliable. These aren't exciting features, but they're the ones that affect your daily experience more than any headline feature.
+
+        View Transitions got improvements too. The built-in page transition system is smoother and more configurable. For multi-page sites that want SPA-like navigation without shipping an SPA framework, this is compelling. We use it on portfolio sites and the effect is subtle but noticeable — pages feel connected rather than disjointed.
+
+        The Astro ecosystem continues to grow. The integration system is well-designed — adding Tailwind, React, sitemap generation, or image optimization is a one-line command. Third-party integrations for things like SEO, analytics, and CMS connections are plentiful. The documentation is consistently excellent.
+
+        Where Astro still isn't the right choice: heavy client-side applications. If your project is a dashboard, a SaaS app, or anything where most of the page is interactive, you want Next.js or a dedicated SPA framework. Astro can render React components, but it's not designed to be a React app framework. It's designed to be a content site framework that can use React components. That distinction matters.
+
+        Our stack recommendation for 2025: Astro for marketing sites, landing pages, blogs, portfolios, and any content-heavy project. Next.js for web applications with complex client-side state. Supabase for the backend in both cases. Tailwind v4 for styling. Deploy to Netlify.
+
+        We've been on Astro since version 2 and every major release has validated that bet. Astro 5 isn't just an incremental improvement — it's the version where Astro stopped being "the new kid" and became the obvious choice for content websites. If you're still spinning up a Next.js project for a marketing site, you're overcomplicating it.
+
+        Astro does less, on purpose, and that's exactly why it's better.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

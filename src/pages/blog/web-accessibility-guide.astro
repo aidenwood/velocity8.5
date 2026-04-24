@@ -1,0 +1,71 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Web accessibility isn't optional — it's a legal requirement, a business advantage, and the right thing to do. Here's how to actually implement it."
+  title="Accessibility Isn't a Feature, It's a Baseline — Here's How to Actually Do It · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Accessibility & UX — April 2026
+      </Fragment>
+      <Fragment slot="title">
+        Accessibility Isn't a Feature, It's a Baseline — Here's How to Actually Do It
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-blue-600/20 to-indigo-500/20 flex items-center justify-center">
+          <span class="text-4xl">&#9855;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        The Baseline, Not the Bonus
+      </Fragment>
+      <Fragment slot="content">
+        Here's a question that exposes a lot about how an agency thinks: when in the project timeline do you address accessibility? If the answer is "at the end" or "when the client asks for it," you're building inaccessible websites by default and retrofitting compliance as an afterthought. That's expensive, incomplete, and in 2026, legally risky.
+
+        One in five Australians lives with a disability. Globally it's over a billion people. These aren't edge cases — they're a massive segment of your audience that most websites actively exclude through lazy markup and untested interfaces. The Web Content Accessibility Guidelines (WCAG) 2.2 AA standard isn't some aspirational framework. It's the baseline that Australian discrimination law effectively references, and the standard that the EU's European Accessibility Act now enforces with real penalties.
+
+        So let's skip the "why" and get into the "how."
+
+        <strong>Start with semantic HTML</strong>
+
+        Most accessibility problems aren't solved with ARIA attributes — they're solved by using the right HTML elements in the first place. A &lt;button&gt; is focusable, activatable via keyboard, and announced correctly by screen readers. A &lt;div onclick="..."&gt; is none of those things without significant extra work. Use &lt;nav&gt; for navigation. Use &lt;main&gt; for primary content. Use &lt;h1&gt; through &lt;h6&gt; in logical order. This single practice eliminates roughly 50% of accessibility issues before you write a line of CSS.
+
+        <strong>Keyboard navigation is non-negotiable</strong>
+
+        Try using your website with only a keyboard. Tab through every interactive element. Can you reach the navigation? Can you open the mobile menu? Can you submit the contact form? Can you close a modal? If the answer to any of these is "no," your site fails a basic WCAG requirement. Every interactive element must be reachable via Tab and activatable via Enter or Space. Focus states must be visible — and no, removing the outline because it's "ugly" is not acceptable. Style it, don't hide it.
+
+        <strong>Colour contrast matters more than you think</strong>
+
+        WCAG AA requires a 4.5:1 contrast ratio for normal text and 3:1 for large text. That light grey placeholder text on a white background? It fails. That trendy low-contrast design with slate-400 on slate-100? It fails. Check every text/background combination with a contrast checker. We use the WebAIM contrast checker or the built-in Chrome DevTools audit. Beautiful design and accessible contrast are not mutually exclusive — it just means you need to be intentional about your palette.
+
+        <strong>Images need real alt text</strong>
+
+        "Image" is not alt text. "IMG_4032.jpg" is not alt text. The alt attribute should describe the content and function of the image. If a hero image shows a team collaborating at a desk, say "Team of four collaborating around a shared desk in our Gold Coast office." If an image is purely decorative, use an empty alt attribute — alt="" — so screen readers skip it entirely. Every informational image without meaningful alt text is invisible content to screen reader users.
+
+        <strong>Forms are where most sites completely fail</strong>
+
+        Every input needs a visible, associated &lt;label&gt;. Placeholder text is not a label — it disappears when the user starts typing and offers no persistent context. Error messages need to be programmatically associated with their fields using aria-describedby. Required fields need to be indicated both visually and programmatically. Form validation errors should be announced to screen readers, not just shown in red text that a colour-blind user might not notice.
+
+        <strong>Test with actual tools</strong>
+
+        Automated testing catches about 30-40% of accessibility issues. Tools like axe DevTools, Lighthouse, and WAVE will find missing alt text, contrast failures, and missing form labels. But they won't catch logical heading order issues, keyboard traps, or whether your custom dropdown is actually usable with a screen reader. Manual testing is essential. We test with VoiceOver on Mac, keyboard-only navigation, and browser zoom at 200%. If you've never used a screen reader on your own website, do it today. The experience is humbling.
+
+        <strong>The business case is straightforward</strong>
+
+        Accessible websites perform better in search engines because they use semantic markup that Google can parse more effectively. They convert better because they're usable by a wider audience. They're more resilient because they don't depend on a single interaction modality. And they protect you from legal liability — accessibility lawsuits have increased 300% since 2018 in the US alone, and Australia is following the same trajectory.
+
+        We build accessibility into every project from day one. It's not a line item on the invoice. It's baked into how we write markup, how we choose colours, how we test before launch, and how we structure content. If your current website hasn't been audited for accessibility, it almost certainly has issues. The good news is that most of them are straightforward to fix — you just have to decide that your entire audience matters, not just the ones using the latest Chrome on a MacBook.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

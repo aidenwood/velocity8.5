@@ -1,0 +1,61 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="The CSS :has() selector lets you style parent elements based on their children. It's the most powerful addition to CSS in years. Here's how we use it."
+  title="The :has() Selector Is the Most Powerful Thing CSS Has Added in a Decade · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        CSS & Frontend
+      </Fragment>
+      <Fragment slot="title">
+        The :has() Selector Is the Most Powerful Thing CSS Has Added in a Decade
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-amber-600/20 to-orange-500/20 flex items-center justify-center">
+          <span class="text-4xl">🎯</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        CSS Can Finally Select Parents
+      </Fragment>
+      <Fragment slot="content">
+        For the entire history of CSS, selectors have worked in one direction: parent to child. You could style a child based on its parent, but never the other way around. Want to highlight a form field's label when the input has focus? JavaScript. Want to change a card's border when it contains an image? JavaScript. Want to adjust a nav layout when it contains a dropdown? JavaScript.
+
+        The :has() selector reverses that. It's a parent selector, a conditional selector, and honestly a "why didn't we have this twenty years ago" selector all rolled into one. And as of late 2023, it works in every major browser.
+
+        The basic syntax: .card:has(img) selects any .card element that contains an img. That's it. You're selecting the parent based on what's inside it. But that simple capability unlocks an absurd number of patterns that previously required JavaScript or awkward HTML restructuring.
+
+        Let's talk about real use cases from actual client projects. First: form styling. form:has(:focus-visible) lets you add a subtle highlight to the entire form container when any field inside it is focused. .field:has(:invalid) lets you style the wrapper div — the label, the helper text, the border — when the input inside it fails validation. Before :has(), achieving this required JavaScript event listeners and class toggling. Now it's pure CSS.
+
+        Navigation patterns are another big win. Consider a nav bar where some items have dropdown menus and some don't. nav li:has(.dropdown) can add a chevron icon, extra padding, or hover behavior only to the items that actually contain submenus. No modifier classes. No data attributes. The CSS reads the DOM structure and responds.
+
+        Here's a pattern we use constantly on client sites: conditional grid layouts. .grid:has(&gt; :nth-child(4)) applies styles only when the grid has four or more children. You can create grids that automatically switch from a two-column to three-column layout based on item count, with zero JavaScript. The grid adapts to its own content. We used this on a Gold Coast restaurant client whose menu sections had variable numbers of items — the grid just figured it out.
+
+        Combining :has() with other pseudo-classes is where things get genuinely powerful. body:has(.modal.is-open) can apply scroll-locking styles to the entire page when a modal is visible. html:has(input[type="checkbox"]#darkmode:checked) enables a pure CSS theme toggle — no JavaScript needed for the actual theme switch. These aren't party tricks. These are patterns that eliminate JavaScript dependencies.
+
+        The :has() selector also works as a general sibling combinator on steroids. h2:has(+ p) selects an h2 only when it's immediately followed by a paragraph. This is useful for typography: you might want different margin-bottom on a heading depending on whether a paragraph follows it or another heading does. Context-aware typography with pure CSS.
+
+        Performance considerations are worth mentioning. Early implementations of :has() had performance concerns because it inverts the selector matching direction. Browsers have optimized aggressively for this. In practice, we've seen zero measurable performance impact on production sites. The one caveat: avoid :has() in extremely hot animation paths where selectors are re-evaluated every frame. For layout and static styling, it's perfectly fast.
+
+        Specificity works as you'd expect. .card:has(img) has the same specificity as .card img — one class and one element. The :has() pseudo-class itself doesn't add specificity; the contents of its argument list do. This means it integrates cleanly into existing specificity hierarchies.
+
+        For agencies building component libraries, :has() reduces the number of component variants you need. Instead of card, card-with-image, card-with-video, card-with-icon — you ship one card component and let CSS handle the visual differences based on what content is actually present. Fewer props, fewer variants, less documentation, fewer bugs.
+
+        The :has() selector doesn't replace JavaScript interactivity. You still need JS for fetching data, handling complex state, and managing application logic. But it eliminates an entire category of "style coordination" JavaScript — the kind where you add or remove classes based on DOM state that CSS should have been able to read all along.
+
+        If you're building websites in 2026 and you're not using :has(), you're writing unnecessary JavaScript. Full stop.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

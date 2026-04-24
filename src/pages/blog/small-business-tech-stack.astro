@@ -1,0 +1,61 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="The essential tech stack every small business needs in 2026. No bloat, no unnecessary subscriptions — just the tools that actually matter."
+  title="The Tech Stack Every Small Business Needs in 2026 (It's Simpler Than You Think) · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Business Strategy
+      </Fragment>
+      <Fragment slot="title">
+        The Tech Stack Every Small Business Needs in 2026 (It's Simpler Than You Think)
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-indigo-500/20 to-violet-600/20 flex items-center justify-center">
+          <span class="text-4xl">&#129520;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        You Are Probably Using Too Many Tools
+      </Fragment>
+      <Fragment slot="content">
+        Every year, someone publishes a "tools every business needs" article that lists 30 different SaaS products. By the end, you feel like running a small business requires more software than launching a space shuttle. It does not. Here is the honest version — the tools that actually matter for a small business in 2026, broken down by what they do and what you should actually pay for them.
+
+        Layer 1: Your Online Presence
+
+        You need a website. Not a Facebook page pretending to be a website. Not a Linktree. A proper website with your own domain name. This is your home base online, the only platform you fully control, and the place where all your marketing ultimately sends people. What to use: if you need a simple brochure site, a well-built site on a modern framework like Astro costs $3,000 to $8,000 upfront and $10 to $30 per month to host. If you need e-commerce, Shopify is $39 per month and handles everything. If you need a content-heavy site, WordPress with good hosting is $20 to $50 per month. You also need a Google Business Profile. This is free, takes 20 minutes to set up, and is the single most impactful thing you can do for local visibility. If you do not have one, stop reading and go set one up. Total cost for Layer 1: $10 to $50 per month after the initial website build.
+
+        Layer 2: Communication
+
+        You need an email address on your own domain. Not a Gmail address with your business name in it — an actual name@yourbusiness.com.au email. This is basic credibility. Google Workspace costs $10 per user per month and gives you email, calendar, video calls, and document storage. You probably do not need a separate video conferencing tool, a separate cloud storage tool, or a separate document collaboration tool. Google Workspace does all of them well enough. You need a phone system that does not rely on your personal mobile. This could be as simple as a separate business SIM or as sophisticated as a VoIP system. For most small businesses, a service like OpenPhone at $19 per month gives you a dedicated business number with voicemail, call recording, and SMS — all on your existing phone. Total cost for Layer 2: $30 to $50 per month.
+
+        Layer 3: Customer Management
+
+        If you have more than 20 active customers or leads, you need a CRM. Not a spreadsheet. A CRM. The difference is that a CRM tracks interactions over time, reminds you to follow up, and stops leads from falling through the cracks. For most small businesses, a simple CRM is enough. HubSpot has a free tier that handles contacts, deals, and basic email tracking. Pipedrive starts at $24 per month and is excellent for sales-focused businesses. You do not need a CRM that does marketing automation, customer support ticketing, and project management. You need one that keeps track of who you are talking to and what was said. Total cost for Layer 3: $0 to $30 per month.
+
+        Layer 4: Financial Tools
+
+        You need accounting software. In Australia, that means Xero at $29 per month or MYOB at $25 per month. Both handle invoicing, bank feeds, BAS, and payroll. If you accept payments online, you need Stripe or Square. Stripe charges 1.75 percent plus 30 cents per transaction. Square is similar. These are not optional costs — they are the cost of doing business online. You do not need a separate invoicing tool, a separate expense tracker, or a separate payroll system. Xero or MYOB handles all of this. Total cost for Layer 4: $30 to $60 per month plus transaction fees.
+
+        Layer 5: Marketing
+
+        This is where most businesses over-invest in tools and under-invest in strategy. For email marketing, Mailchimp is free up to 500 contacts. If you outgrow that, ConvertKit or MailerLite are $15 to $30 per month. For social media, you do not need a scheduling tool until you are posting more than three times per week across multiple platforms. When you do, Buffer is $6 per month and does the job. For SEO, Google Search Console is free and tells you exactly how people find your site. You do not need an SEO tool subscription until your site has more than 50 pages. For analytics, Google Analytics is free. You do not need additional analytics tools for a small business website. Total cost for Layer 5: $0 to $40 per month.
+
+        The Total
+
+        Add it all up. A fully equipped small business tech stack in 2026 costs roughly $70 to $230 per month. Not $2,000. Not $5,000. Under $250. The businesses paying significantly more than this usually have one of two problems: they bought tools they never fully set up or adopted, or they are paying for enterprise features they do not use. Audit your subscriptions once a quarter. Cancel anything you have not logged into in 30 days. And remember — the best tool is the one your team actually uses, not the one with the longest feature list.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

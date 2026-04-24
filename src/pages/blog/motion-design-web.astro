@@ -1,0 +1,60 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Motion design for the web — when animation improves UX and when it kills it. Practical guidance on GSAP, CSS animations, and scroll-driven interactions."
+  title="The Fine Line Between Animation That Delights and Animation That Annoys · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Motion Design — April 2026
+      </Fragment>
+      <Fragment slot="title">
+        The Fine Line Between Animation That Delights and Animation That Annoys
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-purple-600/20 to-fuchsia-500/20 flex items-center justify-center">
+          <span class="text-4xl">✨</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        When Animation Helps and When It Hurts
+      </Fragment>
+      <Fragment slot="content">
+        Animation on the web exists on a spectrum. On one end, you have functional micro-interactions that make interfaces feel responsive and alive. On the other end, you have a 45-second loading animation that plays every time someone visits your homepage while they wait for a 6MB hero video to buffer. One of these helps. The other makes people leave.
+
+        The fundamental rule of web animation is this: if it doesn't serve a purpose, cut it. Animation should communicate state changes, guide attention, provide feedback, or create spatial continuity. If it's doing none of those things, it's decoration — and decoration that moves is worse than decoration that sits still, because it demands attention it hasn't earned.
+
+        Let's start with what works. Hover states and button feedback. When a user hovers over a button and it subtly shifts colour, scales up 2%, or gains a shadow, that's the interface saying "yes, this is interactive." This isn't fancy — it's fundamental. A button without a hover state feels broken. A link without a visited state feels uncertain. These micro-interactions take minutes to implement and make a measurable difference in usability.
+
+        Page transitions are the next tier. When navigating between pages in an SPA or a framework like Astro with View Transitions, a brief crossfade or slide animation maintains spatial context. The user understands they've moved somewhere new without the jarring flash of a full page reload. The key word is "brief." 200-300 milliseconds. Anything longer and you're adding latency, not polish.
+
+        Scroll-driven animations are the sweet spot for marketing sites. Elements fading in as they enter the viewport, progress bars that track scroll position, parallax layers that create depth — these enhance storytelling without blocking interaction. The CSS scroll-timeline API has made these achievable without JavaScript on modern browsers, which is a massive performance win. No library, no bundle size, no JavaScript execution cost.
+
+        For more complex choreography, GSAP remains the gold standard. ScrollTrigger for scroll-based sequences, timeline animations for coordinated multi-element transitions, and the physics-based easing functions that CSS can't replicate. We use GSAP on almost every portfolio and marketing site we build. The library is battle-tested, performant, and the API is genuinely well-designed — which is not something you can say about most animation libraries.
+
+        But GSAP isn't always the answer. If you're animating a single element's opacity on scroll, you don't need a 30KB JavaScript library. CSS will do that with a few lines and zero JavaScript overhead. The right tool depends on the complexity of the animation. Simple transitions: CSS. Complex timelines: GSAP. 3D interactions: Three.js. Choose the lightest tool that gets the job done.
+
+        Now, what doesn't work. Entrance animations that play every single time an element enters the viewport. You scroll down, elements fade in. You scroll back up and down again, they fade in again. This is the default behaviour of most "animate on scroll" libraries, and it's maddening. Animate once. Then stop. The user has seen it. They don't need a performance.
+
+        Loading animations that take longer than the content they're masking. If your skeleton screen or spinner is visible for 3 seconds because you're loading a 2MB JavaScript bundle, the animation isn't the solution — the bundle size is the problem. Don't polish the symptom.
+
+        Parallax that causes layout shifts or janky scrolling. If your parallax effect isn't running on the compositor thread — meaning it's animating properties other than transform and opacity — it will cause repaints, stutter on mid-range devices, and create a worse experience than no animation at all. Test on a real phone. Not your M3 MacBook. A $300 Android phone on a 4G connection. That's your benchmark.
+
+        Auto-playing carousels and sliders. I've said it before and I'll keep saying it: carousels are where conversions go to die. The animation is distracting, the timing is arbitrary, and users never see past the second slide. A static section with a clear message will outperform an animated slider every single time. The data has been clear on this for over a decade.
+
+        Accessibility is not optional. Always respect prefers-reduced-motion. This is a single CSS media query that disables or reduces animations for users who've requested it — people with vestibular disorders, motion sensitivity, or simply a preference for stillness. Wrapping your animations in this check is the bare minimum. In GSAP, you can use gsap.matchMedia() to conditionally apply animations based on this preference.
+
+        The best motion design is invisible. It doesn't announce itself. It doesn't demand applause. It makes the interface feel effortless and responsive, and when it's removed, something feels wrong — even if the user can't articulate what. That's the standard you should aim for.
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

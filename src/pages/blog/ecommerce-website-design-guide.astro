@@ -1,0 +1,81 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Ecommerce website design that actually sells — Shopify vs custom online stores, checkout UX, and what separates stores that convert from stores that don't."
+  title="The Difference Between an Online Store That Sells and One That Just Exists · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Ecommerce
+      </Fragment>
+      <Fragment slot="title">
+        The Difference Between an Online Store That Sells and One That Just Exists
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-violet-600/20 to-cyan-500/20 flex items-center justify-center">
+          <span class="text-4xl">🛒</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Most Online Stores Leave Money on the Table
+      </Fragment>
+      <Fragment slot="content">
+        The average ecommerce conversion rate sits around 2-3%. That means 97 out of 100 visitors leave without buying anything. Some of that is expected — people browse, compare, come back later. But a significant portion of those lost sales come down to ecommerce website design decisions that actively push buyers away. Bad product pages. Clunky checkout flows. Slow load times. Missing trust signals.
+
+        Here's how to build an online store design that actually sells.
+
+        <strong>Shopify vs custom: the honest breakdown</strong>
+
+        Let's start with the platform question because it shapes everything else.
+
+        A Shopify website is the right choice for most ecommerce businesses. Shopify handles hosting, security, PCI compliance, payment processing, inventory management, and shipping calculations out of the box. Their checkout is optimised by a team of hundreds of engineers, and it converts better than almost anything you could build yourself. For a business selling physical products with standard shipping, Shopify is hard to beat.
+
+        Custom ecommerce website design makes sense when your business model doesn't fit Shopify's assumptions. Subscription boxes with complex billing. B2B platforms with negotiated pricing. Marketplaces with multiple vendors. Custom product configurators. If your checkout flow needs to do something Shopify's Liquid templates can't accommodate, custom is the way. But be honest about whether you actually need that flexibility or if you just want it.
+
+        <strong>Product pages that convert</strong>
+
+        Your product page is where the buying decision happens. Here's what matters:
+
+        High-quality images from multiple angles. In 2026, users expect at least 4-5 product photos plus a video for anything over $50. Lifestyle shots showing the product in use convert better than studio shots on white backgrounds. If your online store design has tiny, single-angle product photos, you're leaving revenue on the table.
+
+        Clear, scannable descriptions. Lead with benefits, follow with specifications. Nobody reads a wall of text on a product page — use bullet points, bold key features, and keep paragraphs short. Answer the questions a buyer would ask in-store: What's it made of? How big is it? How does it compare to similar products?
+
+        Social proof on the product page itself. Reviews with photos, star ratings, and "X people bought this in the last 24 hours" counters. A product page without reviews converts significantly worse than one with even a handful of authentic reviews.
+
+        <strong>Checkout UX is everything</strong>
+
+        Cart abandonment rates hover around 70%. Seventy percent of people who add something to their cart don't complete the purchase. The biggest reasons: unexpected shipping costs, required account creation, and a checkout process that feels too long.
+
+        The fix: show shipping costs early (ideally on the product page), offer guest checkout, and minimise form fields. Auto-fill addresses. Show a progress indicator. Save cart contents for returning visitors. Every extra step or surprise in checkout is a percentage point of revenue lost.
+
+        Shopify's one-page checkout, introduced in 2023, addresses most of these issues out of the box. If you're on a custom platform, study Shopify's checkout as the benchmark for ecommerce website design.
+
+        <strong>Speed kills (slowly)</strong>
+
+        Ecommerce sites are particularly sensitive to page speed. Amazon found that every 100ms of additional load time cost them 1% in sales. Your online store isn't Amazon, but the principle holds. Product listing pages with unoptimised images, client-side filtering that locks the browser, and heavy tracking scripts all compound into a sluggish experience that suppresses conversions.
+
+        Lazy-load images below the fold. Use CDN-hosted product images with automatic format conversion. Defer non-critical JavaScript. Your Shopify website speed can be dramatically improved just by removing unused apps — every installed app adds JavaScript to your storefront, whether or not it's actively doing anything.
+
+        <strong>Mobile commerce is the majority</strong>
+
+        Over 60% of ecommerce traffic is mobile, and the gap is widening. Your online store design needs to prioritise mobile: large tap targets, thumb-friendly navigation, fast filtering, and a checkout that works perfectly on a 6-inch screen. If your desktop site converts at 3% and your mobile converts at 0.8%, you don't have a conversion problem — you have a mobile design problem.
+
+        <strong>Beyond launch</strong>
+
+        An ecommerce website design that sells isn't a one-time build. It's an ongoing optimisation process. Track your conversion funnel. Identify where users drop off. A/B test product page layouts, CTA copy, and checkout flows. Use heatmaps to see what users actually interact with. The stores that grow are the ones that treat their website as a living system, not a finished product.
+
+        We build <a href="/web-design" class="underline">ecommerce websites</a> that are designed around conversion data, not just aesthetics. If your online store isn't performing, there's usually a design-level reason — and it's usually fixable.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

@@ -1,0 +1,58 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Build a subscription SaaS app in a weekend with Stripe and Supabase. The modern indie hacker stack explained."
+  title="Let's Build a SaaS in a Weekend With Stripe and Supabase · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        SaaS Development
+      </Fragment>
+      <Fragment slot="title">
+        Let's Build a SaaS in a Weekend With Stripe and Supabase
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-violet-600/20 to-cyan-500/20 flex items-center justify-center">
+          <span class="text-4xl">&#128640;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        The Stack That Changed Everything for Indie Builders
+      </Fragment>
+      <Fragment slot="content">
+        Two years ago, building a SaaS with user authentication, a database, row-level security, and subscription billing would have taken weeks of setup. Today it takes a weekend. The combination of Supabase and Stripe has genuinely lowered the barrier to building real, revenue-generating software products. We have shipped three SaaS applications on this stack in 2025, and we are not going back.
+
+        Why Supabase Over Firebase
+        Firebase works. We have used it. But Supabase gives you Postgres — a real, full-featured relational database that you can query with SQL, that supports complex joins, that has decades of battle-tested reliability. Firebase gives you a document database that makes simple things easy and complex things painful. Row-Level Security in Supabase means your security policies live in the database, not scattered across your application code. Write a policy once, and it applies everywhere — your API, your realtime subscriptions, your edge functions. Try doing that cleanly with Firebase rules.
+
+        The Authentication Layer
+        Supabase Auth handles email and password, magic links, OAuth providers, and phone authentication out of the box. It integrates directly with your RLS policies, so a user can only read and write data that belongs to them without you writing a single line of middleware. We set up auth on our last project in about thirty minutes. That includes Google OAuth, email confirmation flows, and password reset. The DX is genuinely excellent.
+
+        Stripe Integration Pattern
+        Here is the pattern we use on every project. Supabase stores your user data and application state. Stripe handles all billing. A webhook syncs them. When a user subscribes through Stripe Checkout, a webhook fires and updates their subscription status in Supabase. When they cancel, another webhook updates the status. Your application just reads the subscription field from your users table and gates features accordingly. We use Stripe Checkout for the payment UI because building your own payment form is a waste of time. Stripe has already optimised that form for conversion across millions of transactions. Use it.
+
+        The Edge Function Glue
+        Supabase Edge Functions run on Deno at the edge, which makes them perfect for webhook handlers, API integrations, and any server-side logic you need. Our typical setup has two to three edge functions: one for handling Stripe webhooks, one for any third-party API integrations, and occasionally one for sending transactional emails. They deploy in seconds and scale automatically. No Docker containers, no server provisioning, no cold start complaints.
+
+        What a Weekend Build Looks Like
+        Saturday morning: set up your Supabase project, define your database schema, write your RLS policies. Saturday afternoon: build your Next.js or Astro front end with authentication flows. Sunday morning: integrate Stripe Checkout, set up your webhook handler, test the full billing flow. Sunday afternoon: deploy to Netlify, set up your custom domain, and invite your first beta users. We are not exaggerating — we have done this exact timeline multiple times. The key is choosing a stack where the infrastructure is someone else's problem so you can focus entirely on your product.
+
+        The Cost Breakdown
+        Supabase free tier covers most early-stage projects generously. Stripe charges 2.9% plus 30 cents per transaction with no monthly fees. Netlify free tier handles your hosting until you hit serious traffic. Your total monthly cost for a working SaaS with up to several hundred users is literally zero dollars until you start making money. Compare that to running your own servers, managing your own database, and integrating a payment processor from scratch. The economics are absurd.
+
+        When This Stack Does Not Work
+        If you need complex real-time collaboration like Figma, this stack will not cut it. If you need to process massive datasets, you will want dedicated infrastructure. If your compliance requirements demand specific data residency, you need to check Supabase's region availability. But for 90% of SaaS ideas — project management tools, booking platforms, invoicing apps, analytics dashboards — this stack is overkill in the best possible way.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

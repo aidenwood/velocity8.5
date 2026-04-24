@@ -1,0 +1,77 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="How to build SEO-friendly web design from the ground up — technical search engine optimisation baked into architecture, not bolted on after launch."
+  title="How to Bake SEO Into Your Website Architecture From Day One · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        SEO & Web Design
+      </Fragment>
+      <Fragment slot="title">
+        How to Bake SEO Into Your Website Architecture From Day One
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-violet-600/20 to-cyan-500/20 flex items-center justify-center">
+          <span class="text-4xl">🔍</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        SEO Starts at the Architecture Level
+      </Fragment>
+      <Fragment slot="content">
+        Most businesses think about search engine optimisation after their website is built. They launch a site, realise nobody can find it, then hire an SEO agency to "optimise" it. This is like building a house on sand and then hiring an engineer to fix the foundation. It's expensive, messy, and never as good as doing it right from the start.
+
+        SEO web design means baking search engine optimisation into the architecture of your site from day one. Here's what that actually looks like.
+
+        <strong>Semantic HTML structure</strong>
+
+        Google's crawlers don't see your beautiful design. They see HTML. And the quality of that HTML directly impacts how well Google understands your content. Every page needs a single h1 tag that describes what the page is about. Subheadings should use h2 and h3 tags in logical order — not chosen because of font size, but because of content hierarchy. Navigation should use proper nav elements. Main content should live in a main element. This isn't complicated, but the number of sites that get it wrong is staggering.
+
+        <strong>URL structure matters</strong>
+
+        Your URL is a ranking signal. aidxn.com/web-design tells Google exactly what that page is about. aidxn.com/services/page-id-4829 tells Google nothing. SEO web design plans URL structure before a single page is built. URLs should be short, descriptive, use hyphens between words, and follow a logical hierarchy that mirrors your site structure.
+
+        <strong>Internal linking architecture</strong>
+
+        Internal links are one of the most underrated tools in search engine optimisation. Every page on your site should link to related pages using descriptive anchor text — not "click here" but "our web design services" or "Gold Coast SEO packages." This helps Google understand the relationship between your pages and distributes page authority across your site. It also helps users find relevant content, which reduces bounce rates and increases session duration — both of which are indirect ranking signals.
+
+        <strong>Page speed as an SEO factor</strong>
+
+        Google has explicitly stated that page speed is a ranking factor. Core Web Vitals — LCP, INP, and CLS — are measured for every page and affect your search visibility. An SEO-optimised design is a fast design. That means optimised images, minimal JavaScript, efficient CSS, and fast hosting. If your site scores below 50 on mobile Lighthouse, your SEO optimisation efforts are fighting against your own code.
+
+        <strong>Mobile-first indexing</strong>
+
+        Google indexes the mobile version of your site first. Not the desktop version. If your mobile experience is a compressed, awkward version of your desktop site, that's what Google is evaluating. SEO web design in 2026 is inherently mobile-first design. The mobile experience needs to be complete, fast, and fully functional — not a scaled-down afterthought.
+
+        <strong>Schema markup and structured data</strong>
+
+        Schema markup tells Google exactly what type of content is on your page — is it a business? A product? A FAQ? A review? Proper schema can earn you rich snippets in search results: star ratings, FAQ dropdowns, price ranges, event dates. These rich results dramatically increase click-through rates. We implement schema markup on every site we build because it's one of the highest-ROI search engine optimisation tactics available.
+
+        <strong>Content architecture for topical authority</strong>
+
+        Google increasingly ranks sites based on topical authority — not just individual page quality. If you're a web design agency, having a single "services" page isn't enough. You need a cluster of related content: a main service page for web design, supporting blog posts about UX, page speed, responsive design, and SEO. Each piece links to the others, building a web of topical relevance that signals expertise to Google.
+
+        This post you're reading right now is part of that exact strategy.
+
+        <strong>Technical SEO checklist</strong>
+
+        Beyond content and structure, SEO-friendly web design includes: an XML sitemap submitted to Google Search Console, a robots.txt file that doesn't accidentally block important pages, canonical tags to prevent duplicate content issues, proper 301 redirects for any URLs that have changed, meta titles and descriptions on every page, Open Graph tags for social sharing, and a clean crawl with no broken links or redirect chains.
+
+        <strong>SEO optimisation is not a one-time task</strong>
+
+        The websites that rank well aren't the ones that did SEO once and forgot about it. They're the ones with ongoing content, regular technical audits, and a design architecture that makes continuous improvement easy. We build <a href="/web-design" class="underline">websites designed for SEO</a> from the ground up because retrofitting search engine optimisation into a poorly built site is always harder and more expensive than doing it right the first time.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

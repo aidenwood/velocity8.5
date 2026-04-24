@@ -1,0 +1,67 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="TypeScript 5 features you should actually use — decorators, const type parameters, satisfies, and more. Skip the noise, ship the features."
+  title="Here's What I Didn't Know About TypeScript 5: Decorators, `satisfies`, and the Features Worth Using · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Tech News
+      </Fragment>
+      <Fragment slot="title">
+        Here's What I Didn't Know About TypeScript 5: Decorators, `satisfies`, and the Features Worth Using
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-blue-600/20 to-sky-500/20 flex items-center justify-center">
+          <span class="text-4xl">&#128220;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Skip the Noise, Ship the Features
+      </Fragment>
+      <Fragment slot="content">
+        TypeScript 5 has been out for a while now, and most developers are using roughly zero of its new features. They upgraded, saw that their code still compiled, and moved on. Which is fair — TypeScript upgrades are not exactly breaking news. But there are a handful of features in the TypeScript 5.x line that genuinely change how you write code, and you should probably know about them before your coworker smugly explains them in a code review.
+
+        The satisfies Operator
+
+        This is the single most useful TypeScript feature in years and barely anyone uses it. The satisfies operator lets you validate that a value matches a type without widening it. Here is the problem it solves: when you annotate a variable with a type, TypeScript forgets the specific literal values. If you write const config: Record&lt;string, string&gt; = &#123; theme: "dark" &#125;, TypeScript only knows config.theme is a string, not specifically "dark". With satisfies, you write const config = &#123; theme: "dark" &#125; satisfies Record&lt;string, string&gt;, and TypeScript validates the shape while preserving the literal type. You get type checking AND precise autocomplete.
+
+        This is incredibly useful for configuration objects, route definitions, and any constant where you want both type safety and literal inference. If you are not using satisfies yet, start today. It is the rare TypeScript feature that makes your code both safer and more readable.
+
+        Const Type Parameters
+
+        Generic functions now support a const modifier on type parameters. This means when you pass a literal value to a generic function, TypeScript infers the literal type instead of widening it. A function like declare function route&lt;const T extends string&gt;(path: T) will infer the exact string literal you pass, not just string. This is huge for library authors building type-safe APIs — things like route definitions, event emitters, and state machines.
+
+        For application developers, you will mostly benefit from this through libraries that adopt it. But if you write utility functions that accept string literals or object literals, const type parameters eliminate an entire category of type widening bugs.
+
+        TC39 Decorators
+
+        TypeScript 5 shipped standardised TC39 decorators, replacing the experimental decorators that have been behind a flag since 2015. If you have used decorators in Angular or NestJS, the syntax looks similar but the semantics are different. The new decorators are a proper ECMAScript proposal, which means they will eventually work in plain JavaScript too.
+
+        The practical impact depends on your framework. Angular moved to TC39 decorators. NestJS still uses experimental decorators but will migrate. If you are not using a decorator-heavy framework, this feature is interesting but not urgent. The main benefit is future-proofing: experimental decorators will eventually be removed, and the migration path is TC39 decorators.
+
+        Module Resolution Bundler Mode
+
+        Setting moduleResolution to "bundler" in your tsconfig tells TypeScript to resolve modules the way bundlers like Vite, webpack, and esbuild actually resolve them. This fixes a long-standing mismatch where TypeScript's module resolution did not match what your bundler did at build time, leading to "works in the editor, breaks in the build" scenarios. If you are using a modern bundler and have not switched to bundler resolution, do it now. It eliminates an entire class of phantom import errors.
+
+        Smaller Improvements That Add Up
+
+        TypeScript 5.x also brought: better enum handling with union enums by default, improved type narrowing in closures, faster compilation through module resolution caching, and better error messages that actually tell you what went wrong instead of vomiting a fifty-line type error. Each one is minor individually, but collectively they make the TypeScript experience noticeably smoother.
+
+        What You Should Actually Do
+
+        Step one: add satisfies to your vocabulary and use it wherever you define configuration objects or constants. Step two: set moduleResolution to "bundler" if you use Vite, webpack, or esbuild. Step three: read the TypeScript 5.x release notes for your specific version — there are targeted improvements for React, Node.js, and other ecosystems that might fix bugs you have been working around. TypeScript 5 is not flashy, but it is one of those releases where the cumulative quality-of-life improvements make you noticeably more productive. And you were going to upgrade eventually anyway.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

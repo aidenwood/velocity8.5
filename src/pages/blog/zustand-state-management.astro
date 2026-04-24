@@ -1,0 +1,65 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Why Zustand replaced Redux in our React stack — less boilerplate, better TypeScript, simpler patterns, and the state management architecture that scales without the pain."
+  title="Why We Picked Zustand Over Redux and Never Looked Back · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        React Development
+      </Fragment>
+      <Fragment slot="title">
+        Why We Picked Zustand Over Redux and Never Looked Back
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-amber-500/20 to-yellow-600/20 flex items-center justify-center">
+          <span class="text-4xl">&#128059;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        State Management Should Not Require a PhD
+      </Fragment>
+      <Fragment slot="content">
+        We used Redux for three years. Actions, reducers, selectors, middleware, thunks, sagas, the RTK migration, the normalization libraries, the DevTools, the boilerplate generators. We were productive with it. But every time we started a new project, the first two hours were spent setting up the Redux store, writing the same patterns we had written on the last project, and onboarding new team members on the Redux mental model. Then we tried Zustand on a prototype that did not justify full Redux setup. That prototype became a production app. And we never went back.
+
+        The Zustand Setup
+
+        Here is the entire setup for a Zustand store. Call the create function, pass it a callback that receives set and get, return an object with your state and actions. That is it. No provider component wrapping your app. No action type constants. No reducer switch statements. No middleware configuration. No separate files for actions, reducers, and selectors. One file, one function, one object. The store is a hook. Call it in any component and you get your state. Zustand handles subscriptions and re-renders internally. Components only re-render when the specific slice of state they use changes. You do not need selectors or memoization to prevent unnecessary re-renders — although you can use selectors for fine-grained control when you need it.
+
+        TypeScript Just Works
+
+        Redux Toolkit improved TypeScript support dramatically, but Zustand's TypeScript experience is effortless. Define an interface for your store state. Pass it as a generic to create. Every action, every state property, every selector is fully typed from that single interface. No extra type files, no RootState, no AppDispatch, no typed hooks wrapper. We define the store interface at the top of the file, right above the create call. The interface documents the store's shape and capabilities. TypeScript enforces it everywhere. Refactoring is safe because renaming a property updates everywhere it is used.
+
+        The Slice Pattern
+
+        As stores grow, we split them into slices — but not the Redux way. Each slice is just a function that returns a subset of the store state. The main create call composes slices by spreading their return values. No combineReducers. No slice configuration. Just function composition. A large application might have an auth slice, a UI slice, and domain-specific slices. Each slice file exports a function that takes set and get and returns its state and actions. The main store file imports all slices and composes them. It is readable, testable, and scales to any size without ceremony.
+
+        Middleware Without Pain
+
+        Zustand middleware is a function that wraps the create call. Need to persist state to localStorage? Wrap with the persist middleware. Need Redux DevTools integration? Wrap with the devtools middleware. Need to log state changes? Write a three-line logging middleware. There is no middleware pipeline to configure, no applyMiddleware call, no compose function. Stack the wrappers and you are done. We use persist for user preferences and devtools for debugging in development. The persist middleware handles serialization, deserialization, storage key management, and version migration. Redux can do all of this too, but it takes significantly more setup.
+
+        Actions Are Just Functions
+
+        In Zustand, actions are regular functions inside the store object. They call set() to update state. That is the whole pattern. No action creators, no dispatch, no action type constants. When you need to call an action from a component, you pull it from the store hook just like state. When you need async actions — API calls, delayed updates — you write an async function that calls set() when the data arrives. No thunks, no sagas, no extra middleware. Async actions are just async functions. We have a pattern where every async action manages its own loading and error state. The action sets loading to true, awaits the operation, sets the result and loading to false, or sets the error if it fails. The component reads loading, error, and data from the store. No separate loading state management.
+
+        When Redux Still Makes Sense
+
+        Redux is not bad. It is over-engineered for most applications. If you have a massive team where strict patterns prevent chaos, Redux's ceremony is a feature. If you need time-travel debugging as a core workflow, Redux DevTools is unmatched. If you have an existing Redux codebase with years of investment, migrating for the sake of it is wasteful. But for new projects — especially at agency scale where we start 10+ projects a year — the setup cost and learning curve of Redux are not justified. Zustand gives us everything we need in a fraction of the code. Every developer on our team, from junior to senior, is productive with Zustand on day one.
+
+        The Productivity Difference
+
+        Here is the real metric that matters. A new feature that touches state management takes us roughly 15 minutes to implement with Zustand. Define the state, write the action, use it in the component. The same feature in Redux takes 30-45 minutes across multiple files — action types, action creator, reducer case, selector, thunk if it is async. Over a year, across dozens of features, that time compounds. We ship faster. The code is simpler. New team members onboard faster. Zustand is the state management library that gets out of your way, and that is exactly what we want.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

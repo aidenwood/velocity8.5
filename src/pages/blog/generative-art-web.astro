@@ -1,0 +1,58 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Get started with generative art on the web using p5.js. A practical guide for designers who code — algorithmic shapes, noise fields, and creative systems."
+  title="Generative Art on the Web: A p5.js Starter for Designers Who Code · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Creative Coding — April 2026
+      </Fragment>
+      <Fragment slot="title">
+        Generative Art on the Web: A p5.js Starter for Designers Who Code
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-pink-500/20 to-amber-500/20 flex items-center justify-center">
+          <span class="text-4xl">🎨</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        When Code Becomes the Paintbrush
+      </Fragment>
+      <Fragment slot="content">
+        Generative art is art made with systems. You don't draw every line — you define rules, introduce randomness, and let the algorithm produce something you couldn't have planned. It's part design, part mathematics, part happy accident. And p5.js makes it ridiculously accessible if you know even basic JavaScript.
+
+        p5.js is a JavaScript library built for creative coding. It gives you a canvas, a drawing API, and two functions: setup() (runs once) and draw() (runs every frame, 60 times per second). Inside those functions, you can draw shapes, apply colours, respond to mouse input, and build interactive visual systems. The API is deliberately simple — ellipse(), rect(), line(), fill(), stroke() — because the complexity should be in your ideas, not in fighting the tool.
+
+        The gateway drug is Perlin noise. p5.js has a noise() function that generates smooth, organic randomness. Unlike Math.random(), which jumps between values, noise() flows. Feed it a slowly incrementing value and you get gentle, natural-looking variation — perfect for organic movement, terrain generation, and flow fields. Most of the mesmerising generative art you've seen on the internet is built on some variation of noise fields.
+
+        A flow field is a grid of angles, each determined by noise at that position. You drop particles onto the grid, and each particle follows the angle at its current position. The result is streams of particles flowing in organic, river-like patterns. Change the noise scale and you get tighter or looser curves. Add colour based on velocity or position and you get visual complexity from a simple system. This is emergence — complex visual output from simple rules.
+
+        Recursion is another powerful tool. A tree drawn with recursion starts with a trunk, branches into two smaller segments, each of which branches into two more, and so on. Add slight random variation to branch angles and lengths, and every tree is unique. This same principle works for snowflakes, lightning bolts, coral, and abstract fractal patterns. Nature is recursive, and generative art that uses recursion feels inherently natural.
+
+        For web projects, generative art serves a specific purpose: visual uniqueness. A static hero image is the same for every visitor on every visit. A generative background is different every time. This creates a subtle sense of life and novelty that static design can't match. We've built generative brand patterns for clients where the visual system produces infinite variations that all feel cohesively on-brand — same colour palette, same visual language, never the same twice.
+
+        The practical workflow looks like this. Start in the p5.js web editor (editor.p5js.org) where you can iterate instantly. Explore, experiment, break things. Once you have something you like, extract the core algorithm and integrate it into your site. For Astro or React projects, you can use p5.js in instance mode (not global mode) so it doesn't pollute the global scope. Create a canvas element, attach p5 to it, and scope the animation to a specific component.
+
+        Colour is where generative art goes from interesting to beautiful. Instead of RGB, work in HSB (hue, saturation, brightness) colour mode. This lets you create harmonious palettes algorithmically — cycle the hue slowly for rainbow gradients, lock the hue and vary saturation for monochrome depth, or use complementary hue offsets for vibrant contrast. p5.js supports HSB natively with colorMode(HSB).
+
+        Interactivity elevates generative art from a screensaver to an experience. Tie particle behaviour to mouse position, scroll depth, or device orientation. Let users influence the system without controlling it. The artwork responds to them but maintains its own logic. This is the sweet spot for web design — the visitor feels engaged without needing instructions.
+
+        Performance considerations for the web: keep your canvas resolution reasonable (full viewport width is fine, but consider using pixelDensity(1) on retina screens), limit particle counts to what the browser can handle smoothly (test on mobile — usually 200-500 particles is the sweet spot), and use requestAnimationFrame instead of p5's default draw loop if you need to coordinate with other animations on the page.
+
+        The creative coding community is one of the best parts of this space. Shadertoy for GLSL inspiration, OpenProcessing for p5.js sketches, genart.social for the Mastodon community, and r/generative on Reddit. People share code openly, explain techniques generously, and celebrate experimentation over perfection.
+
+        You don't need to be a fine artist to make generative art. You need to be curious about systems and comfortable with code. If you're a designer who writes JavaScript, you already have everything you need. Open p5js.org, draw a circle, add some noise, and see what happens. The rabbit hole is deep and the view from inside is spectacular.
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

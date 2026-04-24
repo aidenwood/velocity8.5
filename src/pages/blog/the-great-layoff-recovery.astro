@@ -1,0 +1,57 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Tech hiring is back in 2025 but the rules changed. Companies want different skills, interviews look different, and AI rewrote the job description."
+  title="Tech Hiring Is Back But the Rules Completely Changed · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Tech News
+      </Fragment>
+      <Fragment slot="title">
+        Tech Hiring Is Back But the Rules Completely Changed
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-emerald-600/20 to-teal-500/20 flex items-center justify-center">
+          <span class="text-4xl">&#128188;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Same Industry, New Rules
+      </Fragment>
+      <Fragment slot="content">
+        Remember 2023? Every tech company on the planet decided to fire twenty percent of their workforce simultaneously, blamed "macroeconomic conditions," and then posted record profits the next quarter. Good times. Well, eighteen months later, hiring is back. Sort of. The jobs are there but they look nothing like the ones that disappeared. If you are a developer looking for work in 2025, here is what actually changed and what companies want now.
+
+        The Jobs That Came Back Are Not The Same
+        The era of "we need fifty React developers to maintain our dashboard" is over. Companies that laid off large engineering teams discovered something inconvenient: a smaller team with better tools can ship just as much. AI-assisted development means a team of five can do what a team of fifteen did in 2022. That is not a talking point from a LinkedIn influencer — it is what we are seeing in practice. The result is fewer open positions but higher expectations per role. Companies want full-stack developers who can own entire features, not specialists who only touch one layer of the stack.
+
+        AI Skills Are No Longer Optional
+        Every job posting in 2025 mentions AI. Not all of them mean it seriously, but the ones that do are looking for developers who can integrate AI into products — not build foundation models, but use APIs, design prompts, build RAG pipelines, and evaluate model output. If you cannot explain the difference between zero-shot and few-shot prompting, or you have never built a feature with the OpenAI or Anthropic API, you are already behind. The good news is this is a learnable skill. The bad news is the learning window is closing fast.
+
+        The Interview Changed
+        The classic whiteboard algorithm grind is dying. Not dead yet, but dying. More companies are shifting to take-home projects, pair programming sessions, and system design interviews. The reasoning is simple — they want to see how you build, not whether you memorised the optimal solution to "reverse a linked list." Some companies are even allowing candidates to use AI tools during interviews, because that is how they expect you to work on the job. If your interview prep strategy is still "grind LeetCode for three months," you might want to update your approach.
+
+        Remote Work Survived, Mostly
+        The return-to-office apocalypse that LinkedIn predicted every week for two years did not fully materialise. Yes, some companies pulled people back. But the data shows that fully remote and hybrid positions still make up a significant chunk of tech job postings. The companies forcing full return-to-office are mostly legacy enterprises and a handful of high-profile tech companies whose CEOs have strong opinions about "culture." Startups and mid-size companies are still overwhelmingly remote-friendly because they have to be — they cannot compete on salary with Big Tech, so they compete on flexibility.
+
+        What Companies Actually Want
+        Here is the honest list. A developer who can ship features end-to-end without hand-holding. Someone who understands product thinking, not just technical execution. Comfort with AI tools as part of the daily workflow. Strong async communication skills because most teams are distributed. The ability to work across the stack — you do not need to be an expert in everything, but you need to be dangerous enough to unblock yourself. And increasingly, experience with data. Not data science specifically, but the ability to query a database, build a dashboard, and make data-informed decisions about what to build next.
+
+        The Salary Situation
+        Salaries corrected from the insane highs of 2021-2022 but have stabilised at a reasonable level. Mid-level developers are seeing competitive offers again, especially if they have AI integration experience. Senior roles are paying well because companies need people who can make architectural decisions in a rapidly changing landscape. Junior roles are the toughest market right now — companies are betting that AI tools reduce the need for junior developers, which is short-sighted but real. If you are early in your career, the best move is to build publicly, contribute to open source, and demonstrate that you can ship complete projects with AI assistance rather than being replaced by it.
+
+        The tech job market is recovering, but it recovered into a different shape. The developers who adapt will do very well. The ones waiting for 2021 to come back will be waiting forever.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

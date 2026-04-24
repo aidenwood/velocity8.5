@@ -1,0 +1,69 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Core Web Vitals — LCP, INP, and CLS — explained in plain language with practical fixes for each metric. No jargon, just what to actually do."
+  title="Core Web Vitals Explained Like You're Actually Going to Fix Them · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Web Performance & SEO — April 2026
+      </Fragment>
+      <Fragment slot="title">
+        Core Web Vitals Explained Like You're Actually Going to Fix Them
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-green-600/20 to-emerald-500/20 flex items-center justify-center">
+          <span class="text-4xl">&#128200;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Three Metrics, Real Fixes
+      </Fragment>
+      <Fragment slot="content">
+        Google has been talking about Core Web Vitals since 2020. Most website owners have been ignoring them for just as long. But here's the thing — these metrics are now fully embedded in the ranking algorithm, and the gap between sites that pass and sites that fail is widening. If you've been putting this off, this is the post that walks you through each metric with practical, no-nonsense fixes you can actually implement.
+
+        <strong>LCP — Largest Contentful Paint</strong>
+
+        What it measures: how long it takes for the biggest visible element in the viewport to finish rendering. Usually this is your hero image, a large heading, or a background video poster. Google's thresholds are simple — under 2.5 seconds is good, 2.5 to 4 seconds needs improvement, over 4 seconds is poor.
+
+        Why your LCP is probably failing: the most common cause is an unoptimised hero image. A 2MB JPEG being served without responsive sizes, without modern format compression, and without a loading priority hint will easily push your LCP past 3 seconds on mobile. The second most common cause is render-blocking resources — CSS files and JavaScript that the browser has to download and parse before it can paint anything on screen.
+
+        How to fix it: Convert your hero image to WebP or AVIF and serve it with srcset for responsive sizes. Add fetchpriority="high" to the hero image element. Preload it in the &lt;head&gt; with a link rel="preload" tag. Inline your critical CSS so the browser doesn't have to wait for a full stylesheet download before painting. Defer non-critical JavaScript with the defer attribute. If you're using a web font for your heading, preload that font file too — otherwise the browser has to download the font before rendering the text, adding hundreds of milliseconds to LCP.
+
+        <strong>INP — Interaction to Next Paint</strong>
+
+        What it measures: the worst-case delay between a user interaction (click, tap, or keypress) and the browser visually updating in response. INP replaced First Input Delay in March 2024 because FID only measured the first interaction. INP measures all interactions throughout the page lifecycle and reports the worst one. Target: under 200ms.
+
+        Why your INP is probably failing: heavy JavaScript is almost always the cause. When a user clicks a button but the main thread is busy executing a 300ms JavaScript task, the browser can't respond to the click until that task finishes. Single-page applications built with React or Vue are particularly susceptible because they often re-render large component trees in response to state changes. Third-party scripts — analytics, chat widgets, ad scripts — also compete for the main thread.
+
+        How to fix it: break up long JavaScript tasks using yield patterns or setTimeout to give the browser breathing room between chunks of work. Move non-critical processing off the main thread using Web Workers. Reduce your total JavaScript payload — every kilobyte of JS has to be parsed and compiled, which consumes main thread time even before your code executes. Use requestAnimationFrame for visual updates. Profile your interactions in Chrome DevTools Performance panel — it will show you exactly which functions are blocking the main thread during each interaction.
+
+        <strong>CLS — Cumulative Layout Shift</strong>
+
+        What it measures: how much visible content shifts around unexpectedly during the page lifecycle. Every time an element moves position after it's been rendered, that's a layout shift. The score is calculated by multiplying the distance moved by the fraction of the viewport affected. Target: under 0.1.
+
+        Why your CLS is probably failing: images without explicit dimensions are the most common culprit. When an image loads without width and height attributes, the browser doesn't know how much space to reserve, so the content below it jumps down once the image loads. Web fonts that swap after initial render cause text to reflow. Dynamically injected content — ad banners, cookie consent bars, promotional banners — pushed above existing content causes massive layout shifts. Animations that affect layout properties (top, left, width, height) instead of transform properties cause shifts too.
+
+        How to fix it: set explicit width and height attributes on every image and video element. Use the CSS aspect-ratio property for responsive containers. Preload your web fonts and use font-display: optional or font-display: swap with a carefully matched fallback font (use the Font API or Fontaine to generate size-adjusted fallbacks). Reserve space for dynamic content with min-height on container elements. Use CSS transform for animations instead of layout-triggering properties. If you're inserting content dynamically, add it below the current viewport or use fixed positioning.
+
+        <strong>Where to check your real-world scores</strong>
+
+        Don't rely on Lighthouse alone — it runs in a simulated environment on your machine. The data Google actually uses for ranking comes from the Chrome User Experience Report (CrUX), which aggregates real user data. Check your field data in Google Search Console under Experience &gt; Core Web Vitals. PageSpeed Insights also shows both lab and field data — focus on the field data section.
+
+        <strong>The uncomfortable truth</strong>
+
+        Most websites fail Core Web Vitals not because the fixes are hard, but because performance was never a priority during development. A site built on a bloated WordPress theme with 15 plugins, unoptimised images, and five tracking scripts was never going to pass. Sometimes the most cost-effective fix isn't optimising the existing site — it's rebuilding on a performance-first stack. We build with Astro specifically because it ships zero JavaScript by default, giving us a 95+ Lighthouse baseline before we add a single feature. Performance isn't something we fix after launch. It's how we build.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

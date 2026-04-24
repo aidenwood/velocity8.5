@@ -1,0 +1,60 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="A button seems simple until you account for variants, states, accessibility, icons, loading, polymorphism, and dark mode. Here's why it's the hardest component to get right."
+  title="The Humble Button: Why It's the Hardest Component to Get Right · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        UI Components — April 2026
+      </Fragment>
+      <Fragment slot="title">
+        The Humble Button: Why It's the Hardest Component to Get Right
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-red-500/20 to-orange-600/20 flex items-center justify-center">
+          <span class="text-4xl">&#128284;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Deceptively Complex
+      </Fragment>
+      <Fragment slot="content">
+        If you asked a junior developer to estimate how long it takes to build a button component, they would say fifteen minutes. If you asked a senior developer the same question, they would sigh and say "it depends." The button is the first component every design system builds and the one that accumulates the most complexity over time. It sounds trivial. It is not. Let us count the ways.
+
+        The Variant Explosion
+        A production button component needs visual variants. At minimum: primary (the main action), secondary (the supporting action), destructive (the dangerous action), outline (the subtle action), ghost (the barely-there action), and link (the text-only action). Each variant needs four states: default, hover, active, and disabled. Each state needs to work in both light and dark modes. Six variants times four states times two colour modes equals 48 visual combinations, and every single one needs to look intentional. Miss one — say, the hover state of a destructive ghost button in dark mode — and a developer will find it, file a bug, and question the entire design system.
+
+        Size Matters
+        Buttons come in sizes. Small for dense UIs and table rows. Default for standard use. Large for hero sections and primary CTAs. Each size affects padding, font size, border radius, icon sizing, and minimum height. The minimum height matters for touch targets — WCAG requires interactive elements to have at least a 24x24px target area, and Apple's Human Interface Guidelines recommend 44x44px. A small button that is too small to tap on mobile is not a small button. It is a broken button.
+
+        The Icon Problem
+        Buttons frequently contain icons — a plus sign for "Add," an arrow for "Next," a spinner for "Loading." Icons can appear before the label, after the label, or alone (an icon-only button). Each position requires different spacing. An icon before the label needs a gap between the icon and text. An icon after the label needs the same gap but on the other side. An icon-only button needs equal padding on all sides to remain square. The icon size needs to scale with the button size. And icon-only buttons need an aria-label because there is no visible text for screen readers. This is at least three additional prop combinations (iconLeft, iconRight, iconOnly) and each one interacts with every variant and every size.
+
+        Loading States
+        When a button triggers an async action — submitting a form, processing a payment, saving data — it needs a loading state. The button should be disabled to prevent double-clicks. The label should be replaced with or accompanied by a spinner. The button width should not change, because a layout shift when the label swaps to a spinner is jarring. This means the button needs a fixed width during loading, which means you either set a min-width or use absolute positioning to overlay the spinner on the label. Both approaches have trade-offs. And the loading state needs to work with every variant and every size.
+
+        The Polymorphism Problem
+        Sometimes a button is not a &lt;button&gt;. Sometimes it is an &lt;a&gt; tag styled as a button because it navigates to a URL. Sometimes it is a Next.js Link component. Sometimes it is a &lt;label&gt; that triggers a file input. The visual appearance is identical, but the underlying HTML element changes. This is the asChild pattern that Radix UI popularised and shadcn/ui implements: a button component that can render as any element while preserving all its styling and variant logic. Without this pattern, you end up with Button and ButtonLink and ButtonLabel — three components that look identical but diverge over time as developers modify them independently.
+
+        Focus Rings and Keyboard Navigation
+        A button must have a visible focus indicator when navigated to via keyboard. The modern approach is focus-visible — a focus ring that appears only during keyboard navigation, not during mouse clicks. The focus ring should have sufficient contrast against both the button and its background, which means it often needs an offset (outline-offset) to create a gap between the button's border and the focus ring. On dark backgrounds, a light focus ring. On light backgrounds, a dark focus ring. If your button can appear on both light and dark backgrounds within the same page, the focus ring needs to adapt. Two pixels of outline in the wrong colour can make your entire interface feel inaccessible or sloppy.
+
+        The Disabled State Anti-Pattern
+        Disabled buttons are a design pattern that deserves scrutiny. A disabled submit button says "you cannot do this" without saying why. This is frustrating for users and actively hostile for users with cognitive disabilities. In most cases, a better pattern is to keep the button enabled, let the user click it, and show a clear error message explaining what needs to happen before the action can proceed. If you do use disabled buttons, they need aria-disabled="true" (not the HTML disabled attribute, which removes the element from the tab order and makes it invisible to some assistive technologies) and a tooltip or visible message explaining why the button is disabled.
+
+        Putting It All Together
+        A production-quality button component in React with TypeScript, Tailwind, and the cva (class variance authority) library is typically 80-120 lines of code. That includes the variant definitions, the size definitions, the compound variant handling (small + icon-only needs different padding than large + icon-only), the asChild polymorphism, and the TypeScript interface that makes all of this type-safe. It is the single most-reviewed component in any design system PR, and rightly so — if the button is wrong, every page that uses it is wrong. Respect the button. It has earned it.
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

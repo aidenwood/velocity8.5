@@ -1,0 +1,56 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Radix UI solves the hardest parts of component development — accessibility, keyboard navigation, focus management — so you can focus on making things look good."
+  title="A Practical Guide to Radix UI: Headless Components That Actually Solve the Hard Problems · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        UI Components — April 2026
+      </Fragment>
+      <Fragment slot="title">
+        A Practical Guide to Radix UI: Headless Components That Actually Solve the Hard Problems
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-emerald-500/20 to-teal-600/20 flex items-center justify-center">
+          <span class="text-4xl">&#9999;&#65039;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Headless Components That Actually Work
+      </Fragment>
+      <Fragment slot="content">
+        Here is a question that sounds simple: build a dropdown menu. Clicking a trigger opens a panel of options. Selecting an option closes the panel. Done, right? Now add keyboard navigation — Arrow keys to move between options, Enter to select, Escape to close. Add focus trapping so Tab does not escape the open menu. Add screen reader announcements so the menu is usable without vision. Add positioning logic so the menu does not overflow the viewport. Add animation states for open and close. Add support for submenus with hover intent detection. Add typeahead so typing "s" jumps to the first option starting with "s." That "simple" dropdown just became 400 lines of JavaScript and you have not written a single line of CSS yet. This is the problem Radix UI solves.
+
+        What Radix Actually Is
+        Radix UI is a collection of unstyled, accessible React component primitives. It gives you the behaviour and accessibility of complex interactive components — dialogs, dropdown menus, popovers, tabs, accordions, sliders, and more — without any opinions about how they look. You bring all the styles. Radix handles all the hard engineering. This is what "headless" means in practice: the component manages state, keyboard interaction, focus management, ARIA attributes, and positioning. You manage colours, spacing, borders, and animation.
+
+        Why Not Just Build It Yourself
+        You can. And for simple components — a toggle, a basic accordion — you probably should. But for anything involving focus management, positioning, or complex keyboard interaction, building it yourself means replicating hundreds of hours of accessibility engineering. A Radix Dialog component handles focus trapping, restores focus to the trigger on close, locks body scroll, supports nested dialogs, announces content to screen readers, closes on Escape, and closes when clicking outside. Building this correctly from scratch takes days. Getting it wrong means your modal is inaccessible to anyone using a keyboard or screen reader — which is both a usability failure and, in many jurisdictions, a legal liability.
+
+        The Compound Component Pattern
+        Radix uses a compound component API that might feel unusual if you are used to config-object libraries. Instead of passing an array of items to a single component, you compose smaller pieces. A Dialog is built from Dialog.Root, Dialog.Trigger, Dialog.Portal, Dialog.Overlay, Dialog.Content, Dialog.Title, and Dialog.Description. This looks verbose at first glance, but it gives you complete control over the DOM structure and styling of every piece. You can put anything between the trigger and the content. You can wrap pieces in your own components. You can conditionally render parts. The composition model is what makes Radix endlessly flexible where config-driven libraries hit walls.
+
+        Styling With Tailwind
+        Radix exposes data attributes on its components that reflect their state — data-state="open" on an accordion item, data-highlighted on a menu item during keyboard navigation, data-disabled on a disabled element. In Tailwind, you can target these directly with the data attribute modifier: class="data-[state=open]:bg-zinc-100 data-[highlighted]:bg-blue-50". This means your interactive styles are co-located with your layout styles, no separate CSS files, no styled-components, no className toggling in JavaScript. It is an absurdly clean pattern.
+
+        Where Radix Fits in the Stack
+        If you are using shadcn/ui, you are already using Radix — shadcn components are built on Radix primitives. If you are building your own component library, Radix is the foundation you should start from. If you are building a one-off project and you need a dialog or a dropdown, Radix lets you add just that component without pulling in an entire UI framework. Each primitive is independently installable. Need a tooltip? Install @radix-ui/react-tooltip. That is 8KB gzipped. Not a 200KB component library.
+
+        The Primitives Worth Learning First
+        Start with Dialog, DropdownMenu, and Popover. These three cover 80% of the interactive overlay patterns you will encounter. Once comfortable, add Tabs, Accordion, and Select. Learn how Radix handles controlled versus uncontrolled state — every component supports both via a value/onValueChange prop pattern. Understand the Portal component and when to use it (answer: almost always for overlays, because it renders to document.body and avoids z-index stacking context issues).
+
+        Radix is not glamorous. It does not give you a beautiful component out of the box. It does not have a marketing site with animated demos. What it gives you is the engineering foundation that makes building beautiful, accessible, production-grade components possible without spending weeks on the parts that users never see but absolutely depend on. That trade-off is worth it every single time.
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

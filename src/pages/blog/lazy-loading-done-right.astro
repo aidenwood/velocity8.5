@@ -1,0 +1,79 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Lazy loading images and content sounds simple, but most implementations hurt performance instead of helping. Here's how to do it correctly in 2026."
+  title="Here's How Lazy Loading Actually Works (And Why Your Implementation Is Probably Wrong) · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Web Performance — April 2026
+      </Fragment>
+      <Fragment slot="title">
+        Here's How Lazy Loading Actually Works (And Why Your Implementation Is Probably Wrong)
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-cyan-600/20 to-blue-500/20 flex items-center justify-center">
+          <span class="text-4xl">&#129444;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Stop Lazy Loading Everything
+      </Fragment>
+      <Fragment slot="content">
+        Lazy loading is one of those techniques that sounds like a universal win — defer offscreen content, load it when needed, profit. And in theory, that's correct. But in practice, I see more sites where lazy loading is actively harming performance than helping it. The concept is simple. The implementation details are where everyone goes wrong.
+
+        Let's fix that.
+
+        <strong>What lazy loading actually does</strong>
+
+        Lazy loading defers the loading of resources (usually images) until they're about to enter the viewport. Instead of downloading all 30 images on a page at once, the browser only fetches the ones currently visible and loads the rest as the user scrolls. This reduces initial page weight, speeds up the first paint, and saves bandwidth for users who never scroll to the bottom.
+
+        Native lazy loading is built into every modern browser via the loading="lazy" attribute on &lt;img&gt; and &lt;iframe&gt; elements. No JavaScript library required. The browser handles the intersection detection, the loading trigger, and the resource fetching. It just works.
+
+        So why does everyone still get it wrong?
+
+        <strong>Mistake 1: lazy loading your LCP image</strong>
+
+        This is the big one. Your Largest Contentful Paint element — usually your hero image — must load as fast as possible. Adding loading="lazy" to it tells the browser to deprioritise it, which directly delays your LCP metric. I've seen this single mistake add 1-2 seconds to LCP scores. The fix: your above-the-fold images should use loading="eager" (or simply omit the loading attribute, since eager is the default) and include fetchpriority="high" to tell the browser this image is critical.
+
+        <strong>Mistake 2: lazy loading everything with JavaScript</strong>
+
+        Before native lazy loading existed, JavaScript libraries like lazysizes and lozad were necessary. In 2026, they're not — and they're actively harmful. A JavaScript-based lazy loading library adds its own weight to the page (10-20KB typically), requires the script to download, parse, and execute before any lazy loading logic kicks in, and blocks the main thread while doing so. The native loading="lazy" attribute is faster, lighter, and more reliable. Remove the library. Use the native attribute. Your INP score will thank you.
+
+        The one exception is if you need advanced features like responsive background images or complex placeholder patterns. But for standard &lt;img&gt; elements, native is the way.
+
+        <strong>Mistake 3: not reserving space for lazy-loaded images</strong>
+
+        When a lazy-loaded image finally loads, if the browser doesn't know its dimensions in advance, the content below it will jump down. That's a CLS (Cumulative Layout Shift) penalty. Every lazy-loaded image needs explicit width and height attributes or a CSS aspect-ratio on its container. This lets the browser reserve the correct space before the image loads, preventing layout shift entirely.
+
+        <strong>Mistake 4: lazy loading too aggressively</strong>
+
+        Some implementations lazy-load images that are just barely below the fold — maybe 100px offscreen. The result is that users scroll down and see blank spaces where images should be, creating a jarring loading experience. The browser's native lazy loading implementation handles this intelligently with a generous threshold, but if you're using a custom implementation, set your root margin to at least 200-300px to start loading images before they enter the viewport.
+
+        <strong>Mistake 5: forgetting about iframes</strong>
+
+        YouTube embeds, Google Maps, and other iframes are often heavier than images — a YouTube embed loads over 1MB of resources. Adding loading="lazy" to iframes that are below the fold is one of the highest-impact performance wins available. Better yet, use a facade pattern: show a static thumbnail with a play button, and only load the actual iframe when the user clicks. This can save 1-2MB of page weight for pages with embedded videos.
+
+        <strong>The correct lazy loading pattern</strong>
+
+        Here's the approach we use on every project. Above-the-fold images get loading="eager" and fetchpriority="high." Every below-the-fold image gets loading="lazy" with explicit width, height, and descriptive alt text. YouTube embeds use a facade that loads on interaction. Third-party iframes (maps, forms, widgets) are lazy-loaded or deferred entirely. We verify the implementation by throttling the network in DevTools and scrolling through the page — images should load smoothly just before they enter the viewport, with no layout shift and no blank spaces.
+
+        <strong>Beyond images: lazy loading components</strong>
+
+        In frameworks like Astro, React, and Next.js, you can lazy-load entire components. Astro's client:visible directive only hydrates a component when it scrolls into view. React's lazy() with Suspense defers component loading until render time. This is powerful for heavy interactive widgets — image carousels, maps, pricing calculators — that sit below the fold. Don't hydrate what the user hasn't scrolled to yet.
+
+        Lazy loading is a performance tool, not a performance philosophy. Apply it surgically to offscreen content, protect your LCP element from it, reserve space for everything, and test the actual scroll experience. Done right, it cuts page weight dramatically with zero user-facing downside. Done wrong, it makes your site slower and jankier than if you'd loaded everything upfront.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

@@ -1,0 +1,65 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Comparing real-time web patterns — WebSockets, Server-Sent Events, and Supabase Realtime. When to use each, performance trade-offs, and what we pick for production."
+  title="Real-Time on the Web: WebSockets vs Server-Sent Events vs Supabase Realtime · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Backend Engineering
+      </Fragment>
+      <Fragment slot="title">
+        Real-Time on the Web: WebSockets vs Server-Sent Events vs Supabase Realtime
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-cyan-500/20 to-teal-600/20 flex items-center justify-center">
+          <span class="text-4xl">&#9889;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Not Everything Needs WebSockets
+      </Fragment>
+      <Fragment slot="content">
+        The moment a client asks for live updates, most developers reach for WebSockets. It is the default answer. But WebSockets are not always the right answer, and in 2026 you have better options for most use cases. We have built real-time features across dashboards, notification systems, live location trackers, and collaborative tools. Here is what actually works and when.
+
+        WebSockets: The Full-Duplex Workhorse
+
+        WebSockets open a persistent, bidirectional connection between client and server. Both sides can send messages at any time. This is perfect for chat applications, multiplayer games, and collaborative editing — anywhere both the client and server need to push data simultaneously. The trade-off is complexity. WebSocket connections need to handle disconnects, reconnects, heartbeats, and state synchronisation. If you are running on serverless infrastructure, WebSockets are awkward because serverless functions are designed to be short-lived. You end up needing a dedicated WebSocket server or a managed service like Pusher or Ably. We use raw WebSockets only when we genuinely need bidirectional communication. For most real-time features, we do not.
+
+        Server-Sent Events: The Underrated Option
+
+        Server-Sent Events are a one-way channel from server to client over a standard HTTP connection. The server pushes updates. The client listens. That is it. No bidirectional communication, no complex protocol negotiation, no special server infrastructure. SSE works over regular HTTP, which means it works with every proxy, every CDN, and every load balancer without special configuration. It automatically reconnects if the connection drops. It supports event types and last-event-ID for resuming where you left off. For dashboards that display live data, notification feeds, progress indicators, and any scenario where the client just needs to receive updates, SSE is simpler and more reliable than WebSockets. We use SSE for real-time dashboards and it handles thousands of concurrent connections without breaking a sweat.
+
+        Supabase Realtime: The Shortcut We Love
+
+        Supabase Realtime lets you subscribe to database changes over WebSockets. Insert a row, and every connected client gets notified instantly. Update a field, and the change propagates. It uses Postgres logical replication under the hood, which means you do not need to build any pub-sub infrastructure. You just write to your database and subscribers get the update. The setup is absurdly simple. In your client code, you subscribe to a table with a filter, and Supabase handles the rest — the WebSocket connection, reconnection logic, and message delivery. RLS policies apply to realtime subscriptions too, so users only receive updates for data they are authorised to see. We use Supabase Realtime on every project that needs live data. It eliminated an entire category of infrastructure decisions. The limitation is that it is tied to database changes. If you need to broadcast arbitrary messages that are not database operations, you need Supabase Broadcast channels or a different solution.
+
+        Supabase Broadcast and Presence
+
+        Beyond database subscriptions, Supabase offers Broadcast for arbitrary message passing and Presence for tracking who is online. Broadcast lets you send any JSON payload to a channel without writing to the database. Presence tracks connected users and their state — useful for showing who is currently viewing a document or who is online in a team. We use Presence on an internal tool to show which field reps are currently active and where they last checked in. The implementation took about an hour. Building the same feature with raw WebSockets would have taken a day or two plus ongoing maintenance.
+
+        When Polling Is Actually Fine
+
+        Here is the uncomfortable truth — for a lot of use cases, polling every 30 seconds is perfectly adequate. If your data changes infrequently and exact real-time delivery is not critical, a simple setInterval that fetches new data is the simplest, most debuggable approach. We use polling for internal dashboards where data refreshes every few minutes anyway. The overhead is minimal, the implementation is trivial, and there are no connection management edge cases. Do not add real-time complexity because it sounds impressive. Add it because users genuinely need it.
+
+        Performance Considerations
+
+        WebSocket connections consume server memory for each connected client. At a hundred concurrent users, that is negligible. At ten thousand, it matters. SSE has similar memory characteristics but with less overhead per connection because the protocol is simpler. Supabase Realtime scales with your Supabase plan — the free tier handles a reasonable number of concurrent connections, and paid tiers scale significantly higher. For our projects, Supabase Realtime handles everything without us thinking about connection limits.
+
+        Our Decision Framework
+
+        If the client needs to send data to the server in real time — WebSockets or Supabase Broadcast. If the client just needs to receive live updates from database changes — Supabase Realtime. If the client needs server-pushed updates that are not database-driven — Server-Sent Events. If the data changes infrequently and near-real-time is good enough — polling. This framework has served us well across every project. The key insight is that most real-time features are actually one-directional — the server has new data and the client needs to know about it. For that, you do not need the complexity of WebSockets.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

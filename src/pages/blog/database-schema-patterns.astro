@@ -1,0 +1,73 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Database schema patterns we use in every Supabase project — soft deletes, audit logs, tenant isolation, polymorphic associations, and the migration discipline that saves teams."
+  title="The Database Schema Patterns That Saved Us From Ourselves · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Database Design
+      </Fragment>
+      <Fragment slot="title">
+        The Database Schema Patterns That Saved Us From Ourselves
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-yellow-500/20 to-amber-600/20 flex items-center justify-center">
+          <span class="text-4xl">&#128451;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Your Schema Is Your Application's Skeleton
+      </Fragment>
+      <Fragment slot="content">
+        A bad database schema is the kind of technical debt that compounds daily. Every query gets harder, every new feature requires workarounds, and every migration risks breaking production. We build on Postgres via Supabase, and after designing schemas for SaaS platforms, CRM integrations, booking systems, and claims management tools, these are the patterns we use on every project.
+
+        Soft Deletes by Default
+
+        Never use DELETE. Add a deleted_at timestamp column to every table. When a record is deleted, set deleted_at to the current timestamp instead of removing the row. Every query includes a WHERE deleted_at IS NULL condition. This seems like overkill until a customer asks you to recover data they accidentally deleted, or until you need to investigate a bug that involved a record that no longer exists. We add a database view for each table that filters out deleted records — your application queries the view, and the filter is applied automatically. Actual physical deletion happens in a scheduled cleanup job that removes records older than a retention period. For most of our projects, that retention period is one year.
+
+        Timestamps on Everything
+
+        Every table gets four timestamp columns. created_at, updated_at, deleted_at, and synced_at if the table receives data from an external system. created_at and deleted_at are set once and never change. updated_at is refreshed on every modification using a Postgres trigger — never trust the application layer to set this correctly. synced_at tracks when an external system last pushed data to this row, which is invaluable for debugging sync issues with CRMs like Pipedrive. These columns cost almost nothing in storage and save hours of debugging. When someone asks when did this record change, you have the answer immediately.
+
+        The Tenant Isolation Pattern
+
+        For multi-tenant SaaS, every table includes a tenant_id column with a foreign key to your tenants table. Every RLS policy in Supabase filters on tenant_id by extracting the tenant from the user's JWT claims. This is the foundation of data isolation — a user in Tenant A can never see or modify Tenant B's data, enforced at the database level. We made the mistake on our first multi-tenant project of not enforcing tenant isolation in RLS. The application code filtered by tenant correctly, but a single missing WHERE clause in one API endpoint exposed data across tenants. We caught it in staging. Since then, tenant isolation is a database concern, never an application concern.
+
+        Enum Tables Over Postgres Enums
+
+        Postgres has a native ENUM type. It is convenient until you need to add a new value — that requires a migration that locks the table. For status fields and category fields that change over time, we use a separate lookup table with a foreign key. A statuses table with an id and a label lets you add new statuses with a simple INSERT instead of a schema migration. The trade-off is an extra join in some queries, but that cost is negligible compared to the flexibility. We use Postgres enums only for values that will genuinely never change — like boolean_yn or sort_direction.
+
+        The Audit Log Pattern
+
+        For any application that handles sensitive data — financial records, personal information, compliance documents — we maintain an audit log table. Every create, update, and delete operation writes a row to the audit log with the table name, the record ID, the action type, the user who performed it, the timestamp, and a JSON snapshot of the old and new values. This is implemented as a Postgres trigger so it captures every change regardless of whether it came from the application, a migration, or a direct database query. We have been asked to produce audit trails for compliance reviews twice. Both times, the audit log table had exactly what was needed. Building this after the fact would have been impossible.
+
+        Junction Tables Done Right
+
+        Many-to-many relationships need junction tables. The common mistake is making the junction table a simple two-column table with just the two foreign keys. In practice, you almost always need metadata on the relationship. A user_roles table should include an assigned_at timestamp and an assigned_by user ID. A project_members table should include a role column and a joined_at timestamp. Adding these fields from the start saves you from the painful migration of adding columns to a heavily-used junction table later.
+
+        Migration Discipline
+
+        Every schema change goes through a numbered migration file. We use Supabase migrations — each migration is a SQL file that runs in order. Migrations are version controlled alongside application code. We never modify the database schema directly in production. Every migration has an up and a down — the down script reverses the change so we can roll back if something goes wrong. We name migrations descriptively — 20260401_add_subscription_status_to_users.sql not 20260401_update.sql. When you have 80 migration files, descriptive names matter.
+
+        Indexing Strategy
+
+        We add indexes intentionally, not reactively. Every foreign key column gets an index. Every column used in a WHERE clause that filters large tables gets an index. Every column used in ORDER BY on queries that return paginated results gets an index. We do not add indexes speculatively — each index slows down writes and consumes storage. Supabase provides the pg_stat_user_tables view that shows sequential scans versus index scans per table. When sequential scans are high on a large table, that is your signal to add an index.
+
+        The One Rule
+
+        Design your schema for the queries you will actually run, not for the data model that looks cleanest in an ER diagram. A perfectly normalised schema that requires five joins for your most common query is worse than a slightly denormalised schema that serves it in one.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

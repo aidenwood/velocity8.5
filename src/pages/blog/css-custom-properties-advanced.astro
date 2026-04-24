@@ -1,0 +1,57 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="CSS custom properties go far beyond simple variable replacement. Here's how to use them for theming, animation, component APIs, and dynamic styling."
+  title="CSS Custom Properties Are Way More Powerful Than You're Using Them · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        CSS & Architecture
+      </Fragment>
+      <Fragment slot="title">
+        CSS Custom Properties Are Way More Powerful Than You're Using Them
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-teal-600/20 to-green-500/20 flex items-center justify-center">
+          <span class="text-4xl">🧬</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Variables Were Just the Beginning
+      </Fragment>
+      <Fragment slot="content">
+        Most developers use CSS custom properties as color variables. Define --primary: #3b82f6 on :root, reference it with var(--primary) everywhere, done. That's valid, but it's using about 10% of what custom properties can actually do. They're not Sass variables with a different syntax. They're a completely different concept — live, cascading, inheritable, animatable values that the browser evaluates at runtime.
+
+        The key difference from preprocessor variables: CSS custom properties are live in the browser. Sass variables are compiled away at build time — they become static values. Custom properties exist in the DOM. They cascade. They inherit. They can be changed by JavaScript, media queries, container queries, or parent selectors at runtime. This makes them the foundation of dynamic CSS architectures.
+
+        Component APIs with custom properties are transformative for design systems. Instead of creating a button component with ten modifier classes, define the button's customizable aspects as custom properties with defaults. .btn &#123; --btn-bg: var(--color-primary); --btn-padding: 0.75rem 1.5rem; --btn-radius: 0.5rem; background: var(--btn-bg); padding: var(--btn-padding); border-radius: var(--btn-radius); &#125;. Now any parent context can override these: .card .btn &#123; --btn-padding: 0.5rem 1rem; &#125;. The button adapts to its context through its property API, not through BEM modifier classes or Tailwind overrides.
+
+        Fallback values with var() handle missing properties gracefully. var(--color-accent, #3b82f6) uses the custom property if it exists and falls back to the literal value if it doesn't. You can chain fallbacks: var(--brand-color, var(--color-primary, blue)). This is genuinely useful for component libraries — a component can reference a project-level custom property but works standalone with sensible defaults.
+
+        Scoping custom properties to components is where cascading becomes an architecture tool. Define properties on a component's root element, and they're available to all descendants but don't leak to siblings or parents. .pricing-card &#123; --card-accent: var(--color-primary); &#125; .pricing-card.featured &#123; --card-accent: var(--color-gold); &#125;. Every child element inside the card can use var(--card-accent) and it automatically resolves to the right color based on the card's variant. One property change cascades to headings, borders, buttons, icons — anything that references it.
+
+        Theming with custom properties is the production-ready approach to dark mode, brand variants, and white-labeling. Define your semantic design tokens on :root for light mode. Override them inside a .dark class or prefers-color-scheme media query for dark mode. Override them with a .brand-client-a class for client-specific themes on a multi-tenant platform. The component CSS never changes. Only the property values swap. We've built white-label platforms for clients where the entire visual identity changes by loading a different set of custom properties. Same markup. Same components. Completely different appearance.
+
+        Custom properties in calc() enable proportional design systems. Define a spacing unit — --space: 0.25rem — and build your entire spacing scale from it: calc(var(--space) * 2), calc(var(--space) * 4), calc(var(--space) * 8). Change the base value and everything recalculates. This is powerful for responsive adjustments: change --space from 0.25rem to 0.2rem on mobile and your entire spacing system tightens proportionally.
+
+        Animating custom properties with @property is a newer capability that opens up effects that were previously impossible with CSS alone. The @property rule registers a custom property with a type and initial value. Once registered, the browser knows how to interpolate the property. This means you can animate gradient stops, individual color channels, shadow spreads, and other values that CSS can't normally transition. A gradient that transitions from blue to red? Register the color stop custom properties and transition them. The browser handles the interpolation.
+
+        Responsive custom properties combine custom properties with media or container queries for context-aware design tokens. You define --content-width: 100% on mobile and --content-width: 65ch at desktop, once, at the top of your stylesheet. Every component that references var(--content-width) responds to the change. This is a pattern we use on every project: define your responsive tokens once, reference them everywhere, and the entire site adapts from a single set of property changes.
+
+        Using custom properties with JavaScript bridges CSS and JS cleanly. element.style.setProperty('--progress', '0.7') updates a CSS property from JavaScript without manipulating classes or inline styles. The CSS can use that value in animations, transforms, gradients — anywhere. This is the clean way to pass runtime values from JS to CSS: a mouse position for a spotlight effect, a scroll progress value, a slider input. The JavaScript sets the value. CSS handles the visual expression.
+
+        Custom properties are the most underutilized power tool in CSS. They're not just variables. They're the API layer between your design tokens, your components, your themes, and your runtime state. Use them like that.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

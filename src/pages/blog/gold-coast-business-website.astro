@@ -1,0 +1,52 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="What Gold Coast businesses actually need from a website in 2026. Spoiler: not a Squarespace template. Speed, SEO, and conversion-focused design."
+  title="What Your Gold Coast Business Actually Needs From Its Website (Spoiler: Not a Template) · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Business & Strategy — April 2026
+      </Fragment>
+      <Fragment slot="title">
+        What Your Gold Coast Business Actually Needs From Its Website (Spoiler: Not a Template)
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-sky-600/20 to-blue-500/20 flex items-center justify-center">
+          <span class="text-4xl">🏢</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Spoiler: Not a Template
+      </Fragment>
+      <Fragment slot="content">
+        Let me tell you what I see every week on the Gold Coast. A tradie, a physio, or a cafe owner pays someone on Fiverr $200 for a Squarespace or Wix site. It goes live. It looks... fine. Generic stock photos, a template layout that 10,000 other businesses are using, and page speed scores in the 30s. Three months later, they wonder why they're invisible on Google and nobody's filling out the contact form. The answer is obvious: they bought a website, but they didn't invest in one.
+
+        Here's what Gold Coast businesses actually need from their website in 2026.
+
+        First, speed. Not "pretty fast." Genuinely fast. Your site needs to load in under 2 seconds on a mobile phone driving down the M1. Half your traffic is mobile, and those users are impatient. A slow site on a Gold Coast 4G connection means lost bookings, lost enquiries, and lost revenue. Template builders are inherently slow — they ship megabytes of JavaScript and CSS that your site doesn't need, because they're designed to handle every possible use case rather than your specific one.
+
+        Second, local SEO that actually works. If you're a plumber in Burleigh, you need to show up when someone searches "plumber near me" from Burleigh. That means a properly configured Google Business Profile, consistent NAP data (name, address, phone) across directories, location-specific landing pages with genuine content, schema markup that tells Google exactly what you do and where you do it, and a site fast enough to pass Core Web Vitals. Template sites almost never get this right because they're not built with local search intent in mind.
+
+        Third, a conversion path that makes sense for your business. Every page on your site should answer one question: "What do I want this visitor to do next?" For a tradie, that's probably "call this number" or "fill out this quote form." For a restaurant, it's "book a table" or "view the menu." For a professional service, it's "schedule a consultation." Your website isn't a digital brochure — it's a sales tool. If it doesn't drive action, it's a liability, not an asset.
+
+        Fourth, design that builds trust in three seconds. People decide whether they trust a website almost instantly. Cheap templates communicate "cheap business." Custom design, professional photography, and a cohesive brand identity communicate credibility. On the Gold Coast, where competition is fierce across every industry, that first impression is the difference between a new customer and a bounce.
+
+        Fifth, a CMS you'll actually use. The most beautiful website in the world is worthless if you can't update it. We build sites that are easy to maintain — not WordPress with 30 plugins that need constant updates and security patches, but modern static sites with headless CMS options that are fast, secure, and simple. When you need to update your menu, add a blog post, or change your hours, it should take minutes, not a developer.
+
+        Here's what you don't need: a flashy design agency charging $15,000 for a WordPress site that takes three months to deliver. You also don't need a $200 template from someone who's never been to the Gold Coast and doesn't understand your market. What you need is a developer who understands performance, SEO, and conversion — and builds websites that are tools for growth, not just digital billboards.
+
+        That's what we do at Aidxn Design. Every site we ship scores 90+ on Google PageSpeed Insights, is built for local SEO from day one, and is designed to convert visitors into customers. If your current website isn't doing that, let's talk.
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

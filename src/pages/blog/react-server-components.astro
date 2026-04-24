@@ -1,0 +1,57 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="React Server Components are finally production-ready. Here's what they mean for performance and why Astro had the right idea all along."
+  title="Here's What I Didn't Understand About React Server Components Until I Actually Used Them · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Frontend Architecture
+      </Fragment>
+      <Fragment slot="title">
+        Here's What I Didn't Understand About React Server Components Until I Actually Used Them
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-blue-600/20 to-purple-500/20 flex items-center justify-center">
+          <span class="text-4xl">⚛️</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        The Biggest Shift in React Since Hooks
+      </Fragment>
+      <Fragment slot="content">
+        React Server Components are finally here — like, actually here, not "coming soon in an experimental release" here. Next.js 14 and 15 made them the default. The React team shipped them. And the entire frontend ecosystem is having a collective identity crisis about what "React" even means anymore.
+
+        Let's cut through the noise. React Server Components (RSCs) solve a real problem: we've been shipping way too much JavaScript to the browser. A typical React SPA sends the entire component tree to the client, hydrates it, and then the user can interact with it. For a marketing site or a blog, that's absurd. You're sending a full JavaScript runtime so the user can read static text.
+
+        RSCs flip this. Components render on the server by default. The HTML goes to the client. No JavaScript bundle for those components. If a component needs interactivity — a form, a dropdown, a modal — you mark it with "use client" and it hydrates on the client like traditional React. Everything else stays server-side.
+
+        Sound familiar? It should. Astro has been doing this since 2021. Astro's entire philosophy is "ship zero JavaScript by default, add interactivity only where you need it." They called it "Islands Architecture." React is now, three years later, arriving at essentially the same conclusion through a different mechanism.
+
+        Here's the part that makes me slightly smug: we've been building client sites on Astro for over a year now, and we've been reaping these performance benefits the entire time. Our sites ship 50-80% less JavaScript than equivalent React SPAs. Lighthouse scores are consistently 95+. First Contentful Paint is fast. Time to Interactive is fast. And we didn't have to wait for the React team to figure out what the Astro team already knew.
+
+        That said, RSCs aren't just "Astro but React." They have genuine advantages for application development. The tight integration with React's component model means you can use the same mental model for server and client code. Data fetching happens at the component level with async/await — no more useEffect chains or tangled data-fetching libraries. The new patterns for streaming, Suspense boundaries, and progressive rendering are genuinely elegant for complex apps.
+
+        The problem is complexity. The "use client" / "use server" boundary creates a new category of bugs that didn't exist before. Serialization errors. Accidentally importing a client library into a server component. State management across the boundary. It's a leaky abstraction, and React developers who've been writing client-side code for years now need to think about where their code runs in a way they never did before.
+
+        Our take? For marketing sites, landing pages, blogs, and content-heavy sites — Astro is still the better choice. It's simpler, faster to develop with, and the performance is outstanding. You can drop in React components where you need them without the cognitive overhead of the server/client boundary.
+
+        For complex web applications — dashboards, SaaS products, anything with heavy client-side state — Next.js with RSCs is compelling. The developer experience improvements in Next.js 15 are real, and the performance gains from server components are significant for data-heavy apps.
+
+        The meta-lesson here is that the frontend ecosystem is converging on a simple truth: send less JavaScript to the browser. Whether you get there through Astro's islands, React's server components, or Qwik's resumability — the destination is the same. Ship HTML. Add JS only when you must.
+
+        We've been on this train since we adopted Astro. The rest of the industry is finally buying tickets.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

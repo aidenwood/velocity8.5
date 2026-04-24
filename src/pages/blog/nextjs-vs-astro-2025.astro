@@ -1,0 +1,58 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Next.js vs Astro in 2025 — when to use which framework. Our take after building 20+ client sites on the Gold Coast."
+  title="We Built 20+ Sites on Both Next.js and Astro — Here's When to Use Each · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Web Development Frameworks
+      </Fragment>
+      <Fragment slot="title">
+        We Built 20+ Sites on Both Next.js and Astro — Here's When to Use Each
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-violet-600/20 to-cyan-500/20 flex items-center justify-center">
+          <span class="text-4xl">&#9881;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        The Framework Wars Are Over (Kind Of)
+      </Fragment>
+      <Fragment slot="content">
+        Every few months someone drops a hot take about which JavaScript framework "won." Let us save you the suspense: nobody won. But after building 20+ production sites across both Next.js and Astro, we have some very strong opinions about when to reach for each one.
+
+        The Short Answer
+        If your site is primarily content — marketing pages, blogs, portfolios, documentation — use Astro. If your site is primarily an application — dashboards, SaaS products, authenticated experiences — use Next.js. That is the entire framework. Everything else is nuance.
+
+        Why We Moved Most Client Work to Astro
+        Here is the uncomfortable truth about Next.js: it ships way too much JavaScript for sites that do not need it. A typical Next.js marketing site sends 200-400KB of JS to the browser before your client even sees a heading. Astro sends near zero by default. For a Gold Coast business that just needs a fast, beautiful website that ranks well on Google, that difference is everything. Core Web Vitals are a ranking factor. Page speed is a ranking factor. And Astro wins both categories without you having to think about it. We have seen Lighthouse scores jump from the 70s to consistent 95+ just by rebuilding a Next.js marketing site in Astro. No other optimisation needed — the framework does the heavy lifting.
+
+        Where Next.js Still Wins
+        Next.js is not going anywhere, and for good reason. When you need server-side rendering with complex data fetching, authentication flows, API routes, middleware, and real-time updates, Next.js is genuinely excellent. We still use it for every SaaS product we build. The App Router with React Server Components is a legitimate paradigm shift. Nested layouts, streaming, and parallel routes solve real problems that Astro does not try to address. If you are building the next Trello or a multi-tenant dashboard, Next.js 15 with Supabase is our go-to stack and we are not apologetic about it.
+
+        The Hybrid Approach
+        What we have started doing more of in 2025 is splitting projects. Marketing site in Astro, deployed to Netlify. Application in Next.js, deployed separately. Same domain, different subdirectories. The marketing site loads instantly, ranks beautifully, and costs almost nothing to host. The app handles the heavy lifting behind authentication. This is not a hack — it is the correct architecture for most businesses. Your landing page does not need React hydration. Your dashboard does.
+
+        The React Island Pattern
+        Astro's killer feature is component islands. You write your page in pure HTML and CSS, then drop in a React component only where you need interactivity — a booking form, an animated hero, a live chat widget. The rest of the page ships zero JavaScript. We have used this pattern on every Astro client site this year and the performance results speak for themselves. It is the best of both worlds without the compromise.
+
+        What About Remix, SvelteKit, Nuxt?
+        They are all fine. Seriously. SvelteKit is elegant, Remix has great data loading patterns, and Nuxt is solid if you are in the Vue ecosystem. But we are not going to pretend we use them in production. We standardised on Astro and Next.js because having two frameworks that cover 95% of use cases is better than having five that each cover 60%. Fewer tools, deeper expertise, faster delivery.
+
+        Our Recommendation
+        If you are a Gold Coast business looking for a new website, start with Astro. You will get a faster site, better SEO, and lower hosting costs. If you need application features — user accounts, real-time data, complex forms — we will add Next.js where it makes sense. The framework wars are over. The answer was always "it depends," and now you know what it depends on.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

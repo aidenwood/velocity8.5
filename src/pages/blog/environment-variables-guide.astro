@@ -1,0 +1,95 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Environment variables seem simple until they aren't. Here's the complete guide to using them correctly across local dev, CI, and production."
+  title="The Complete Guide to Environment Variables (Because You're Probably Doing It Wrong) · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        DevOps
+      </Fragment>
+      <Fragment slot="title">
+        The Complete Guide to Environment Variables (Because You're Probably Doing It Wrong)
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-amber-500/20 to-orange-600/20 flex items-center justify-center">
+          <span class="text-4xl">&#128273;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Environment Variables Done Right
+      </Fragment>
+      <Fragment slot="content">
+        Environment variables are one of those things that seem trivially simple until you spend three hours debugging why your API calls work locally but return 401 in production. Or until you accidentally commit a .env file with your Stripe secret key and have to rotate every credential in your system at 10pm on a Thursday. We have done both.
+
+        Here is everything we have learned about environment variables after shipping dozens of projects, distilled into the guide we wish someone had given us on day one.
+
+        The .env File Is Not Your Config System
+
+        Your .env file is a convenience for local development. It is not a deployment config, not a secrets manager, and not a substitute for proper environment configuration. The .env file loads variables into your local process so you can develop without hardcoding values. That is its only job.
+
+        In production, your environment variables should come from your hosting platform's environment variable settings — Netlify's dashboard, Vercel's project settings, your cloud provider's secrets manager. Never from a file deployed alongside your code.
+
+        The .env File Hierarchy
+
+        Most frameworks support multiple .env files with a specific loading order. The typical hierarchy from lowest to highest priority goes: .env (base defaults), then .env.local (local overrides, git-ignored), then .env.development or .env.production (mode-specific), then .env.development.local or .env.production.local (mode-specific local overrides), and finally actual system environment variables which always win.
+
+        The rule is simple: .env files without ".local" in the name get committed to your repo. They contain non-sensitive defaults. Files with ".local" in the name are git-ignored and contain your actual secrets for local development. If you only remember one thing from this post, remember this: anything with ".local" goes in .gitignore.
+
+        The PUBLIC_ Prefix Convention
+
+        Astro uses PUBLIC_. Vite uses VITE_. Next.js uses NEXT_PUBLIC_. Create React App used REACT_APP_. The naming convention differs, but the concept is the same: variables with the public prefix get bundled into your client-side JavaScript. Variables without it are only available server-side.
+
+        This matters enormously. If you put your Supabase anon key in a variable called SUPABASE_ANON_KEY, your client-side code cannot access it in Astro or Vite. You need PUBLIC_SUPABASE_ANON_KEY. Conversely, if you put your Supabase service role key in a variable called PUBLIC_SUPABASE_SERVICE_KEY, congratulations — you just shipped your admin credentials to every browser that loads your site.
+
+        The public prefix is a security boundary. Treat it that way.
+
+        What Goes Where
+
+        Public variables (safe to expose in the browser): your Supabase anon key, your Stripe publishable key, your Google Maps API key (with domain restrictions), your site URL, and any feature flags.
+
+        Private variables (server-side only, never prefixed): your Supabase service role key, your Stripe secret key, database connection strings, API keys for third-party services, JWT signing secrets, and SMTP credentials.
+
+        If you are unsure whether a variable should be public or private, it should be private. You can always move it to public later. You cannot un-expose a secret that has been bundled into client JavaScript and cached by CDNs and browsers worldwide.
+
+        The .env.example Pattern
+
+        Every project should have a .env.example file committed to the repo. This file contains every environment variable your project needs, with placeholder values instead of real ones. It looks something like: PUBLIC_SUPABASE_URL=your_supabase_url_here, PUBLIC_SUPABASE_ANON_KEY=your_anon_key_here, SUPABASE_SERVICE_ROLE_KEY=your_service_key_here.
+
+        When a new developer clones the repo, they copy .env.example to .env.local and fill in real values. No guessing which variables are needed. No searching through code to find every import.meta.env reference. No Slack messages asking "what env vars do I need?"
+
+        We enforce this with a checklist in our project setup docs. Clone the repo. Copy .env.example to .env.local. Fill in values from the shared password manager. Run the dev server.
+
+        Runtime vs Build-Time Variables
+
+        This one catches people constantly. In static site generators like Astro in SSG mode or any Vite project, environment variables are replaced at build time. They are literally string-replaced in your JavaScript bundle. If you change an environment variable in Netlify's dashboard and do not trigger a rebuild, your site still uses the old value.
+
+        This means if you rotate an API key, you need to redeploy. If you change a feature flag, you need to redeploy. The variable is baked into the built files — it does not read from the environment at request time.
+
+        Server-side rendered pages are different. Variables accessed in server-side code (API routes, SSR page functions, edge functions) are read at runtime. Changing them takes effect immediately without a rebuild.
+
+        Know which type your variables are. It will save you from the "I updated the env var but nothing changed" debugging session.
+
+        Validation at Startup
+
+        We validate environment variables at application startup using Zod. A simple schema that defines each required variable, its type, and any constraints. If a variable is missing or malformed, the application fails immediately with a clear error message instead of silently breaking at some random point during a user interaction.
+
+        This takes five minutes to set up and catches misconfiguration before it reaches users. Every project should do it. No exceptions.
+
+        The Rotation Protocol
+
+        When a secret is compromised (and eventually, one will be), you need to rotate it. Our protocol: generate the new key in the service's dashboard, update the variable in your hosting platform, trigger a redeploy if it is a build-time variable, verify the application works with the new key, then revoke the old key. That order matters — revoke last so you do not break production while updating.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

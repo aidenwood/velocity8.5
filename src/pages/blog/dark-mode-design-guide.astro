@@ -1,0 +1,59 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Dark mode is more than inverting colors. Here's a deep dive into the design and implementation decisions that make dark themes actually look good."
+  title="The Surprisingly Complicated World of Designing Dark Mode That Doesn't Suck · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Design & CSS
+      </Fragment>
+      <Fragment slot="title">
+        The Surprisingly Complicated World of Designing Dark Mode That Doesn't Suck
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-slate-600/20 to-zinc-500/20 flex items-center justify-center">
+          <span class="text-4xl">🌙</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        It's Not Just Inverting Colors
+      </Fragment>
+      <Fragment slot="content">
+        Every client asks for dark mode now. It's gone from a nice-to-have to an expected feature. And the request usually sounds simple: "Can we add a dark mode toggle?" What they don't realize — and what most developers underestimate — is that dark mode done well requires rethinking your entire color system, not just flipping a switch.
+
+        The first mistake everyone makes: inverting the color palette. White becomes black, light grays become dark grays, done. This produces dark modes that feel harsh, flat, and slightly wrong. The reason is that light and dark interfaces don't use opposite colors — they use entirely different color relationships.
+
+        In light mode, you create depth with shadows. A card floats above the background because its drop shadow creates visual separation. In dark mode, shadows are nearly invisible against dark backgrounds. You create depth with surface elevation — lighter surfaces sit "higher" in the visual stack. A card on a dark background should be slightly lighter than the background, not the same shade with a shadow nobody can see. Google's Material Design documentation explains this well, and it's the principle we follow on every dark mode implementation.
+
+        Contrast ratios change in dark mode and most developers don't adjust for it. Pure white text (#ffffff) on a dark background is technically high contrast, but it creates a glowing effect that causes eye strain. Slightly muted whites — #e2e8f0 or #f1f5f9 — are easier to read on dark backgrounds. Meanwhile, your carefully tuned body text color from light mode (usually gray-700 or similar) might not have sufficient contrast on a dark surface. Every text color needs re-evaluation.
+
+        Brand colors need adjustment too. A vibrant blue that looks great on white can be overpowering on dark gray. Dark mode brand colors are typically desaturated slightly and shifted toward lighter tints. If your client's brand blue is hsl(220, 90%, 50%), the dark mode version might be hsl(220, 70%, 65%). Same hue, reduced saturation, increased lightness. This maintains brand recognition without visual assault.
+
+        The implementation side has gotten much cleaner. CSS custom properties are the foundation. Define your semantic colors — --color-surface, --color-text, --color-border, --color-primary — and swap them with prefers-color-scheme or a class-based toggle. The prefers-color-scheme media query respects the user's system preference, which should be your default. A manual toggle provides an override. Store the preference in localStorage so it persists.
+
+        The flash-of-wrong-theme problem is real and annoying. If your site loads in light mode and then switches to dark after JavaScript hydrates, users see a white flash. The fix: inject a tiny blocking script in the document head that reads the localStorage preference and applies the dark class before any rendering occurs. This script must be synchronous and must run before the body paints. It's one of the few cases where a render-blocking script is the correct choice.
+
+        Images in dark mode need attention. Photos with white or light backgrounds look like they're glowing on a dark surface. Options include adding a subtle border-radius with a soft border, reducing image brightness slightly with filter: brightness(0.9), or using a translucent overlay. Logos are worse — most clients provide logos on white backgrounds. You need dark mode logo variants or SVG logos that swap fill colors with CSS.
+
+        Borders and dividers are more visible in dark mode. A 1px border that's barely noticeable in light mode can look like a harsh line in dark mode. We typically reduce border opacity or use softer border colors in dark themes. border-color: rgb(255 255 255 / 0.1) produces a subtle separator that works well on dark surfaces.
+
+        Testing dark mode properly means more than toggling a switch. Check every page, every component state (hover, focus, active, disabled, error), every piece of dynamic content. Check it with actual content, not lorem ipsum. Check form fields, which have browser-default styling that can look terrible in dark mode. Check third-party embeds — YouTube thumbnails, Google Maps, social feeds — which don't adapt to your color scheme.
+
+        For agencies, here's the practical advice: design dark mode from the start, not as an afterthought. Build your color system with CSS custom properties from day one. Use semantic token names, not literal color names. --color-surface instead of --white. This makes theme switching trivial because you're swapping values on meaningful abstractions, not hunting for hardcoded colors.
+
+        Dark mode is a design problem first and an engineering problem second. Get the color relationships right, and the CSS writes itself. Get them wrong, and no amount of clever engineering saves it.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

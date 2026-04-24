@@ -1,0 +1,65 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Apple Vision Pro for web developers — spatial computing, WebXR, and a honest take on why most developers should ignore it for now."
+  title="I Looked at Apple Vision Pro and Decided Most Web Devs Should Ignore It (For Now) · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Tech News
+      </Fragment>
+      <Fragment slot="title">
+        I Looked at Apple Vision Pro and Decided Most Web Devs Should Ignore It (For Now)
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-sky-600/20 to-purple-500/20 flex items-center justify-center">
+          <span class="text-4xl">&#128083;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Spatial Computing Meets Reality
+      </Fragment>
+      <Fragment slot="content">
+        Apple Vision Pro launched at $3,499 USD and the tech press collectively lost its mind. "The future of computing." "A new paradigm." "The iPhone moment for spatial computing." Six months later, the return rate is reportedly significant, Apple slashed production orders, and the most common use case is watching movies on a virtual big screen while lying in bed. Welcome to the future.
+
+        But here is the nuance that gets lost in both the hype and the backlash: Apple Vision Pro is genuinely impressive technology with real implications for web development. It is just not relevant to most developers yet. Let me explain both sides.
+
+        What Actually Works
+
+        Safari on Vision Pro supports full WebXR, which means you can build immersive web experiences that run in the headset without going through the App Store. Your existing responsive website already works — it renders as a floating window in the user's space. If you have built with accessibility and semantic HTML, your site probably looks fine. If you built a div soup with pixel-perfect positioning, good luck.
+
+        The more interesting capability is spatial web content. Using WebXR and the Model element (Apple's addition to HTML for 3D models), you can embed 3D objects in web pages that users can pull out of the browser and place in their physical space. A furniture store can show a couch that appears in your living room. An architect can present a building model you can walk around. These are genuinely useful applications.
+
+        Why You Should Probably Ignore It
+
+        The installed base is tiny. Estimates suggest Apple has sold roughly 500,000 Vision Pro units worldwide. For context, there are about 5 billion smartphone users. You are optimising for 0.01% of potential users. Unless your business specifically targets early-adopter tech enthusiasts with significant disposable income, the ROI on Vision Pro development is effectively zero.
+
+        The development tools are immature. visionOS development requires a Mac with Apple Silicon, Xcode, and either SwiftUI or RealityKit for native apps. The WebXR path is more accessible, but the APIs are still evolving and documentation is sparse. You will spend more time debugging spatial interactions than building features.
+
+        The UX patterns do not exist yet. Nobody knows what good spatial web design looks like. Do you place your navigation in a floating panel? How do you handle text input when the user is looking at a virtual keyboard? What is the spatial equivalent of a hamburger menu? These questions do not have answers yet, and building for a platform without established UX patterns means your work will age badly.
+
+        The Exception: 3D and Immersive Content
+
+        If your business involves 3D — architecture, product visualisation, real estate, education, or gaming — Vision Pro is worth watching closely. The ability to present 3D content in a web browser that users can interact with spatially is genuinely novel. Three.js and React Three Fiber work in Safari on Vision Pro, which means your existing WebGL content is already spatial-ready.
+
+        For agencies like ours, we have experimented with spatial web concepts for portfolio presentations and product showcases. The technology is impressive when it works. But we are not selling it to clients yet because we cannot justify the development cost for a platform with half a million users.
+
+        What Should You Actually Do?
+
+        Build accessible, semantic, responsive websites. That is it. Sites built with web standards will work on Vision Pro, on regular browsers, on phones, and on whatever comes next. Do not add "Vision Pro optimisation" to your service offerings. Do not learn SwiftUI for visionOS unless you are personally excited about it. Do not believe anyone who tells you spatial computing is urgent.
+
+        But do keep an eye on WebXR. When the hardware gets cheaper and the installed base grows — and it will, because Apple is patient and persistent — the developers who understand spatial web APIs will have a meaningful head start. Just do not sprint toward a finish line that is still five years away.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

@@ -1,81 +1,139 @@
 ---
-const stats = [
-  {
-    name: 'Multi-modal campaign design.',
-    desc: 'We deployed a multi-modal marketing strategy across the whole of the Gold Coast for a client in the Real Estate industry.',
-    value: 'Real Estate Web Design & Marketing',
-    link: '/web-design/previous-work/ball-realty',
-  },
-  {
-    name: 'CRO for e-commerce web design.',
-    desc: 'Some of our favourite, most effective web design tricks to boost conversion rates on any e-commerce store.',
-    value: 'E-Commerce / Shopify Optimisation',
-    link: 'https://blog.aidxn.com/posts/ecommerce-design-tricks',
-  },
-  {
-    name: 'Wordpress conversion optimisation.',
-    desc: 'Our strategies for reducing Wordpress page load time with impressive results for a client.',
-    value: 'Health Care Web Design & Branding',
-    link: '/web-design/previous-work/esteem-clinics/',
-  },
-  {
-    name: '$50k in sales with $0 in marketing.',
-    desc: 'Marketing management for a client in the events industry, generating over $50k in sales without a dime on advertising.',
-    value: 'Music Event Web Design & Marketing',
-    link: '/web-design/previous-work/the-boogie-collective',
-  },
-];
+import { promises as fs } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import path from 'node:path';
+
+// Read blog posts and extract metadata
+const blogDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../pages/blog');
+const files = await fs.readdir(blogDir);
+
+interface BlogCard {
+  url: string;
+  title: string;
+  subtitle: string;
+  category: string;
+  emoji: string;
+  gradient: string;
+}
+
+const posts: BlogCard[] = [];
+
+for (const file of files) {
+  if (file === 'index.astro' || !file.endsWith('.astro')) continue;
+
+  const slug = file.replace('.astro', '');
+  const content = await fs.readFile(path.join(blogDir, file), 'utf-8');
+
+  // Extract title
+  const titleMatch = content.match(/title="([^"]+?)(?:\s*·\s*Blog\s*·\s*Aidxn Design)?"/);
+  const creativeTitle = titleMatch?.[1]?.replace(/\s*·\s*Blog\s*·\s*Aidxn Design/, '') || '';
+
+  // Extract category
+  const catMatch = content.match(/slot="category"[^>]*>\s*([^<]+)/);
+  const category = catMatch?.[1]?.trim() || 'Blog';
+
+  // Extract emoji from cover
+  const emojiMatch = content.match(/text-4xl"[^>]*>([^<]+)</);
+  const emoji = emojiMatch?.[1]?.trim() || '';
+
+  // Extract gradient classes
+  const gradMatch = content.match(/from-([a-z]+-\d+\/\d+)\s+to-([a-z]+-\d+\/\d+)/);
+  const gradient = gradMatch ? `from-${gradMatch[1]} to-${gradMatch[2]}` : 'from-violet-600/20 to-cyan-500/20';
+
+  const subtitle = slug.replace(/-/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase());
+
+  posts.push({
+    url: `/blog/${slug}`,
+    title: creativeTitle || subtitle,
+    subtitle: creativeTitle ? subtitle : '',
+    category,
+    emoji,
+    gradient,
+  });
+}
+
+// Shuffle and take 12 for the slider
+const shuffled = posts.sort(() => Math.random() - 0.5).slice(0, 12);
 ---
 
-
-<section class="my-28">
+<section class="my-28 overflow-hidden">
   <div class="mx-auto w-full px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-    <div class="flex flex-col">
-      <div class="flex flex-col justify-center">
-        
-        <div class="flex flex-col gap-4 sm:gap-6">
-          <!-- Mission description -->
-          
-              <h2 class="text-base lg:text-lg uppercase font-thin tracking-widest">
-                Industry-Specific Web Design and Marketing
-              </h2>
-              <h3 class="text-3xl sm:text-4xl font-medium tracking-tight">
-                Serious Results
-              </h3>
-              <p class="text-primary-950/80 dark:text-primary-200/80 max-w-6xl text-lg xs:text-xl">
-                Our designs and strategies are always custom to their niche, looking for any oppourtunity to gain a competitive edge. In today's world of high cost marketing, having a strong organic prescense has never been more valuable.
-              </p>
-              <div class=" ">
-                <a
-                    href="https://blog.aidxn.com/"
-                    class="mt-2 mr-4 bg-primary-600 dark:bg-primary-400 hover:bg-primary-700 dark:hover:bg-primary-300 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-400 dark:text-primary-950 inline-flex items-center justify-center rounded-full border border-transparent px-5 py-3 text-base font-medium text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
-                  >
-                    All Blog Posts
-                </a>
-              </div>
-            
-
+    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-violet-600 dark:text-violet-400 mb-3">
+          From the blog
+        </p>
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-primary-950 dark:text-white">
+          Latest thinking
+        </h2>
+        <p class="mt-2 text-base text-primary-600 dark:text-primary-300/60 max-w-lg">
+          Tech news, design insights, and development deep-dives from the Gold Coast.
+        </p>
       </div>
+      <a
+        href="/blog"
+        class="shrink-0 inline-flex items-center gap-2 rounded-xl border border-primary-300/50 dark:border-primary-700/40 px-5 py-2.5 text-sm font-semibold text-primary-700 dark:text-primary-300 transition hover:bg-primary-100/50 dark:hover:bg-primary-800/20"
+      >
+        View all articles
+        <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd" />
+        </svg>
+      </a>
     </div>
-    <div class="w-full flex flex-col justify-center">
+  </div>
 
-      <dl class="grid md:grid-cols-2 gap-6 my-12">
-        {
-          stats.map((stat) => (
-          <a href={stat.link}>  
-            <div class="border-primary-900/10 dark:border-primary-300/10 hover:bg-primary-900/10 hover:dark:bg-primary-300/10 duration-200 rounded-3xl border px-4 md:px-6 py-8 sm:py-12 h-full flex flex-col justify-center gap-4">
-              <dt class="text-xs uppercase font-thin tracking-widest">{stat.value}</dt>
-              <dd class="text-lg xs:text-xl lg:text-2xl font-medium leading-loose tracking-tighter xs:tracking-tight"><h4>{stat.name}</h4></dd>
-              <p class="text-primary-950/80 dark:text-primary-200/80 text-base xs:text-lg leading-6">
-                    {stat.desc}
-                  </p>
-            </div>
-          </a>
-          ))
-        }
-      </dl>
-      
+  <!-- Horizontal scroll slider -->
+  <div class="relative">
+    <div
+      class="scrollbar-hide flex gap-5 overflow-x-auto px-4 sm:px-6 lg:px-8 pb-4 snap-x snap-mandatory"
+      style="-webkit-overflow-scrolling: touch;"
+    >
+      <!-- Left spacer for centering on wide screens -->
+      <div class="hidden lg:block shrink-0" style="width: calc((100vw - 80rem) / 2)"></div>
+
+      {shuffled.map((post) => (
+        <a
+          href={post.url}
+          class="group flex flex-col shrink-0 w-[300px] sm:w-[340px] rounded-2xl border border-primary-200/60 dark:border-primary-800/30 bg-white dark:bg-primary-950/40 overflow-hidden transition-all hover:border-violet-400/50 dark:hover:border-violet-600/40 hover:shadow-xl hover:shadow-violet-500/5 snap-start"
+        >
+          <!-- Gradient cover -->
+          <div class={`h-32 bg-gradient-to-br ${post.gradient} flex items-center justify-center`}>
+            {post.emoji && (
+              <span class="text-4xl opacity-80 group-hover:scale-110 transition-transform duration-300">
+                {post.emoji}
+              </span>
+            )}
+          </div>
+
+          <!-- Content -->
+          <div class="flex flex-col flex-1 p-5">
+            <span class="text-[10px] font-semibold uppercase tracking-wider text-violet-500 dark:text-violet-400/70 mb-2">
+              {post.category}
+            </span>
+            <h3 class="text-[14px] font-semibold leading-snug text-primary-950 dark:text-white group-hover:text-violet-600 dark:group-hover:text-violet-400 transition line-clamp-3 mb-2">
+              {post.title}
+            </h3>
+            {post.subtitle && (
+              <p class="text-[11px] text-primary-400 dark:text-primary-500/50 line-clamp-1 mb-auto">
+                {post.subtitle}
+              </p>
+            )}
+            <span class="mt-3 inline-flex items-center gap-1 text-[11px] font-semibold text-violet-500 dark:text-violet-400/70 group-hover:gap-2 transition-all">
+              Read article
+              <svg class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd" />
+              </svg>
+            </span>
+          </div>
+        </a>
+      ))}
+
+      <!-- Right spacer -->
+      <div class="hidden lg:block shrink-0" style="width: calc((100vw - 80rem) / 2)"></div>
     </div>
-    
+
+    <!-- Scroll fade edges -->
+    <div class="pointer-events-none absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-primary-50/80 dark:from-black/80 to-transparent"></div>
+    <div class="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-primary-50/80 dark:from-black/80 to-transparent"></div>
   </div>
 </section>

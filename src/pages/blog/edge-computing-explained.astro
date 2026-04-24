@@ -1,0 +1,55 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="Edge computing explained for web developers. Cloudflare Workers, Deno Deploy, Vercel Edge — when it matters and when it's just marketing."
+  title="What Does 'Edge Computing' Actually Mean? (And When Is It Just Marketing?) · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Tech News
+      </Fragment>
+      <Fragment slot="title">
+        What Does 'Edge Computing' Actually Mean? (And When Is It Just Marketing?)
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-amber-600/20 to-orange-500/20 flex items-center justify-center">
+          <span class="text-4xl">&#9889;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Closer To The User, Closer To The Metal
+      </Fragment>
+      <Fragment slot="content">
+        Every hosting platform in 2025 wants you to run your code "at the edge." Cloudflare Workers, Deno Deploy, Vercel Edge Functions, Netlify Edge Functions, Fastly Compute — the list keeps growing. The marketing pitch is always the same: run your code closer to your users for faster response times. And to be fair, that pitch is accurate. But the conversation around edge computing has become so polluted with marketing that most developers have no idea when they actually need it versus when they are adding complexity for thirty milliseconds of improvement that nobody will notice.
+
+        What Edge Actually Means
+        Traditional server deployments run your code in one or a few data centres. A user in Sydney hits your server in us-east-1 and the request travels around the world twice — once there, once back. That round trip adds 200-300 milliseconds of latency before your code even starts executing. Edge computing eliminates that by running your code in data centres distributed globally. Cloudflare has over 300 locations. When a user in Sydney makes a request, it hits a data centre in Sydney. The latency drops to single-digit milliseconds. For the right use cases, this is transformative.
+
+        When Edge Makes Sense
+        Personalisation at the CDN layer. A/B testing without client-side flicker. Geolocation-based redirects. Authentication checks before hitting your origin server. API rate limiting. Header manipulation and request rewriting. Bot detection. These are all cases where you need to run a small amount of logic on every request before it reaches your main application. Edge functions handle these beautifully because they are lightweight, fast to cold start, and distributed globally by default.
+
+        When Edge Does Not Make Sense
+        Anything that needs a database. Here is the dirty secret of edge computing — your code runs globally but your database almost certainly does not. If your edge function in Sydney needs to query a Postgres database in Virginia, you just moved the latency from the user-to-server hop to the server-to-database hop. You gained nothing. Some providers are working on this with distributed databases like Cloudflare D1, Turso, and Neon with read replicas, but the ecosystem is not mature enough for most production workloads. If your function needs to read from or write to a database, a regional serverless function near your database is usually faster than an edge function far from it.
+
+        The Runtime Constraints Are Real
+        Edge runtimes are not Node.js. They are based on the Web Standards API — V8 isolates running a subset of web platform APIs. That means no Node.js built-in modules, no native binaries, limited file system access, and strict memory and execution time limits. Most edge runtimes cap execution at 30 seconds to a few minutes. If your code depends on npm packages that use Node.js internals, it will not run on the edge without modification. This catches a lot of developers off guard.
+
+        The Platforms Compared
+        Cloudflare Workers is the most mature and has the largest network. Their developer experience is excellent, the free tier is generous, and the ecosystem around Workers — KV, D1, R2, Durable Objects — is the most complete. Deno Deploy is great if you are already in the Deno ecosystem, with native TypeScript support and a clean API. Vercel Edge Functions integrate seamlessly with Next.js but lock you into the Vercel platform. Netlify Edge Functions are solid for Astro and SvelteKit projects.
+
+        Our Recommendation
+        Use edge functions for what they are good at: lightweight request-time logic that benefits from global distribution. Use regional serverless functions for anything that touches a database. Do not move your entire backend to the edge because a blog post told you it was faster. Measure your actual latency. If your users are all in one region and your database is in that region, a traditional server might outperform an edge function that still needs to reach back to your database. The edge is a tool, not a religion.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>

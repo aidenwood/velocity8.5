@@ -1,40 +1,66 @@
+---
+import BlogSidebar from '../blog/BlogSidebar.tsx';
+---
 
-<section class="my-32 lg:my-28">
+<!-- Top reading progress bar (thin, fixed) -->
+<div id="reading-progress-bar" class="fixed top-0 left-0 z-[60] h-0.5 bg-violet-500 transition-all duration-150" style="width: 0%"></div>
+
+<section class="my-16 lg:my-20">
   <div class="mx-auto px-4 sm:px-6 w-full lg:px-8">
-    <div class="w-full flex-col md:flex-row flex gap-16">
-      <div class="w-full md:w-2/5 flex flex-col items-center justify-center gap-8 sm:gap-12">
-        
-        <div class="w-full flex flex-col items-start md:items-end max-w-5xl gap-4">
-          <h1 class="font-thin pb-4 text-xs tracking-widest uppercase">
+    <!-- Hero area -->
+    <div class="w-full flex-col md:flex-row flex gap-12 lg:gap-16">
+      <div class="w-full md:w-1/2 flex flex-col items-center justify-center gap-6 sm:gap-8">
+        <div class="w-full flex flex-col items-start md:items-end max-w-5xl gap-3">
+          <h1 class="font-thin pb-2 text-xs tracking-widest uppercase text-primary-500 dark:text-primary-400/60">
             <slot name="category">Aidxn Design</slot>
           </h1>
-          <h2 class="font-medium lg:text-5xl md:tracking-tight text-3xl tracking-tighter xl:text-6xl xs:text-4xl">
+          <h2 class="font-medium lg:text-5xl md:tracking-tight text-3xl tracking-tighter xl:text-6xl xs:text-4xl text-primary-950 dark:text-white">
             <slot name="title">Title</slot>
           </h2>
-          
           <a
             href="/blog"
-            class="mt-6 mr-4 bg-primary-600 dark:bg-primary-400 hover:bg-primary-700 dark:hover:bg-primary-300 focus-visible:outline-primary-600 dark:focus-visible:outline-primary-400 dark:text-primary-950 inline-flex items-center justify-center rounded-full border border-transparent px-5 py-3 text-base font-medium text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+            class="mt-4 inline-flex items-center gap-2 rounded-full border border-primary-300/50 dark:border-primary-700/40 px-4 py-2 text-sm font-medium text-primary-600 dark:text-primary-300 transition hover:bg-primary-100/50 dark:hover:bg-primary-800/20"
           >
-            Back to Blog
+            <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+            </svg>
+            All articles
           </a>
-        
         </div>
       </div>
-      <div class="w-full md:w-2/5 p-4">
+      <div class="w-full md:w-1/2 p-4">
         <slot id="glass-card-dark" class="bg-grey-700 w-full h-full my-4" name="cover"></slot>
       </div>
-    </div> 
-    <div class="mx-auto px-4 sm:px-6 w-full max-w-4xl lg:px-8">
-      
-      <h3 class="text-xl lg:text-2xl pt-16 my-4 text-primary-950 dark:text-primary-100">
-        <slot name="smlTitle">Sub Titles</slot>
-      </h3>
-      <p class="text-sm lg:text-lg my-4 text-primary-800 dark:text-primary-200">
-        <slot name="content">Some description goes here</slot>
-      </p>
+    </div>
+
+    <!-- Content + Sidebar layout -->
+    <div class="mx-auto mt-12 flex w-full max-w-6xl gap-10 lg:gap-14 px-0 sm:px-2 lg:px-4" data-blog-content>
+      <!-- Main content -->
+      <article class="min-w-0 flex-1 max-w-3xl">
+        <h3 class="text-xl lg:text-2xl mb-6 text-primary-950 dark:text-primary-100 font-medium">
+          <slot name="smlTitle">Sub Titles</slot>
+        </h3>
+        <div class="prose prose-primary dark:prose-invert prose-lg max-w-none text-primary-800 dark:text-primary-200 leading-relaxed">
+          <slot name="content">Some description goes here</slot>
+        </div>
+      </article>
+
+      <!-- Sidebar -->
+      <BlogSidebar client:load />
     </div>
   </div>
-
-  
 </section>
+
+<script>
+  // Top progress bar (works without React)
+  function updateProgressBar() {
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    if (docHeight > 0) {
+      const progress = Math.min(100, Math.round((window.scrollY / docHeight) * 100));
+      const bar = document.getElementById('reading-progress-bar');
+      if (bar) bar.style.width = progress + '%';
+    }
+  }
+  window.addEventListener('scroll', updateProgressBar, { passive: true });
+  updateProgressBar();
+</script>

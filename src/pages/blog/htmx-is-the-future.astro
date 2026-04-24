@@ -1,0 +1,61 @@
+---
+import Cta from '../../components/home/Cta-ContactShort.astro';
+import SlotBlog from '../../components/home/Slot-Blog.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  description="HTMX proved everyone wrong — hypermedia is back and SPAs are sweating. When less JavaScript is genuinely the answer."
+  title="HTMX Proved Everyone Wrong — Hypermedia Is Back and SPAs Are Sweating · Blog · Aidxn Design"
+>
+
+    <SlotBlog>
+      <Fragment slot="category">
+        Tech News
+      </Fragment>
+      <Fragment slot="title">
+        HTMX Proved Everyone Wrong — Hypermedia Is Back and SPAs Are Sweating
+      </Fragment>
+
+      <Fragment slot="cover">
+        <div class="w-full h-48 rounded bg-gradient-to-br from-blue-600/20 to-indigo-500/20 flex items-center justify-center">
+          <span class="text-4xl">&#9881;</span>
+        </div>
+      </Fragment>
+
+      <Fragment slot="smlTitle">
+        Hypermedia Strikes Back
+      </Fragment>
+      <Fragment slot="content">
+        Two years ago, if you suggested building a web application without a JavaScript framework, people would look at you the way you look at someone who still uses a flip phone. Then HTMX showed up, casually deleted 90% of the JavaScript from real production applications, and made everyone reconsider what "modern" actually means.
+
+        HTMX is a 14KB library that lets any HTML element make HTTP requests, and any HTTP response can update any part of the page. That is it. That is the whole pitch. No virtual DOM. No state management. No build step. No node_modules. No hydration. No client-side routing. Just HTML attributes that make your server-rendered pages interactive.
+
+        Here is what an HTMX button looks like: you add hx-get="/api/data" hx-target="#results" to a button element, and clicking it fetches HTML from your server and swaps it into the target div. Your server returns HTML fragments instead of JSON. Your frontend has zero JavaScript logic. Your application architecture is "the server renders HTML," which is what the web was designed to do in the first place.
+
+        Why This Is Actually Revolutionary
+
+        The Single Page Application model that has dominated web development for the last decade introduced an enormous amount of complexity to solve a simple problem: making pages feel fast without full reloads. To achieve this, we invented client-side routing, state management libraries, API serialisation layers, hydration, server-side rendering of client-side frameworks, and an entire category of tooling just to manage the tooling.
+
+        HTMX deletes all of that complexity by asking a different question. Instead of "how do we make JavaScript applications feel like websites," it asks "how do we make websites feel like applications?" The answer is: let the server do the work, send HTML over the wire, and swap it into the page. This is not a new idea. It is the original idea. HTMX just makes it ergonomic.
+
+        The Performance Numbers Are Embarrassing
+
+        A typical React SPA ships 200-500KB of JavaScript before your user sees a single piece of content. An HTMX page ships 14KB of HTMX and zero application JavaScript. The initial load is faster. The time to interactive is faster. The server costs are lower because you are rendering HTML templates instead of running a Node.js process to server-render a React tree. And you know what else? HTML fragments compress better than JSON. The total data transferred is often smaller too.
+
+        When HTMX Is The Wrong Choice
+
+        HTMX is not the right tool for everything, and the HTMX community sometimes oversells it. If you are building a real-time collaborative editor, a complex data visualisation, or an application with heavy client-side state like a video editor or design tool — you need JavaScript. Lots of it. HTMX cannot do offline-first. It cannot do optimistic updates elegantly. It requires a server roundtrip for every interaction, which means it is as fast as your server and network allow.
+
+        The Bigger Lesson
+
+        The real takeaway from HTMX is not "use HTMX." It is "question your defaults." The web development industry has a pathological need to reach for the most complex tool available, even when the problem is simple. A marketing site does not need React. A CRUD application does not need a client-side router. A blog does not need a build step. HTMX proved that you can build fast, interactive, production-grade web applications with HTML, a server, and a 14KB library. That should make every developer stop and ask: how much of my current stack exists to solve problems I created by choosing the wrong architecture?
+
+        We are not switching our entire practice to HTMX. We still build complex applications in React when the use case demands it. But for the 70% of projects that are fundamentally "show data, accept input, submit forms" — HTMX is faster to build, easier to maintain, and better for users. Sometimes the old ideas are the best ideas. They just needed better marketing.
+
+      </Fragment>
+    </SlotBlog>
+
+  <Cta />
+
+</Layout>
