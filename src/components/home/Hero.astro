@@ -1,6 +1,7 @@
 ---
 import SkewedPanel from './SkewedPanel.astro';
 import TopoBackground from './TopoBackground.astro';
+import BrandGridTracerSlow from '../brand/BrandGridTracerSlow.jsx';
 ---
 
 <!-- SVG CSS and Animate for Aidxn Moving Logo -->
@@ -25,6 +26,8 @@ import TopoBackground from './TopoBackground.astro';
 
 
 <section id="heroArea" class="relative">
+  <!-- Branded 3D grid with slow light traces -->
+  <BrandGridTracerSlow client:load />
   <!-- Skewed grid background -->
   <SkewedPanel class="opacity-30" />
   <!-- Topo contour lines -->

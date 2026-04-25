@@ -87,14 +87,18 @@ const row4: TechItem[] = [
     transform-origin: 50% 50%;
   }
   .stack-fade-mask {
-    mask-image: radial-gradient(ellipse at 15% 80%, rgba(0,0,0,1) 15%, rgba(0,0,0,0.7) 40%, rgba(0,0,0,0.2) 65%, rgba(0,0,0,0) 90%);
-    -webkit-mask-image: radial-gradient(ellipse at 15% 80%, rgba(0,0,0,1) 15%, rgba(0,0,0,0.7) 40%, rgba(0,0,0,0.2) 65%, rgba(0,0,0,0) 90%);
+    mask-image: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 20%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0) 90%),
+                linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0) 100%);
+    mask-composite: intersect;
+    -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 20%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0) 90%),
+                        linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0) 100%);
+    -webkit-mask-composite: source-in;
   }
 </style>
 
-<section class="relative my-28 overflow-hidden">
-  <!-- Content overlay (left-aligned, on top of 3D grid) -->
-  <div class="relative z-10 mx-auto px-4 sm:px-6 w-full lg:max-w-7xl lg:px-8 mb-8">
+<section class="my-28 overflow-hidden">
+  <!-- Header — fully outside the 3D/masked area -->
+  <div class="mx-auto px-4 sm:px-6 w-full lg:max-w-7xl lg:px-8 mb-10">
     <div class="flex flex-col gap-4 max-w-xl">
       <p class="text-xs font-semibold uppercase tracking-[0.2em] text-violet-600 dark:text-violet-400">
         Built with
@@ -108,9 +112,10 @@ const row4: TechItem[] = [
     </div>
   </div>
 
-  <!-- 3D Marquee Grid (matching hero perspective) -->
-  <div class="stack-3d-container stack-fade-mask" style="margin-top: -2rem;">
-    <div class="stack-3d-skew flex flex-col gap-3 py-8">
+  <!-- 3D Marquee Grid — separate from heading, with fade mask -->
+  <div class="stack-fade-mask">
+    <div class="stack-3d-container">
+      <div class="stack-3d-skew flex flex-col gap-3 py-4">
 
       <!-- Row 1 (left, normal speed) -->
       <div class="relative w-full overflow-hidden">
@@ -164,6 +169,7 @@ const row4: TechItem[] = [
         </div>
       </div>
 
+      </div>
     </div>
   </div>
 </section>
